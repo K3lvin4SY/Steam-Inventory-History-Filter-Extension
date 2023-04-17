@@ -1,0 +1,21 @@
+{
+    "name": "Steam Invetory History Filter",
+    "version": "1.0.0",
+    "description": "A simple extension that lets you filter through the inventory history page.",
+    "manifest_version": 3,
+    "author": "Kelvin Brahe",
+    "action":{
+        "default_popup": "popup.html",
+        "default_title": "Steam Invetory History Filter",
+        "default_icon": "icon.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "permissions": [
+     "activeTab"
+     ]
+} 
