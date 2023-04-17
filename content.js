@@ -1,22 +1,37 @@
+// Extension logic starts here (ONLY FUNCTIONS & CONSTANTS!)
 var invHisTab = document.getElementById("inventory_history_table");
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(request.type);
-  if (request.type == "clearFilter") {
+function filterWindow() {
+  return document.getElementById("steam_Inv_His_Filter_Window");
+}
+
+function recieveCommand(command) {
+  console.log(command);
+  if (command == "clearFilter") {
     clearFilter();
   } else {
-    console.log(request.type);
-    //removeRow(request.type);
+    var remkeep = (command.split('@')[1] == "true");
+    var tag = command.split('@')[0]
+    removeRow(tag, remkeep);
   }
-});
+}
 
-
-function removeRow(type) {
+function removeRow(type, remkeep) {
   Array.from(invHisTab.children).forEach(child => {
     var content = child.querySelector('.tradehistory_content');
     var desc = content.querySelector('.tradehistory_event_description');
     if (desc.innerHTML.includes(type)) {
-      child.style.display = "none";
+      if (remkeep) {
+        child.style.display = "none";
+      } else {
+        child.style.display = "block";
+      }
+    } else {
+      if (remkeep) {
+        //child.style.display = "block"; // this blocks multiple tag remove
+      } else {
+        child.style.display = "none";
+      }
     }
   });
 }

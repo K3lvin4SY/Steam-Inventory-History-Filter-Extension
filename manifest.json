@@ -5,17 +5,21 @@
     "manifest_version": 3,
     "author": "Kelvin Brahe",
     "action":{
-        "default_popup": "popup.html",
         "default_title": "Steam Invetory History Filter",
         "default_icon": "icon.png"
     },
+    "web_accessible_resources": [
+      { 
+        "resources": ["/components/filterWindow.html"],
+        "matches": ["<all_urls>"]
+      }
+    ],
     "content_scripts": [
       {
         "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
-        "js": ["content.js"]
+        "js": ["content.js", "load.js"],
+        "css": ["./css/filterStyle.css"],
+        "run_at": "document_end"
       }
-    ],
-    "permissions": [
-     "activeTab"
-     ]
+    ]
 } 

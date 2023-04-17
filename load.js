@@ -1,18 +1,25 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("change-color-button");
-    button.addEventListener("click", () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { type: "document.getElementById('tag').value" });
-      });
-    });
+// Applies Html and hooks onto script
+async function addFilterOptions() {
+  const resp = await fetch(chrome.runtime.getURL('./components/filterWindow.html'));
+  const html = await resp.text();
+  const contentDiv = document.getElementById("BG_bottom");
+  contentDiv.insertAdjacentHTML("beforebegin", html)
 
-    /*const button2 = document.getElementById("clearBtn");
+    const button1 = document.getElementById("steam_Inv_His_Filter_Apply_Btn");
+    console.log(button1);
+    button1.addEventListener("click", () => {
+      console.log("test1");
+      recieveCommand(document.getElementById('steam_Inv_His_Filter_Tag_Input').value+"@"+document.getElementById('steam_Inv_His_Filter_Type_Switch').checked);
+    });
+  
+    const button2 = document.getElementById("steam_Inv_His_Filter_Clear_Btn");
+    console.log(button2);
     button2.addEventListener("click", () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { type: "clearFilter" });
-      });
-    });*/
-  });
+      console.log("test2");
+      recieveCommand("clearFilter");
+    });
+}
+addFilterOptions();
 
 /*document.addEventListener('DOMContentLoaded', function() {
     var checkButton = document.getElementById('check');
