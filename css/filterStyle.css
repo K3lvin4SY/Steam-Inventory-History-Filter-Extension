@@ -3,7 +3,6 @@
   position: sticky;
   position: -webkit-sticky;
   box-sizing: border-box;
-  z-index: 99999;
 }
 
 /* Desktop */
@@ -80,6 +79,7 @@
     border-color: rgba(44, 50, 53);
     border-width: 1px;
     border-style: solid;
+    z-index: 99999;
   }
 
   .filter_window_minimized {
