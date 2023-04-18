@@ -1,7 +1,215 @@
+#steam_Inv_His_Filter_Window {
+  
+  position: sticky;
+  position: -webkit-sticky;
+  box-sizing: border-box;
+  z-index: 99999;
+}
+
+/* Desktop */
+@media only screen and (min-width: 1601px) {
+  #steam_Inv_His_Filter_Window:not(.steam_Inv_His_Filter_Window_top) {
+    width: 894px;
+    /*background-color: #1b2838;*/
+    
+    top: 0px;
+    margin: auto;
+    margin-bottom: 25px;
+    grid-column-gap: 0px;
+    
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 100%;
+    grid-row-gap: 0px;
+
+    background-color: #1c1f21;
+    border-color: rgba(44, 50, 53);
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .steam_Inv_His_Filter_Window_top {
+    top: 10vh;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #BG_bottom {
+    top: 0 !important;
+  }
+
+  #steam_Inv_His_Options {
+    
+    background-color: #1c1f21;
+    border-color: rgba(44, 50, 53);
+    border-width: 1px;
+    border-style: solid;
+    order: 1;
+  }
+
+  #filter_Transfer_List {
+    width: min-content;
+    /*margin-left: auto;*/
+    
+    background-color: #1c1f21;
+    border-color: rgba(44, 50, 53);
+    border-width: 1px;
+    border-style: solid;
+    order: 2;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 1600px) {
+  #steam_Inv_His_Filter_Window {
+    width: 894px;
+    /*background-color: #1b2838;*/
+    
+    top: 0px;
+    margin: auto;
+    margin-bottom: 25px;
+    grid-column-gap: 0px;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 100%;
+    grid-row-gap: 0px;
+
+    background-color: #1c1f21;
+    border-color: rgba(44, 50, 53);
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .filter_window_minimized {
+    top: 0px !important;
+    left: 0px !important;
+    width: 60px !important;
+    height: 60px !important;
+    overflow: hidden;
+    float: left;
+  }
+
+  .filter_window_minimized #filter_Transfer_List,
+  .filter_window_minimized #steam_Inv_His_Options
+  {
+    display: none;
+  }
+
+  .filter_window_minimized #filter_window_open {
+    display: block !important;
+  }
+}
+
+#filter_window_open {
+  display: none;
+}
+
+#steam_Inv_His_Options h1 {
+  text-align: center;
+}
 
 button {
   cursor: pointer;
 }
+
+#steam_Inv_His_Options {
+  display: block;
+}
+
+
+#filter_Transfer_List {
+  display: flex;
+  justify-self: flex-start;
+}
+
+.container {
+  background-color: #353a40;
+  text-align: center;
+  float: left;
+  width:200px;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.container-2 {
+  background-color: #1c1f21;
+  text-align: center;
+  border: 1px solid black;
+  cursor: pointer;
+  
+  display: flex;
+  align-content: center;
+}
+
+.container-3 {
+  background-color: #353a40;
+  text-align: center;
+  width:200px;
+  float: right;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+#filter_Transfer_List .list-Title {
+  width: 100%;
+  background-color: #1c1f21;
+  border: 1px solid black;
+}
+
+.filter-List {
+  list-style: none;
+  padding-inline-start: 0px;
+  margin: 0;
+}
+
+.filter-List li {
+  border: 1px solid #979797;
+  padding: 10px;
+  color: #b1b1b1;
+}
+
+.filter-List li:hover {
+  border: 1px solid #ffffff;
+  background-color: #434c51;
+}
+
+
+.transfer {
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
+  margin: auto;
+}
+.selected {
+    background-color: #4394bf;
+    color: #1c1f21 !important;
+}
+.selected:hover {
+  background-color:#50b1e5 !important;
+}
+li {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* The switch - the box around the slider */
 .switch {
@@ -65,3 +273,4 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+

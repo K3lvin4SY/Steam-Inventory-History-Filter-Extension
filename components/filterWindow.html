@@ -1,12 +1,66 @@
 <div id="steam_Inv_His_Filter_Window">
-  <label for="lname">Tag to edit:</label><br>
+  <div id="steam_Inv_His_Options">
+    <h1>Filter</h1>
+    <label for="lname">Date filter</label><br>
     <input type="text" id="steam_Inv_His_Filter_Tag_Input" name="lname"><br>
     <!-- Rounded switch -->
-    <label for="lname">Keep | Remove</label><br>
+    <label for="lname">Minimize Window</label><br>
     <label class="switch">
       <input id="steam_Inv_His_Filter_Type_Switch" type="checkbox">
       <span class="slider round"></span>
     </label><br>
     <button id="steam_Inv_His_Filter_Apply_Btn">Apply Tag Filter</button><br>
-    <button id="steam_Inv_His_Filter_Clear_Btn">Clear Filter</button>
+    <button id="steam_Inv_His_Filter_Clear_Btn">Clear Filter</button><br>
+    <span>future automatic loading button</span><br>
+    <span>Ideas:</span><br>
+    <span>filter type of container by looking for key or type of case</span><br>
+    <span>advanced filter, by letting you enter prompt</span><br>
+    <span>minimize when moblie version</span>
+  </div>
+
+  <div id="filter_Transfer_List">
+    <div class="container">
+      <div class="list-1">
+        <h3 class="list-Title">Show</h3>
+        <ul class="list1 filter-List">
+          <li> Medals </li>
+          <li> Storage Unit </li>
+          <li> Case Drops </li>
+          <li> Item Drops </li>
+          <li> Trades </li>
+          <li> Container Opened </li>
+          <li> Store Purchases </li>
+          <li> Market Purchases </li>
+          <li> Market Created Listings </li>
+          <li> Market Removed Listings </li>
+          <li> Used </li>
+          <li> Souvenir drop </li>
+          <li> Trade ups </li>
+          <li> Sticker applied </li>
+          <li> Sticker removed </li>
+          <li> Deleted Item </li>
+          <li> Unsealed Graffiti </li>
+          <li> Mission Reward (Operations) </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-2">
+      <div class="transfer">
+        <input type='button' value='<<' id='move_left' />
+        <input type='button' value='>>' id='move_right' />
+        <button id="reset_filter_list">Reset</button>
+      </div>
+    </div>
+    <div class="container-3">
+      <div class="list-2">
+        <h3 class="list-Title">Hide</h3>
+        <ul class="list2 filter-List">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="filter_window_open">
+    <button id="filter_window_open_btn">X</button>
+  </div>
 </div>
