@@ -11,9 +11,7 @@
   "web_accessible_resources": [
     { 
       "resources": [
-        "/components/filterWindow.html",
-        "/js/element_Links.js",
-        "/js/contentLoader.js"
+        "/components/filterWindow.html"
       ],
       "matches": ["<all_urls>"]
     }
@@ -21,7 +19,12 @@
   "content_scripts": [
     {
       "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
-      "js": ["content.js", "load.js", "injector.js"],
+      "js": [
+        "content.js",
+        "load.js",
+        "/js/contentLoader.js",
+        "/js/jQuery.min.js"
+      ],
       "css": ["./css/filterStyle.css"],
       "run_at": "document_end"
     }

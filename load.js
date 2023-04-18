@@ -79,14 +79,14 @@ async function addFilterOptions() {
     filterWindow.classList.remove("filter_window_minimized");
   });
 
-  const button2 = document.getElementById("steam_Inv_His_Filter_Clear_Btn");
-  console.log(button2);
-  button2.addEventListener("click", () => {
-    console.log("test2");
+
+  $("#steam_Inv_His_Filter_Clear_Btn").click(function() {
     recieveCommand("clearFilter");
-    InventoryHistory_LoadMore()
-    location.href="javascript:ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' ); void 0";
-  });
+  })
+
+  $("#steam_Inv_His_Load_All").click(function() {
+    InventoryHistory_LoadAll();
+  })
 
   window.addEventListener('scroll', function() {
     if (window.pageYOffset >= 850) {

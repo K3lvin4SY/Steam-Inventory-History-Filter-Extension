@@ -274,3 +274,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+#Access_Steam_inline_functions {
+  display: none;
+}

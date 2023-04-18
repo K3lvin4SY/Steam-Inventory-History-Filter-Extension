@@ -5,6 +5,10 @@ function filterWindow() {
   return document.getElementById("steam_Inv_His_Filter_Window");
 }
 
+function InventoryHistory_LoadMore() {
+  $('#InventoryHistory_LoadMore_Access').trigger( "click" );
+}
+
 function recieveCommand(command) {
   console.log(command);
   if (command == "clearFilter") {

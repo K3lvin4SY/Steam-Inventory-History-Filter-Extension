@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
 function InventoryHistory_BindTooltips( $new, rgDescriptions )
 {
 	$new.find('.economy_item_hoverable').each( function( index ) {
@@ -32,9 +30,20 @@ function InventoryHistory_BindTooltips( $new, rgDescriptions )
 	} );
 }
 
-function InventoryHistory_LoadMore()
+function InventoryHistory_LoadAll()
 {
-	/*$J('#load_more_button').hide();*/
+	$('#load_more_button').hide();
+	$("#BG_bottom").empty();
+	if (!g_historyCursor) {
+		g_historyCursor = Math.floor(Date.now() / 1000)
+	}
+	
+}
+
+function InventoryHistory_LoadMore2()
+{
+	$('#load_more_button').hide();
+	//ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
 	if ( g_historyCursor == null )
 		return;
 
