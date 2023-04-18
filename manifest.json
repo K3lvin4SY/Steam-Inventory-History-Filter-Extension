@@ -1,32 +1,29 @@
 {
-    "name": "Steam Invetory History Filter",
-    "version": "1.0.0",
-    "description": "A simple extension that lets you filter through the inventory history page.",
-    "manifest_version": 3,
-    "author": "Kelvin Brahe",
-    "action":{
-        "default_title": "Steam Invetory History Filter",
-        "default_icon": "icon.png"
-    },
-    "web_accessible_resources": [
-      { 
-        "resources": [
-          "/components/filterWindow.html"
-        ],
-        "matches": ["<all_urls>"]
-      }
-    ],
-    "content_scripts": [
-      {
-        "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
-        "js": ["content.js", "load.js"],
-        "css": ["./css/filterStyle.css"],
-        "run_at": "document_end"
-      },
-      {
-        "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
-        "js": ["injector.js"],
-        "run_at": "document_end"
-      }
-    ]
+  "name": "Steam Invetory History Filter",
+  "version": "1.0.0",
+  "description": "A simple extension that lets you filter through the inventory history page.",
+  "manifest_version": 3,
+  "author": "Kelvin Brahe",
+  "action":{
+      "default_title": "Steam Invetory History Filter",
+      "default_icon": "icon.png"
+  },
+  "web_accessible_resources": [
+    { 
+      "resources": [
+        "/components/filterWindow.html",
+        "/js/element_Links.js",
+        "/js/contentLoader.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
+      "js": ["content.js", "load.js", "injector.js"],
+      "css": ["./css/filterStyle.css"],
+      "run_at": "document_end"
+    }
+  ]
 } 

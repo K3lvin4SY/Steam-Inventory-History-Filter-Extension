@@ -12,12 +12,12 @@ async function InjectScripts() {
   script2.textContent = injectedCode2;
   (document.head).appendChild(script2);*/
 
-  const resp3 = await fetch(chrome.runtime.getURL('./js/element_Links.js'));
+  const resp3 = await fetch(chrome.runtime.getURL('./js/test.js'));
   const injectedCode3 = (await resp3.text());
   const script3 = document.createElement("script");
   script3.textContent = injectedCode3;
-  (document.head).appendChild(script);
+  (document.head).appendChild(script3);
+  console.log("dawdawfhahahah");
   //document.head.insertAdjacentHTML("afterbegin", injectedCode3);
 }
-//InjectScripts()
-//console.log("tese");
+InjectScripts();
