@@ -3,7 +3,7 @@
     "commands": [
       {
         "match": "\\\\SteamInventoryHistoryRemoveStorageUnitsExtension\\\\.*",
-        "cmd": "start chrome http://reload.extensions"
+        "cmd": "start chrome /new-window http://reload.extensions"
       }
     ]
   }
