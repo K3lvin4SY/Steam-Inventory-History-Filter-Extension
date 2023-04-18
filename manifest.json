@@ -10,7 +10,9 @@
     },
     "web_accessible_resources": [
       { 
-        "resources": ["/components/filterWindow.html"],
+        "resources": [
+          "/components/filterWindow.html",
+        ],
         "matches": ["<all_urls>"]
       }
     ],
@@ -19,6 +21,11 @@
         "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
         "js": ["content.js", "load.js"],
         "css": ["./css/filterStyle.css"],
+        "run_at": "document_end"
+      },
+      {
+        "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
+        "js": ["injector.js"],
         "run_at": "document_end"
       }
     ]
