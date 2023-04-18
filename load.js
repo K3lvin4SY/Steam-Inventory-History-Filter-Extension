@@ -5,14 +5,11 @@ async function addFilterOptions() {
   const contentDiv = document.getElementById("BG_bottom");
   contentDiv.insertAdjacentHTML("beforebegin", html);
 
-  const button1 = document.getElementById("steam_Inv_His_Filter_Apply_Btn");
-  console.log(button1);
-  button1.addEventListener("click", () => {
-    console.log("test1");
     recieveCommand(document.getElementById('steam_Inv_His_Filter_Tag_Input').value+"@"+document.getElementById('steam_Inv_His_Filter_Type_Switch').checked);
+  $("#steam_Inv_His_Filter_Apply_Btn").click(() => {
   });
 
-  document.getElementById("reset_filter_list").addEventListener("click", () => {
+  $("#reset_filter_list").click(() => {
     const list1 = document.querySelectorAll('.list1');
     const list2Elements = document.querySelectorAll('.list2 > *');
 
@@ -26,7 +23,7 @@ async function addFilterOptions() {
     }
   });
 
-  document.getElementById("move_left").addEventListener("click", () => {
+  $("#move_left").click(() => {
     const list1 = document.querySelectorAll('.list1');
     const selected = document.querySelectorAll('.list2 .selected');
 
@@ -38,7 +35,7 @@ async function addFilterOptions() {
     }
   });
 
-  document.getElementById("move_right").addEventListener("click", () => {
+  $("#move_right").click(() => {
     const list1Selected = document.querySelectorAll('.list1 .selected');
     const list2 = document.querySelectorAll('.list2');
 
@@ -50,8 +47,7 @@ async function addFilterOptions() {
     }
   });
 
-  const filterTransferList = document.querySelector('#filter_Transfer_List');
-  filterTransferList.addEventListener('click', function(event) {
+  $('#filter_Transfer_List').click(function(event) {
     if (event.target.tagName === 'LI') {
       event.target.classList.toggle('selected');
     }
@@ -62,31 +58,26 @@ async function addFilterOptions() {
 
   filterSwitch.addEventListener("change", function() {
     if (filterSwitch.checked) {
-      filterWindow.classList.add("filter_window_minimized");
     } else {
-      filterWindow.classList.remove("filter_window_minimized");
+    $("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
+    $("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
     }
   });
 
-  const openBtn = document.getElementById("filter_window_open_btn");
 
-  // Add click event listener to open button
-  openBtn.addEventListener("click", function() {
-    // Toggle filter switch
-    filterSwitch.checked = !filterSwitch.checked;
-
-    // Remove filter_window_minimized class
-    filterWindow.classList.remove("filter_window_minimized");
+  $("#filter_window_open_btn").click(function() {
+    $('#steam_Inv_His_Filter_Type_Switch').trigger('click'); 
+    $("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
   });
 
 
   $("#steam_Inv_His_Filter_Clear_Btn").click(function() {
     recieveCommand("clearFilter");
-  })
+  });
 
   $("#steam_Inv_His_Load_All").click(function() {
     InventoryHistory_LoadAll();
-  })
+  });
 
   window.addEventListener('scroll', function() {
     if (window.pageYOffset >= 850) {
