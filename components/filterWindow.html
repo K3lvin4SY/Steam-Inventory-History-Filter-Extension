@@ -17,7 +17,6 @@
     <span>filter type of container by looking for key or type of case</span><br>
     <span>advanced filter, by letting you enter prompt</span><br>
     <span>minimize when moblie version</span>
-    <span id="inventory_history_count">50</span>
   </div>
 
   <div id="filter_Transfer_List">
@@ -68,6 +67,32 @@
   </div>
 </div>
 
-<div id="Access_Steam_inline_functions">
+
+<div class="steam_filter_hide_class" id="Loading_For_Rows_Dialog">
+  <div class="newmodal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}" style="position: fixed; z-index: 1000; max-width: 1908px; left: 682px; top: 699px;">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <!--<div class="newmodal_close steam_Inv_Loader_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>-->
+        <div class="title_text">Loading History</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content" style="max-height: 1477px;">
+        <div class="waiting_dialog_throbber"></div>
+        <div>Please wait while all the history is being loaded...</div>
+        <div>Rows added: <span id="inventory_history_count">0</span></div>
+        <div>Loops done: <span id="inventory_history_loop_count">0</span></div>
+        <div>Loaded date: <span id="inventory_history_load_date"></span></div>
+        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+          <div class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span>STOP</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<div class="steam_filter_hide_class">
   <button id="InventoryHistory_LoadMore_Access" onclick="InventoryHistory_LoadMore()"></button>
 </div>

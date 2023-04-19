@@ -11,7 +11,7 @@ function InventoryHistory_BindTooltips( $new, rgDescriptions )
 					appid: $(this).data( 'appid' ),
 					contextid: $(this).data( 'contextid' ),
 					amount: $(this).data( 'amount' ),
-					description: Object.clone( rgItemDescription )
+					description: Object.assign( rgItemDescription )
 				};
 
 				if ( $(this).data( 'currencyid' ) )
@@ -24,7 +24,7 @@ function InventoryHistory_BindTooltips( $new, rgDescriptions )
 					rgItem.is_stackable = rgItem.amount > 1;
 				}
 
-				//AddItemHoverToElement( $(this).attr( 'id' ), rgItem ); // FIX
+				AddItemHoverToElement( $(this).attr( 'id' ), rgItem );
 			}
 		}
 	} );
@@ -35,13 +35,14 @@ function InventoryHistory_LoadAll()
 	// variables
 	var apps = [];
 	var profileURL = window.location.href.split("/inventoryhistory/")[0];
-	window.location.href.split("?")[1].split("&").forEach(app => {
-		apps.push(parseInt(app.split("=")[1]));
-	});
-	console.log(apps);
-	console.log(profileURL);
+	if (window.location.href.includes("?")) {
+		window.location.href.split("?")[1].split("&").forEach(app => {
+			apps.push(parseInt(app.split("=")[1]));
+		});
+	}
 
 	// perperations
+	$("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 	$('#load_more_button').hide();
 	if (loadAllAmount == 0) {
 		$("#inventory_history_table").empty();
@@ -70,6 +71,19 @@ function InventoryHistory_LoadAll()
 		if ( data.success )
 		{
 			$('#inventory_history_count').text( parseInt( $('#inventory_history_count').text() ) + data.num );
+			$('#inventory_history_loop_count').text( parseInt( $('#inventory_history_loop_count').text() ) + 1 );
+			var unix_timestamp;
+			if (data.cursor) {
+				unix_timestamp = data.cursor;
+			} else {
+				unix_timestamp = prevCursor;
+			}
+			var date = new Date(unix_timestamp.time * 1000);
+			var year = date.getFullYear().toString();
+			var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
+			var day = date.getDate().toString();
+			var formattedDate = day + ' ' + month + ' ' + year;
+			$('#inventory_history_load_date').text(formattedDate);
 
 			if ( data.html )
 			{
@@ -79,9 +93,9 @@ function InventoryHistory_LoadAll()
 
 				var new_elems = elem_prev.nextAll();
 				//new_elems.hide();
-				//new_elems.fadeIn( 500 );
+				//new_elems.fadeIn( 200 );
 
-				//InventoryHistory_BindTooltips( new_elems, data.descriptions );
+				InventoryHistory_BindTooltips( new_elems, data.descriptions );
 			}
 
 			if ( data.cursor )
@@ -89,10 +103,12 @@ function InventoryHistory_LoadAll()
 				cursurHistory = data.cursor;
 				// Run again
 				loadAllAmount++;
-				if (loadAllAmount < 10) {
-					InventoryHistory_LoadAll();
+				if (loadAllAmount % 250 !== 0) {
+					//window.scrollTo(0, document.body.scrollHeight);
+					//InventoryHistory_LoadAll(); //------------------------------------
+				}else {
+					$( '#load_more_button' ).fadeIn( 50 );
 				}
-				//$( '#load_more_button' ).fadeIn( 50 );
 			}
 			else
 			{
@@ -103,105 +119,35 @@ function InventoryHistory_LoadAll()
 		else
 		{
 			cursurHistory = prevCursor;
-			$J( '#load_more_button' ).fadeIn( 50 );
+			$( '#load_more_button' ).fadeIn( 50 );
 
 			if ( data.error )
 			{
 				//ShowAlertDialog( 'Error', data.error, 'OK' );
-				alert("Error //fix real Dialog!")
+				alert("Error //fix real Dialog! "+data.error)
 			}
 		}
+	}).fail( function( jqXHR ) {
+		cursurHistory = prevCursor;
+
+		if ( jqXHR.status == 429 )
+		{
+			alert("Too many requests //fix real Dialog!")
+			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
+		}
+		else
+		{
+			alert("Error - problem loading inventory history //fix real Dialog!")
+			//ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
+			$( '#load_more_button' ).fadeIn( 50 );
+		}
+	}).always( function() {
+		$('#inventory_history_loading').hide();
 	});
 
 	//InventoryHistory_LoadMore()
 	//window.scrollTo(0, document.body.scrollHeight);
 	
-}
-
-function InventoryHistory_LoadMore2()
-{
-	$('#load_more_button').hide();
-	//ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
-	if ( g_historyCursor == null )
-		return;
-
-	var request_data = {
-		ajax: 1,
-		cursor: g_historyCursor,
-		sessionid: g_sessionID
-	};
-
-	if ( g_rgFilterApps && g_rgFilterApps.length > 0 )
-	{
-		request_data.app = g_rgFilterApps;
-	}
-
-	var prevCursor = g_historyCursor;
-	g_historyCursor = null;
-
-	$J('#inventory_history_loading').show();
-	$J.ajax({
-		type: "GET",
-		url: g_strProfileURL + "/inventoryhistory/",
-		data: request_data
-	}).done( function( data ) {
-		if ( data.success )
-		{
-			for ( var appid in data.apps )
-			{
-				g_rgAppContextData[appid] = data.apps[appid];
-			}
-
-			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
-
-			if ( data.html )
-			{
-				var elem_prev = $J('#inventory_history_table').children().last();
-
-				$J('#inventory_history_table').append( data.html );
-
-				var new_elems = elem_prev.nextAll();
-				new_elems.hide();
-				new_elems.fadeIn( 500 );
-
-				InventoryHistory_BindTooltips( new_elems, data.descriptions );
-			}
-
-			if ( data.cursor )
-			{
-				g_historyCursor = data.cursor;
-				$J( '#load_more_button' ).fadeIn( 50 );
-			}
-			else
-			{
-				$J( '#load_more_button' ).hide();
-			}
-		}
-		else
-		{
-			g_historyCursor = prevCursor;
-			$J( '#load_more_button' ).fadeIn( 50 );
-
-			if ( data.error )
-			{
-				ShowAlertDialog( 'Error', data.error, 'OK' );
-			}
-		}
-	}).fail( function( jqXHR ) {
-		g_historyCursor = prevCursor;
-		$J( '#load_more_button' ).fadeIn( 50 );
-
-		if ( jqXHR.status == 429 )
-		{
-			ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
-		}
-		else
-		{
-			ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
-		}
-	}).always( function() {
-		$J('#inventory_history_loading').hide();
-	} );
 }
 
 function InventoryHistory_InitMessages()

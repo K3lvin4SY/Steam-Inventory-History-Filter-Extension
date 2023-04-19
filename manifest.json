@@ -27,6 +27,8 @@
         "content.js",
         "load.js",
         "/js/contentLoader.js",
+        "/js/buttonLinker.js",
+        "/js/hover.js",
         "/js/jQuery.min.js"
       ],
       "css": ["./css/filterStyle.css"],
