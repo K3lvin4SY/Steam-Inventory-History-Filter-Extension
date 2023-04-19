@@ -32,11 +32,12 @@ function InventoryHistory_BindTooltips( $new, rgDescriptions )
 
 function InventoryHistory_LoadAll()
 {
-	$('#load_more_button').hide();
+	/*$('#load_more_button').hide();
 	$("#BG_bottom").empty();
 	if (!g_historyCursor) {
 		g_historyCursor = Math.floor(Date.now() / 1000)
-	}
+	}*/
+	InventoryHistory_LoadMore()
 	
 }
 
