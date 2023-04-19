@@ -1,4 +1,5 @@
-var sessionid;
+var sessionID;
+var cursurHistory;
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {
@@ -110,6 +111,12 @@ async function addFilterOptions() {
   });
 
   console.log(document.cookie);
+
+  //init('src/lib/page_scripts/backgound.js', main);
+
+  async function main() {
+      console.log("failed??");
+  }
 }
 
 const cookies = document.cookie.split("; ")
@@ -117,9 +124,11 @@ for (let index = 0; index < cookies.length; index++) {
   const key = cookies[index].split("=")[0];
   const value = cookies[index].split("=")[1];
   if (key == "sessionid") {
-    sessionid = value;
+    sessionID = value;
   }
 }
+var loadAllAmount = 0;
+cursurHistory = Math.floor(Date.now() / 1000);
 
 addFilterOptions();
 

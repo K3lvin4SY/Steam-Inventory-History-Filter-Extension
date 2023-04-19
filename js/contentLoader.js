@@ -1,30 +1,30 @@
 function InventoryHistory_BindTooltips( $new, rgDescriptions )
 {
 	$new.find('.economy_item_hoverable').each( function( index ) {
-		var rgAppDescriptions = rgDescriptions[$J(this).data('appid')];
+		var rgAppDescriptions = rgDescriptions[$(this).data('appid')];
 		if ( rgAppDescriptions )
 		{
-			var rgItemDescription = rgDescriptions[$J( this ).data( 'appid' )][$J( this ).data( 'classid' ) + '_' + $J( this ).data( 'instanceid' )];
+			var rgItemDescription = rgDescriptions[$( this ).data( 'appid' )][$( this ).data( 'classid' ) + '_' + $( this ).data( 'instanceid' )];
 			if ( rgItemDescription )
 			{
 				rgItem = {
-					appid: $J(this).data( 'appid' ),
-					contextid: $J(this).data( 'contextid' ),
-					amount: $J(this).data( 'amount' ),
+					appid: $(this).data( 'appid' ),
+					contextid: $(this).data( 'contextid' ),
+					amount: $(this).data( 'amount' ),
 					description: Object.clone( rgItemDescription )
 				};
 
-				if ( $J(this).data( 'currencyid' ) )
+				if ( $(this).data( 'currencyid' ) )
 				{
 					rgItem.currency = true;
-					rgItem.currencyid = $J(this).data( 'currencyid' );
+					rgItem.currencyid = $(this).data( 'currencyid' );
 				}
 				else
 				{
 					rgItem.is_stackable = rgItem.amount > 1;
 				}
 
-				AddItemHoverToElement( $J(this).attr( 'id' ), rgItem );
+				//AddItemHoverToElement( $(this).attr( 'id' ), rgItem ); // FIX
 			}
 		}
 	} );
@@ -32,13 +32,89 @@ function InventoryHistory_BindTooltips( $new, rgDescriptions )
 
 function InventoryHistory_LoadAll()
 {
-	/*$('#load_more_button').hide();
-	$("#BG_bottom").empty();
-	if (!g_historyCursor) {
-		g_historyCursor = Math.floor(Date.now() / 1000)
-	}*/
-	InventoryHistory_LoadMore()
-	window.scrollTo(0, document.body.scrollHeight);
+	// variables
+	var apps = [];
+	var profileURL = window.location.href.split("/inventoryhistory/")[0];
+	window.location.href.split("?")[1].split("&").forEach(app => {
+		apps.push(parseInt(app.split("=")[1]));
+	});
+	console.log(apps);
+	console.log(profileURL);
+
+	// perperations
+	$('#load_more_button').hide();
+	if (loadAllAmount == 0) {
+		$("#inventory_history_table").empty();
+	}
+	
+	// Start
+	var request_data = {
+		ajax: 1,
+		cursor: cursurHistory,
+		sessionid: sessionID
+	};
+
+	if ( apps && apps.length > 0 )
+	{
+		request_data.app = apps;
+	}
+
+	var prevCursor = cursurHistory;
+	cursurHistory = null;
+
+	$.ajax({
+		type: "GET",
+		url: profileURL + "/inventoryhistory/",
+		data: request_data
+	}).done( function( data ) {
+		if ( data.success )
+		{
+			$('#inventory_history_count').text( parseInt( $('#inventory_history_count').text() ) + data.num );
+
+			if ( data.html )
+			{
+				var elem_prev = $('#inventory_history_table').children().last();
+
+				$('#inventory_history_table').append( data.html );
+
+				var new_elems = elem_prev.nextAll();
+				//new_elems.hide();
+				//new_elems.fadeIn( 500 );
+
+				//InventoryHistory_BindTooltips( new_elems, data.descriptions );
+			}
+
+			if ( data.cursor )
+			{
+				cursurHistory = data.cursor;
+				// Run again
+				loadAllAmount++;
+				if (loadAllAmount < 10) {
+					InventoryHistory_LoadAll();
+				}
+				//$( '#load_more_button' ).fadeIn( 50 );
+			}
+			else
+			{
+				// stop loading
+				$( '#load_more_button' ).hide();
+			}
+		}
+		else
+		{
+			cursurHistory = prevCursor;
+			$J( '#load_more_button' ).fadeIn( 50 );
+
+			if ( data.error )
+			{
+				//ShowAlertDialog( 'Error', data.error, 'OK' );
+				alert("Error //fix real Dialog!")
+			}
+		}
+	});
+
+	//InventoryHistory_LoadMore()
+	//window.scrollTo(0, document.body.scrollHeight);
 	
 }
 
