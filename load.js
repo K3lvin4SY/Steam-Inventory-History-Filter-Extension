@@ -1,3 +1,5 @@
+var sessionid;
+
 // Applies Html and hooks onto script
 async function addFilterOptions() {
   const resp = await fetch(chrome.runtime.getURL('./components/filterWindow.html'));
@@ -106,7 +108,19 @@ async function addFilterOptions() {
       filterWindow.classList.remove('steam_Inv_His_Filter_Window_top');
     }
   });
+
+  console.log(document.cookie);
 }
+
+const cookies = document.cookie.split("; ")
+for (let index = 0; index < cookies.length; index++) {
+  const key = cookies[index].split("=")[0];
+  const value = cookies[index].split("=")[1];
+  if (key == "sessionid") {
+    sessionid = value;
+  }
+}
+
 addFilterOptions();
 
 /*document.addEventListener('DOMContentLoaded', function() {

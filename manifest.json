@@ -6,7 +6,8 @@
   "author": "Kelvin Brahe",
   "action":{
       "default_title": "Steam Invetory History Filter",
-      "default_icon": "icon.png"
+      "default_icon": "icon.png",
+      "default_popup": "/js/popup.html"
   },
   "web_accessible_resources": [
     { 
@@ -16,6 +17,9 @@
       "matches": ["<all_urls>"]
     }
   ],
+  "backgrund": {
+    "service-worker": ["/js/backgrund.js"]
+  },
   "content_scripts": [
     {
       "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
@@ -28,5 +32,10 @@
       "css": ["./css/filterStyle.css"],
       "run_at": "document_end"
     }
+  ],
+  "parmissions": [
+    "cookies",
+    "activeTab",
+    "storage"
   ]
 } 
