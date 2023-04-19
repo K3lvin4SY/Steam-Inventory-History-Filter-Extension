@@ -38,6 +38,7 @@ function InventoryHistory_LoadAll()
 		g_historyCursor = Math.floor(Date.now() / 1000)
 	}*/
 	InventoryHistory_LoadMore()
+	window.scrollTo(0, document.body.scrollHeight);
 	
 }
 
