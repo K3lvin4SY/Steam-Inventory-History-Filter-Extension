@@ -23,25 +23,25 @@
     <div class="container">
       <div class="list-1">
         <h3 class="list-Title">Show</h3>
-        <ul class="list1 filter-List">
-          <li> Medals </li>
-          <li> Storage Unit </li>
-          <li> Case Drops </li>
-          <li> Item Drops </li>
-          <li> Trades </li>
-          <li> Container Opened </li>
-          <li> Store Purchases </li>
-          <li> Market Purchases </li>
-          <li> Market Created Listings </li>
-          <li> Market Removed Listings </li>
-          <li> Used </li>
-          <li> Souvenir drop </li>
-          <li> Trade ups </li>
-          <li> Sticker applied </li>
-          <li> Sticker removed </li>
-          <li> Deleted Item </li>
-          <li> Unsealed Graffiti </li>
-          <li> Mission Reward (Operations) </li>
+        <ul id="filter_list_show" class="list1 filter-List">
+          <li data-tag="Earned"> Medals </li>
+          <li data-tag="Moved to Storage Unit"> Storage Unit </li>
+          <li data-tag="Got an item drop"> Case Drops </li>
+          <li data-tag="Earned a new rank and got a drop"> Item Drops </li>
+          <li data-tag="You traded with "> Trades </li>
+          <li data-tag="Unlocked a container"> Container Opened </li>
+          <li data-tag="Purchased from the store"> Store Purchases </li>
+          <li data-tag="You purchased an item on the Community Market."> Market Purchases </li>
+          <li data-tag="You listed an item on the Community Market."> Market Created Listings </li>
+          <li data-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
+          <li data-tag="Used"> Used </li>
+          <li data-tag="Earned a souvenir drop"> Souvenir drop </li>
+          <li data-tag="Crafted"> Trade ups </li>
+          <li data-tag="Sticker applied"> Sticker applied </li>
+          <li data-tag="Sticker removed"> Sticker removed </li>
+          <li data-tag="You deleted"> Deleted Item </li>
+          <li data-tag="Unsealed"> Unsealed Graffiti </li>
+          <li data-tag="Mission reward"> Mission Reward (Operations) </li>
         </ul>
       </div>
     </div>
@@ -50,6 +50,7 @@
         <input type='button' value='<<' id='move_left' />
         <input type='button' value='>>' id='move_right' />
         <button id="reset_filter_list">Reset</button>
+        <button id="hide_all_filter_list">Hide All</button>
       </div>
     </div>
     <div class="container-3">

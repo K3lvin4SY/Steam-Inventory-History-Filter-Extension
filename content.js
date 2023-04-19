@@ -20,6 +20,34 @@ function recieveCommand(command) {
   }
 }
 
+function updateFilter() {
+  var tags = [];
+  $("#filter_list_show").children().each(function() {
+    console.log(this.getAttribute("data-tag"));
+    //console.log(this.attr("data-tag"));
+    tags.push(this.getAttribute("data-tag").cleanup());
+  });
+  filterList(tags);
+}
+
+String.prototype.cleanup = function() {
+  return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
+}
+
+
+function filterList(tags) {
+  Array.from(invHisTab.children).forEach(child => {
+    var content = child.querySelector('.tradehistory_content');
+    var desc = content.querySelector('.tradehistory_event_description');
+    console.log(desc.innerHTML);
+    if (tags.includes(desc.innerHTML.cleanup())) {
+      child.style.display = "block";
+    } else {
+      child.style.display = "none";
+    }
+  });
+}
+
 function removeRow(type, remkeep) {
   Array.from(invHisTab.children).forEach(child => {
     var content = child.querySelector('.tradehistory_content');
