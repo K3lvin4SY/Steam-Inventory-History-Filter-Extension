@@ -179,6 +179,11 @@ button {
   margin: 0;
 }
 
+.transfer {
+  display: block;
+  margin: auto;
+}
+
 .filter-List li {
   border: 1px solid #979797;
   padding: 10px;
@@ -191,10 +196,7 @@ button {
 }
 
 
-.transfer {
-  display: block;
-  margin: auto;
-}
+
 .selected {
     background-color: #4394bf;
     color: #1c1f21 !important;
