@@ -19,7 +19,7 @@
     <span>minimize when moblie version</span>
   </div>
 
-  <div id="filter_Transfer_List">
+  <!--<div id="filter_Transfer_List">
     <div class="container">
       <div class="list-1">
         <h3 class="list-Title">Show</h3>
@@ -60,13 +60,107 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div id="filter_window_open">
     <button id="filter_window_open_btn">X</button>
   </div>
 </div>
 
+
+
+<!-- Filter Options V2 -->
+<div class="steam_filter_hide_class2" id="steam_filter_Options">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <div class="newmodal_close steam_filter_alert_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div id="steam_filter_Options_Win_Title_Text" class="title_text">Filter Options</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content">
+        <div id="steam_filter_Options_Message">
+          
+          <div id="filter_Transfer_List">
+            <div class="container">
+              <div class="list-1">
+                <h3 class="list-Title">Show</h3>
+                <ul id="filter_list_show" class="list1 filter-List">
+                  <li data-tag="Earned"> Medals </li>
+                  <li data-tag="Moved to Storage Unit"> Storage Unit </li>
+                  <li data-tag="Got an item drop"> Case Drops </li>
+                  <li data-tag="Earned a new rank and got a drop"> Item Drops </li>
+                  <li data-tag="You traded with "> Trades </li>
+                  <li data-tag="Unlocked a container"> Container Opened </li>
+                  <li data-tag="Purchased from the store"> Store Purchases </li>
+                  <li data-tag="You purchased an item on the Community Market."> Market Purchases </li>
+                  <li data-tag="You listed an item on the Community Market."> Market Created Listings </li>
+                  <li data-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
+                  <li data-tag="Used"> Used </li>
+                  <li data-tag="Earned a souvenir drop"> Souvenir drop </li>
+                  <li data-tag="Crafted"> Trade ups </li>
+                  <li data-tag="Sticker applied"> Sticker applied </li>
+                  <li data-tag="Sticker removed"> Sticker removed </li>
+                  <li data-tag="You deleted"> Deleted Item </li>
+                  <li data-tag="Unsealed"> Unsealed Graffiti </li>
+                  <li data-tag="Mission reward"> Mission Reward (Operations) </li>
+                </ul>
+              </div>
+            </div>
+            <div class="container-2">
+              <div class="transfer">
+                <div>
+                  <input type='button' value='<<' id='move_left' />
+                  <input type='button' value='>>' id='move_right' />
+                </div>
+                <button id="reset_filter_list">Reset</button>
+                <button id="hide_all_filter_list">Hide All</button>
+              </div>
+            </div>
+            <div class="container-3">
+              <div class="list-2">
+                <h3 class="list-Title">Hide</h3>
+                <ul class="list2 filter-List">
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+          <div id="steam_filter_Options_Win_Btn" class="btn_grey_steamui btn_medium steam_filter_alert_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_Options_Win_Btn_Txt">CLOSE</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<!-- Stats -->
+<div class="steam_filter_hide_class" id="steam_filter_Stats">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <div class="newmodal_close steam_filter_alert_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div id="steam_filter_Stats_Win_Title_Text" class="title_text">Stats</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content" style="max-height: 1477px;">
+        <div id="steam_filter_Stats_Message">DESC</div>
+        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+          <div id="steam_filter_Stats_Win_Btn" class="btn_grey_steamui btn_medium steam_filter_alert_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_Stats_Win_Btn_Txt">BUTTON</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<!-- Loading Screen -->
 <div class="steam_filter_hide_class" id="steam_filter_loading_screen">
   <div class="newmodal steam_inv_filter_modal">
     <div id="steam_filter_loading_icon" class="waiting_dialog_throbber newmodal"></div>
@@ -74,6 +168,7 @@
   <div class="newmodal_background" style="opacity: 0.8;"></div>
 </div>
 
+<!-- Default Alert Dialog -->
 <div class="steam_filter_hide_class" id="steam_filter_alert_Dialog">
   <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
@@ -95,6 +190,7 @@
   <div class="newmodal_background" style="opacity: 0.8;"></div>
 </div>
 
+<!-- Loading History Dialog -->
 <div class="steam_filter_hide_class" id="Loading_For_Rows_Dialog">
   <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
@@ -121,6 +217,7 @@
   <div class="newmodal_background" style="opacity: 0.8;"></div>
 </div>
 
+<!-- Access to inline scripts -->
 <div class="steam_filter_hide_class">
   <button id="InventoryHistory_LoadMore_Access" onclick="InventoryHistory_LoadMore()"></button>
 </div>

@@ -34,7 +34,10 @@
         "/js/buttonLinker.js",
         "/js/background/hover.js"
       ],
-      "css": ["./css/filterStyle.css"],
+      "css": [
+        "./css/filterStyle.css",
+        "./css/filterOptionsDialog.css"
+      ],
       "run_at": "document_end"
     }
   ],
