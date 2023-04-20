@@ -5056,7 +5056,6 @@ function AddItemHoverToElement( element, rgItem )
 			} );
 		}
 	});
-  console.log(UserYou);
 	$Element.on('mouseenter', function() {
 		if ( !bInTouch && ( !window.UseSmallScreenMode || !window.UseSmallScreenMode() ) )
 			MouseOverItem( null, UserYou, $(element), rgItem );
