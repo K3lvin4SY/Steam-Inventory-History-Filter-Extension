@@ -104,6 +104,7 @@ function createButtonLinks() {
   $J("#steam_Inv_Loader_Win_Btn").click(function() {
     if ($J("#steam_Inv_Loader_Win_Btn").hasClass("steam_Inv_Loader_Win_Dismiss")) {
 
+      console.log("Dismissing Loadin screen...");
       $J("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
       $J("#steam_Inv_Loader_Win_Btn_Txt").text("STOP");
       $J("#steam_Inv_Loader_Win_Title_Text").text("Loading History");
@@ -111,13 +112,35 @@ function createButtonLinks() {
       $J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Dismiss");
       $J("#steam_Inv_Loader_spin").removeClass("steam_filter_hide_class");
       $J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
+			$J("#steam_Inv_Loader_Win_FBtn").removeClass("steam_filter_hide_class");
 
     } else if ($J("#steam_Inv_Loader_Win_Btn").hasClass("steam_Inv_Loader_Win_Stop")) {
 
       // stop loading
+      console.log("Loading Stopping...");
       continueLOading = false;
 
     }
   });
+
+  $J("#steam_Inv_Loader_Win_FBtn").click(function() {
+    console.log("!Loading Force Stopping!");
+    continueLOading = false;
+
+    console.log("Dismissing Loadin screen...");
+    $J("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
+    $J("#steam_Inv_Loader_Win_Btn_Txt").text("STOP");
+    $J("#steam_Inv_Loader_Win_Title_Text").text("Loading History");
+    $J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Stop");
+    $J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Dismiss");
+    $J("#steam_Inv_Loader_spin").removeClass("steam_filter_hide_class");
+    $J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
+  });
+
+  $J(".steam_filter_alert_Win_Dismiss").each(function() {
+    $J(this).click(function() {
+      $J("#steam_filter_alert_Dialog").addClass("steam_filter_hide_class");
+    })
+  })
   
 }

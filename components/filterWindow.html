@@ -67,9 +67,36 @@
   </div>
 </div>
 
+<div class="steam_filter_hide_class" id="steam_filter_loading_screen">
+  <div class="newmodal steam_inv_filter_modal">
+    <div id="steam_filter_loading_icon" class="waiting_dialog_throbber newmodal"></div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<div class="steam_filter_hide_class" id="steam_filter_alert_Dialog">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <div class="newmodal_close steam_filter_alert_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div id="steam_filter_alert_Win_Title_Text" class="title_text">TITLE</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content" style="max-height: 1477px;">
+        <div id="steam_filter_alert_Message">DESC</div>
+        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+          <div id="steam_filter_alert_Win_Btn" class="btn_grey_steamui btn_medium steam_filter_alert_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_alert_Win_Btn_Txt">BUTTON</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
 
 <div class="steam_filter_hide_class" id="Loading_For_Rows_Dialog">
-  <div class="newmodal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}" style="position: fixed; z-index: 1000; max-width: 1908px; left: 682px; top: 699px;">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
       <div class="newmodal_header">
@@ -86,6 +113,7 @@
         <div>Loaded date: <span id="inventory_history_load_date"></span></div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
           <div id="steam_Inv_Loader_Win_Btn" class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Stop" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_Inv_Loader_Win_Btn_Txt">STOP</span></div>
+          <div id="steam_Inv_Loader_Win_FBtn" class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_Inv_Loader_Win_FBtn_Txt">FORCE STOP</span></div>
         </div>
       </div>
     </div>

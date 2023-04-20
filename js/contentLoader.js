@@ -24,13 +24,15 @@ function InventoryHistory_BindTooltips( $Jnew, rgDescriptions )
 					rgItem.is_stackable = rgItem.amount > 1;
 				}
 
-				console.log("pass");
+				//console.log("pass");
 				AddItemHoverToElement( $J(this).attr( 'id' ), rgItem );
 			}
 		}
 	} );
 }
 
+var too_many_req = false;
+var start_time = 0;
 function InventoryHistory_LoadAll()
 {
 	// variables
@@ -59,7 +61,27 @@ function InventoryHistory_LoadAll()
 	}
 
 	var prevCursor = cursurHistory;
-	cursurHistory = null;
+
+	if (too_many_req && (Date.now() - start_time < 10*1000)) {
+		var time_display = (Math.round((10-((Date.now() - start_time)/1000))*10)/10).toString();
+		if (!time_display.includes(".")) { time_display = time_display+".0" }
+		$J("#steam_Inv_Loader_Message").text("Taking a "+time_display+" sec break due to making too many requests...");
+		console.log(((Date.now() - start_time)/1000));
+		if (continueLOading) {
+			setTimeout(InventoryHistory_LoadAll, 100);
+		} else {
+			too_many_req = false;
+			continueLOading = true;
+			$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
+			$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+			$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+			$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+			$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
+		}
+		return;
+	}
+	
 
 	$J.ajax({
 		type: "GET",
@@ -83,6 +105,7 @@ function InventoryHistory_LoadAll()
 				return;
 			}
 
+			too_many_req = false;
 			$J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
 			$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
@@ -129,6 +152,7 @@ function InventoryHistory_LoadAll()
 						$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 						$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
 						$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+						$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
 					}
 					
 				}else {
@@ -143,6 +167,7 @@ function InventoryHistory_LoadAll()
 				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
 				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+				$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
 
 				$J( '#load_more_button' ).hide();
 			}
@@ -154,8 +179,8 @@ function InventoryHistory_LoadAll()
 
 			if ( data.error )
 			{
-				//ShowAlertDialog( 'Error', data.error, 'OK' );
-				alert("Error //fix real Dialog! "+data.error)
+				ShowAlertDialog( 'Error', data.error, 'OK' );
+				//alert("Error //fix real Dialog! "+data.error)
 			}
 		}
 	}).fail( function( jqXHR ) {
@@ -163,132 +188,21 @@ function InventoryHistory_LoadAll()
 
 		if ( jqXHR.status == 429 )
 		{
+			too_many_req = true;
+			start_time = Date.now();
 			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
 			$J("#steam_Inv_Loader_Message").text("Taking a small break due to making too many requests...");
-			if (continueLOading) {
-				InventoryHistory_LoadAll();
-			} else {
-				continueLOading = true;
-				$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
-				$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
-				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
-				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
-				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-			}
+			InventoryHistory_LoadAll();
 			//alert("Too many requests //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
 		}
 		else
 		{
-			alert("Error - problem loading inventory history //fix real Dialog!")
-			//ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
+			ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
 			$J( '#load_more_button' ).fadeIn( 50 );
 		}
 	}).always( function() {
 		$J('#inventory_history_loading').hide();
 	});
-
-	//InventoryHistory_LoadMore()
-	//window.scrollTo(0, document.body.scrollHeight);
 	
 }
-
-function InventoryHistory_InitMessages()
-{
-	$J('.inventory_history_message').each( function( index ) {
-		var $JelMessage = $J(this);
-		var $JelDetails = $J(this).find('.inventory_history_message_more');
-		if ( $JelDetails.length > 0 )
-		{
-			var $JelMore = $J( '<div class="showmore"><span>Show more</span></div>' );
-			$JelMore.click( function ()
-			{
-				$JelMore.slideUp();
-				$JelDetails.slideDown();
-			} );
-			$JelMessage.append( $JelMore );
-		}
-
-		if (typeof(Storage) == "undefined" || !$JelMessage.hasClass('dismissable') )
-		{
-			$JelMessage.show();
-		}
-		else
-		{
-			// Check local storage to see if the user has dismissed this recently.
-			var strLocalStorageKey = 'dismissed_' + $JelMessage.attr( 'id' );
-			var rtNow = Date.now()/1000;
-			var rtDismissed = parseInt( localStorage.getItem( strLocalStorageKey ) );
-			if ( rtDismissed === null || isNaN( rtDismissed ) || rtNow > rtDismissed + (60 * 60 * 24 * 180) )
-			{
-				// Add a dismiss option
-				var $JelDismiss = $J('<div class="dismiss"></div>');
-				$JelDismiss.click( function() {
-					localStorage.setItem( strLocalStorageKey, rtNow );
-					$JelMessage.slideUp();
-				} );
-				$JelMessage.prepend( $JelDismiss );
-				$JelMessage.show();
-			}
-		}
-	} );
-}
-
-HistoryFiltersDialog = {
-	m_bInitialized: false,
-
-	m_fnDocumentKeyHandler: null,
-	m_modal: null,
-
-	Initialize: function() {
-	},
-
-	Show: function () {
-		if ( !this.m_bInitialized )
-			this.Initialize();
-
-		this.m_fnDocumentKeyHandler = this.OnDocumentKeyPress.bindAsEventListener( this );
-		$J(document).observe( 'keydown', this.m_fnDocumentKeyHandler );
-
-		var _this = this;
-		this.m_modal = ShowDialog( 'Filter options', $J('#inventory_history_filters_dialog' ).show() );
-		this.m_modal.SetRemoveContentOnDismissal( false );
-		this.m_modal.always( function() { _this.Dismiss(); } );
-		$J('inventory_history_filters_dialog').focus();
-	},
-
-	Dismiss: function() {
-		$J(document).stopObserving( 'keydown', this.m_fnDocumentKeyHandler );
-		if ( this.m_modal )
-		{
-			this.m_modal.Dismiss();
-			this.m_modal = null;
-		}
-	},
-
-	OnCancel: function( event ) {
-		this.Dismiss();
-		event.stop();
-	},
-
-	OnDocumentKeyPress: function( event ) {
-		if ( event.keyCode == Event.KEY_ESC )
-		{
-			this.Dismiss();
-			event.stop();
-		}
-	}
-};
-
-function ShowHistoryFilterOptions()
-{
-	HistoryFiltersDialog.Show();
-}
-
-function ResetHistoryFilterOptions()
-{
-	$J('.econ_tag_filter_container input[type="checkbox"]').attr("checked", false);
-	$J('.econ_tag_filter_category select').val( 'any' );
-}
-
-

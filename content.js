@@ -37,6 +37,13 @@ String.prototype.cleanup = function() {
 
 
 function filterList(tags) {
+  if (invHisTab.children.length > 1500) {
+    $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
+  }
+  setTimeout(filterListAction, 0, tags);
+}
+
+function filterListAction(tags) {
   Array.from(invHisTab.children).forEach(child => {
     var content = child.querySelector('.tradehistory_content');
     var desc = content.querySelector('.tradehistory_event_description');
@@ -47,6 +54,7 @@ function filterList(tags) {
       child.style.display = "none";
     }
   });
+  $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
 }
 
 function removeRow(type, remkeep) {

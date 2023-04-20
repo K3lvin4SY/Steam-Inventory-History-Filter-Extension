@@ -6,7 +6,20 @@
 }
 
 .steam_filter_hide_class {
-  display: none;
+  display: none !important;
+}
+
+.steam_inv_filter_modal{
+  position: fixed !important;
+  z-index: 1000;
+  max-width: 1908px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#steam_filter_loading_icon {
+  scale: 1.2;
 }
 
 /* Desktop */
@@ -83,7 +96,7 @@
     border-color: rgba(44, 50, 53);
     border-width: 1px;
     border-style: solid;
-    z-index: 99999;
+    z-index: 10;
   }
 
   .filter_window_minimized {
