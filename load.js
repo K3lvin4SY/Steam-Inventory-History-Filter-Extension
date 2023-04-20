@@ -1,5 +1,7 @@
 var sessionID;
 var cursurHistory;
+var g_rgAppContextData = [];
+var continueLOading = true;
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {

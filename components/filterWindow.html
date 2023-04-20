@@ -79,13 +79,13 @@
     </div>
     <div class="newmodal_content_border">
       <div class="newmodal_content" style="max-height: 1477px;">
-        <div class="waiting_dialog_throbber"></div>
-        <div>Please wait while all the history is being loaded...</div>
+        <div id="steam_Inv_Loader_spin" class="waiting_dialog_throbber"></div>
+        <div id="steam_Inv_Loader_Message">Please wait while all the history is being loaded...</div>
         <div>Rows added: <span id="inventory_history_count">0</span></div>
         <div>Loops done: <span id="inventory_history_loop_count">0</span></div>
         <div>Loaded date: <span id="inventory_history_load_date"></span></div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
-          <div class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span>STOP</span></div>
+          <div id="steam_Inv_Loader_Win_Btn" class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Stop" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_Inv_Loader_Win_Btn_Txt">STOP</span></div>
         </div>
       </div>
     </div>

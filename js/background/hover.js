@@ -24,7 +24,7 @@ function Economy_UseResponsiveLayout()
 		return false;
 
 	// trading has a special break point
-	if ( g_bIsTrading && $(window).width() > 600 )
+	if ( g_bIsTrading && $J(window).width() > 600 )
 		return false;
 
 	return true;
@@ -40,7 +40,7 @@ function InitInventoryPage( bHasPendingGifts, showAppId, bShowTradableItemsOnly 
 	INVENTORY_PAGE_WIDTH = 104 * 5;
 	g_bIsInventoryPage = true;
 	g_bShowTradableItemsOnly = bShowTradableItemsOnly;
-	g_bAllowHighDPIItemImages = $('html').hasClass('responsive');
+	g_bAllowHighDPIItemImages = $J('html').hasClass('responsive');
 
 		g_bUseMarketLinks = typeof g_bInChinaRealm == 'undefined' || !g_bInChinaRealm;
 	
@@ -116,25 +116,25 @@ function InitInventoryPage( bHasPendingGifts, showAppId, bShowTradableItemsOnly 
 
 	}
 
-	InitDynamicInventoryItemAutosizing( $('#inventories'), '.trade_item_box', true );
-	$(window).on('Responsive_SmallScreenModeToggled', function() {
+	InitDynamicInventoryItemAutosizing( $J('#inventories'), '.trade_item_box', true );
+	$J(window).on('Responsive_SmallScreenModeToggled', function() {
 		if ( window.UseSmallScreenMode && window.UseSmallScreenMode() )
 		{
-			$('#inventory_pagecontrols').hide();
+			$J('#inventory_pagecontrols').hide();
 		}
 		else
 		{
-			$('#inventory_pagecontrols').show();
+			$J('#inventory_pagecontrols').show();
 		}
 	});
 
 	// watch for incoming # urls
-	$(window).on('hashchange', function() {
+	$J(window).on('hashchange', function() {
 		OnLocationChange( null, window.location.hash );
 	});
 
-	$('.inventory_page_right').on( 'v_contentschanged', function() {
-		var $element = $(this);
+	$J('.inventory_page_right').on( 'v_contentschanged', function() {
+		var $element = $J(this);
 		if ( !$element.is(':visible') )
 			return;
 
@@ -329,7 +329,7 @@ function CreateItemContextMenuButton( elItemHolder, strCompositeId, owner )
 	elActionMenuButton.href = "javascript:void(0)";
 	elItemHolder.appendChild( elActionMenuButton );
 
-	$(elActionMenuButton).click( function() {
+	$J(elActionMenuButton).click( function() {
 		HandleTradeActionMenu( elActionMenuButton, elItemHolder.rgItem, owner );
 	} );
 }
@@ -361,7 +361,7 @@ CPage.prototype.GetElement = function()
 {
 	if ( !this.m_$Page )
 	{
-		this.m_$Page = $('<div/>', {'class': 'inventory_page'} ).hide();
+		this.m_$Page = $J('<div/>', {'class': 'inventory_page'} ).hide();
 
 		this.EnsurePageItemsCreated();
 
@@ -386,7 +386,7 @@ CPage.prototype.EnsurePageItemsCreated = function( bFiltering )
 			}
 			else
 			{
-				this.m_$Page.append( $('<div/>', {'class': 'itemHolder disabled'} ) );
+				this.m_$Page.append( $J('<div/>', {'class': 'itemHolder disabled'} ) );
 			}
 		}
 
@@ -410,7 +410,7 @@ CPage.prototype.LoadPageImages = function()
 			if ( this.filtered )
 				return;
 
-			var $Item = $(this).children('.item');
+			var $Item = $J(this).children('.item');
 			if ( $Item.hasClass('pendingItem') )
 			{
 				bNeedToLoadMoreData = true;
@@ -450,7 +450,7 @@ function CSingleResponsivePage( inventory )
 {
 	CPage.call( this, inventory, 0 );
 
-	this.m_$Page = $('<div/>', {'class': 'inventory_page'} );
+	this.m_$Page = $J('<div/>', {'class': 'inventory_page'} );
 	this.m_bMounted = false;
 
 	this.m_cPagesLoaded = 0;
@@ -508,7 +508,7 @@ CSingleResponsivePage.prototype.EnsurePageItemsCreated = function( bFiltering )
 				elLastItem = rgItems[ rgItems.length - 1 ][0];
 
 				// if this isn't loaded yet, return.  We'll get called again when more data is ready.
-				if ( $(elLastItem).children('.pendingItem').length )
+				if ( $J(elLastItem).children('.pendingItem').length )
 				{
 					break;
 				}
@@ -557,7 +557,7 @@ function CInventory( owner, appid, contextid, rgContextData )
 
 	this.m_strCompositeID = this.m_steamid + '_' + this.appid + '_' + this.contextid;
 
-	this.m_$Inventory = $('<div/>', {id: 'inventory_' + this.m_strCompositeID, 'class': 'inventory_ctn clearfix' } );
+	this.m_$Inventory = $J('<div/>', {id: 'inventory_' + this.m_strCompositeID, 'class': 'inventory_ctn clearfix' } );
 	this.m_rgItemElements = [];
 	this.m_iNextEmptyItemElement = 0;
 
@@ -566,7 +566,7 @@ function CInventory( owner, appid, contextid, rgContextData )
 
 	// tags
 	this.tags = null;
-	this.m_$TagContainer = $('<div/>', {id: 'tags_' + this.m_strCompositeID, 'class': 'app_tags_container' } );
+	this.m_$TagContainer = $J('<div/>', {id: 'tags_' + this.m_strCompositeID, 'class': 'app_tags_container' } );
 
 	// things we'll know after the initial load
 	this.m_ulLastAssetID = 0;
@@ -634,7 +634,7 @@ CInventory.prototype.RetryLoad = function()
 
 CInventory.prototype.destroy = function()
 {
-	$(window).off('scroll.LazyLoad_' + this.m_strCompositeID );
+	$J(window).off('scroll.LazyLoad_' + this.m_strCompositeID );
 	this.m_$Inventory.remove();
 	this.m_$TagContainer.remove();
 };
@@ -655,7 +655,7 @@ CInventory.prototype.GetInventoryLoadURL = function()
 };
 
 CInventory.prototype.hide = function() {
-	$(window).off('scroll.LazyLoad_' + this.m_strCompositeID );
+	$J(window).off('scroll.LazyLoad_' + this.m_strCompositeID );
 	this.m_$Inventory.hide();
 	this.m_$TagContainer.hide();
 
@@ -841,7 +841,7 @@ CInventory.prototype.AddInventoryData = function( data )
 
 CInventory.prototype.CreateEmptyItemHolder = function( iPage )
 {
-	var $ret = $('<div class="itemHolder"><div class="item pendingItem app' + this.m_appid + ' context' + this.m_contextid + '"><img src="https://community.cloudflare.steamstatic.com/public/images/trans.gif"></div></div>');
+	var $ret = $J('<div class="itemHolder"><div class="item pendingItem app' + this.m_appid + ' context' + this.m_contextid + '"><img src="https://community.cloudflare.steamstatic.com/public/images/trans.gif"></div></div>');
 	$ret.data('iPage', iPage );
 
 	return $ret;
@@ -924,7 +924,7 @@ CInventory.prototype.MakeElementsDraggable = function()
 CInventory.prototype.PerformInitialLoad = function( count )
 {
 	if ( this.m_bPerformedInitialLoad )
-		return $.Deferred().resolve();
+		return $J.Deferred().resolve();
 	else
 		return this.LoadMoreAssets( count );
 };
@@ -948,11 +948,11 @@ CInventory.prototype.LoadMoreAssets = function( count )
 		return this.m_ActivePromise;
 
 	if ( this.m_bFullyLoaded )
-		return $.Deferred().resolve().promise();
+		return $J.Deferred().resolve().promise();
 
 	// we won't re-request for 5 seconds after a failure
-	if ( this.m_tsLastError && $.now() - this.m_tsLastError < 5000 )
-		return $.Deferred().reject().promise();
+	if ( this.m_tsLastError && $J.now() - this.m_tsLastError < 5000 )
+		return $J.Deferred().reject().promise();
 
 	this.m_$Inventory.addClass('loading');
 	var _this = this;
@@ -973,7 +973,7 @@ CInventory.prototype.LoadMoreAssets = function( count )
 
 	this.m_owner.ShowLoadingIndicator();
 
-	return this.SetActivePromise( $.get( this.GetInventoryLoadURL(), params
+	return this.SetActivePromise( $J.get( this.GetInventoryLoadURL(), params
 	).done( function( data ) {
 		_this.m_bPerformedInitialLoad = true;
 		_this.m_$Inventory.removeClass('loading');
@@ -986,7 +986,7 @@ CInventory.prototype.LoadMoreAssets = function( count )
 			_this.m_parentInventory.m_SingleResponsivePage.EnsurePageItemsCreated();
 
 	}).fail( function() {
-		_this.m_tsLastError = $.now();
+		_this.m_tsLastError = $J.now();
 		_this.ShowInventoryLoadError();
 	}).always( function() {
 		_this.m_owner.HideLoadingIndicator();
@@ -1004,7 +1004,7 @@ CInventory.prototype.ShowInventoryLoadError = function()
 		/*
 				*/
 
-		this.m_$ErrorDisplay = $('<div/>').html( "\t\t\t<div class=\"inventory_load_error\">\r\n\t\t\t\t<div class=\"inventory_load_error_header\">\r\n\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/economy\/market\/icon_alertlistings.png\" class=\"load_error_icon\">\r\n\t\t\t\t\t<div class=\"message\">This inventory is not available at this time.  Please try again later.<\/div>\r\n\t\t\t\t\t<div class=\"btnv6_blue_hoverfade btn_small retry_load_btn\">\r\n\t\t\t\t\t\t<span>Try Again<\/span>\r\n\t\t\t\t\t<\/div>\r\n\t\t\t\t\t<span class=\"inventory_loading_indicator\">\r\n\t\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/login\/throbber.gif\">\r\n\t\t\t\t\t<\/span>\r\n\t\t\t\t<\/div>\r\n\t\t\t<\/div>\r\n\t\t" ).hide();
+		this.m_$ErrorDisplay = $J('<div/>').html( "\t\t\t<div class=\"inventory_load_error\">\r\n\t\t\t\t<div class=\"inventory_load_error_header\">\r\n\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/economy\/market\/icon_alertlistings.png\" class=\"load_error_icon\">\r\n\t\t\t\t\t<div class=\"message\">This inventory is not available at this time.  Please try again later.<\/div>\r\n\t\t\t\t\t<div class=\"btnv6_blue_hoverfade btn_small retry_load_btn\">\r\n\t\t\t\t\t\t<span>Try Again<\/span>\r\n\t\t\t\t\t<\/div>\r\n\t\t\t\t\t<span class=\"inventory_loading_indicator\">\r\n\t\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/login\/throbber.gif\">\r\n\t\t\t\t\t<\/span>\r\n\t\t\t\t<\/div>\r\n\t\t\t<\/div>\r\n\t\t" ).hide();
 
 		var _this = this;
 		this.m_$ErrorDisplay.find( '.retry_load_btn').click( function() { _this.RetryLoad(); } );
@@ -1040,7 +1040,7 @@ CInventory.prototype.ShowInventoryReloadMessage = function()
 		/*
 				*/
 
-		this.m_$ReloadDisplay = $('<div/>').html( "\t\t\t<div class=\"inventory_load_error\">\r\n\t\t\t\t<div class=\"inventory_load_error_header\">\r\n\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/economy\/market\/icon_alertlistings.png\" class=\"load_error_icon\">\r\n\t\t\t\t\t <div class=\"message\">Items in this inventory may be out of date and displaying old data.  For performance reasons, automatic refresh has been disabled.<\/div>\r\n\t\t\t\t\t<div class=\"btnv6_blue_hoverfade btn_small reload_btn\">\r\n\t\t\t\t\t\t<span>Refresh<\/span>\r\n\t\t\t\t\t<\/div>\r\n\t\t\t\t<\/div>\r\n\t\t\t<\/div>\r\n\t\t" ).hide();
+		this.m_$ReloadDisplay = $J('<div/>').html( "\t\t\t<div class=\"inventory_load_error\">\r\n\t\t\t\t<div class=\"inventory_load_error_header\">\r\n\t\t\t\t\t<img src=\"https:\/\/community.cloudflare.steamstatic.com\/public\/images\/economy\/market\/icon_alertlistings.png\" class=\"load_error_icon\">\r\n\t\t\t\t\t <div class=\"message\">Items in this inventory may be out of date and displaying old data.  For performance reasons, automatic refresh has been disabled.<\/div>\r\n\t\t\t\t\t<div class=\"btnv6_blue_hoverfade btn_small reload_btn\">\r\n\t\t\t\t\t\t<span>Refresh<\/span>\r\n\t\t\t\t\t<\/div>\r\n\t\t\t\t<\/div>\r\n\t\t\t<\/div>\r\n\t\t" ).hide();
 
 		var _this = this;
 		this.m_$ReloadDisplay.find( '.reload_btn').click( function() { _this.ReloadIfNeeded() } );
@@ -1063,7 +1063,7 @@ CInventory.prototype.ReloadIfNeeded = function()
 
 CInventory.prototype.LoadUntilConditionMet = function( fnCondition, count )
 {
-	var deferred = new $.Deferred();
+	var deferred = new $J.Deferred();
 	this.LoadUntilConditionMetInternal( fnCondition, count, deferred );
 	return deferred.promise();
 };
@@ -1098,7 +1098,7 @@ CInventory.prototype.LoadUntilConditionMetInternal = function( fnCondition, coun
 CInventory.prototype.LoadCompleteInventory = function()
 {
 	if ( this.m_bFullyLoaded )
-		return $.Deferred().resolve();
+		return $J.Deferred().resolve();
 
 	if ( !this.m_promiseLoadCompleteInventory )
 	{
@@ -1139,13 +1139,13 @@ CInventory.prototype.BuildItemElement = function( asset, $Item )
 
 	if ( asset.is_stackable )
 	{
-		var $Amount = $( '<div/>', { 'class': 'item_currency_amount' } );
+		var $Amount = $J( '<div/>', { 'class': 'item_currency_amount' } );
 		if ( description.name_color )
 			$Amount.css( 'color', '#' + description.name_color );
 
 		$Amount.text( v_numberformat( asset.amount ) );
 
-		var $CurrencyName = $( '<div/>', { 'class': 'item_currency_name' } );
+		var $CurrencyName = $J( '<div/>', { 'class': 'item_currency_name' } );
 		if ( description.name_color )
 			$CurrencyName.css( 'color', '#' + description.name_color );
 
@@ -1162,13 +1162,13 @@ CInventory.prototype.BuildItemElement = function( asset, $Item )
 	}
 
 	var url = ( g_bIsTrading ? this.GetInventoryPageURL() : '' ) + '#' + this.appid + '_' + this.contextid + '_' + asset.assetid;
-	var $Link = $( '<a/>', { href: url, 'class': 'inventory_item_link' } );
+	var $Link = $J( '<a/>', { href: url, 'class': 'inventory_item_link' } );
 	$Item.append( $Link );
 	this.BindMouseEvents( $Link, $Item, asset );
 
 	if ( description.fraudwarnings )
 	{
-		var $FraudWarningIcon = $( '<div/>', {'class': 'slot_app_fraudwarning' } );
+		var $FraudWarningIcon = $J( '<div/>', {'class': 'slot_app_fraudwarning' } );
 		$Item.append( $FraudWarningIcon );
 	}
 
@@ -1275,7 +1275,7 @@ CInventory.prototype.BuildInventoryTagFilters = function()
 		elTagCategory.localized_category_name = sCategoryName;
 
 		var elTagCategoryLabel = new Element( 'div', { 'class' : 'econ_tag_filter_category_label' } );
-		$(elTagCategoryLabel).text( rgCategory.name );
+		$J(elTagCategoryLabel).text( rgCategory.name );
 		elTagCategory.appendChild( elTagCategoryLabel );
 
 		var rgCategoryTags = [];
@@ -1326,13 +1326,13 @@ CInventory.prototype.BuildInventoryTagFilters = function()
 			if( rgTag.color )
 			{
 				var elTagName = new Element( 'span' );
-				$(elTagName).text( rgTag.name );
+				$J(elTagName).text( rgTag.name );
 				elTagName.style.color = "#" + rgTag.color;
 				elTagLabel.appendChild( elTagName );
 			}
 			else
 			{
-				$(elTagLabel).text( rgTag.name );
+				$J(elTagLabel).text( rgTag.name );
 			}
 
 			var elItemCount = new Element( 'span', { 'class' : 'econ_tag_count' } );
@@ -1459,7 +1459,7 @@ CInventory.prototype.OnPageChangeTo = function( iPage )
 
 CInventory.prototype.PrepPageTransition = function( nPageWidth, iCurPage, iNextPage )
 {
-	$('#inventories').css( 'overflow', 'hidden' );
+	$J('#inventories').css( 'overflow', 'hidden' );
 	this.m_$Inventory.css( 'width', ( 2 * nPageWidth ) + 'px' );
 
 	this.m_rgPages[iCurPage].GetElement().add( this.m_rgPages[iNextPage].GetElement() ).css('width', nPageWidth + 'px' );
@@ -1521,7 +1521,7 @@ CInventory.prototype.PreviousPage = function()
 CInventory.prototype.FinishPageTransition = function( iLastPage, iCurPage )
 {
 	this.m_iCurrentPage = iCurPage;
-	$('#inventories').css( 'overflow', '' );
+	$J('#inventories').css( 'overflow', '' );
 	this.m_rgPages[iLastPage].hide();
 	this.m_$Inventory.css( 'left', '0' ).css( 'width', '' );
 	this.m_rgPages[iLastPage].GetElement().add( this.m_rgPages[iCurPage].GetElement() ).css('width', '' );
@@ -1553,18 +1553,18 @@ CInventory.prototype.PreloadPageImages = function( iPage )
 
 CInventory.prototype.UpdatePageCounts = function()
 {
-	$('#pagecontrol_cur').text( v_numberformat( this.m_iCurrentPage + 1 ) );
-	$('#pagecontrol_max').text( v_numberformat( this.m_cPages ) );
+	$J('#pagecontrol_cur').text( v_numberformat( this.m_iCurrentPage + 1 ) );
+	$J('#pagecontrol_max').text( v_numberformat( this.m_cPages ) );
 
 	if ( this.m_iCurrentPage > 0 )
-		$('#pagebtn_previous').removeClass( 'disabled' );
+		$J('#pagebtn_previous').removeClass( 'disabled' );
 	else
-		$('#pagebtn_previous').addClass( 'disabled' );
+		$J('#pagebtn_previous').addClass( 'disabled' );
 
 	if ( this.m_iCurrentPage < this.m_cPages - 1 )
-		$('#pagebtn_next').removeClass( 'disabled' );
+		$J('#pagebtn_next').removeClass( 'disabled' );
 	else
-		$('#pagebtn_next').addClass( 'disabled' );
+		$J('#pagebtn_next').addClass( 'disabled' );
 };
 
 CInventory.prototype.LayoutPages = function()
@@ -1620,7 +1620,7 @@ CInventory.prototype.MakeActive = function()
 
 CInventory.prototype.ShowPageControlsIfNeeded = function()
 {
-	var $Controls = $('#inventory_pagecontrols');
+	var $Controls = $J('#inventory_pagecontrols');
 	if ( this.m_cPages <= 1 )
 		$Controls.css( 'visibility', 'hidden' );
 	else
@@ -1629,7 +1629,7 @@ CInventory.prototype.ShowPageControlsIfNeeded = function()
 
 CInventory.prototype.LocateAsset = function( assetid )
 {
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 
 	var asset = this.m_rgAssets[assetid];
 
@@ -1669,7 +1669,7 @@ CInventory.prototype.GetItemElement = function( i )
 
 CInventory.prototype.FindFirstAsset = function()
 {
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 	var _this = this;
 	this.PerformInitialLoad().done( function() {
 		for ( var i =0; i < _this.m_rgItemElements.length; i++ )
@@ -1695,7 +1695,7 @@ CInventory.prototype.FindFirstAsset = function()
 
 CInventory.prototype.FindFirstAssetOnPage = function( iPage )
 {
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 
 	if ( iPage < 0 )
 		return deferred.reject().promise();
@@ -1771,7 +1771,7 @@ CInventory.prototype.LoadItemImage = function( $Item )
 		}
 		else
 		{
-			$Img = $('<img/>', {'src': url } );
+			$Img = $J('<img/>', {'src': url } );
 			$Item.append( $Img );
 		}
 		$Item.data( 'lazyLoadImage', null );
@@ -1832,12 +1832,12 @@ CInventory.prototype.SelectItem = function( event, elItem, rgItem, bUserAction )
 		// event indicates the user tapped an item, otherwise they may have just switched inventories
 		if ( bUserAction )
 		{
-			var $Info = $(elNewInfo);
+			var $Info = $J(elNewInfo);
 
 			var $BtnAddToTrade = $Info.find('.item_desc_addtotrade');
 			if ( $BtnAddToTrade.length && typeof OnDoubleClickItem != 'undefined' )
 			{
-				var bInTrade = $(elItem).parents('.itemHolder').hasClass('trade_slot');
+				var bInTrade = $J(elItem).parents('.itemHolder').hasClass('trade_slot');
 
 				if ( bInTrade )
 				{
@@ -1864,7 +1864,7 @@ CInventory.prototype.SelectItem = function( event, elItem, rgItem, bUserAction )
 			ShowItemHoverAsPopup( $Info, function() {
 				$BtnAddToTrade.off('click');
 
-				$('.inventory_page_right' ).append( $Info );
+				$J('.inventory_page_right' ).append( $Info );
 				g_ActiveItemPopupModal = null;
 			} );
 		}
@@ -1895,7 +1895,7 @@ CInventory.prototype.SelectItem = function( event, elItem, rgItem, bUserAction )
 
 CInventory.prototype.EnsurePageActiveForItem = function( element )
 {
-	var iPage = $(element).data('iPage');
+	var iPage = $J(element).data('iPage');
 	if ( typeof iPage != 'undefined' )
 		this.SetActivePage( iPage );
 };
@@ -1977,7 +1977,7 @@ CAppwideInventory.prototype.PerformInitialLoad = function()
 	this.EnsureChildInventoriesReady();
 
 	if ( this.m_bPerformedInitialLoad )
-		return $.Deferred().resolve();
+		return $J.Deferred().resolve();
 
 	for ( var contextid in this.m_rgChildInventories )
 	{
@@ -1990,13 +1990,13 @@ CAppwideInventory.prototype.PerformInitialLoad = function()
 	}
 
 	// ready as we'll ever be
-	return $.Deferred().resolve();
+	return $J.Deferred().resolve();
 };
 
 CAppwideInventory.prototype.LoadCompleteInventory = function()
 {
 	if ( this.m_bFullyLoaded )
-		return $.Deferred().resolve();
+		return $J.Deferred().resolve();
 
 	if ( !this.m_promiseLoadCompleteInventory )
 	{
@@ -2009,7 +2009,7 @@ CAppwideInventory.prototype.LoadCompleteInventory = function()
 		}
 
 		var _this = this;
-		this.m_promiseLoadCompleteInventory = $.when.apply( $, rgDeferreds ).done( function() {  _this.m_bFullyLoaded = true; } );
+		this.m_promiseLoadCompleteInventory = $J.when.apply( $J, rgDeferreds ).done( function() {  _this.m_bFullyLoaded = true; } );
 	}
 
 	return this.m_promiseLoadCompleteInventory;
@@ -2167,7 +2167,7 @@ CAppwideInventory.prototype.LocateAsset = function( itemid )
 		rgDeferred.push( this.m_rgChildInventories[ contextid ].LocateAsset( itemid ) );
 	}
 
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 	var cResponses = rgDeferred.length;
 	var bSuccess = false;
 
@@ -2195,7 +2195,7 @@ CAppwideInventory.prototype.FindFirstAsset = function()
 {
 	this.EnsureChildInventoriesReady();
 
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 	var _this = this;
 	var iContext = 0;
 
@@ -2248,7 +2248,7 @@ CAppwideInventory.prototype.LoadUntilConditionMet = function( fnCondition )
 {
 	this.EnsureChildInventoriesReady();
 
-	var deferred = $.Deferred();
+	var deferred = $J.Deferred();
 	var _this = this;
 	var iContext = 0;
 
@@ -2289,7 +2289,7 @@ CAppwideInventory.prototype.LoadMoreAssets = function( count )
 			return this.m_rgChildInventories[contextid].LoadMoreAssets( count );
 	}
 
-	return $.Deferred().resolve().promise();
+	return $J.Deferred().resolve().promise();
 };
 
 CAppwideInventory.prototype.BIsEmptyInventory = function()
@@ -2380,7 +2380,7 @@ var CUser = Class.create( {
 	{
 		if ( !this.cLoadsInFlight )
 		{
-			$(document.body).addClass('inventory_loading');
+			$J(document.body).addClass('inventory_loading');
 		}
 		this.cLoadsInFlight++;
 	},
@@ -2391,7 +2391,7 @@ var CUser = Class.create( {
 
 		if ( !this.cLoadsInFlight )
 		{
-			$(document.body).removeClass('inventory_loading');
+			$J(document.body).removeClass('inventory_loading');
 		}
 	},
 
@@ -2677,7 +2677,7 @@ CUserYou = Class.create( CUser, {
 				// just mark this item as invalid
 				asset.consumed_item = true;
 				if ( asset && asset.element )
-					$(asset.element).parent().addClass('consumed_item');
+					$J(asset.element).parent().addClass('consumed_item');
 
 				context.inventory.ShowInventoryReloadMessage();
 
@@ -2733,7 +2733,7 @@ CUserYou = Class.create( CUser, {
 	},
 	
 	GetInventoryLoadDisplayElement: function() {
-		return $('#inventory_load_error_ctn');
+		return $J('#inventory_load_error_ctn');
 	},
 
 	// an obj with .appid and .contextid
@@ -2863,9 +2863,9 @@ function ShowItemInventory( appid, contextid, assetid, bLoadCompleted )
 			g_ActiveUser.SetActiveAppId( appid );
 
 			var elTab = $('inventory_link_' + appid );
-			$( '.games_list_tab.active' ).removeClass( 'active' );
+			$J( '.games_list_tab.active' ).removeClass( 'active' );
 
-			var $ResponsiveSelect = $('#responsive_inventory_select');
+			var $ResponsiveSelect = $J('#responsive_inventory_select');
 			var $Opt = $ResponsiveSelect.children('[data-appid=' + parseInt(appid) + ']');
 			if ( $Opt.length )
 				$ResponsiveSelect.val( $Opt.attr('value') );
@@ -2909,8 +2909,8 @@ function ShowItemInventory( appid, contextid, assetid, bLoadCompleted )
 				{
 					var rgContext = g_ActiveUser.GetContext( appid, rgContextIds[i] );
 					var elContext = new Element( 'div', {'class': 'popup_item context_name', 'id': 'context_option_' + appid + '_' + rgContext.id } );
-					$( elContext ).text( rgContext.name );
-											$( elContext ).text( rgContext.name );
+					$J( elContext ).text( rgContext.name );
+											$J( elContext ).text( rgContext.name );
 										var strHash = '#' + appid + '_' + rgContext.id;
 					elContext.observe( 'click', fnContextClick.bind( null, appid, rgContext.id ) );
 
@@ -2944,7 +2944,7 @@ function ShowItemInventory( appid, contextid, assetid, bLoadCompleted )
 			// TODO: this will never fire now
 			$('empty_inventory_page').show();
 
-			$( $('empty_inventory_page').down('.gamename') ).text( g_rgAppContextData[appid].name );
+			$J( $('empty_inventory_page').down('.gamename') ).text( g_rgAppContextData[appid].name );
 			var strHowToGet = '';
 			if( oEconomyDisplay && oEconomyDisplay.howtoget )
 				strHowToGet = oEconomyDisplay.howtoget;
@@ -3150,6 +3150,7 @@ var HoverCurrencyFromTemplate = new Template( '<span style="#{currencystyle}">#{
 
 function GetEscapedNameForItem( item )
 {
+  //return "myName135";
 	var strName = item.description.name.escapeHTML();
 	if ( CurrencyIsWalletFunds( item ) )
 		strName = v_currencyformat( item.amount, item.description.name ) + ' <span class="hover_item_name_small">' + strName + '</span>';
@@ -3157,6 +3158,11 @@ function GetEscapedNameForItem( item )
 		strName = v_numberformat( item.amount ) + ' ' + strName;
 
 	return strName;
+}
+
+function CurrencyIsWalletFunds( currency )
+{
+	return currency.appid == 753 && currency.contextid == 4;
 }
 
 /* We allow owner to be a CUser or string ( steamid ) */
@@ -3200,7 +3206,7 @@ function BuildHover( prefix, item, owner )
 		if ( elArrowRight ) elArrowRight.style.borderLeftColor = '';
 	}
 
-	var elFraudWarnings = $('#'+prefix+'_fraud_warnings');
+	var elFraudWarnings = $J('#'+prefix+'_fraud_warnings');
 	if ( elFraudWarnings )
 	{
 		// on the inventory page, we only show fraud warnings for currency (special privacy notice)
@@ -3211,10 +3217,10 @@ function BuildHover( prefix, item, owner )
 			{
 				for ( var i=0; i < description.fraudwarnings.length; i++ )
 				{
-					var warning = $( '<div/>', { class: 'fraud_warning_box' } );
-					var warningImage = $( '<img>', { class: 'fraud_warning_image', src: 'https://community.cloudflare.steamstatic.com/public/images/sharedfiles/icons/icon_warning.png' } );
+					var warning = $J( '<div/>', { class: 'fraud_warning_box' } );
+					var warningImage = $J( '<img>', { class: 'fraud_warning_image', src: 'https://community.cloudflare.steamstatic.com/public/images/sharedfiles/icons/icon_warning.png' } );
 					warning.append( warningImage );
-					var warningText = $( '<span/>' );
+					var warningText = $J( '<span/>' );
 					warningText.text( description.fraudwarnings[i] );
 					warning.append( warningText );
 					elFraudWarnings.append( warning );
@@ -3222,7 +3228,7 @@ function BuildHover( prefix, item, owner )
 			}
 			if ( g_bIsInventoryPage && item.is_currency )
 			{
-				var warning = $( '<div/>' );
+				var warning = $J( '<div/>' );
 				warning.text( 'This amount is private and shown only to you.' );
 				elFraudWarnings.append( warning );
 			}
@@ -3239,9 +3245,9 @@ function BuildHover( prefix, item, owner )
 		var rgAppData = g_rgAppContextData[item.appid];
 		$(prefix+'_game_icon').src = rgAppData.icon;
 		$(prefix+'_game_icon').alt = rgAppData.name;
-					$FromIDOrElement(prefix+'_game_name').text( rgAppData.name );
+					$JFromIDOrElement(prefix+'_game_name').text( rgAppData.name );
 		
-		$FromIDOrElement(prefix+'_item_type').text( description.type );
+		$JFromIDOrElement(prefix+'_item_type').text( description.type );
 		$(prefix+'_game_info').show();
 	}
 	else
@@ -3265,7 +3271,7 @@ function BuildHover( prefix, item, owner )
 	}
 
 	// hide "grind into goo" action
-	$('#'+prefix+'_item_scrap_actions').hide();
+	$J('#'+prefix+'_item_scrap_actions').hide();
 
 	var elOwnerActions = $(prefix+'_item_owner_actions');
 	if ( elOwnerActions )
@@ -3304,7 +3310,7 @@ function BuildHover( prefix, item, owner )
 
 	$(prefix).builtFor = item;
 	$(prefix).builtForAmount = item.amount;
-	$(elHoverContent).trigger('v_contentschanged');
+	$J(elHoverContent).trigger('v_contentschanged');
 }
 
 function PopulateDescriptions( elDescriptions, rgDescriptions )
@@ -3457,7 +3463,7 @@ function PopulateTags( elTags, elTagsContent, rgTags )
 	if( sTagList != "" )
 	{
 		elTags.show();
-		$(elTagsContent).text( sTagList );
+		$J(elTagsContent).text( sTagList );
 	}
 	else
 	{
@@ -3497,7 +3503,7 @@ function PopulateScrapAction( elActions, elScrapAmount, elScrapLink, item, appid
 
 	// this currently uses a per-user request getting the scrap value of the item for the specific user - so it doesn't get cached
 	// would be better to use one based off the properties of the item, but we don't have the item_type and border_color handy here
-	$.ajax({
+	$J.ajax({
 		url: 'https://steamcommunity.com' + '/auction/ajaxgetgoovalueforitemtype/',
 		type: 'GET',
 		data: {
@@ -3520,7 +3526,7 @@ function PopulateScrapAction( elActions, elScrapAmount, elScrapLink, item, appid
 			{
 				elActions.hide();
 			}
-			$(elActions).trigger('v_contentschanged');
+			$J(elActions).trigger('v_contentschanged');
 		}
 	});
 }
@@ -3550,7 +3556,7 @@ function PopulateMarketActions( elActions, item )
 		elMarketLink.update( 'View in Community Market' );
 
 		if ( bIsTrading )
-			Steam.LinkInNewWindow( $(elMarketLink) );
+			Steam.LinkInNewWindow( $J(elMarketLink) );
 
 		elPriceInfoHeader.appendChild( elMarketLink );
 
@@ -3590,7 +3596,7 @@ function PopulateMarketActions( elActions, item )
 					}
 
 					elPriceInfoContent.update( strInfo );
-					$(elActions).trigger('v_contentschanged');
+					$J(elActions).trigger('v_contentschanged');
 				}
 			},
 			onFailure: function( transport ) { elPriceInfo.hide(); }
@@ -3652,14 +3658,14 @@ function ShowItemHoverAsPopup( elNewInfo, fnOnDismiss )
 {
 	g_ActiveItemPopupModal && g_ActiveItemPopupModal.Dismiss();
 
-	var $Info = $(elNewInfo);
+	var $Info = $J(elNewInfo);
 	$Info.show();
 	$Info.css('opacity',1);
 
-	var $Modal = $('<div/>',{'class': 'newmodal economy_modal_ctn'});
-	var $PopupCtn = $('<div/>', {'class': 'economy_item_popup' } );
-	var $Scroll = $('<div/>', {'class' : 'economy_item_popup_scroll'} );
-	var $DismissBtn = $('<div/>', {'class': 'economy_item_popup_dismiss'} ).text('X');
+	var $Modal = $J('<div/>',{'class': 'newmodal economy_modal_ctn'});
+	var $PopupCtn = $J('<div/>', {'class': 'economy_item_popup' } );
+	var $Scroll = $J('<div/>', {'class' : 'economy_item_popup_scroll'} );
+	var $DismissBtn = $J('<div/>', {'class': 'economy_item_popup_dismiss'} ).text('X');
 
 	$PopupCtn.append( $Scroll.append( $Info ) );
 	$PopupCtn.append( $DismissBtn );
@@ -3879,9 +3885,9 @@ SellItemDialog = {
 			$('market_sell_dialog_game_icon').src = rgAppData.icon;
 			$('market_sell_dialog_game_icon').alt = rgAppData.name;
 
-							$FromIDOrElement('market_sell_dialog_game_name').text( rgAppData.name );
+							$JFromIDOrElement('market_sell_dialog_game_name').text( rgAppData.name );
 			
-			$('#market_sell_dialog_item_type').text( description.type );
+			$J('#market_sell_dialog_item_type').text( description.type );
 			$('market_sell_dialog_game_info').show();
 		}
 		else
@@ -3915,7 +3921,7 @@ SellItemDialog = {
 		$('market_sell_buyercurrency_input').value = GetCurrencySymbol( currencyCode );
 		$('market_sell_dialog_total_youreceive_amount').update( GetCurrencySymbol( currencyCode ) );
 
-		var $elDialogContent = $(this.m_elDialogContent);
+		var $elDialogContent = $J(this.m_elDialogContent);
 		this.m_modal = new CModal( $elDialogContent );
 		this.m_modal.Show();
 
@@ -3926,10 +3932,10 @@ SellItemDialog = {
 
 
 		var _this = this;
-		$(this.m_elDialogContent).find('.newmodal_close' ).click( function() { _this.m_modal.m_fnBackgroundClick(); } );
+		$J(this.m_elDialogContent).find('.newmodal_close' ).click( function() { _this.m_modal.m_fnBackgroundClick(); } );
 
 
-		$('#market_sell_currency_input' ).one( 'focus', function() {
+		$J('#market_sell_currency_input' ).one( 'focus', function() {
 			// move the caret to the correct spot
 			var oPriceInput = $('market_sell_currency_input');
 			if ( oPriceInput.setSelectionRange )
@@ -3960,10 +3966,10 @@ SellItemDialog = {
 			$('market_sell_currency_input').focus();
 
 		// Load price history
-		$('#pricehistory_container').show();
-		$('#pricehistory').hide();
-		$('#pricehistory_throbber').show();
-		$('#pricehistory_notavailable').hide();
+		$J('#pricehistory_container').show();
+		$J('#pricehistory').hide();
+		$J('#pricehistory_throbber').show();
+		$J('#pricehistory_notavailable').hide();
 		new Ajax.Request( 'https://steamcommunity.com/market/pricehistory/', {
 			method: 'get',
 			parameters: {
@@ -4001,7 +4007,7 @@ SellItemDialog = {
 			$('market_sell_dialog_accept').show();
 		}
 
-		var $elDialogContent = $(this.m_elDialogContent);
+		var $elDialogContent = $J(this.m_elDialogContent);
 		this.m_modal.SetMaxWidth( $elDialogContent.width() );
 	},
 
@@ -4012,15 +4018,15 @@ SellItemDialog = {
 		$('market_sell_dialog_buyback_buttons').hide();
 		$('market_sell_dialog_accept').show();
 
-		var $elDialogContent = $(this.m_elDialogContent);
+		var $elDialogContent = $J(this.m_elDialogContent);
 		this.m_modal.SetMaxWidth( $elDialogContent.width() );
 	},
 
 	OnPriceHistorySuccess: function( transport ) {
-		$('#pricehistory_throbber').hide();
+		$J('#pricehistory_throbber').hide();
 		if ( transport.responseJSON && transport.responseJSON.success && transport.responseJSON.prices.length > 0 )
 		{
-			$('#pricehistory').show();
+			$J('#pricehistory').show();
 
 			var line1 = transport.responseJSON.prices;
 
@@ -4040,13 +4046,13 @@ SellItemDialog = {
 		}
 		else
 		{
-			$('#pricehistory_notavailable').show();
+			$J('#pricehistory_notavailable').show();
 		}
 	},
 
 	OnPriceHistoryFailure: function( transport ) {
-		$('#pricehistory_throbber').hide();
-		$('#pricehistory_notavailable').show();
+		$J('#pricehistory_throbber').hide();
+		$J('#pricehistory_notavailable').show();
 	},
 
 	DisplayError: function( error ) {
@@ -4109,7 +4115,7 @@ SellItemDialog = {
 		$('market_sell_dialog_buyback_throbber').show();
 
 		// Make call to do buyback on backend, show success/error...
-		$.ajax( {
+		$J.ajax( {
 			url: 'https://steamcommunity.com/market/dobuyback/',
 			type: 'POST',
 			data: {
@@ -4131,7 +4137,7 @@ SellItemDialog = {
 			}
 		} ).fail( function( jqxhr ) {
 			// jquery doesn't parse json on fail
-			var data = $.parseJSON( jqxhr.responseText );
+			var data = $J.parseJSON( jqxhr.responseText );
 			SellItemDialog.OnFailure( { responseJSON: data } );
 		} );
 	},
@@ -4273,7 +4279,7 @@ SellItemDialog = {
 		$('market_sell_dialog_throbber').show();
 		$('market_sell_dialog_throbber').fade({ duration: 0.25, from: 0, to: 1 });
 
-		$.ajax( {
+		$J.ajax( {
 			url: 'https://steamcommunity.com/market/sellitem/',
 			type: 'POST',
 			data: {
@@ -4297,7 +4303,7 @@ SellItemDialog = {
 			}
 		} ).fail( function( jqxhr ) {
 			// jquery doesn't parse json on fail
-			var data = $.parseJSON( jqxhr.responseText );
+			var data = $J.parseJSON( jqxhr.responseText );
 			SellItemDialog.OnFailure( { responseJSON: data } );
 		} );
 
@@ -4754,7 +4760,7 @@ var Filter = {
 					var bHide = !this.MatchItem( elItem, rgTerms, rgTags );
 					if ( bHide )
 					{
-						$(elItemHolder).hide();
+						$J(elItemHolder).hide();
 						elItemHolder.filtered = true;
 					}
 				}
@@ -4763,7 +4769,7 @@ var Filter = {
 					var bShow = bDisplayAll || this.MatchItem( elItem, rgTerms, rgTags );
 					if ( bShow )
 					{
-						$(elItemHolder).show();
+						$J(elItemHolder).show();
 						elItemHolder.filtered=false;
 					}
 				}
@@ -5025,7 +5031,7 @@ function CreateItemHoverFromContainer( container, id, appid, contextid, assetid,
 
 function AddItemHoverToElement( element, rgItem )
 {
-	var $Element = $FromIDOrElement( element.id );
+	var $Element = $JFromIDOrElement( element );
 
 	$Element.addClass('economy_item_hoverable');
 
@@ -5036,20 +5042,21 @@ function AddItemHoverToElement( element, rgItem )
 	$Element.on('click.ItemHover', function( e ) {
 
 		// if this is an actual link, we won't show a hover we'll just navigate
-		if ( e.target && $(e.target ).is('a') )
+		if ( e.target && $J(e.target ).is('a') )
 			return;
 
 		if ( bInTouch || ( window.UseSmallScreenMode && window.UseSmallScreenMode() ) )
 		{
 			BuildHover( 'hover', rgItem, UserYou );
-			var $Content = $FromIDOrElement( 'iteminfo_clienthover' );
+			var $Content = $JFromIDOrElement( 'iteminfo_clienthover' );
 			ShowItemHoverAsPopup( $Content, function() {
 				bInTouch = false;
-				$('#hover').append( $Content );
-				$('#hover_item_icon' ).attr('src', 'https://community.cloudflare.steamstatic.com/public/images/trans.gif');
+				$J('#hover').append( $Content );
+				$J('#hover_item_icon' ).attr('src', 'https://community.cloudflare.steamstatic.com/public/images/trans.gif');
 			} );
 		}
 	});
+  console.log(UserYou);
 	$Element.on('mouseenter', function() {
 		if ( !bInTouch && ( !window.UseSmallScreenMode || !window.UseSmallScreenMode() ) )
 			MouseOverItem( null, UserYou, $(element), rgItem );
@@ -5063,14 +5070,14 @@ function AddItemHoverToElement( element, rgItem )
 
 // proto functions used to accept an id or an element.
 // This can be used to migrate them to returning jquery instead of proto-wrapped element
-function $FromIDOrElement( elem )
+function $JFromIDOrElement( elem )
 {
 	if ( elem instanceof jQuery )
 		return elem;
 	else if ( typeof elem == 'string' )
-		return $('#' + elem.replace( /\./, '\\.' ) );
+		return $J('#' + elem.replace( /\./, '\\.' ) );
 	else
-		return $( elem );
+		return $J( elem );
 }
 
 /* trade history page */
@@ -5109,10 +5116,10 @@ CNewItemScroller = Class.create( {
 		this.m_elLeftControl.observe( 'click', this.ScrollPrevious.bind( this ) );
 
 		var _this = this;
-		$(this.m_elScroller ).parent().on( 'scroll', function() {
-			var nScrollLeft = $(this ).scrollLeft();
-			var nWidth = $(this ).width();
-			var nTotalWidth = $(_this.m_elScroller ).width();
+		$J(this.m_elScroller ).parent().on( 'scroll', function() {
+			var nScrollLeft = $J(this ).scrollLeft();
+			var nWidth = $J(this ).width();
+			var nTotalWidth = $J(_this.m_elScroller ).width();
 			if ( nScrollLeft > 25 )
 				_this.m_elLeftControl.show();
 			else
@@ -5132,9 +5139,9 @@ CNewItemScroller = Class.create( {
 				}
 			}
 		});
-		$(window ).on('resize', function() {
+		$J(window ).on('resize', function() {
 			_this.CalculatePages();
-			$(_this.m_elScroller ).parent().trigger('scroll');
+			$J(_this.m_elScroller ).parent().trigger('scroll');
 		} );
 	},
 
@@ -5170,7 +5177,7 @@ CNewItemScroller = Class.create( {
 			}
 		}
 
-		$(this.m_elScroller ).css('width', nAccumWidth + 25 );
+		$J(this.m_elScroller ).css('width', nAccumWidth + 25 );
 	},
 
 	ScrollPrevious: function()
@@ -5192,7 +5199,7 @@ CNewItemScroller = Class.create( {
 
 		this.m_bInTransition = true;
 
-		$(this.m_elScroller ).parent().animate( {scrollLeft: nOffset + 'px'}, 500, 'swing', $.proxy( this.OnScrollComplete, this ) );
+		$J(this.m_elScroller ).parent().animate( {scrollLeft: nOffset + 'px'}, 500, 'swing', $J.proxy( this.OnScrollComplete, this ) );
 
 		this.m_iPage = iPage;
 
@@ -5235,12 +5242,12 @@ function SelectItemDialogOnSelect()
 
 function DisableMarketButtons()
 {
-	$('a.item_market_action_button, a.market_commodity_buy_button, a.market_noncommodity_buyorder_button, a.market_unstyled_button').each( function() {
-		if ( !$(this).hasClass( 'nodisable' ) && !$(this).hasClass( 'item_market_action_button_disabled' ) )
+	$J('a.item_market_action_button, a.market_commodity_buy_button, a.market_noncommodity_buyorder_button, a.market_unstyled_button').each( function() {
+		if ( !$J(this).hasClass( 'nodisable' ) && !$J(this).hasClass( 'item_market_action_button_disabled' ) )
 		{
-			$(this).attr( 'onclick', '' );
-			$(this).click( function( event ) { event.stopPropagation(); return false; } );
-			$(this).addClass( 'item_market_action_button_disabled' );
+			$J(this).attr( 'onclick', '' );
+			$J(this).click( function( event ) { event.stopPropagation(); return false; } );
+			$J(this).addClass( 'item_market_action_button_disabled' );
 		}
 	} );
 }
@@ -5306,12 +5313,12 @@ function HandleTradeActionMenu( elActionMenuButton, item, user )
 	var bShowStaticActions = item.description.marketable || bOtherProfileIsPublic;
 	var bItemHasActions = typeof item.description.actions != 'undefined';
 	if ( bShowStaticActions )
-		$('#trade_action_popup_staticactions').show();
+		$J('#trade_action_popup_staticactions').show();
 
 	if ( bShowStaticActions && bItemHasActions )
-		$('#trade_action_popup_itemstaticsep').show();
+		$J('#trade_action_popup_itemstaticsep').show();
 	else
-		$('#trade_action_popup_itemstaticsep').hide();
+		$J('#trade_action_popup_itemstaticsep').hide();
 
 	var strLinkPrefix = '';
 	if ( Steam.BIsUserInSteamClient() )
@@ -5320,32 +5327,32 @@ function HandleTradeActionMenu( elActionMenuButton, item, user )
 	if ( item.description.marketable )
 	{
 		var sMarketHashName = GetMarketHashName( item.description );
-		$('#trade_action_viewinmarket').attr( 'href', strLinkPrefix + 'https://steamcommunity.com/market/listings/' + item.appid + '/' + sMarketHashName );
-		$('#trade_action_viewinmarket').show();
+		$J('#trade_action_viewinmarket').attr( 'href', strLinkPrefix + 'https://steamcommunity.com/market/listings/' + item.appid + '/' + sMarketHashName );
+		$J('#trade_action_viewinmarket').show();
 	}
 	else
 	{
-		$('#trade_action_viewinmarket').hide();
+		$J('#trade_action_viewinmarket').hide();
 	}
 
 	if ( bOtherProfileIsPublic )
 	{
-		$('#trade_action_viewininventory').attr( 'href', strLinkPrefix + user.GetProfileURL() + '/inventory/#' + item.appid + '_' + item.contextid + '_' + item.assetid );
-		$('#trade_action_viewininventory').show();
+		$J('#trade_action_viewininventory').attr( 'href', strLinkPrefix + user.GetProfileURL() + '/inventory/#' + item.appid + '_' + item.contextid + '_' + item.assetid );
+		$J('#trade_action_viewininventory').show();
 	}
 	else
 	{
-		$('#trade_action_viewininventory').hide();
+		$J('#trade_action_viewininventory').hide();
 	}
 
 	if ( bItemHasActions )
 	{
-		var elItemActions = $('#trade_action_popup_itemactions');
+		var elItemActions = $J('#trade_action_popup_itemactions');
 		elItemActions.empty();
 		for ( var action = 0; action < item.description.actions.length; action++ )
 		{
 			var rgAction = item.description.actions[action];
-			var elNewAction = $( '<a></a>' );
+			var elNewAction = $J( '<a></a>' );
 			elNewAction.addClass( 'popup_menu_item' );
 
 			var strLink = rgAction.link.replace( "%assetid%", item.assetid ).replace( "%contextid%", item.contextid ).replace( "%owner_steamid%", user.GetSteamId() );
@@ -5370,7 +5377,7 @@ function HandleTradeActionMenu( elActionMenuButton, item, user )
 	}
 	else
 	{
-		$('#trade_action_popup_itemactions').hide();
+		$J('#trade_action_popup_itemactions').hide();
 	}
 
 	ShowMenu( elActionMenuButton, 'trade_action_popup', 'right' );
@@ -5379,13 +5386,13 @@ function HandleTradeActionMenu( elActionMenuButton, item, user )
 
 function CreatePriceHistoryGraph( line1, numYAxisTicks, strFormatPrefix, strFormatSuffix )
 {
-	var plot = $.jqplot('pricehistory', [line1], {
+	var plot = $J.jqplot('pricehistory', [line1], {
 		title:{text: 'Median Sale Prices', textAlign: 'left' },
 		gridPadding:{left: 45, right:45, top:25},
 		axesDefaults:{ showTickMarks:false },
 		axes:{
 			xaxis:{
-				renderer:$.jqplot.DateAxisRenderer,
+				renderer:$J.jqplot.DateAxisRenderer,
 				tickOptions:{formatString:'%b %#d<span class="priceHistoryTime"> %#I%p<span>'},
 				pad: 1
 			},
@@ -5445,7 +5452,7 @@ function GetYAXisForPriceHistoryGraph( plotPriceHistory, timeMin, timeMax )
 		}
 	}
 
-	return $.jqplot.LinearTickGenerator( min, max, null, plotPriceHistory.defaultNumberTicks, false, false );
+	return $J.jqplot.LinearTickGenerator( min, max, null, plotPriceHistory.defaultNumberTicks, false, false );
 }
 
 function pricehistory_zoomDays( plotPriceHistory, timePriceHistoryEarliest, timePriceHistoryLatest, days )
@@ -5471,8 +5478,8 @@ function pricehistory_zoomDays( plotPriceHistory, timePriceHistoryEarliest, time
 
 	plotPriceHistory.replot();
 
-	$('#pricehistory .jqplot-yaxis').children().first().remove();
-	$('#pricehistory .jqplot-yaxis').children().last().remove();
+	$J('#pricehistory .jqplot-yaxis').children().first().remove();
+	$J('#pricehistory .jqplot-yaxis').children().last().remove();
 
 	return false;
 }
@@ -5506,8 +5513,8 @@ function pricehistory_zoomMonthOrLifetime( plotPriceHistory, timePriceHistoryEar
 
 	plotPriceHistory.replot();
 
-	$('#pricehistory .jqplot-yaxis').children().first().remove();
-	$('#pricehistory .jqplot-yaxis').children().last().remove();
+	$J('#pricehistory .jqplot-yaxis').children().first().remove();
+	$J('#pricehistory .jqplot-yaxis').children().last().remove();
 
 	return false;
 }
@@ -5541,18 +5548,18 @@ function pricehistory_zoomLifetime( plotPriceHistory, timePriceHistoryEarliest, 
 
 	plotPriceHistory.replot();
 
-	$('#pricehistory .jqplot-yaxis').children().first().remove();
-	$('#pricehistory .jqplot-yaxis').children().last().remove();
+	$J('#pricehistory .jqplot-yaxis').children().first().remove();
+	$J('#pricehistory .jqplot-yaxis').children().last().remove();
 
 	return false;
 }
 
 function ReportTradeScam( steamIDTarget, strPersonaName )
 {
-	var $Dialog = $('<div/>');
-	$Dialog.append( $('<div/>', {'class': 'trade_scam_report_label' }).html( 'Use this to report %s to Steam Support for an attempted scam.<br><br>Please provide a brief description:'.replace( /%s/, strPersonaName ) ) );
-	var $TextArea = $('<textarea/>', {'rows': 3, 'cols': 26 });
-	$Dialog.append( $('<div/>', {'class': 'gray_bevel fullwidth' }).append( $TextArea ) );
+	var $Dialog = $J('<div/>');
+	$Dialog.append( $J('<div/>', {'class': 'trade_scam_report_label' }).html( 'Use this to report %s to Steam Support for an attempted scam.<br><br>Please provide a brief description:'.replace( /%s/, strPersonaName ) ) );
+	var $TextArea = $J('<textarea/>', {'rows': 3, 'cols': 26 });
+	$Dialog.append( $J('<div/>', {'class': 'gray_bevel fullwidth' }).append( $TextArea ) );
 	var Modal = ShowConfirmDialog( 'Report Scam', $Dialog, 'Report Scam').done( function() {
 		if ( !$TextArea.val() )
 		{
@@ -5568,7 +5575,7 @@ function ReportTradeScam( steamIDTarget, strPersonaName )
 			abuseDescription: $TextArea.val()
 		};
 
-		$.post( 'https://steamcommunity.com/actions/ReportAbuse/', rgParams).done( function() {
+		$J.post( 'https://steamcommunity.com/actions/ReportAbuse/', rgParams).done( function() {
 			ShowAlertDialog( 'Thank You!', 'Your report has been submitted and will be reviewed by Steam Support.' );
 		}).fail( function() {
 			ShowAlertDialog( 'Report Scam', 'There was a problem saving your report.  Please try again later.' );
@@ -5582,7 +5589,7 @@ function InitDynamicInventoryItemAutosizing( $InventoryCtn, strCSSClass, bAutoRe
 {
 	// a global event to toggle the pagination on inventory and a global that the CUser class uses to change some behaviors
 	var bDynamicWasSizingEnabled;
-	$(window ).off('resize.EconomyRepaginateInventory' ).on('resize.EconomyRepaginateInventory', function() {
+	$J(window ).off('resize.EconomyRepaginateInventory' ).on('resize.EconomyRepaginateInventory', function() {
 		// this flag is used by inventories in a few places
 		if ( Economy_UseResponsiveLayout() )
 		{
@@ -5603,7 +5610,7 @@ function InitDynamicInventoryItemAutosizing( $InventoryCtn, strCSSClass, bAutoRe
 		}
 	} ).trigger('resize.EconomyRepaginateInventory');
 
-	$(window).off('scroll.EconomyResponsive' ).on('scroll.EconomyResponsive', function() {
+	$J(window).off('scroll.EconomyResponsive' ).on('scroll.EconomyResponsive', function() {
 		if ( g_bEnableDynamicSizing && g_ActiveInventory )
 		{
 			g_ActiveInventory.m_SingleResponsivePage.EnsurePageItemsCreated();
@@ -5612,7 +5619,7 @@ function InitDynamicInventoryItemAutosizing( $InventoryCtn, strCSSClass, bAutoRe
 	} ).trigger('scroll.EconomyResponsive');
 
 
-	$(window ).on('resize.DynamicInventorySizing', function() {
+	$J(window ).on('resize.DynamicInventorySizing', function() {
 
 		if ( !Economy_UseResponsiveLayout() )
 		{
@@ -5624,18 +5631,18 @@ function InitDynamicInventoryItemAutosizing( $InventoryCtn, strCSSClass, bAutoRe
 		{
 			//too soon
 			if ( bAutoRetryIfNotVisible )
-				window.setTimeout( function() {$(window).trigger('resize.DynamicInventorySizing')}, 50 );
+				window.setTimeout( function() {$J(window).trigger('resize.DynamicInventorySizing')}, 50 );
 
 			return;
 		}
 	});
-	$(window).trigger('resize.DynamicInventorySizing');
+	$J(window).trigger('resize.DynamicInventorySizing');
 
 }
 
 function ShowEscrowExplanationDialog( bAddSteamGuardLink )
 {
-	var description = $( '<div/>', { class: 'escrow_explanation' } );
+	var description = $J( '<div/>', { class: 'escrow_explanation' } );
 
 	description.append( '<div class="escrow_explanation_q">What is a trade or market hold?</div>' );
 	description.append( '<div class="escrow_explanation_a">A hold is a period of time where items are held by Steam before a trade is completed or a Market listing is posted.</div>' );

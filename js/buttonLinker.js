@@ -1,9 +1,9 @@
 function createButtonLinks() {
-  $("#steam_Inv_His_Filter_Apply_Btn").click(() => {
+  $J("#steam_Inv_His_Filter_Apply_Btn").click(() => {
     recieveCommand(document.getElementById('steam_Inv_His_Filter_Tag_Input').value+"@"+document.getElementById('steam_Inv_His_Filter_Type_Switch').checked);
   });
 
-  $("#reset_filter_list").click(() => {
+  $J("#reset_filter_list").click(() => {
     const list1 = document.querySelectorAll('.list1');
     const list2Elements = document.querySelectorAll('.list2 > *');
 
@@ -19,7 +19,7 @@ function createButtonLinks() {
   });
 
 
-  $("#hide_all_filter_list").click(() => {
+  $J("#hide_all_filter_list").click(() => {
     const list1Elements = document.querySelectorAll('.list1 > *');
     const list2 = document.querySelectorAll('.list2');
 
@@ -34,7 +34,7 @@ function createButtonLinks() {
     updateFilter();
   });
 
-  $("#move_left").click(() => {
+  $J("#move_left").click(() => {
     const list1 = document.querySelectorAll('.list1');
     const selected = document.querySelectorAll('.list2 .selected');
 
@@ -47,7 +47,7 @@ function createButtonLinks() {
     updateFilter();
   });
 
-  $("#move_right").click(() => {
+  $J("#move_right").click(() => {
     const list1Selected = document.querySelectorAll('.list1 .selected');
     const list2 = document.querySelectorAll('.list2');
 
@@ -60,7 +60,7 @@ function createButtonLinks() {
     updateFilter();
   });
 
-  $('#filter_Transfer_List').click(function(event) {
+  $J('#filter_Transfer_List').click(function(event) {
     if (event.target.tagName === 'LI') {
       event.target.classList.toggle('selected');
     }
@@ -71,24 +71,24 @@ function createButtonLinks() {
 
   filterSwitch.addEventListener("change", function() {
     if (filterSwitch.checked) {
-      $("#steam_Inv_His_Filter_Window").addClass("filter_window_minimized");
+      $J("#steam_Inv_His_Filter_Window").addClass("filter_window_minimized");
     } else {
-    $("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
+    $J("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
     }
   });
 
 
-  $("#filter_window_open_btn").click(function() {
-    $('#steam_Inv_His_Filter_Type_Switch').trigger('click'); 
-    $("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
+  $J("#filter_window_open_btn").click(function() {
+    $J('#steam_Inv_His_Filter_Type_Switch').trigger('click'); 
+    $J("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
   });
 
 
-  $("#steam_Inv_His_Filter_Clear_Btn").click(function() {
+  $J("#steam_Inv_His_Filter_Clear_Btn").click(function() {
     recieveCommand("clearFilter");
   });
 
-  $("#steam_Inv_His_Load_All").click(function() {
+  $J("#steam_Inv_His_Load_All").click(function() {
     InventoryHistory_LoadAll();
   });
 
@@ -100,15 +100,21 @@ function createButtonLinks() {
     }
   });
 
-  $(".steam_Inv_Loader_Win_Dismiss").each(function() {
-    $(this).click(function() {
-      $("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
+  $J(".steam_Inv_Loader_Win_Dismiss").each(function() {
+    $J(this).click(function() {
+      $J("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
+      $J("#steam_Inv_Loader_Win_Btn_Txt").text("STOP");
+      $J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Stop");
+      $J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Dismiss");
+      $J("#steam_Inv_Loader_spin").removeClass("steam_filter_hide_class");
+      $J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
     });
   })
 
-  $(".steam_Inv_Loader_Win_Stop").each(function() {
-    $(this).click(function() {
+  $J(".steam_Inv_Loader_Win_Stop").each(function() {
+    $J(this).click(function() {
       // stop loading
+      continueLOading = false;
     });
   })
 }

@@ -1,3 +1,4 @@
+$J = jQuery.noConflict();
 // Extension logic starts here (ONLY FUNCTIONS & CONSTANTS!)
 var invHisTab = document.getElementById("inventory_history_table");
 
@@ -6,7 +7,7 @@ function filterWindow() {
 }
 
 function InventoryHistory_LoadMore() {
-  $('#InventoryHistory_LoadMore_Access').trigger( "click" );
+  $J('#InventoryHistory_LoadMore_Access').trigger( "click" );
 }
 
 function recieveCommand(command) {
@@ -22,7 +23,7 @@ function recieveCommand(command) {
 
 function updateFilter() {
   var tags = [];
-  $("#filter_list_show").children().each(function() {
+  $J("#filter_list_show").children().each(function() {
     console.log(this.getAttribute("data-tag"));
     //console.log(this.attr("data-tag"));
     tags.push(this.getAttribute("data-tag").cleanup());

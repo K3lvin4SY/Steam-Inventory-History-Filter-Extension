@@ -1,30 +1,31 @@
-function InventoryHistory_BindTooltips( $new, rgDescriptions )
+function InventoryHistory_BindTooltips( $Jnew, rgDescriptions )
 {
-	$new.find('.economy_item_hoverable').each( function( index ) {
-		var rgAppDescriptions = rgDescriptions[$(this).data('appid')];
+	$Jnew.find('.economy_item_hoverable').each( function( index ) {
+		var rgAppDescriptions = rgDescriptions[$J(this).data('appid')];
 		if ( rgAppDescriptions )
 		{
-			var rgItemDescription = rgDescriptions[$( this ).data( 'appid' )][$( this ).data( 'classid' ) + '_' + $( this ).data( 'instanceid' )];
+			var rgItemDescription = rgDescriptions[$J( this ).data( 'appid' )][$J( this ).data( 'classid' ) + '_' + $J( this ).data( 'instanceid' )];
 			if ( rgItemDescription )
 			{
 				rgItem = {
-					appid: $(this).data( 'appid' ),
-					contextid: $(this).data( 'contextid' ),
-					amount: $(this).data( 'amount' ),
+					appid: $J(this).data( 'appid' ),
+					contextid: $J(this).data( 'contextid' ),
+					amount: $J(this).data( 'amount' ),
 					description: Object.assign( rgItemDescription )
 				};
 
-				if ( $(this).data( 'currencyid' ) )
+				if ( $J(this).data( 'currencyid' ) )
 				{
 					rgItem.currency = true;
-					rgItem.currencyid = $(this).data( 'currencyid' );
+					rgItem.currencyid = $J(this).data( 'currencyid' );
 				}
 				else
 				{
 					rgItem.is_stackable = rgItem.amount > 1;
 				}
 
-				AddItemHoverToElement( $(this).attr( 'id' ), rgItem );
+				console.log("pass");
+				AddItemHoverToElement( $J(this).attr( 'id' ), rgItem );
 			}
 		}
 	} );
@@ -42,11 +43,9 @@ function InventoryHistory_LoadAll()
 	}
 
 	// perperations
-	$("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
-	$('#load_more_button').hide();
-	if (loadAllAmount == 0) {
-		$("#inventory_history_table").empty();
-	}
+	$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
+	$J('#load_more_button').hide();
+	
 	
 	// Start
 	var request_data = {
@@ -63,15 +62,30 @@ function InventoryHistory_LoadAll()
 	var prevCursor = cursurHistory;
 	cursurHistory = null;
 
-	$.ajax({
+	$J.ajax({
 		type: "GET",
 		url: profileURL + "/inventoryhistory/",
 		data: request_data
 	}).done( function( data ) {
 		if ( data.success )
 		{
-			$('#inventory_history_count').text( parseInt( $('#inventory_history_count').text() ) + data.num );
-			$('#inventory_history_loop_count').text( parseInt( $('#inventory_history_loop_count').text() ) + 1 );
+			for ( var appid in data.apps )
+			{
+				g_rgAppContextData[appid] = data.apps[appid];
+			}
+
+			if (loadAllAmount == 0) {
+				loadAllAmount++;
+				if ( data.cursor )
+				{
+					cursurHistory = data.cursor;
+				}
+				InventoryHistory_LoadAll();
+				return;
+			}
+
+			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
+			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
 			var unix_timestamp;
 			if (data.cursor) {
 				unix_timestamp = data.cursor;
@@ -83,13 +97,13 @@ function InventoryHistory_LoadAll()
 			var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
 			var day = date.getDate().toString();
 			var formattedDate = day + ' ' + month + ' ' + year;
-			$('#inventory_history_load_date').text(formattedDate);
+			$J('#inventory_history_load_date').text(formattedDate);
 
 			if ( data.html )
 			{
-				var elem_prev = $('#inventory_history_table').children().last();
+				var elem_prev = $J('#inventory_history_table').children().last();
 
-				$('#inventory_history_table').append( data.html );
+				$J('#inventory_history_table').append( data.html );
 
 				var new_elems = elem_prev.nextAll();
 				//new_elems.hide();
@@ -105,21 +119,30 @@ function InventoryHistory_LoadAll()
 				loadAllAmount++;
 				if (loadAllAmount % 250 !== 0) {
 					//window.scrollTo(0, document.body.scrollHeight);
-					//InventoryHistory_LoadAll(); //------------------------------------
+					if (continueLOading) {
+						InventoryHistory_LoadAll();
+					} else {
+						$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
+						$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+						$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+						$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+						$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+					}
+					
 				}else {
-					$( '#load_more_button' ).fadeIn( 50 );
+					$J( '#load_more_button' ).fadeIn( 50 );
 				}
 			}
 			else
 			{
 				// stop loading
-				$( '#load_more_button' ).hide();
+				$J( '#load_more_button' ).hide();
 			}
 		}
 		else
 		{
 			cursurHistory = prevCursor;
-			$( '#load_more_button' ).fadeIn( 50 );
+			$J( '#load_more_button' ).fadeIn( 50 );
 
 			if ( data.error )
 			{
@@ -132,6 +155,7 @@ function InventoryHistory_LoadAll()
 
 		if ( jqXHR.status == 429 )
 		{
+			// wait & continue
 			alert("Too many requests //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
 		}
@@ -139,10 +163,10 @@ function InventoryHistory_LoadAll()
 		{
 			alert("Error - problem loading inventory history //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
-			$( '#load_more_button' ).fadeIn( 50 );
+			$J( '#load_more_button' ).fadeIn( 50 );
 		}
 	}).always( function() {
-		$('#inventory_history_loading').hide();
+		$J('#inventory_history_loading').hide();
 	});
 
 	//InventoryHistory_LoadMore()
@@ -153,39 +177,39 @@ function InventoryHistory_LoadAll()
 function InventoryHistory_InitMessages()
 {
 	$J('.inventory_history_message').each( function( index ) {
-		var $elMessage = $J(this);
-		var $elDetails = $J(this).find('.inventory_history_message_more');
-		if ( $elDetails.length > 0 )
+		var $JelMessage = $J(this);
+		var $JelDetails = $J(this).find('.inventory_history_message_more');
+		if ( $JelDetails.length > 0 )
 		{
-			var $elMore = $J( '<div class="showmore"><span>Show more</span></div>' );
-			$elMore.click( function ()
+			var $JelMore = $J( '<div class="showmore"><span>Show more</span></div>' );
+			$JelMore.click( function ()
 			{
-				$elMore.slideUp();
-				$elDetails.slideDown();
+				$JelMore.slideUp();
+				$JelDetails.slideDown();
 			} );
-			$elMessage.append( $elMore );
+			$JelMessage.append( $JelMore );
 		}
 
-		if (typeof(Storage) == "undefined" || !$elMessage.hasClass('dismissable') )
+		if (typeof(Storage) == "undefined" || !$JelMessage.hasClass('dismissable') )
 		{
-			$elMessage.show();
+			$JelMessage.show();
 		}
 		else
 		{
 			// Check local storage to see if the user has dismissed this recently.
-			var strLocalStorageKey = 'dismissed_' + $elMessage.attr( 'id' );
+			var strLocalStorageKey = 'dismissed_' + $JelMessage.attr( 'id' );
 			var rtNow = Date.now()/1000;
 			var rtDismissed = parseInt( localStorage.getItem( strLocalStorageKey ) );
 			if ( rtDismissed === null || isNaN( rtDismissed ) || rtNow > rtDismissed + (60 * 60 * 24 * 180) )
 			{
 				// Add a dismiss option
-				var $elDismiss = $J('<div class="dismiss"></div>');
-				$elDismiss.click( function() {
+				var $JelDismiss = $J('<div class="dismiss"></div>');
+				$JelDismiss.click( function() {
 					localStorage.setItem( strLocalStorageKey, rtNow );
-					$elMessage.slideUp();
+					$JelMessage.slideUp();
 				} );
-				$elMessage.prepend( $elDismiss );
-				$elMessage.show();
+				$JelMessage.prepend( $JelDismiss );
+				$JelMessage.show();
 			}
 		}
 	} );
@@ -205,17 +229,17 @@ HistoryFiltersDialog = {
 			this.Initialize();
 
 		this.m_fnDocumentKeyHandler = this.OnDocumentKeyPress.bindAsEventListener( this );
-		$(document).observe( 'keydown', this.m_fnDocumentKeyHandler );
+		$J(document).observe( 'keydown', this.m_fnDocumentKeyHandler );
 
 		var _this = this;
 		this.m_modal = ShowDialog( 'Filter options', $J('#inventory_history_filters_dialog' ).show() );
 		this.m_modal.SetRemoveContentOnDismissal( false );
 		this.m_modal.always( function() { _this.Dismiss(); } );
-		$('inventory_history_filters_dialog').focus();
+		$J('inventory_history_filters_dialog').focus();
 	},
 
 	Dismiss: function() {
-		$(document).stopObserving( 'keydown', this.m_fnDocumentKeyHandler );
+		$J(document).stopObserving( 'keydown', this.m_fnDocumentKeyHandler );
 		if ( this.m_modal )
 		{
 			this.m_modal.Dismiss();
