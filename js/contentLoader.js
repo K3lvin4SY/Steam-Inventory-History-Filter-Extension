@@ -43,7 +43,6 @@ function InventoryHistory_LoadAll()
 	}
 
 	// perperations
-	$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 	$J('#load_more_button').hide();
 	
 	
@@ -84,6 +83,8 @@ function InventoryHistory_LoadAll()
 				return;
 			}
 
+			$J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
+			$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
 			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
 			var unix_timestamp;
@@ -122,6 +123,7 @@ function InventoryHistory_LoadAll()
 					if (continueLOading) {
 						InventoryHistory_LoadAll();
 					} else {
+						continueLOading = true;
 						$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
 						$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
 						$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
@@ -136,6 +138,12 @@ function InventoryHistory_LoadAll()
 			else
 			{
 				// stop loading
+				$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
+				$J("#steam_Inv_Loader_Message").text("All the history data has been loaded.");
+				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+
 				$J( '#load_more_button' ).hide();
 			}
 		}
@@ -155,8 +163,19 @@ function InventoryHistory_LoadAll()
 
 		if ( jqXHR.status == 429 )
 		{
-			// wait & continue
-			alert("Too many requests //fix real Dialog!")
+			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+			$J("#steam_Inv_Loader_Message").text("Taking a small break due to making too many requests...");
+			if (continueLOading) {
+				InventoryHistory_LoadAll();
+			} else {
+				continueLOading = true;
+				$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
+				$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+			}
+			//alert("Too many requests //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
 		}
 		else
