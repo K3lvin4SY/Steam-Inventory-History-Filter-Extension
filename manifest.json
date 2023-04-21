@@ -27,6 +27,7 @@
         "/js/background/prototype.js",
         "/js/background/jQuery.min.js",
         "/js/background/globalsV.js",
+        "/js/background/hover.js",
         "/js/dialog.js",
         "content.js",
         "load.js",
