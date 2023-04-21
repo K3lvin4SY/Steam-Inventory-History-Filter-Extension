@@ -68,7 +68,6 @@
     width: min-content;
     /*margin-left: auto;*/
     
-    background-color: #1c1f21;
     border-color: rgba(44, 50, 53);
     border-width: 1px;
     border-style: solid;
@@ -282,8 +281,6 @@ li {
   background: linear-gradient( to right, #464d58 5%, #464d58 95%);
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
 }
-
-
 
 
 

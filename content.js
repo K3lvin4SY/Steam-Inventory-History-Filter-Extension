@@ -39,6 +39,7 @@ String.prototype.cleanup = function() {
 function filterList(tags) {
   if (invHisTab.children.length > 2500) {
     $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
+    $J("#steam_filter_Options").addClass("steam_filter_hide_class");
   }
   setTimeout(filterListAction, 0, tags);
 }
@@ -54,6 +55,7 @@ function filterListAction(tags) {
       child.style.display = "none";
     }
   });
+  $J("#steam_filter_Options").removeClass("steam_filter_hide_class");
   $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
 }
 
