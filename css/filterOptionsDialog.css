@@ -45,7 +45,6 @@
 }
 
 .container-2 {
-  position: relative; /* added this line */
   text-align: center;
   
   display: flex;
@@ -79,14 +78,12 @@
 }
 
 .transfer {
-  position: absolute; /* added this line */
-  top: 50%; /* added this line */
-  transform: translateY(-50%); /* added this line */
   display: flex;
   margin-left: 20px;
   margin-right: 20px;
   flex-direction: column;
   margin: auto;
+  margin-top: 20px;
 }
 
 .filter-List li {
