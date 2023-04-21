@@ -144,7 +144,7 @@ button {
   text-align: center;
   width:200px;
   display: inline-block;
-  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.35);
   border-radius: 6px;
 }
 
@@ -161,7 +161,7 @@ button {
   width:200px;
   box-sizing: border-box;
   display: inline-block;
-  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.35);
   margin: 0 auto;
   border-radius: 6px;
 }

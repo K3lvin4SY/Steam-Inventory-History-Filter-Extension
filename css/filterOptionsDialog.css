@@ -9,19 +9,20 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px rgba(50, 54, 63, 0.8); 
   border-radius: 4px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red; 
-  border-radius: 10px;
+  background-color: #32363f;
+  box-shadow: 2px 2px 7.5px rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: linear-gradient( to right, #464d58 5%, #464d58 95%);
 }
 
 .filter-List {
