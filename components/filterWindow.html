@@ -12,6 +12,7 @@
     <button id="steam_Inv_His_Filter_Apply_Btn">Apply Tag Filter</button><br>
     <button id="steam_Inv_His_Load_All">func</button><br>
     <button id="steam_Inv_His_Filter_Clear_Btn">Clear Filter</button><br>
+    <button class="steam_filter_Options_Win_Dismiss">Open Filter</button><br>
     <span>future automatic loading button</span><br>
     <span>Ideas:</span><br>
     <span>filter type of container by looking for key or type of case</span><br>
@@ -70,12 +71,12 @@
 
 
 <!-- Filter Options V2 -->
-<div class="steam_filter_hide_class2" id="steam_filter_Options">
+<div class="steam_filter_hide_class" id="steam_filter_Options">
   <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
       <div class="newmodal_header">
-        <div class="newmodal_close steam_filter_alert_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div class="newmodal_close steam_filter_Options_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
         <div id="steam_filter_Options_Win_Title_Text" class="title_text">Filter Options</div>
       </div>
     </div>
@@ -111,12 +112,14 @@
             </div>
             <div class="container-2">
               <div class="transfer">
-                <div>
-                  <input type='button' value='<<' id='move_left' />
-                  <input type='button' value='>>' id='move_right' />
-                </div>
-                <button id="reset_filter_list">Reset</button>
-                <button id="hide_all_filter_list">Hide All</button>
+                <ul class="steam_filter_gui_button_group transfer_button_group">
+                  <li><button class="steam_filter_gui_button transfer_buttons" id="move_left"><<</button></li>
+                  <li><button class="steam_filter_gui_button transfer_buttons" id='move_right'>>></button></li>
+                </ul>
+                <ul class="steam_filter_gui_button_group tool_button_group">
+                  <li><button class="steam_filter_gui_button" id="hide_all_filter_list">Hide All</button></li>
+                  <li><button class="steam_filter_gui_button" id="reset_filter_list">Reset</button></li>
+                </ul>
               </div>
             </div>
             <div class="container-3">
@@ -130,7 +133,7 @@
 
         </div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
-          <div id="steam_filter_Options_Win_Btn" class="btn_grey_steamui btn_medium steam_filter_alert_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_Options_Win_Btn_Txt">CLOSE</span></div>
+          <div id="steam_filter_Options_Win_Btn" class="btn_grey_steamui btn_medium steam_filter_Options_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_Options_Win_Btn_Txt">CLOSE</span></div>
         </div>
       </div>
     </div>

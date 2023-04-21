@@ -142,5 +142,11 @@ function createButtonLinks() {
       $J("#steam_filter_alert_Dialog").addClass("steam_filter_hide_class");
     })
   })
+
+  $J(".steam_filter_Options_Win_Dismiss").each(function() {
+    $J(this).click(function() {
+      $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+    })
+  })
   
 }
