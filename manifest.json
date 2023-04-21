@@ -31,8 +31,7 @@
         "content.js",
         "load.js",
         "/js/contentLoader.js",
-        "/js/buttonLinker.js",
-        "/js/background/hover.js"
+        "/js/buttonLinker.js"
       ],
       "css": [
         "./css/filterStyle.css",
