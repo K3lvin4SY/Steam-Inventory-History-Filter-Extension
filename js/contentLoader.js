@@ -62,8 +62,8 @@ function InventoryHistory_LoadAll()
 
 	var prevCursor = cursurHistory;
 
-	if (too_many_req && (Date.now() - start_time < 10*1000)) {
-		var time_display = (Math.round((10-((Date.now() - start_time)/1000))*10)/10).toString();
+	if (too_many_req && (Date.now() - start_time < 60*1000)) {
+		var time_display = (Math.round((60-((Date.now() - start_time)/1000))*10)/10).toString();
 		if (!time_display.includes(".")) { time_display = time_display+".0" }
 		$J("#steam_Inv_Loader_Message").text("Taking a "+time_display+" sec break due to making too many requests...");
 		console.log(((Date.now() - start_time)/1000));
@@ -95,6 +95,9 @@ function InventoryHistory_LoadAll()
 				g_rgAppContextData[appid] = data.apps[appid];
 			}
 
+			if (loadPartial == 0) {
+				start_time = Date.now();
+			}
 			if (loadAllAmount == 0) {
 				loadAllAmount++;
 				if ( data.cursor )
@@ -141,22 +144,18 @@ function InventoryHistory_LoadAll()
 				cursurHistory = data.cursor;
 				// Run again
 				loadAllAmount++;
-				if (loadAllAmount % 250 !== 0) {
-					//window.scrollTo(0, document.body.scrollHeight);
-					if (continueLOading) {
-						InventoryHistory_LoadAll();
-					} else {
-						continueLOading = true;
-						$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
-						$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
-						$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
-						$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
-						$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-						$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
-					}
-					
-				}else {
-					$J( '#load_more_button' ).fadeIn( 50 );
+				loadPartial++;
+				
+				if (continueLOading) {
+					InventoryHistory_LoadAll();
+				} else {
+					continueLOading = true;
+					$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
+					$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+					$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+					$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+					$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+					$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
 				}
 			}
 			else
@@ -189,7 +188,7 @@ function InventoryHistory_LoadAll()
 		if ( jqXHR.status == 429 )
 		{
 			too_many_req = true;
-			start_time = Date.now();
+			loadPartial = 0;
 			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
 			$J("#steam_Inv_Loader_Message").text("Taking a small break due to making too many requests...");
 			InventoryHistory_LoadAll();
