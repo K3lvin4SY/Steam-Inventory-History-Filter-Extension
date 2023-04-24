@@ -31,7 +31,6 @@ function createButtonLinks() {
         list2[j].appendChild(list1Elements[i]);
       }
     }
-    updateFilter();
   });
 
   $J("#move_left").click(() => {
@@ -44,7 +43,6 @@ function createButtonLinks() {
         list1[j].appendChild(selected[i]);
       }
     }
-    updateFilter();
   });
 
   $J("#move_right").click(() => {
@@ -57,6 +55,9 @@ function createButtonLinks() {
         list2[j].prepend(list1Selected[i]);
       }
     }
+  });
+
+  $J('#apply_filter_list').click(function() {
     updateFilter();
   });
 
@@ -161,5 +162,15 @@ function createButtonLinks() {
     $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
     $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
   });
-  
+
+  $J(".steam_filter_advanced_win_btn_reset").each(function() {
+    $J(this).click(function() {
+      $J("#market_advancedsearch_filters").find("input:checkbox:checked").each(function() {
+        $J(this).prop("checked", false);
+      });
+      $J("#market_advancedsearch_filters").find("select").each(function() {
+        $J(this).val($J(this).find("option:first").val());
+      });
+    });
+  });
 }

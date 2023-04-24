@@ -91,6 +91,7 @@
                   <li><button class="steam_filter_gui_button transfer_buttons" id='move_right'>⮞</button></li>
                 </ul>
                 <ul class="steam_filter_gui_button_group tool_button_group">
+                  <li><button class="steam_filter_gui_button" id="apply_filter_list">Apply</button></li>
                   <li><button class="steam_filter_gui_button" id="reset_filter_list">Show All</button></li>
                   <li><button class="steam_filter_gui_button" id="hide_all_filter_list">Hide All</button></li>
                 </ul>
@@ -98,7 +99,7 @@
             </div>
             <div class="container-3">
               <div class="list-2">
-                <h3 class="list-Title">Hide</h3>
+                <h3 class="list-Title">Filters</h3>
                 <ul class="list2 filter-List">
                 </ul>
               </div>
@@ -116,8 +117,8 @@
 </div>
 
 <!-- Advanced -->
-<div class="steam_filter_hide_class2 steam_filter_dialog_group" id="steam_filter_advanced">
-  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+<div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_advanced">
+  <div class="steam_inv_filter_modal_advanced newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
       <div class="newmodal_header">
@@ -129,14 +130,13 @@
       <div class="newmodal_content" style="max-height: 75vh;">
 
         <div>
-          <form id="market_advanced_search" accept-charset="UTF8" action="">
+          <form id="market_advanced_search" action="">
 						<div id="market_advancedsearch_left">
               <input class="filter_search_box market_search_sidebar_search_box" type="text" id="advancedSearchBox" value="" placeholder="Search" name="q" autocomplete="off" tabindex="1">
-              <input class="market_search_submit_button" id="advancedSearchSubmit" type="submit" value="Submit" tabindex="3">
-              <div id="market_advancedsearch_options">
-                <input class="market_search_checkbox" id="market_advanced_searchdescriptions_checkbox" type="checkbox" name="descriptions" value="1" title="By default, the Community Market will only look for matches in the items' names and types. If you check this box, all of the text in the items' descriptions will be searched too. Searching for matches in descriptions may cause your search to take more time to complete." tabindex="2">
-                <label for="market_advanced_searchdescriptions_checkbox" title="By default, the Community Market will only look for matches in the items' names and types. If you check this box, all of the text in the items' descriptions will be searched too. Searching for matches in descriptions may cause your search to take more time to complete.">Include descriptions in search</label>
-              </div>
+              <input class="filter_search_box market_search_sidebar_search_box" type="text" id="advancedSearchBoxAltName" value="" placeholder="Alt. Name" name="alt_name" autocomplete="off" tabindex="2">
+              <input type="button" class="market_search_submit_button steam_filter_gui_button" id="advancedSearchSubmit" value="Search" tabindex="3">
+              <input type="button" class="market_search_submit_button steam_filter_gui_button" id="advancedSearchSubmit" value="Add Filter" tabindex="4">
+              <input type="button" class="market_search_submit_button steam_filter_gui_button steam_filter_advanced_win_btn_reset" id="advancedSearchReset" value="Reset" tabindex="5">
 			      </div>
 			      <div style="overflow: hidden">
               <div id="market_advancedsearch_filters" class="market_advancedsearch_filters" style="text-align: inherit;">
@@ -1015,9 +1015,9 @@
           </form>
         </div>
 
-        <div id="steam_filter_advanced_message">DESC</div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
-          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_advanced_win_btn_txt">BUTTON</span></div>
+          <div class="btn_grey_steamui btn_medium steam_filter_advanced_win_btn_reset" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}" style="float: left;"><span id="steam_filter_advanced_win_btn_reset_txt">RESET</span></div>
+          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_advanced_win_btn_txt">CLOSE</span></div>
         </div>
       </div>
     </div>
