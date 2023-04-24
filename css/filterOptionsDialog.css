@@ -231,3 +231,42 @@ li {
   display: flex;
   margin-top: 15px;
 }
+
+/* Advanced */
+.econ_tag_filter_checkbox {
+  appearance: none;
+  background-color: #464d58;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.0em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  
+  display: grid;
+  place-content: center;
+}
+
+.econ_tag_filter_checkbox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1.2em 1.2em #00c0f0;
+}
+.econ_tag_filter_checkbox:checked::before {
+  transform: scale(1);
+}
+
+.econ_tag_filter_container {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  margin-top: 0.5em;
+}

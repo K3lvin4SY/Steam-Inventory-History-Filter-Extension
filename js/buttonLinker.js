@@ -148,5 +148,18 @@ function createButtonLinks() {
       $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
     })
   })
+
+  $J(".steam_filter_advanced_win_dismiss").each(function() {
+    $J(this).click(function() {
+      console.log("test");
+      $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
+      $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+    })
+  });
+
+  $J("#steam_filter_searchbar_advanced").click(function() {
+    $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
+    $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+  });
   
 }

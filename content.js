@@ -26,7 +26,7 @@ function updateFilter() {
   $J("#filter_list_show").children().each(function() {
     console.log(this.getAttribute("data-main-tag"));
     //console.log(this.attr("data-tag"));
-    tags.push(this.getAttribute("data-tag").cleanup());
+    tags.push(this.getAttribute("data-main-tag").cleanup());
   });
   filterList(tags);
 }
@@ -37,6 +37,7 @@ String.prototype.cleanup = function() {
 
 
 function filterList(tags) {
+  console.log(tags);
   if (invHisTab.children.length > 2500) {
     $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
     $J("#steam_filter_Options").addClass("steam_filter_hide_class");
