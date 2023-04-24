@@ -24,7 +24,7 @@ function recieveCommand(command) {
 function updateFilter() {
   var tags = [];
   $J("#filter_list_show").children().each(function() {
-    console.log(this.getAttribute("data-tag"));
+    console.log(this.getAttribute("data-main-tag"));
     //console.log(this.attr("data-tag"));
     tags.push(this.getAttribute("data-tag").cleanup());
   });
