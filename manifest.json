@@ -1,13 +1,19 @@
 {
-  "name": "Steam Invetory History Filter",
-  "version": "1.0.0",
-  "description": "A simple extension that lets you filter through the inventory history page.",
+  "name": "Steam Invetory History Utility Filter",
+  "version": "1.3.5",
+  "description": "An extension that lets you more easily load and filter through your steam inventory history page.",
   "manifest_version": 3,
   "author": "Kelvin Brahe",
   "action":{
-      "default_title": "Steam Invetory History Filter",
-      "default_icon": "icon.png",
-      "default_popup": "/js/popup.html"
+      "default_title": "History Utility Filter",
+      "default_popup": "components/popup.html"
+  },
+  "icons": {
+    "16": "icons/Invetory-History-Utility-Logo16.png",
+    "32": "icons/Invetory-History-Utility-Logo32.png",
+    "48": "icons/Invetory-History-Utility-Logo48.png",
+    "64": "icons/Invetory-History-Utility-Logo64.png",
+    "128": "icons/Invetory-History-Utility-Logo128.png"
   },
   "web_accessible_resources": [
     { 
@@ -22,7 +28,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://steamcommunity.com/id/*/inventoryhistory/*"],
+      "matches": [
+        "https://steamcommunity.com/id/*/inventoryhistory/*",
+        "https://steamcommunity.com/id/*/inventoryhistory"
+      ],
       "js": [
         "/js/background/prototype.js",
         "/js/background/jQuery.min.js",
@@ -36,18 +45,11 @@
       ],
       "css": [
         "./css/filterStyle.css",
+        "./css/advancedOptionsDialog.css",
+        "./css/generalDialog.css",
         "./css/filterOptionsDialog.css"
       ],
       "run_at": "document_end"
     }
-  ],
-  "content_security_policy": {
-    "script-src": "self",
-    "object-src": "self"
-  },
-  "parmissions": [
-    "cookies",
-    "activeTab",
-    "storage"
   ]
 } 

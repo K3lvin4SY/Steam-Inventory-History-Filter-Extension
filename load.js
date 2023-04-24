@@ -2,6 +2,7 @@ var sessionID;
 var cursurHistory;
 var g_rgAppContextData = [];
 var continueLOading = true;
+var loadedAllHistory = false;
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {

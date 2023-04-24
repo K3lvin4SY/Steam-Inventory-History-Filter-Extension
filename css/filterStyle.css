@@ -1,219 +1,100 @@
 #steam_Inv_His_Filter_Window {
-  
   position: sticky;
   position: -webkit-sticky;
   box-sizing: border-box;
+
+  width: 894px;
+    
+  top: 0px;
+  margin: auto;
+  margin-bottom: 25px;
+
+  border-radius: 25px !important;
+  z-index: 10;
 }
 
-.steam_filter_hide_class {
-  display: none !important;
+#steam_Inv_His_Filter_Window .modal_top_bar {
+  margin-bottom: 10px;
 }
 
-.steam_inv_filter_modal{
-  position: fixed !important;
-  z-index: 1000;
-  max-width: 1908px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+#steam_Inv_His_Toolbar {
+
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  position: relative;
+  max-width: 900px;
+  min-width: 500px;
+  background: radial-gradient(circle at top left, rgba(81, 102, 137, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #1f2b45;
 }
 
-#steam_filter_loading_icon {
-  scale: 1.2;
+#steam_Inv_His_Toolbar_Icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 2.5em;
+  margin-right: 2.5em;
+}
+#steam_Inv_His_Toolbar_Icons > * {
+  margin: 0.75em;
+  cursor: pointer;
+  
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: min-content;
+  justify-content: center;
+  align-items: center;
+}
+#steam_Inv_His_Toolbar_Icons > * span {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#steam_Inv_His_Toolbar_Icons > *:hover span {
+  color: rgb(224, 224, 224);
+}
+
+#steam_Inv_His_Toolbar_Icons > * svg {
+  height: 3.5em;
+  aspect-ratio: 1;
+  width: fit-content;
+}
+#steam_Inv_His_Toolbar_Icons > * .bigger_icon {
+  height: 3em;
+}
+#steam_Inv_His_Toolbar_Icons > * svg path {
+  height: fit-content;
+  transition:opacity 120ms ease-out;
+}
+#steam_Inv_His_Toolbar_Icons > * svg line {
+  height: fit-content;
+  transition:opacity 120ms ease-out;
+}
+#steam_Inv_His_Toolbar_Icons > * svg .hov {
+  opacity: 0;
+}
+#steam_Inv_His_Toolbar_Icons > *:hover svg .nov {
+  opacity: 0;
+}
+#steam_Inv_His_Toolbar_Icons > *:hover svg .hov {
+  opacity: 1;
 }
 
 /* Desktop */
 @media only screen and (min-width: 1601px) {
-  #steam_Inv_His_Filter_Window:not(.steam_Inv_His_Filter_Window_top) {
-    width: 894px;
-    /*background-color: #1b2838;*/
-    
-    top: 0px;
-    margin: auto;
-    margin-bottom: 25px;
-    grid-column-gap: 0px;
-    
-    display: grid;
-    position: relative;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 100%;
-    grid-row-gap: 0px;
-
-    background-color: #1c1f21;
-    border-color: rgba(44, 50, 53);
-    border-width: 1px;
-    border-style: solid;
-  }
-
-  .steam_Inv_His_Filter_Window_top {
-    top: 10vh;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #BG_bottom {
-    top: 0 !important;
-  }
-
-  #steam_Inv_His_Options {
-    
-    background-color: #1c1f21;
-    border-color: rgba(44, 50, 53);
-    border-width: 1px;
-    border-style: solid;
-    order: 1;
-  }
-
-  #filter_Transfer_List {
-    width: min-content;
-    /*margin-left: auto;*/
-    
-    order: 2;
-  }
+  
 }
 
 /* Mobile */
 @media only screen and (max-width: 1600px) {
-  #steam_Inv_His_Filter_Window {
-    width: 894px;
-    /*background-color: #1b2838;*/
-    
-    top: 0px;
-    margin: auto;
-    margin-bottom: 25px;
-    grid-column-gap: 0px;
-    
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 100%;
-    grid-row-gap: 0px;
-
-    background-color: #1c1f21;
-    border-color: rgba(44, 50, 53);
-    border-width: 1px;
-    border-style: solid;
-    z-index: 10;
-  }
-
-  .filter_window_minimized {
-    top: 0px !important;
-    left: 0px !important;
-    width: 60px !important;
-    height: 60px !important;
-    overflow: hidden;
-    float: left;
-  }
-
-  .filter_window_minimized #filter_Transfer_List,
-  .filter_window_minimized #steam_Inv_His_Options
-  {
-    display: none;
-  }
-
-  .filter_window_minimized #filter_window_open {
-    display: block !important;
-  }
+  
 }
 
 #filter_window_open {
   display: none;
-}
-
-#steam_Inv_His_Options h1 {
-  text-align: center;
-}
-
-button {
-  cursor: pointer;
-}
-
-#steam_Inv_His_Options {
-  display: block;
-}
-
-
-
-
-#steam_Inv_Loader_Win_FBtn_Txt {
-  background: #693131 !important;
-}
-
-#steam_Inv_Loader_Win_FBtn_Txt:hover {
-  background: #854848 !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
 
 #Access_Steam_inline_functions {

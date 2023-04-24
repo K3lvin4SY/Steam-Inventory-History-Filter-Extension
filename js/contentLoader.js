@@ -35,6 +35,10 @@ var too_many_req = false;
 var start_time = 0;
 function InventoryHistory_LoadAll()
 {
+	if (loadedAllHistory) {
+		ShowAlertDialog("History Loading error", "You have already loaded all your history", "CLOSE");
+		return;
+	}
 	// variables
 	var apps = [];
 	var profileURL = window.location.href.split("/inventoryhistory/")[0];
@@ -161,6 +165,7 @@ function InventoryHistory_LoadAll()
 			else
 			{
 				// stop loading
+				loadedAllHistory = true;
 				$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
 				$J("#steam_Inv_Loader_Message").text("All the history data has been loaded.");
 				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");

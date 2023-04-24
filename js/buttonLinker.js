@@ -1,9 +1,5 @@
 function createButtonLinks() {
-  $J("#steam_Inv_His_Filter_Apply_Btn").click(() => {
-    recieveCommand(document.getElementById('steam_Inv_His_Filter_Tag_Input').value+"@"+document.getElementById('steam_Inv_His_Filter_Type_Switch').checked);
-  });
-
-  $J("#reset_filter_list").click(() => {
+ $J("#reset_filter_list").click(() => {
     const list1 = document.querySelectorAll('.list1');
     const list2Elements = document.querySelectorAll('.list2 > *');
 
@@ -15,7 +11,6 @@ function createButtonLinks() {
         list1[j].appendChild(list2Elements[i]);
       }
     }
-    updateFilter();
   });
 
 
@@ -67,37 +62,15 @@ function createButtonLinks() {
     }
   });
 
-  const filterSwitch = document.getElementById('steam_Inv_His_Filter_Type_Switch');
-  const filterWindow = document.getElementById("steam_Inv_His_Filter_Window");
-
-  filterSwitch.addEventListener("change", function() {
-    if (filterSwitch.checked) {
-      $J("#steam_Inv_His_Filter_Window").addClass("filter_window_minimized");
-    } else {
-    $J("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
-    }
-  });
-
-
-  $J("#filter_window_open_btn").click(function() {
-    $J('#steam_Inv_His_Filter_Type_Switch').trigger('click'); 
-    $J("#steam_Inv_His_Filter_Window").removeClass("filter_window_minimized");
-  });
-
-
-  $J("#steam_Inv_His_Filter_Clear_Btn").click(function() {
-    recieveCommand("clearFilter");
-  });
-
   $J("#steam_Inv_His_Load_All").click(function() {
     InventoryHistory_LoadAll();
   });
 
   window.addEventListener('scroll', function() {
-    if (window.pageYOffset >= 850) {
-      filterWindow.classList.add('steam_Inv_His_Filter_Window_top');
+    if (window.pageYOffset >= 300) {
+      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").removeClass("steam_filter_hide_class");
     } else {
-      filterWindow.classList.remove('steam_Inv_His_Filter_Window_top');
+      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").addClass("steam_filter_hide_class");
     }
   });
   
