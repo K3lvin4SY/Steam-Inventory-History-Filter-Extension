@@ -1,6 +1,6 @@
 $J = jQuery.noConflict();
 // Extension logic starts here (ONLY FUNCTIONS & CONSTANTS!)
-var invHisTab = document.getElementById("inventory_history_table");
+//var invHisTab = document.getElementById("inventory_history_table");
 var invHisTab = $J("#inventory_history_table");
 
 function filterWindow() {
@@ -111,21 +111,24 @@ function findTag(items_group, tag) {
 
 function filterListActionV2(tags) {
   
-  invHisTab.children().each(() => {
+  invHisTab.children().each(function() {
     var content_container = $J(this).find('.tradehistory_content');
-    var event_desc = $J(this).find('.tradehistory_event_description')[0];
-    console.log($J(this).find('.tradehistory_event_description'));
-    console.log($J(this).find('.tradehistory_event_description').children());
-    console.log($J(this).find('.tradehistory_event_description').text());
+    var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
     var items = { "-": null, "+": null };
     console.log(invHisTab.children());
     $J(this).find('.tradehistory_items_plusminus').each(() => {
-      console.log($J(this).text());
-      if ($J(this).text() == "-") {
-        items["-"] = $J(this).siblings(".tradehistory_items_group")[0];
+      console.log($J(this).text().cleanup());
+      console.log($J(this).contents().filter(function() {
+        return this.nodeType === 3; // Only keep text nodes
+      }).text());
+      if ($J(this).contents().filter(function() {
+        return this.nodeType === 3; // Only keep text nodes
+      }).text() == "-") {
+        items["-"] = $J(this).next(".tradehistory_items_group");
+        console.log($J(this).next(".tradehistory_items_group").text());
       } else {
-        items["+"] = $J(this).siblings(".tradehistory_items_group")[0];
-        console.log($J(this).siblings(".tradehistory_items_group")[0]);
+        items["+"] = $J(this).next(".tradehistory_items_group");
+        console.log($J(this).next(".tradehistory_items_group").text());
       }
     });
     console.log(items);
@@ -157,7 +160,7 @@ function filterListActionV2(tags) {
           }
           if (event_desc.text().includes(tag)) { // if tag is in row desc
             
-          } else if (() => { // if tag is in any item
+          } else if (function() { // if tag is in any item
             for (const [port, items_group] of Object.entries(items)) {
               const passed = findTag(items_group, tag);
               if (passed) {
