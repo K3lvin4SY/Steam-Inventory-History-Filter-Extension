@@ -53,7 +53,6 @@ function createButtonLinks() {
   });
 
   $J('#apply_filter_list').click(function() {
-    //updateFilter();
     updateFilterTagCollector()
   });
 
@@ -164,5 +163,13 @@ function createButtonLinks() {
   })
   $J("#steam_filter_simple_searchbar_win_dismiss_btn").click(() => {
     $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
+  })
+
+  // send simple search
+  $J("#steam_filter_simple_searchbar_search_submit_btn").click(function() {
+    var tagToSearch = { "data-search-tag" : $J("#steam_filter_simple_searchbar_data").val() };
+    $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
+    updateFilterTagCollector(tagToSearch);
+    
   })
 }

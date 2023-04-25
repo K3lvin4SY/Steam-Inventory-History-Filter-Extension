@@ -200,8 +200,15 @@ function InventoryHistory_LoadAll()
 			//alert("Too many requests //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
 		}
+		else if ( jqXHR.status == 503 )
+		{
+			ShowAlertDialog( 'Error', 'Steam service is currenty unavailable.', 'OK' );
+			$J( '#load_more_button' ).fadeIn( 50 );
+			continueLOading = false;
+		}
 		else
 		{
+			continueLOading = false;
 			ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
 			$J( '#load_more_button' ).fadeIn( 50 );
 		}

@@ -17,7 +17,7 @@ String.prototype.cleanup = function() {
   return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
 }
 
-function updateFilterTagCollector() {
+function updateFilterTagCollector(search_tag = null) {
   var tags = [];
   $J("#filter_list_show").children().each(function() {
     var props = {};
@@ -70,6 +70,10 @@ function updateFilterTagCollector() {
     
     tags.push(props);
   });
+  if (search_tag != null) { // fix so that you can search with a filter on (search needs to overide (algorithm needs to check if row also fills search data requirements))
+    tags = [];
+    tags.push(search_tag); // + needs to fix so that search is non case sensetive or add a option to disable/enable it
+  }
   filterListPrep(tags);
 }
 
@@ -186,7 +190,7 @@ function filterListActionV2(tags) {
     }
   });
 
-  $J("#steam_filter_Options").removeClass("steam_filter_hide_class");
+  //$J("#steam_filter_Options").removeClass("steam_filter_hide_class"); - only if window was open before
   $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
 }
 

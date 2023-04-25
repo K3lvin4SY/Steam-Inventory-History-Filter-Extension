@@ -36,6 +36,10 @@
 }
 #steam_Inv_His_Toolbar_Icons > * {
   margin: 0.75em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
   cursor: pointer;
   
   display: flex;
