@@ -1,6 +1,7 @@
 $J = jQuery.noConflict();
 // Extension logic starts here (ONLY FUNCTIONS & CONSTANTS!)
 var invHisTab = document.getElementById("inventory_history_table");
+var invHisTab = $J("#inventory_history_table");
 
 function filterWindow() {
   return document.getElementById("steam_Inv_His_Filter_Window");
@@ -12,13 +13,9 @@ function InventoryHistory_LoadMore() {
 
 
 
-
-
 String.prototype.cleanup = function() {
   return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
 }
-
-
 
 function updateFilterTagCollector() {
   var tags = [];
@@ -26,31 +23,109 @@ function updateFilterTagCollector() {
     var props = {};
     // The following tags are *props* for each row
     // For a row to be shown it has to have all the prop requirements
+    var tag;
     props["data-search-tag"] = this.getAttribute("data-search-tag"); // Search for specific text
-    props["data-main-tag"] = this.getAttribute("data-main-tag").cleanup(); // Search for type of event (description of row)
-    props["data-item-name-tag"] = this.getAttribute("data-item-name-tag").cleanup(); // Search for a specific item
-    props["data-item-category-tag"] = this.getAttribute("data-item-category-tag").cleanup(); // Search for all StatTrak, normal, knifes items, etc
-    props["data-item-type-tag"] = this.getAttribute("data-item-type-tag").cleanup(); // Search for specific item type ex: stickers, cases
-    props["data-item-collection-tag"] = this.getAttribute("data-item-collection-tag").cleanup(); // Search for item in a specific collection
-    props["data-item-quality-tag"] = this.getAttribute("data-item-quality-tag").cleanup(); // Search for specific item quality ex: Covert
-    props["data-item-exterior-tag"] = this.getAttribute("data-item-exterior-tag").cleanup(); // Search for specific item exterior ex: Minimal-Wear
+    
+    tag = this.getAttribute("data-main-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-main-tag"] = tag; // Search for type of event (description of row)
+    
+    tag = this.getAttribute("data-item-name-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-name-tag"] = tag; // Search for a specific item
+    
+    tag = this.getAttribute("data-item-category-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-category-tag"] = tag; // Search for all StatTrak, normal, knifes items, etc
+    
+    tag = this.getAttribute("data-item-type-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-type-tag"] = tag; // Search for specific item type ex: stickers, cases
+    
+    tag = this.getAttribute("data-item-collection-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-collection-tag"] = tag; // Search for item in a specific collection
+    
+    tag = this.getAttribute("data-item-quality-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-quality-tag"] = tag; // Search for specific item quality ex: Covert
+    
+    tag = this.getAttribute("data-item-exterior-tag");
+    if (tag != null) {
+      tag = tag.cleanup()
+    }
+    props["data-item-exterior-tag"] = tag; // Search for specific item exterior ex: Minimal-Wear
+    
     tags.push(props);
   });
   filterListPrep(tags);
 }
 
+function findTag(items_group, tag) {
+  $J(items_group).find(".history_item_name").each(() => {
+
+    console.log($J(this).innerHTML);
+    if (prop == "data-search-tag") {
+      if ($J(this).innerHTML.includes(tag)) {
+        // passed
+        return true;
+      }
+    } else if (prop == "data-item-name-tag") {
+      if ($J(this).innerHTML.cleanup().includes(tag)) {
+        // passed
+        return true;
+      }
+    } else if (prop == "data-item-category-tag") {
+      if ($J(this).innerHTML.cleanup().includes(tag)) {
+        // passed
+        return true;
+      }
+    } else if (prop == "data-item-type-tag") {
+      if ($J(this).innerHTML.cleanup().includes(tag)) {
+        // passed
+        return true;
+      }
+    } else if (prop == "data-item-collection-tag") {
+      // later (need more data)
+    } else if (prop == "data-item-quality-tag") {
+      // later (need more data) + need to fix game tooltip??
+    } else if (prop == "data-item-exterior-tag") {
+      // later (need more data)
+    }
+    
+  });
+  return false; // any item with tag does not exist in row
+}
+
 function filterListActionV2(tags) {
-  Array.from(invHisTab.children).forEach(child => {
-    var content_container = $J(child).find('.tradehistory_content');
-    var event_desc = $J(child).find('.tradehistory_event_description');
+  
+  invHisTab.children().each(() => {
+    var content_container = $J(this).find('.tradehistory_content');
+    var event_desc = $J(this).find('.tradehistory_event_description')[0];
     var items = { "-": null, "+": null };
-    $J(child).find('.tradehistory_items_plusminus').each(() => {
+    console.log($J(this).find('.tradehistory_items_plusminus'));
+    $J(this).find('.tradehistory_items_plusminus').each(() => {
+      console.log($J(this).innerHTML);
       if ($J(this).innerHTML == "-") {
-        items["-"] = $J(this).next(".tradehistory_items_group");
+        items["-"] = $J(this).siblings(".tradehistory_items_group")[0];
       } else {
-        items["+"] = $J(this).next(".tradehistory_items_group");
+        items["+"] = $J(this).siblings(".tradehistory_items_group")[0];
+        console.log($J(this).siblings(".tradehistory_items_group")[0]);
       }
     });
+    console.log(items);
     
     // Check Tags
     var passedAllChecks = false;
@@ -70,47 +145,45 @@ function filterListActionV2(tags) {
             // passed
             tagsPassed++;
           }
-        } else if (prop == "data-search-tag") {
-          if (event_desc.innerHTML.includes(tag)) {
+        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
+          console.log(event_desc);
+          console.log(prop);
+          console.log(tag);
+          for (const [port, items_group] of Object.entries(items)) {
+            console.log(items[port]);
+          }
+          if (event_desc.innerHTML.includes(tag)) { // if tag is in row desc
             
-          } else if (() => {
-            for (const [port, items] of Object.entries(items)) {
-              $J(items).find(".history_item_name").each(() => {
-                if ($J(this).innerHTML.cleanup().includes(tag)) {
-                  // passed
-                  tagsPassed++;
-                  break;
-                }
-                
-              })
+          } else if (() => { // if tag is in any item
+            for (const [port, items_group] of Object.entries(items)) {
+              const passed = findTag(items_group, tag);
+              if (passed) {
+                // break out of the outer loop & found an item with the aquired requirments
+                return true; // item with tags is in items
+                break;
+              } else {
+                return false;
+              }
             }
           }) {
-
+            tagsPassed++;
           }
-        } else if (prop == "data-item-name-tag") {
-
-        } else if (prop == "data-item-category-tag") {
-
-        } else if (prop == "data-item-type-tag") {
-
-        } else if (prop == "data-item-collection-tag") {
-
-        } else if (prop == "data-item-quality-tag") {
-
-        } else if (prop == "data-item-exterior-tag") {
-
         }
 
       }
+      console.log(tagsPassed);
+      console.log(tagsToPass);
       if (tagsPassed == tagsToPass) {
+        console.log("==");
         // Total pass
+        passedAllChecks = true;
         break;
       }
     };
     if (passedAllChecks) {
-      child.style.display = "block";
+      $J(this).css("display", "block")
     } else {
-      child.style.display = "none";
+      $J(this).css("display", "none")
     }
   });
 
@@ -135,6 +208,7 @@ function filterListPrep(tags) {
     $J("#steam_filter_Options").addClass("steam_filter_hide_class");
   }
   //setTimeout(filterListAction, 0, tags);
+  setTimeout(filterListActionV2, 0, tags);
 }
 
 function filterListAction(tags) {

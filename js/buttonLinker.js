@@ -53,7 +53,7 @@ function createButtonLinks() {
   });
 
   $J('#apply_filter_list').click(function() {
-    updateFilter();
+    //updateFilter();
     updateFilterTagCollector()
   });
 
