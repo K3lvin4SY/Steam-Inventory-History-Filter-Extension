@@ -146,4 +146,11 @@ function createButtonLinks() {
       });
     });
   });
+
+  $J("#steam_Inv_His_Search").click(() => {
+    $J("#steam_filter_simple_searchbar").removeClass("steam_filter_hide_class");
+  })
+  $J("#steam_filter_simple_searchbar_win_dismiss_btn").click(() => {
+    $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
+  })
 }

@@ -115,6 +115,28 @@
 </div>
 
 
+<!-- Simple Search -->
+<div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_simple_searchbar">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div id="steam_filter_simple_searchbar_win">
+      <h3 class="list-Title">Search</h3>
+      <div id="steam_filter_simple_searchbar_win_form"> <!--form-->
+        <div class="searchbar_container">
+          <label class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
+          <input class="searchbar_form_object steam_filter_gui_input" type="text" id="searchbar_data" name="searchbar_data">
+          <!--<label class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
+          <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">-->
+          <div>
+            <button class="searchbar_form_object steam_filter_gui_button">Search</button>
+            <button id="steam_filter_simple_searchbar_win_dismiss_btn" class="searchbar_form_object steam_filter_gui_button steam_filter_simple_searchbar_win_dismiss">Close</button>
+          </div>
+          <button id="steam_filter_simple_searchbar_advanced" class="steam_filter_gui_button">Advanced</button>
+        </div>
+      </div> <!--form-->
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
 
 <!-- Filter Options V2 -->
 <div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_Options">
@@ -159,7 +181,7 @@
             <div class="container-2">
               <div id="steam_filter_searchbar_win">
                 <h3 class="list-Title">Search</h3>
-                <form id="steam_filter_searchbar_win_form" action="">
+                <div id="steam_filter_searchbar_win_form" action=""> <!--form-->
                   <div class="searchbar_container">
                     <label class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
                     <input class="searchbar_form_object steam_filter_gui_input" type="text" id="searchbar_data" name="searchbar_data">
@@ -170,7 +192,7 @@
                       <input class="searchbar_form_object steam_filter_gui_button" type="submit" id="add_search_filter" name="add_search_filter" value="Search">
                     </div>
                   </div>
-                </form>
+                </div> <!--form-->
                 <div id="steam_filter_searchbar_advanced_container">
                   <button id="steam_filter_searchbar_advanced" class="steam_filter_gui_button">Advanced</button>
                 </div>

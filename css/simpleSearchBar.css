@@ -1,0 +1,59 @@
+/* Searchbar Form */
+#steam_filter_simple_searchbar_win .list-Title {
+  width: 100%;
+  background: linear-gradient(to right, #00ccff, #3366ff);
+  border-radius: 4px;
+  color: #ffffff;
+  text-align: center;
+}
+
+#steam_filter_simple_searchbar .newmodal {
+  width: 350px;
+  min-width: 350px;
+  border-radius: 0.5em;
+}
+
+#steam_filter_simple_searchbar_win_form {
+  text-align: left;
+  width: 100%;
+  display: inline-block;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+}
+
+#steam_filter_simple_searchbar_win_form .searchbar_container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#steam_filter_simple_searchbar_win_form .searchbar_container div {
+  display: flex;
+}
+
+#steam_filter_simple_searchbar_win .steam_filter_gui_button {
+  flex-grow: 1;
+}
+
+.steam_filter_gui_label {
+  font-size: 1.10em;
+  border: 0;
+}
+
+.steam_filter_gui_input {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px !important;
+
+  padding: 8px;
+
+  font-size: medium;
+  border: 0 !important;
+  box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.1); 
+}
+
+#steam_filter_simple_searchbar_advanced_container {
+  display: flex;
+  margin-top: 15px;
+}
+
