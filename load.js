@@ -13,8 +13,6 @@ async function addFilterOptions() {
 
     
   createButtonLinks();
-
-  console.log(document.cookie);
 }
 
 const cookies = document.cookie.split("; ")

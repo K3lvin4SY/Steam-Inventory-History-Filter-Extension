@@ -54,6 +54,7 @@ function createButtonLinks() {
 
   $J('#apply_filter_list').click(function() {
     updateFilter();
+    updateFilterTagCollector()
   });
 
   $J('#filter_Transfer_List').click(function(event) {
