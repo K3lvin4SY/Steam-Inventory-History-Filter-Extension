@@ -76,24 +76,24 @@ function updateFilterTagCollector() {
 function findTag(items_group, tag) {
   $J(items_group).find(".history_item_name").each(() => {
 
-    console.log($J(this).innerHTML);
+    console.log($J(this).text());
     if (prop == "data-search-tag") {
-      if ($J(this).innerHTML.includes(tag)) {
+      if ($J(this).text().includes(tag)) {
         // passed
         return true;
       }
     } else if (prop == "data-item-name-tag") {
-      if ($J(this).innerHTML.cleanup().includes(tag)) {
+      if ($J(this).text().cleanup().includes(tag)) {
         // passed
         return true;
       }
     } else if (prop == "data-item-category-tag") {
-      if ($J(this).innerHTML.cleanup().includes(tag)) {
+      if ($J(this).text().cleanup().includes(tag)) {
         // passed
         return true;
       }
     } else if (prop == "data-item-type-tag") {
-      if ($J(this).innerHTML.cleanup().includes(tag)) {
+      if ($J(this).text().cleanup().includes(tag)) {
         // passed
         return true;
       }
@@ -114,11 +114,14 @@ function filterListActionV2(tags) {
   invHisTab.children().each(() => {
     var content_container = $J(this).find('.tradehistory_content');
     var event_desc = $J(this).find('.tradehistory_event_description')[0];
+    console.log($J(this).find('.tradehistory_event_description'));
+    console.log($J(this).find('.tradehistory_event_description').children());
+    console.log($J(this).find('.tradehistory_event_description').text());
     var items = { "-": null, "+": null };
-    console.log($J(this).find('.tradehistory_items_plusminus'));
+    console.log(invHisTab.children());
     $J(this).find('.tradehistory_items_plusminus').each(() => {
-      console.log($J(this).innerHTML);
-      if ($J(this).innerHTML == "-") {
+      console.log($J(this).text());
+      if ($J(this).text() == "-") {
         items["-"] = $J(this).siblings(".tradehistory_items_group")[0];
       } else {
         items["+"] = $J(this).siblings(".tradehistory_items_group")[0];
@@ -141,7 +144,7 @@ function filterListActionV2(tags) {
         }
 
         if (prop == "data-main-tag") {
-          if (event_desc.innerHTML.cleanup().includes(tag)) {
+          if (event_desc.text().cleanup().includes(tag)) {
             // passed
             tagsPassed++;
           }
@@ -152,7 +155,7 @@ function filterListActionV2(tags) {
           for (const [port, items_group] of Object.entries(items)) {
             console.log(items[port]);
           }
-          if (event_desc.innerHTML.includes(tag)) { // if tag is in row desc
+          if (event_desc.text().includes(tag)) { // if tag is in row desc
             
           } else if (() => { // if tag is in any item
             for (const [port, items_group] of Object.entries(items)) {
