@@ -123,6 +123,17 @@ function createButtonLinks() {
     })
   })
 
+  $J(".steam_filter_stats_win_dismiss").each(function() {
+    $J(this).click(function() {
+      if (loadedAllHistory) {
+        $J("#steam_filter_stats_alert_message").addClass("steam_filter_hide_class");
+      } else {
+        $J("#steam_filter_stats_alert_message").removeClass("steam_filter_hide_class");
+      }
+      $J("#steam_filter_stats").toggleClass("steam_filter_hide_class");
+    })
+  })
+
   $J(".steam_filter_advanced_win_dismiss").each(function() {
     $J(this).click(function() {
       console.log("test");
