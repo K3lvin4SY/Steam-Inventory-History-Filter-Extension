@@ -73,65 +73,65 @@ function updateFilterTagCollector() {
   filterListPrep(tags);
 }
 
-function findTag(items_group, tag) {
-  $J(items_group).find(".history_item_name").each(() => {
+function findTag(item, tag, prop) {
+  //console.log(item);
+  //console.log(prop);
+  //console.log(item.text());
 
-    console.log($J(this).text());
-    if (prop == "data-search-tag") {
-      if ($J(this).text().includes(tag)) {
-        // passed
-        return true;
-      }
-    } else if (prop == "data-item-name-tag") {
-      if ($J(this).text().cleanup().includes(tag)) {
-        // passed
-        return true;
-      }
-    } else if (prop == "data-item-category-tag") {
-      if ($J(this).text().cleanup().includes(tag)) {
-        // passed
-        return true;
-      }
-    } else if (prop == "data-item-type-tag") {
-      if ($J(this).text().cleanup().includes(tag)) {
-        // passed
-        return true;
-      }
-    } else if (prop == "data-item-collection-tag") {
-      // later (need more data)
-    } else if (prop == "data-item-quality-tag") {
-      // later (need more data) + need to fix game tooltip??
-    } else if (prop == "data-item-exterior-tag") {
-      // later (need more data)
+  //console.log($J(this).text());
+  if (prop == "data-search-tag") {
+    if (item.text().includes(tag)) {
+      // passed
+      return true;
     }
-    
-  });
+  } else if (prop == "data-item-name-tag") {
+    if (item.text().cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
+  } else if (prop == "data-item-category-tag") {
+    if (item.text().cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
+  } else if (prop == "data-item-type-tag") {
+    if (item.text().cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
+  } else if (prop == "data-item-collection-tag") {
+    // later (need more data)
+  } else if (prop == "data-item-quality-tag") {
+    // later (need more data) + need to fix game tooltip??
+  } else if (prop == "data-item-exterior-tag") {
+    // later (need more data)
+  }
   return false; // any item with tag does not exist in row
+}
+
+function filterListTagInItems(items, tag, prop) {
+  //console.log(items);
+  for (let i = 0; i < items.length; i++) {
+    //console.log("-----------------------------------");
+    //console.log(items.eq(i));
+    //console.log(tag);
+    const passed = findTag(items.eq(i), tag, prop);
+    if (passed) {
+      // break out of the outer loop & found an item with the aquired requirments
+      //console.log("true");
+      return true; // item with tags is in items
+    }
+  }
+  //console.log("false");
+  return false;
 }
 
 function filterListActionV2(tags) {
   
   invHisTab.children().each(function() {
-    var content_container = $J(this).find('.tradehistory_content');
     var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
-    var items = { "-": null, "+": null };
-    console.log(invHisTab.children());
-    $J(this).find('.tradehistory_items_plusminus').each(() => {
-      console.log($J(this).text().cleanup());
-      console.log($J(this).contents().filter(function() {
-        return this.nodeType === 3; // Only keep text nodes
-      }).text());
-      if ($J(this).contents().filter(function() {
-        return this.nodeType === 3; // Only keep text nodes
-      }).text() == "-") {
-        items["-"] = $J(this).next(".tradehistory_items_group");
-        console.log($J(this).next(".tradehistory_items_group").text());
-      } else {
-        items["+"] = $J(this).next(".tradehistory_items_group");
-        console.log($J(this).next(".tradehistory_items_group").text());
-      }
-    });
-    console.log(items);
+    var items = $J(this).find('.history_item_name');
+    //console.log(items);
     
     // Check Tags
     var passedAllChecks = false;
@@ -150,37 +150,30 @@ function filterListActionV2(tags) {
           if (event_desc.text().cleanup().includes(tag)) {
             // passed
             tagsPassed++;
+
+            // end of loop iteration
           }
         } else if ( ["data-search-tag", "data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
-          console.log(event_desc);
-          console.log(prop);
-          console.log(tag);
-          for (const [port, items_group] of Object.entries(items)) {
-            console.log(items[port]);
-          }
-          if (event_desc.text().includes(tag)) { // if tag is in row desc
-            
-          } else if (function() { // if tag is in any item
-            for (const [port, items_group] of Object.entries(items)) {
-              const passed = findTag(items_group, tag);
-              if (passed) {
-                // break out of the outer loop & found an item with the aquired requirments
-                return true; // item with tags is in items
-                break;
-              } else {
-                return false;
-              }
-            }
-          }) {
+          //console.log(event_desc);
+          //console.log(prop);
+          //console.log(tag);
+          if (prop == "data-search-tag" && event_desc.text().includes(tag)) { // if tag is in row desc
             tagsPassed++;
+            //console.log("num1");
+          } else if (prop != "data-search-tag" && event_desc.text().cleanup().includes(tag)) {
+            tagsPassed++;
+            //console.log("num2");
+          } else if (filterListTagInItems(items, tag, prop)) {
+            tagsPassed++;
+            //console.log("num3");
           }
         }
 
       }
-      console.log(tagsPassed);
-      console.log(tagsToPass);
+      //console.log(tagsPassed);
+      //console.log(tagsToPass);
       if (tagsPassed == tagsToPass) {
-        console.log("==");
+        //console.log("==");
         // Total pass
         passedAllChecks = true;
         break;
@@ -208,7 +201,7 @@ function updateFilter() {
 }
 
 function filterListPrep(tags) {
-  console.log(tags);
+  //console.log(tags);
   if (invHisTab.children.length > 2500) {
     $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
     $J("#steam_filter_Options").addClass("steam_filter_hide_class");
@@ -221,7 +214,7 @@ function filterListAction(tags) {
   Array.from(invHisTab.children).forEach(child => {
     var content = child.querySelector('.tradehistory_content');
     var desc = content.querySelector('.tradehistory_event_description');
-    console.log(desc.innerHTML);
+    //console.log(desc.innerHTML);
     if (tags.includes(desc.innerHTML.cleanup())) {
       child.style.display = "block";
     } else {
