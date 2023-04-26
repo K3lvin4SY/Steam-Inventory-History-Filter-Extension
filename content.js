@@ -84,7 +84,7 @@ function findTag(item, tag, prop) {
 
   //console.log($J(this).text());
   if (prop == "data-search-tag") {
-    if (item.text().includes(tag)) {
+    if (item.text().toLowerCase().includes(tag.toLowerCase())) {
       // passed
       return true;
     }
@@ -157,7 +157,9 @@ function filterListActionV2(tags) {
 
             // end of loop iteration
           }
-        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
+        } else if (prop == "data-search-tag") {
+
+        } else if ( ["data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
           //console.log(event_desc);
           //console.log(prop);
           //console.log(tag);
