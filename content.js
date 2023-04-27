@@ -17,7 +17,7 @@ String.prototype.cleanup = function() {
   return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
 }
 
-function updateFilterTagCollector(search_tag = null) {
+function updateFilterTagCollector(global_search_tag = null, include_only_filtered_rows = true) {
   var tags = [];
   $J("#filter_list_show").children().each(function() {
     var props = {};
@@ -70,11 +70,10 @@ function updateFilterTagCollector(search_tag = null) {
     
     tags.push(props);
   });
-  if (search_tag != null) { // fix so that you can search with a filter on (search needs to overide (algorithm needs to check if row also fills search data requirements))
-    tags = [];
-    tags.push(search_tag); // + needs to fix so that search is non case sensetive or add a option to disable/enable it
+  if (global_search_tag != null) { // fix so that you can search with a filter on (search needs to overide (algorithm needs to check if row also fills search data requirements))
+    //tags.push(search_tag); // + needs to fix so that search is non case sensetive or add a option to disable/enable it
   }
-  filterListPrep(tags);
+  filterListPrep(tags, global_search_tag, include_only_filtered_rows);
 }
 
 function findTag(item, tag, prop) {
@@ -130,9 +129,10 @@ function filterListTagInItems(items, tag, prop) {
   return false;
 }
 
-function filterListActionV2(tags) {
+function filterListActionV2(tags, global_search_tag, include_only_filtered_rows) {
   
   invHisTab.children().each(function() {
+    var event_container = $J(this).find('.tradehistory_content').eq(0);
     var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
     var items = $J(this).find('.history_item_name');
     //console.log(items);
@@ -143,6 +143,14 @@ function filterListActionV2(tags) {
       const props = tags[i];
       var tagsPassed = 0
       var tagsToPass = 0
+      var global_search_override = false;
+      if (global_search_tag != null) { // if there is a global search tag
+        tagsToPass++;
+        if (event_container.text().toLowerCase().includes(global_search_tag.toLowerCase())) {
+          global_search_override = !include_only_filtered_rows;
+          tagsPassed++;
+        }
+      }
       for (const [prop, tag] of Object.entries(props)) {
         if (tag == null) {
           continue;
@@ -157,9 +165,7 @@ function filterListActionV2(tags) {
 
             // end of loop iteration
           }
-        } else if (prop == "data-search-tag") {
-
-        } else if ( ["data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
+        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
           //console.log(event_desc);
           //console.log(prop);
           //console.log(tag);
@@ -178,7 +184,7 @@ function filterListActionV2(tags) {
       }
       //console.log(tagsPassed);
       //console.log(tagsToPass);
-      if (tagsPassed == tagsToPass) {
+      if (tagsPassed == tagsToPass || global_search_override) {
         //console.log("==");
         // Total pass
         passedAllChecks = true;
@@ -206,14 +212,14 @@ function updateFilter() {
   //filterListPrep(tags);
 }
 
-function filterListPrep(tags) {
+function filterListPrep(tags, global_search_tag, include_only_filtered_rows) {
   //console.log(tags);
   if (invHisTab.children.length > 2500) {
     $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
     $J("#steam_filter_Options").addClass("steam_filter_hide_class");
   }
   //setTimeout(filterListAction, 0, tags);
-  setTimeout(filterListActionV2, 0, tags);
+  setTimeout(filterListActionV2, 0, tags, global_search_tag, include_only_filtered_rows);
 }
 
 function filterListAction(tags) {

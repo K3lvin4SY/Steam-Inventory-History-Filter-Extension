@@ -167,9 +167,10 @@ function createButtonLinks() {
 
   // send simple search
   $J("#steam_filter_simple_searchbar_search_submit_btn").click(function() {
-    var tagToSearch = { "data-search-tag" : $J("#steam_filter_simple_searchbar_data").val() };
+    var tagToSearch = $J("#steam_filter_simple_searchbar_data").val();
+    var include_only_filtered_rows = !$J("#include_search_outside_filters_box").is(":checked");
     $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
-    updateFilterTagCollector(tagToSearch);
+    updateFilterTagCollector(tagToSearch, include_only_filtered_rows);
     
   })
 }

@@ -126,6 +126,10 @@
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="steam_filter_simple_searchbar_data" name="searchbar_data">
           <!--<label class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">-->
+          <div id="include_search_outside_filters_box_container">
+            <input type="checkbox" name="" id="include_search_outside_filters_box">
+            <label for="">Include search outside filters</label>
+          </div>
           <div>
             <button id="steam_filter_simple_searchbar_search_submit_btn" class="searchbar_form_object steam_filter_gui_button">Search</button>
             <button id="steam_filter_simple_searchbar_win_dismiss_btn" class="searchbar_form_object steam_filter_gui_button steam_filter_simple_searchbar_win_dismiss">Close</button>
@@ -1141,7 +1145,7 @@
 </div>
 
 <!-- Stats -->
-<div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_stats">
+<div class="steam_filter_hide_class2 steam_filter_dialog_group" id="steam_filter_stats">
   <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
