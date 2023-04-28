@@ -37,11 +37,13 @@
         "/js/background/jQuery.min.js",
         "/js/background/globalsV.js",
         "/js/background/hover.js",
+        "/js/background/Chart.min.js",
         "/js/dialog.js",
         "content.js",
         "load.js",
         "/js/contentLoader.js",
-        "/js/buttonLinker.js"
+        "/js/buttonLinker.js",
+        "/js/statsGraphsNDiagrams.js"
       ],
       "css": [
         "./css/filterStyle.css",

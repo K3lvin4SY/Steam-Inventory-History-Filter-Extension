@@ -13,6 +13,8 @@ async function addFilterOptions() {
 
     
   createButtonLinks();
+
+  loadChartsNDiagrams();
 }
 
 const cookies = document.cookie.split("; ")

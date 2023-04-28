@@ -1146,7 +1146,7 @@
 
 <!-- Stats -->
 <div class="steam_filter_hide_class2 steam_filter_dialog_group" id="steam_filter_stats">
-  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+  <div id="steam_filter_stats_modal" class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
       <div class="newmodal_header">
@@ -1164,7 +1164,7 @@
               <!-- Chart => Display of multiple types over time -->
               <!-- Graph => Display of one type over time -->
 
-              <span><input type="radio" name="statWinRad" id="">Cases Opened</span>
+              <input type="radio" name="statWinRad" id="cases_opened_radio"><span>Cases Opened</span>
               <!--
                 Will include:
                 * amount of each type of cases opened
@@ -1176,7 +1176,7 @@
                 ** Luck on each case
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Packages Opened</span>
+              <input type="radio" name="statWinRad" id="packages_opened_radio"><span>Packages Opened</span>
               <!--
                 Will include:
                 * amount opened of each type
@@ -1184,7 +1184,7 @@
                 * How many covert, classified, etc
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Capsules Opened</span>
+              <input type="radio" name="statWinRad" id="capsules_opened_radio"><span>Capsules Opened</span>
               <!--
                 Will include:
                 * amount of each type opened
@@ -1192,14 +1192,14 @@
                 * How many of each rarity opened
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Case Drops</span>
+              <input type="radio" name="statWinRad" id="case_drops_radio"><span>Case Drops</span>
               <!--
                 Will include:
                 * How many of each type of case
                 * per month/year
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Skin Drops</span>
+              <input type="radio" name="statWinRad" id="skin_drops_radio"><span>Skin Drops</span>
               <!--
                 Will include:
                 * How many skin drops of each rarity
@@ -1208,14 +1208,14 @@
                 * Graph over total amount over time?
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Graffiti Drops</span>
+              <input type="radio" name="statWinRad" id="graffiti_drops_radio"><span>Graffiti Drops</span>
               <!--
                 Will include:
                 * How many in total
                 * Graph over total amount over time
               -->
 
-              <span><input type="radio" name="statWinRad" id="">Specific Item Stats</span>
+              <input type="radio" name="statWinRad" id="specific_item_stats_radio"><span>Specific Item Stats</span>
               <!--
                 Will include:
                 * Search for an item and following stats will come:
@@ -1226,7 +1226,9 @@
             </div>
           </div>
           <div class="stats_windows">
-
+            <div id="cases_opened_window">
+              <canvas class="number_chart" id="case_types_chart"></canvas>
+            </div>
           </div>
         </div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">

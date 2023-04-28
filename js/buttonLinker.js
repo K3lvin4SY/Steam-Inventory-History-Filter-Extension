@@ -177,10 +177,10 @@ function createButtonLinks() {
   // stats windows buttons chack its chackbox
   $J("#steam_filter_stats .stats_content_container .stats_list div > *").each(function() {
     $J(this).click(function() {
-      if ($J(this).find("input").eq(0).is(':checked')) {
-        $J(this).find("input").eq(0).prop("checked", false);
+      if ($J(this).prev("input").is(':checked')) {
+        $J(this).prev("input").prop("checked", false);
       } else {
-        $J(this).find("input").eq(0).prop("checked", true);
+        $J(this).prev("input").prop("checked", true);
       }
       
     })
