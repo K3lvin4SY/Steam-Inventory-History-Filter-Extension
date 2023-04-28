@@ -173,4 +173,16 @@ function createButtonLinks() {
     updateFilterTagCollector(tagToSearch, include_only_filtered_rows);
     
   })
+
+  // stats windows buttons chack its chackbox
+  $J("#steam_filter_stats .stats_content_container .stats_list div > *").each(function() {
+    $J(this).click(function() {
+      if ($J(this).find("input").eq(0).is(':checked')) {
+        $J(this).find("input").eq(0).prop("checked", false);
+      } else {
+        $J(this).find("input").eq(0).prop("checked", true);
+      }
+      
+    })
+  })
 }
