@@ -16,12 +16,12 @@ function loadChartsNDiagrams() {
   var yValues = [];
   var barColors = getColorList(xValues.length);
 
-  case_types_chart = new Chart(document.getElementById('case_types_chart'), {
+  /*case_types_chart = new Chart(document.getElementById('case_types_chart'), {
     type: "bar",
     data: {
       labels: [],
       datasets: [{
-        backgroundColor: getColorList(/*length of lables*/),
+        backgroundColor: [],
         data: []
       }]
     },
@@ -46,12 +46,13 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
     }
-  });
+  });*/
 
   // cases over time graph
   const xValues2 = ["Jan 2014","Feb 2014","Mar 2014","Apr 2014","May 2014","Jun 2014","Jul 2014","Aug 2014","Sep 2014","Oct 2014"];
@@ -78,44 +79,67 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#b1b1b1',
-          fontSize: 14
+      scales: {
+        x: {
+          ticks: {
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
+          }
+        },
+        y: {
+          ticks: {
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
+          }
         }
       },
-      title: {
-        display: true,
-        text: "Number of Openings over time",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
-      },
-      scales: {
-        xAxes: [{
-          ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: "#b1b1b1",
+            font: {
+              size: 14
+            }
           }
-        }],
-        yAxes: [{
-          ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+        },
+        title: {
+          display: true,
+          text: "Number of Openings over time",
+          font: {
+            size: 24,
+            weight: "bold"
+          },
+          fontSize: 24,
+          color: "#b1b1b1"
+        },
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true
+            },
+            mode: "xy"
           }
-        }]
+        }
       }
     }
+    
+    
+    
   });
 
+  /*
   // capsules opened of each type
   capsules_types_chart = new Chart(document.getElementById('capsules_types_chart'), {
     type: "bar",
     data: {
       labels: [],
       datasets: [{
-        backgroundColor: getColorList(/*length of lables*/),
+        backgroundColor: [],
         data: []
       }]
     },
@@ -125,7 +149,7 @@ function loadChartsNDiagrams() {
       },
       title: {
         display: true,
-        text: "All Capsules Openings",
+        text: "All Capsule Openings",
         fontStyle: "bold",
         fontColor: "#b1b1b1",
         fontSize: 24
@@ -140,7 +164,8 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
@@ -153,7 +178,7 @@ function loadChartsNDiagrams() {
     data: {
       labels: [],
       datasets: [{
-        backgroundColor: getColorList(/*length of lables*/),
+        backgroundColor: [],
         data: []
       }]
     },
@@ -178,7 +203,8 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
@@ -216,7 +242,8 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
@@ -254,7 +281,8 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
@@ -292,14 +320,15 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
     }
   });
 
-  /* --------------------- Drops -------------------------- */
+  // --------------------- Drops --------------------------
 
   // drops over time graph
   drops_time_graph = new Chart(document.getElementById('drops_time_graph'), {
@@ -361,7 +390,7 @@ function loadChartsNDiagrams() {
     data: {
       labels: [],
       datasets: [{
-        backgroundColor: getColorList(/* lenght */),
+        backgroundColor: [],
         data: []
       }]
     },
@@ -386,7 +415,8 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
@@ -424,53 +454,16 @@ function loadChartsNDiagrams() {
         yAxes: [{
           ticks: {
             fontColor: "#b1b1b1",
-            fontSize: 16
+            fontSize: 16,
+            beginAtZero: true
           }
         }]
       }
     }
-  });
-
-  // All Graffiti drops
-  skins_drops_chart = new Chart(document.getElementById('skins_drops_chart'), {
-    type: "bar",
-    data: {
-      labels: ["Consumer Grade", "Industrial Grade", "Mil-spec", "Restricted", "Classified", "Covert"],
-      datasets: [{
-        backgroundColor: ["#b1c3d9", "#5e98d8", "#4b69ff", "#8947ff", "#d32de5", "#eb4b4b"],
-        data: [10, 10, 10, 10, 10, 10]
-      }]
-    },
-    options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Skin Drops",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
-      },
-      scales: {
-        xAxes: [{
-          ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
-          }
-        }]
-      }
-    }
-  });
+  });*/
 }
 
-
+/*
 function updateCharts() {
   var caseOpenings = gameData.containerUnlocks.case;
 
@@ -505,6 +498,7 @@ function updateCharts() {
     }
   }
 
+  // case charts
   case_types_chart.data.datasets[0].data = caseNamesAmount;
   case_types_chart.data.datasets[0].backgroundColor = getColorList(caseNamesAmount.length);
   case_types_chart.data.labels = caseNames;
@@ -512,8 +506,166 @@ function updateCharts() {
 
   case_unlucks_chart.data.datasets[0].data = caseRarityItemsAmount;
   case_unlucks_chart.update();
-}
 
+  // ------------------------------------------------------------------------------------------
+
+  // capsule data collect
+  var capsuleOpenings = gameData.containerUnlocks.capsule;
+  
+  var capsuleNames = [];
+  var capsuleNamesAmount = [];
+
+  var capsuleRarityItemsAmount = [0, 0, 0, 0];
+
+  for (let index = 0; index < capsuleOpenings.length; index++) {
+    const capsuleOpen = capsuleOpenings[index];
+    
+    // add capsule names
+    const shortItemName = capsuleOpen.container.itemName.replace("Challengers", "Chal").replace("Legends", "Leg").replace("Contenders", "Con").replace("Autograph ", "A-").replace("Sticker ", "S-");
+    if (!capsuleNames.includes(shortItemName)) {
+      capsuleNames.push(shortItemName);
+      capsuleNamesAmount.push(0);
+    }
+    // add capsule amount to capsule names
+    const capsuleRarityItemsAmountIndex = capsuleNames.indexOf(shortItemName);
+    capsuleNamesAmount[capsuleRarityItemsAmountIndex] = capsuleNamesAmount[capsuleRarityItemsAmountIndex]+1;
+
+    // add rarity amount on capsule open
+    if (capsuleOpen.item.itemRarity == "High Grade") {
+      capsuleRarityItemsAmount[0] = capsuleRarityItemsAmount[0]+1;
+    } else if (capsuleOpen.item.itemRarity == "Remarkable") {
+      capsuleRarityItemsAmount[1] = capsuleRarityItemsAmount[1]+1;
+    } else if (capsuleOpen.item.itemRarity == "Exotic") {
+      capsuleRarityItemsAmount[2] = capsuleRarityItemsAmount[2]+1;
+    } else if (capsuleOpen.item.itemRarity == "Extraordinary") {
+      capsuleRarityItemsAmount[3] = capsuleRarityItemsAmount[3]+1;
+    }
+  }
+
+  // capsule charts
+  capsules_types_chart.data.datasets[0].data = capsuleNamesAmount;
+  capsules_types_chart.data.datasets[0].backgroundColor = getColorList(capsuleNamesAmount.length);
+  capsules_types_chart.data.labels = capsuleNames;
+  capsules_types_chart.update();
+
+  capsules_unlucks_chart.data.datasets[0].data = capsuleRarityItemsAmount;
+  capsules_unlucks_chart.update();
+
+  // ------------------------------------------------------------------------------------------
+
+  // package data collect
+  var packageOpenings = gameData.containerUnlocks.package;
+  
+  var packageNames = [];
+  var packageNamesAmount = [];
+
+  var packageRarityItemsAmount = [0, 0, 0, 0, 0, 0];
+
+  for (let index = 0; index < packageOpenings.length; index++) {
+    const packageOpen = packageOpenings[index];
+    
+    // add package names
+    const shortPackageName = packageOpen.container.itemName.replace("Souvenir ", "S-");
+    if (!packageNames.includes(shortPackageName)) {
+      packageNames.push(shortPackageName);
+      packageNamesAmount.push(0);
+    }
+    // add package amount to package names
+    const packageRarityItemsAmountIndex = packageNames.indexOf(shortPackageName);
+    packageNamesAmount[packageRarityItemsAmountIndex] = packageNamesAmount[packageRarityItemsAmountIndex]+1;
+
+    // add rarity amount on package open
+    if (packageOpen.item.itemRarity == "Consumer Grade") {
+      packageRarityItemsAmount[0] = packageRarityItemsAmount[0]+1;
+    } else if (packageOpen.item.itemRarity == "Industral Grade") {
+      packageRarityItemsAmount[1] = packageRarityItemsAmount[1]+1;
+    } else if (packageOpen.item.itemRarity == "Mil-Spec Grade") {
+      packageRarityItemsAmount[2] = packageRarityItemsAmount[2]+1;
+    } else if (packageOpen.item.itemRarity == "Restricted") {
+      packageRarityItemsAmount[3] = packageRarityItemsAmount[3]+1;
+    } else if (packageOpen.item.itemRarity == "Classified") {
+      packageRarityItemsAmount[4] = packageRarityItemsAmount[4]+1;
+    } else if (packageOpen.item.itemRarity == "Covert") {
+      packageRarityItemsAmount[5] = packageRarityItemsAmount[5]+1;
+    }
+  }
+
+  // package charts
+  packages_types_chart.data.datasets[0].data = packageNamesAmount;
+  packages_types_chart.data.datasets[0].backgroundColor = getColorList(packageNamesAmount.length);
+  packages_types_chart.data.labels = packageNames;
+  packages_types_chart.update();
+
+  packages_unlucks_chart.data.datasets[0].data = packageRarityItemsAmount;
+  packages_unlucks_chart.update();
+
+  // ------------------------------------------------------------------------------------------
+  
+  // case drops
+  var caseDrops = gameData.gameDrops.case;
+  var caseDropNames = [];
+  var caseDropNamesAmount = [];
+
+  for (let index = 0; index < caseDrops.length; index++) {
+    const caseDrop = caseDrops[index];
+
+    // add case drop names
+    if (!caseDropNames.includes(caseDrops.container.itemName)) {
+      caseDropNames.push(caseDrops.container.itemName);
+      caseDropNamesAmount.push(0);
+    }
+    // add case drop amount to case drop names
+    const caseDropRarityItemsAmountIndex = caseDropNames.indexOf(caseDrops.container.itemName);
+    caseDropNamesAmount[caseDropRarityItemsAmountIndex] = caseDropNamesAmount[caseDropRarityItemsAmountIndex]+1;
+  }
+
+  // case drop charts
+  case_drops_chart.data.datasets[0].data = caseDropNamesAmount;
+  case_drops_chart.data.datasets[0].backgroundColor = getColorList(caseDropNamesAmount.length);
+  case_drops_chart.data.labels = caseDropNames;
+  case_drops_chart.update();
+
+  // ------------------------------------------------------------------------------------------
+  
+  // skin drops
+  var skinDrops = gameData.gameDrops.skin;
+
+  var skinDropRarityItemsAmount = [0, 0, 0, 0, 0, 0];
+
+  for (let index = 0; index < skinDrops.length; index++) {
+    const skinDrop = skinDrops[index];
+
+    // add rarity amount on skin drop
+    if (skinDrop.item.itemRarity == "Consumer Grade") {
+      skinDropRarityItemsAmount[0] = skinDropRarityItemsAmount[0]+1;
+    } else if (skinDrop.item.itemRarity == "Industral Grade") {
+      skinDropRarityItemsAmount[1] = skinDropRarityItemsAmount[1]+1;
+    } else if (skinDrop.item.itemRarity == "Mil-Spec Grade") {
+      skinDropRarityItemsAmount[2] = skinDropRarityItemsAmount[2]+1;
+    } else if (skinDrop.item.itemRarity == "Restricted") {
+      skinDropRarityItemsAmount[3] = skinDropRarityItemsAmount[3]+1;
+    } else if (skinDrop.item.itemRarity == "Classified") {
+      skinDropRarityItemsAmount[4] = skinDropRarityItemsAmount[4]+1;
+    } else if (skinDrop.item.itemRarity == "Covert") {
+      skinDropRarityItemsAmount[5] = skinDropRarityItemsAmount[5]+1;
+    }
+  }
+
+  // skin drop charts
+  skins_drops_chart.data.datasets[0].data = skinDropRarityItemsAmount;
+  skins_drops_chart.update();
+
+
+  // ------------------------------------------------------------------------------------------
+  
+
+  var graffitiDrops = gameData.gameDrops.graffiti;
+
+  for (let index = 0; index < graffitiDrops.length; index++) {
+    const graffitiDrop = graffitiDrops[index];
+  }
+}
+*/
 
 
 // Color Generator
