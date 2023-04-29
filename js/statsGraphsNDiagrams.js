@@ -484,7 +484,8 @@ function updateCharts() {
     
     // add case names
     if (!caseNames.includes(caseOpen.container.itemName)) {
-      caseNames.push(caseOpen.container.itemName)
+      caseNames.push(caseOpen.container.itemName);
+      caseNamesAmount.push(0);
     }
     // add case amount to case names
     const caseRarityItemsAmountIndex = caseNames.indexOf(caseOpen.container.itemName);
@@ -505,6 +506,7 @@ function updateCharts() {
   }
 
   case_types_chart.data.datasets[0].data = caseNamesAmount;
+  case_types_chart.data.datasets[0].backgroundColor = getColorList(caseNamesAmount.length);
   case_types_chart.data.labels = caseNames;
   case_types_chart.update();
 
