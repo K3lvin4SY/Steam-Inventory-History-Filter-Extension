@@ -8,7 +8,7 @@
 }
 
 #steam_filter_stats_modal {
-  max-width: 1000px !important;
+  max-width: 1300px !important;
   width: 85vw;
   height: 85vh;
 }
@@ -56,7 +56,7 @@
 }
 input:checked + span {
   background: linear-gradient(to right, #00c0f0, #3161f3);
-  color: white;
+  color: white !important;
   order: -1;
 
 }
@@ -67,11 +67,17 @@ input:checked + span {
 
 #steam_filter_stats .stats_content_container .stats_windows {
   width: 100%;
-  
+  overflow: auto;
+  height: 65vh;
 }
 
 /* Chart */
 .number_chart {
   width:100%;
-  max-width:700px;
+  max-width:1000px;
+
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
 }
