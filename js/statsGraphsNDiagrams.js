@@ -934,8 +934,8 @@ function updateCharts() {
     caseDropNamesAmount[caseDropRarityItemsAmountIndex] = caseDropNamesAmount[caseDropRarityItemsAmountIndex]+1;
 
     // graph stuff
-    const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
-    caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
+    //const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
+    //caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
   }
 
   // case drop charts
@@ -974,8 +974,8 @@ function updateCharts() {
     }
 
     // graph stuff
-    const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
-    skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
+    //const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
+    //skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
   }
 
   // skin drop charts
