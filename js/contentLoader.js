@@ -160,11 +160,18 @@ function InventoryHistory_GetStatsData(itemName) {
 function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 {
 	$Jnew.each(function() {
-		var year = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[1];
-		var mon = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[0-9]/g, '');
+		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
+		var mon = $J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, '');
 		var month = getMonthFromString(mon);
+		var monthStr = getMonthFromString(mon)+"";
+		if (monthStr.length == 1) {
+			monthStr = "0"+monthStr;
+		}
 		var quarter = getQuarter(month);
-		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "");
+		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "").cleanup();
+		if (day.length == 1) {
+			day = "0"+day;
+		}
 
 		// container unbox
 		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.uac)) {
@@ -183,7 +190,7 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				timeFrame: {
 					quarter: quarter,
 					year: year,
-					month: month,
+					month: monthStr,
 					day: day
 				},
 				container: typeOfCase,
@@ -205,7 +212,7 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				timeFrame: {
 					quarter: quarter,
 					year: year,
-					month: month,
+					month: monthStr,
 					day: day
 				},
 				item: data

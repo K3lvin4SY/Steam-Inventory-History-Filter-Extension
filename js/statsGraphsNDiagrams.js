@@ -10,13 +10,59 @@ var case_drops_chart;
 var skins_drops_chart;
 var item_graph;
 
+function getStringFromMonth(month) {
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  return monthNames[month - 1];
+}
+
+function getMonthList(startMonth, startYear, endMonth, endYear) {
+  if ([startMonth, startYear, endMonth, endYear].includes(null)) {
+    return [];
+  }
+  let monthList = [];
+
+  let currentMonth = startMonth;
+  let currentYear = startYear;
+
+  while (currentYear < endYear || (currentYear == endYear && currentMonth <= endMonth)) {
+    let monthString = getStringFromMonth(parseInt(currentMonth));
+    let yearString = currentYear.toString();
+    let dateString = monthString + " " + yearString;
+
+    monthList.push(dateString);
+
+    currentMonth++;
+
+    if (currentMonth > 12) {
+      currentMonth = 1;
+      currentYear++;
+    }
+  }
+
+  return monthList;
+}
+
+function getIndexFromDate(monthList, year, month) {
+  let dateString = getStringFromMonth(parseInt(month)) + " " + year.toString();
+  return monthList.indexOf(dateString);
+}
+
+function getZerosList(n) {
+  let zerosList = [];
+  for (let i = 0; i < n; i++) {
+    zerosList.push(0);
+  }
+  return zerosList;
+}
+
+
 function loadChartsNDiagrams() {
   // Create a bar chart for cases types
-  var xValues = [];
-  var yValues = [];
-  var barColors = getColorList(xValues.length);
 
-  /*case_types_chart = new Chart(document.getElementById('case_types_chart'), {
+  case_types_chart = new Chart(document.getElementById('case_types_chart'), {
     type: "bar",
     data: {
       labels: [],
@@ -26,54 +72,61 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "All Case Openings",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "All Case Openings",
+          font: {
+            size: 24,
+            weight: 'bold'
+          },
+          color: "#b1b1b1"
+        }
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
     }
-  });*/
+  });
 
   // cases over time graph
-  const xValues2 = ["Jan 2014","Feb 2014","Mar 2014","Apr 2014","May 2014","Jun 2014","Jul 2014","Aug 2014","Sep 2014","Oct 2014"];
 
   container_time_graph = new Chart(document.getElementById('container_time_graph'), {
     type: "line",
     data: {
-      labels: xValues2,
+      labels: [],
       datasets: [{ 
         label: "Cases",
-        data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+        data: [],
         borderColor: "orange",
         fill: false
       }, { 
         label: "Capsules",
-        data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+        data: [],
         borderColor: "green",
         fill: false
       }, { 
         label: "Packages",
-        data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+        data: [],
         borderColor: "#3161f3",
         fill: false
       }]
@@ -111,10 +164,8 @@ function loadChartsNDiagrams() {
           display: true,
           text: "Number of Openings over time",
           font: {
-            size: 24,
-            weight: "bold"
+            size: 24
           },
-          fontSize: 24,
           color: "#b1b1b1"
         },
         zoom: {
@@ -122,7 +173,7 @@ function loadChartsNDiagrams() {
             wheel: {
               enabled: true
             },
-            mode: "xy"
+            mode: "x"
           }
         }
       }
@@ -132,7 +183,6 @@ function loadChartsNDiagrams() {
     
   });
 
-  /*
   // capsules opened of each type
   capsules_types_chart = new Chart(document.getElementById('capsules_types_chart'), {
     type: "bar",
@@ -144,30 +194,38 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "All Capsule Openings",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "All Capsule Openings",
+          font: {
+            size: 24,
+            weight: "bold"
+          },
+          color: "#b1b1b1"
+        }
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
     }
   });
@@ -183,32 +241,46 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "All Package Openings",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "All Package Openings",
+          font: {
+            weight: "bold",
+            size: 24
+          },
+          color: "#b1b1b1"
+        },
+        tooltip: {
+          bodyFont: {
+            size: 16,
+            color: "#b1b1b1"
+          }
+        }
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
+    }    
   });
 
   // cases skins opened
@@ -222,32 +294,40 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Case Unlocks",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "Case Unlocks",
+          font: {
+            size: 24,
+            weight: 'bold'
+          },
+          color: "#b1b1b1"
+        },
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
+    }    
   });
 
   // capsule skins opened
@@ -261,32 +341,40 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Capsule Unlocks",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "Capsule Unlucks",
+          font: {
+            size: 24,
+            weight: "bold"
+          },
+          color: "#b1b1b1"
+        }
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
+    } 
   });
 
   // packages skins opened
@@ -300,32 +388,40 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Package Unlucks",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "Package Unlucks",
+          font: {
+            size: 24,
+            weight: "bold"
+          },
+          color: "#b1b1b1"
+        }
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
+    }    
   });
 
   // --------------------- Drops --------------------------
@@ -353,35 +449,73 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#b1b1b1',
-          fontSize: 14
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: '#b1b1b1',
+            font: {
+              size: 14
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: "Drops over time",
+          font: {
+            size: 24,
+            weight: 'bold'
+          },
+          color: '#b1b1b1'
+        },
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'x',
+          },
+          pan: {
+            enabled: true,
+            mode: 'x',
+          }
         }
       },
-      title: {
-        display: true,
-        text: "Drops over time",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
-      },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
+          },
+          zoom: {
+            wheel: {
+              enabled: true
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'x'
+          },
+          pan: {
+            enabled: true,
+            mode: 'x'
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }]
+        }
       }
-    }
+    }    
   });
 
   // All case drops
@@ -395,32 +529,40 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Case Drops",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "Case Drops",
+          font: {
+            size: 24,
+            weight: 'bold'
+          },
+          color: "#b1b1b1"
+        },
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
+    }    
   });
 
   // All skin drops
@@ -434,39 +576,189 @@ function loadChartsNDiagrams() {
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: "Skin Drops",
-        fontStyle: "bold",
-        fontColor: "#b1b1b1",
-        fontSize: 24
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: "Skin Drops",
+          font: {
+            size: 24,
+            weight: "bold"
+          },
+          color: "#b1b1b1"
+        },
       },
       scales: {
-        xAxes: [{
+        x: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            }
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
-            fontColor: "#b1b1b1",
-            fontSize: 16,
+            color: "#b1b1b1",
+            font: {
+              size: 16
+            },
             beginAtZero: true
           }
-        }]
+        }
       }
-    }
-  });*/
+    }    
+  });
 }
 
-/*
 function updateCharts() {
-  var caseOpenings = gameData.containerUnlocks.case;
+  // PRep for drops
+  // container get data
+  /*var caseDropsData = gameData.gameDrops.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var skinDropsData = gameData.gameDrops.skin.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var graffitiDropsData = gameData.gameDrops.graffiti.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
 
+  // graph prep
+  let caseDropStartDate, skinDropStartDate, graffitiDropStartDate;
+  try {
+    caseDropStartDate = parseInt(caseDropsData[0].timeFrame.year + caseDropsData[0].timeFrame.month + caseDropsData[0].timeFrame.day);
+  } catch (error) {
+    caseDropStartDate = null;
+  }
+
+  try {
+    skinDropStartDate = parseInt(skinDropsData[0].timeFrame.year + skinDropsData[0].timeFrame.month + skinDropsData[0].timeFrame.day);
+  } catch (error) {
+    skinDropStartDate = null;
+  }
+
+  try {
+    graffitiDropStartDate = parseInt(graffitiDropsData[0].timeFrame.year + graffitiDropsData[0].timeFrame.month + graffitiDropsData[0].timeFrame.day);
+  } catch (error) {
+    graffitiDropStartDate = null;
+  }
+  let startDropDateArray = [caseDropStartDate, skinDropStartDate, graffitiDropStartDate].filter(Boolean);
+  let startDropDate = startDropDateArray.length > 0 ? ""+Math.min(...startDropDateArray) : null;
+
+  let startDropMonth = null;
+  let startDropYear = null;
+  if (startDropDate !== null) {
+    startDropMonth = startDropDate.substring(4, 6);
+    startDropYear = startDropDate.substring(0, 4);
+  }  
+
+  let caseDropEndDate, skinDropEndDate, graffitiDropEndDate;
+  try {
+    caseDropEndDate = parseInt(caseDropsData[caseDropsData.length - 1].timeFrame.year + caseDropsData[caseDropsData.length - 1].timeFrame.month + caseDropsData[caseDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    caseDropEndDate = null;
+  }
+
+  try {
+    skinDropEndDate = parseInt(skinDropsData[skinDropsData.length - 1].timeFrame.year + skinDropsData[skinDropsData.length - 1].timeFrame.month + skinDropsData[skinDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    skinDropEndDate = null;
+  }
+
+  try {
+    graffitiDropEndDate = parseInt(graffitiDropsData[graffitiDropsData.length - 1].timeFrame.year + graffitiDropsData[graffitiDropsData.length - 1].timeFrame.month + graffitiDropsData[graffitiDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    graffitiDropEndDate = null;
+  }
+
+  let endDropDateArray = [caseDropEndDate, skinDropEndDate, graffitiDropEndDate].filter(Boolean);
+  let endDropDate = endDropDateArray.length > 0 ? ""+Math.max(...endDropDateArray) : null;
+
+  let endDropMonth = null;
+  let endDropYear = null;
+  
+  if (endDropDate !== null) {
+    endDropMonth = endDropDate.substring(4, 6);
+    endDropYear = endDropDate.substring(0, 4);
+  }  
+
+  var timeLineDrop = getMonthList(startDropMonth, startDropYear, endDropMonth, endDropYear);
+  
+  var caseDropValue = getZerosList(timeLineDrop.length);
+  var skinDropValue = getZerosList(timeLineDrop.length);
+  var graffitiDropValue = getZerosList(timeLineDrop.length);*/
+
+
+
+  // PRep for Openings
+  // container get data
+  var caseOpenings = gameData.containerUnlocks.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var capsuleOpenings = gameData.containerUnlocks.capsule.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var packageOpenings = gameData.containerUnlocks.package.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+
+  // graph prep
+  let caseStartDate, capsuleStartDate, packageStartDate;
+  try {
+    caseStartDate = parseInt(caseOpenings[0].timeFrame.year + caseOpenings[0].timeFrame.month + caseOpenings[0].timeFrame.day);
+  } catch (error) {
+    caseStartDate = null;
+  }
+
+  try {
+    capsuleStartDate = parseInt(capsuleOpenings[0].timeFrame.year + capsuleOpenings[0].timeFrame.month + capsuleOpenings[0].timeFrame.day);
+  } catch (error) {
+    capsuleStartDate = null;
+  }
+
+  try {
+    packageStartDate = parseInt(packageOpenings[0].timeFrame.year + packageOpenings[0].timeFrame.month + packageOpenings[0].timeFrame.day);
+  } catch (error) {
+    packageStartDate = null;
+  }
+  let startDateArray = [caseStartDate, capsuleStartDate, packageStartDate].filter(Boolean);
+  let startDate = startDateArray.length > 0 ? ""+Math.min(...startDateArray) : null;
+
+  let startMonth = null;
+  let startYear = null;
+  if (startDate !== null) {
+    startMonth = startDate.substring(4, 6);
+    startYear = startDate.substring(0, 4);
+  }  
+
+  let caseEndDate, capsuleEndDate, packageEndDate;
+  try {
+    caseEndDate = parseInt(caseOpenings[caseOpenings.length - 1].timeFrame.year + caseOpenings[caseOpenings.length - 1].timeFrame.month + caseOpenings[caseOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    caseEndDate = null;
+  }
+
+  try {
+    capsuleEndDate = parseInt(capsuleOpenings[capsuleOpenings.length - 1].timeFrame.year + capsuleOpenings[capsuleOpenings.length - 1].timeFrame.month + capsuleOpenings[capsuleOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    capsuleEndDate = null;
+  }
+
+  try {
+    packageEndDate = parseInt(packageOpenings[packageOpenings.length - 1].timeFrame.year + packageOpenings[packageOpenings.length - 1].timeFrame.month + packageOpenings[packageOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    packageEndDate = null;
+  }
+
+  let endDateArray = [caseEndDate, capsuleEndDate, packageEndDate].filter(Boolean);
+  let endDate = endDateArray.length > 0 ? ""+Math.max(...endDateArray) : null;
+
+  let endMonth = null;
+  let endYear = null;
+  
+  if (endDate !== null) {
+    endMonth = endDate.substring(4, 6);
+    endYear = endDate.substring(0, 4);
+  }  
+
+  var timeLine = getMonthList(startMonth, startYear, endMonth, endYear);
+  
+  var caseOpenValue = getZerosList(timeLine.length);
+  var capsuleOpenValue = getZerosList(timeLine.length);
+  var packageOpenValue = getZerosList(timeLine.length);
+
+  // case data collect
   var caseNames = [];
   var caseNamesAmount = [];
 
@@ -496,6 +788,10 @@ function updateCharts() {
     } else if (caseOpen.item.itemQuality == "★") {
       caseRarityItemsAmount[4] = caseRarityItemsAmount[4]+1;
     }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, caseOpen.timeFrame.year, caseOpen.timeFrame.month);
+    caseOpenValue[timeLineIndex] = caseOpenValue[timeLineIndex]+1;
   }
 
   // case charts
@@ -507,10 +803,13 @@ function updateCharts() {
   case_unlucks_chart.data.datasets[0].data = caseRarityItemsAmount;
   case_unlucks_chart.update();
 
+  container_time_graph.data.labels = timeLine;
+  container_time_graph.data.datasets[0].data = caseOpenValue;
+  container_time_graph.update();
+
   // ------------------------------------------------------------------------------------------
 
   // capsule data collect
-  var capsuleOpenings = gameData.containerUnlocks.capsule;
   
   var capsuleNames = [];
   var capsuleNamesAmount = [];
@@ -540,6 +839,10 @@ function updateCharts() {
     } else if (capsuleOpen.item.itemRarity == "Extraordinary") {
       capsuleRarityItemsAmount[3] = capsuleRarityItemsAmount[3]+1;
     }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, capsuleOpen.timeFrame.year, capsuleOpen.timeFrame.month);
+    capsuleOpenValue[timeLineIndex] = capsuleOpenValue[timeLineIndex]+1;
   }
 
   // capsule charts
@@ -551,10 +854,12 @@ function updateCharts() {
   capsules_unlucks_chart.data.datasets[0].data = capsuleRarityItemsAmount;
   capsules_unlucks_chart.update();
 
+  container_time_graph.data.datasets[1].data = capsuleOpenValue;
+  container_time_graph.update();
+
   // ------------------------------------------------------------------------------------------
 
   // package data collect
-  var packageOpenings = gameData.containerUnlocks.package;
   
   var packageNames = [];
   var packageNamesAmount = [];
@@ -588,6 +893,10 @@ function updateCharts() {
     } else if (packageOpen.item.itemRarity == "Covert") {
       packageRarityItemsAmount[5] = packageRarityItemsAmount[5]+1;
     }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, packageOpen.timeFrame.year, packageOpen.timeFrame.month);
+    packageOpenValue[timeLineIndex] = packageOpenValue[timeLineIndex]+1;
   }
 
   // package charts
@@ -599,6 +908,9 @@ function updateCharts() {
   packages_unlucks_chart.data.datasets[0].data = packageRarityItemsAmount;
   packages_unlucks_chart.update();
 
+  container_time_graph.data.datasets[2].data = packageOpenValue;
+  container_time_graph.update();
+
   // ------------------------------------------------------------------------------------------
   
   // case drops
@@ -606,17 +918,24 @@ function updateCharts() {
   var caseDropNames = [];
   var caseDropNamesAmount = [];
 
+  console.log(caseDrops);
   for (let index = 0; index < caseDrops.length; index++) {
     const caseDrop = caseDrops[index];
 
     // add case drop names
-    if (!caseDropNames.includes(caseDrops.container.itemName)) {
-      caseDropNames.push(caseDrops.container.itemName);
+    console.log(caseDrop);
+    console.log(caseDrop.item);
+    if (!caseDropNames.includes(caseDrop.item.itemName)) {
+      caseDropNames.push(caseDrop.item.itemName);
       caseDropNamesAmount.push(0);
     }
     // add case drop amount to case drop names
-    const caseDropRarityItemsAmountIndex = caseDropNames.indexOf(caseDrops.container.itemName);
+    const caseDropRarityItemsAmountIndex = caseDropNames.indexOf(caseDrop.item.itemName);
     caseDropNamesAmount[caseDropRarityItemsAmountIndex] = caseDropNamesAmount[caseDropRarityItemsAmountIndex]+1;
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
+    caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
   }
 
   // case drop charts
@@ -624,6 +943,10 @@ function updateCharts() {
   case_drops_chart.data.datasets[0].backgroundColor = getColorList(caseDropNamesAmount.length);
   case_drops_chart.data.labels = caseDropNames;
   case_drops_chart.update();
+
+  /*drops_time_graph.data.labels = timeLineDrop;
+  drops_time_graph.data.datasets[0].data = caseDropValue;
+  drops_time_graph.update();*/
 
   // ------------------------------------------------------------------------------------------
   
@@ -649,11 +972,18 @@ function updateCharts() {
     } else if (skinDrop.item.itemRarity == "Covert") {
       skinDropRarityItemsAmount[5] = skinDropRarityItemsAmount[5]+1;
     }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
+    skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
   }
 
   // skin drop charts
   skins_drops_chart.data.datasets[0].data = skinDropRarityItemsAmount;
   skins_drops_chart.update();
+
+  //drops_time_graph.data.datasets[1].data = skinDropValue;
+  //drops_time_graph.update();
 
 
   // ------------------------------------------------------------------------------------------
@@ -663,9 +993,15 @@ function updateCharts() {
 
   for (let index = 0; index < graffitiDrops.length; index++) {
     const graffitiDrop = graffitiDrops[index];
+
+    // graph stuff
+    //const timeLineIndex = getIndexFromDate(timeLineDrop, graffitiDrop.timeFrame.year, graffitiDrop.timeFrame.month);
+    //graffitiDropValue[timeLineIndex] = graffitiDropValue[timeLineIndex]+1;
   }
+
+  //drops_time_graph.data.datasets[2].data = graffitiDropValue;
+  //drops_time_graph.update();
 }
-*/
 
 
 // Color Generator
