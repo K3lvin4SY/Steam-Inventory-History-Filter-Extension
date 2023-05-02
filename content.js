@@ -21,6 +21,7 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     // For a row to be shown it has to have all the prop requirements
     var tag;
     props["data-search-tag"] = this.getAttribute("data-search-tag"); // Search for specific text
+    props["data-overrule-tag"] = this.getAttribute("data-overrule-tag"); // shows everything
     
     tag = this.getAttribute("data-main-tag");
     if (tag != null) {
@@ -140,6 +141,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
       var tagsPassed = 0
       var tagsToPass = 0
       var global_search_override = false;
+      var show_all_override = false;
       if (global_search_tag != null) { // if there is a global search tag
         tagsToPass++;
         if (event_container.text().toLowerCase().includes(global_search_tag.toLowerCase())) {
@@ -152,6 +154,12 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
           continue;
         } else {
           tagsToPass++;
+        }
+
+        if (prop == "data-overrule-tag") {
+          if (tag == "everything") {
+            show_all_override = true;
+          }
         }
 
         if (prop == "data-main-tag") {
@@ -180,7 +188,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
       }
       //console.log(tagsPassed);
       //console.log(tagsToPass);
-      if (tagsPassed == tagsToPass || global_search_override) {
+      if (tagsPassed == tagsToPass || global_search_override || show_all_override) {
         //console.log("==");
         // Total pass
         passedAllChecks = true;
