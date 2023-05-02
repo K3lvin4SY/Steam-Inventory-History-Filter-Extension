@@ -409,7 +409,6 @@ function InventoryHistory_LoadAll()
 		else
 		{
 			cursurHistory = prevCursor;
-			$J( '#load_more_button' ).fadeIn( 50 );
 
 			if ( data.error )
 			{
@@ -433,14 +432,12 @@ function InventoryHistory_LoadAll()
 		else if ( jqXHR.status == 503 )
 		{
 			ShowAlertDialog( 'Error', 'Steam service is currenty unavailable.', 'OK' );
-			$J( '#load_more_button' ).fadeIn( 50 );
 			continueLOading = false;
 		}
 		else
 		{
 			continueLOading = false;
 			ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
-			$J( '#load_more_button' ).fadeIn( 50 );
 		}
 	}).always( function() {
 		$J('#inventory_history_loading').hide();

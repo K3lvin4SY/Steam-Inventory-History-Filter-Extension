@@ -7,10 +7,6 @@ function filterWindow() {
   return document.getElementById("steam_Inv_His_Filter_Window");
 }
 
-function InventoryHistory_LoadMore() {
-  $J('#InventoryHistory_LoadMore_Access').trigger( "click" );
-}
-
 
 
 String.prototype.cleanup = function() {
