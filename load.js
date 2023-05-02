@@ -16,6 +16,7 @@ var gameData = {
     graffiti: []
   }
 };
+$J( '#load_more_button' ).hide();
 
 var languageOption = {
   sel: {
