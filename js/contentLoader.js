@@ -278,6 +278,7 @@ function InventoryHistory_LoadAll()
 
 	// perperations
 	$J('#load_more_button').hide();
+	$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 	
 	
 	// Start
@@ -342,7 +343,6 @@ function InventoryHistory_LoadAll()
 
 			too_many_req = false;
 			$J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
-			$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
 			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
 			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
 			var unix_timestamp;
