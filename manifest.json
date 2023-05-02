@@ -1,7 +1,7 @@
 {
-  "name": "Steam Invetory History Utility Filter",
+  "name": "CS:GO History Utility Filter",
   "version": "1.3.5",
-  "description": "An extension that lets you more easily load and filter through your steam inventory history page.",
+  "description": "CS:GO History Utility Filter Extension simplifies inventory browsing, allowing users to quickly load and filter their history while providing statistics and search options.",
   "manifest_version": 3,
   "author": "Kelvin Brahe",
   "action":{
@@ -23,9 +23,6 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "backgrund": {
-    "service-worker": ["/js/backgrund.js"]
-  },
   "content_scripts": [
     {
       "matches": [

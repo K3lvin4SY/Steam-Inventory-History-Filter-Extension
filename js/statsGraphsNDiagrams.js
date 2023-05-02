@@ -430,20 +430,20 @@ function loadChartsNDiagrams() {
   drops_time_graph = new Chart(document.getElementById('drops_time_graph'), {
     type: "line",
     data: {
-      labels: ["Jan 2014","Feb 2014","Mar 2014","Apr 2014","May 2014","Jun 2014","Jul 2014","Aug 2014","Sep 2014","Oct 2014"],
+      labels: [],
       datasets: [{ 
         label: "Cases",
-        data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+        data: [],
         borderColor: "orange",
         fill: false
       }, { 
         label: "Skins",
-        data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+        data: [],
         borderColor: "#3161f3",
         fill: false
       }, { 
         label: "Graffiti",
-        data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+        data: [],
         borderColor: "#b1c3d9",
         fill: false
       }]
@@ -616,7 +616,8 @@ function loadChartsNDiagrams() {
 function updateCharts() {
   // PRep for drops
   // container get data
-  /*var caseDropsData = gameData.gameDrops.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  
+  var caseDropsData = gameData.gameDrops.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var skinDropsData = gameData.gameDrops.skin.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var graffitiDropsData = gameData.gameDrops.graffiti.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
 
@@ -683,7 +684,7 @@ function updateCharts() {
   
   var caseDropValue = getZerosList(timeLineDrop.length);
   var skinDropValue = getZerosList(timeLineDrop.length);
-  var graffitiDropValue = getZerosList(timeLineDrop.length);*/
+  var graffitiDropValue = getZerosList(timeLineDrop.length);
 
 
 
@@ -934,8 +935,8 @@ function updateCharts() {
     caseDropNamesAmount[caseDropRarityItemsAmountIndex] = caseDropNamesAmount[caseDropRarityItemsAmountIndex]+1;
 
     // graph stuff
-    //const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
-    //caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
+    const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
+    caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
   }
 
   // case drop charts
@@ -944,9 +945,9 @@ function updateCharts() {
   case_drops_chart.data.labels = caseDropNames;
   case_drops_chart.update();
 
-  /*drops_time_graph.data.labels = timeLineDrop;
+  drops_time_graph.data.labels = timeLineDrop;
   drops_time_graph.data.datasets[0].data = caseDropValue;
-  drops_time_graph.update();*/
+  drops_time_graph.update();
 
   // ------------------------------------------------------------------------------------------
   
@@ -974,16 +975,16 @@ function updateCharts() {
     }
 
     // graph stuff
-    //const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
-    //skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
+    const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
+    skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
   }
 
   // skin drop charts
   skins_drops_chart.data.datasets[0].data = skinDropRarityItemsAmount;
   skins_drops_chart.update();
 
-  //drops_time_graph.data.datasets[1].data = skinDropValue;
-  //drops_time_graph.update();
+  drops_time_graph.data.datasets[1].data = skinDropValue;
+  drops_time_graph.update();
 
 
   // ------------------------------------------------------------------------------------------
@@ -995,12 +996,12 @@ function updateCharts() {
     const graffitiDrop = graffitiDrops[index];
 
     // graph stuff
-    //const timeLineIndex = getIndexFromDate(timeLineDrop, graffitiDrop.timeFrame.year, graffitiDrop.timeFrame.month);
-    //graffitiDropValue[timeLineIndex] = graffitiDropValue[timeLineIndex]+1;
+    const timeLineIndex = getIndexFromDate(timeLineDrop, graffitiDrop.timeFrame.year, graffitiDrop.timeFrame.month);
+    graffitiDropValue[timeLineIndex] = graffitiDropValue[timeLineIndex]+1;
   }
 
-  //drops_time_graph.data.datasets[2].data = graffitiDropValue;
-  //drops_time_graph.update();
+  drops_time_graph.data.datasets[2].data = graffitiDropValue;
+  drops_time_graph.update();
 }
 
 

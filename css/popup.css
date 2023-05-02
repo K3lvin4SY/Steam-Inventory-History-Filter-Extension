@@ -1,0 +1,82 @@
+html {
+  margin: 0;
+  padding: 0;
+  width: 35em;
+  background: radial-gradient(circle at top left, rgba(81, 102, 137, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #1f2b45;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#topBar {
+  height: 5px;
+  width: 100%;
+  
+  margin: 0;
+  padding: 0;
+  
+  background: linear-gradient(to right, #00ccff, #3366ff);
+}
+
+h1 {
+  margin-left: 1em;
+  color: white;
+  font-weight: 500;
+}
+
+#content {
+  margin: 1em;
+  color: #b1b1b1;
+  font-size: medium;
+}
+
+#links {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+a:link, a:visited {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+  
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: 400;
+
+  padding: 10px;
+  color: #b1b1b1;
+
+  margin: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  border-radius: 4px;
+  background-color: #32363f;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+  transition:0.2s all ease-out;
+}
+
+a:hover, a:active {
+  background: linear-gradient( to right, #464d58 5%, #464d58 95%);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+#invHisPageCon {
+  margin-bottom: 3em;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+#invHisPage {
+  width: 80%;
+  margin: 0;
+  display: block;
+}
