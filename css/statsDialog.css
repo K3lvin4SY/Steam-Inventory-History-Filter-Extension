@@ -13,10 +13,6 @@
   height: 85vh;
 }
 
-
-#steam_filter_stats .stats_content_container .stats_list {
-  
-}
 #steam_filter_stats .stats_content_container .stats_list div {
   display: flex;
   flex-direction: column;
@@ -80,4 +76,35 @@ input:checked + span {
   margin: 1em;
   border-radius: 1em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* general */
+.totStatBox_con_con {
+  display: flex;
+  flex-direction: column;
+}
+
+.totStatBox_con {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.totStatBox {
+
+  padding: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+}
+
+.numBox {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
 }

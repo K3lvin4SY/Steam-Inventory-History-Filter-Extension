@@ -621,6 +621,11 @@ function updateCharts() {
   var skinDropsData = gameData.gameDrops.skin.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var graffitiDropsData = gameData.gameDrops.graffiti.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
 
+  // general stats update
+  $J("#case2TotNum").text( caseDropsData.length );
+  $J("#skinTotNum").text( skinDropsData.length );
+  $J("#grafTotNum").text( graffitiDropsData.length );
+
   // graph prep
   let caseDropStartDate, skinDropStartDate, graffitiDropStartDate;
   try {
@@ -693,6 +698,11 @@ function updateCharts() {
   var caseOpenings = gameData.containerUnlocks.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var capsuleOpenings = gameData.containerUnlocks.capsule.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var packageOpenings = gameData.containerUnlocks.package.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+
+  // general stats update
+  $J("#caseTotNum").text( caseOpenings.length );
+  $J("#capTotNum").text( capsuleOpenings.length );
+  $J("#packTotNum").text( packageOpenings.length );
 
   // graph prep
   let caseStartDate, capsuleStartDate, packageStartDate;
