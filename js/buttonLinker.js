@@ -130,6 +130,9 @@ function createButtonLinks() {
       } else {
         $J("#steam_filter_stats_alert_message").removeClass("steam_filter_hide_class");
       }
+      if ($J("#steam_filter_stats").hasClass("steam_filter_hide_class")) {
+        updateCharts();
+      }
       $J("#steam_filter_stats").toggleClass("steam_filter_hide_class");
     })
   })
@@ -177,7 +180,6 @@ function createButtonLinks() {
   // stats windows buttons chack its chackbox
   $J("#steam_filter_stats .stats_content_container .stats_list div > *").each(function() {
     $J(this).click(function() {
-      updateCharts();
       if ($J(this).prev("input").is(':checked')) {
         $J(this).prev("input").prop("checked", false);
       } else {
