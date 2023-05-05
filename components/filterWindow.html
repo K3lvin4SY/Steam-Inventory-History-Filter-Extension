@@ -161,24 +161,7 @@
               <div class="list-1">
                 <h3 class="list-Title">Show</h3>
                 <ul id="filter_list_show" class="list1 filter-List">
-                  <li data-main-tag="Earned"> Medals </li>
-                  <li data-main-tag="Moved to Storage Unit"> Storage Unit </li>
-                  <li data-main-tag="Got an item drop"> Case Drops </li>
-                  <li data-main-tag="Earned a new rank and got a drop"> Item Drops </li>
-                  <li data-main-tag="You traded with "> Trades </li>
-                  <li data-main-tag="Unlocked a container"> Container Opened </li>
-                  <li data-main-tag="Purchased from the store"> Store Purchases </li>
-                  <li data-main-tag="You purchased an item on the Community Market."> Market Purchases </li>
-                  <li data-main-tag="You listed an item on the Community Market."> Market Created Listings </li>
-                  <li data-main-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
-                  <li data-main-tag="Used"> Used </li>
-                  <li data-main-tag="Earned a souvenir drop"> Souvenir drop </li>
-                  <li data-main-tag="Crafted"> Trade ups </li>
-                  <li data-main-tag="Sticker applied"> Sticker applied </li>
-                  <li data-main-tag="Sticker removed"> Sticker removed </li>
-                  <li data-main-tag="You deleted"> Deleted Item </li>
-                  <li data-main-tag="Unsealed"> Unsealed Graffiti </li>
-                  <li data-main-tag="Mission reward"> Mission Reward (Operations) </li>
+                  <li data-overrule-tag="everything">Show All</li>
                 </ul>
               </div>
             </div>
@@ -220,6 +203,24 @@
                   <li data-main-tag="Unlocked a container" data-item-name-tag="Case Key"> Case Opened </li>
                   <li data-main-tag="Unlocked a container" data-item-name-tag="Souvenir Package"> Souvenir Package Opened </li>
                   <li data-main-tag="Unlocked a container" data-item-name-tag="Capsule"> Capsule Opened </li>
+                  <li data-main-tag="Earned"> Medals </li>
+                  <li data-main-tag="Moved to Storage Unit"> Storage Unit </li>
+                  <li data-main-tag="Got an item drop"> Case Drops </li>
+                  <li data-main-tag="Earned a new rank and got a drop"> Item Drops </li>
+                  <li data-main-tag="You traded with "> Trades </li>
+                  <li data-main-tag="Unlocked a container"> Container Opened </li>
+                  <li data-main-tag="Purchased from the store"> Store Purchases </li>
+                  <li data-main-tag="You purchased an item on the Community Market."> Market Purchases </li>
+                  <li data-main-tag="You listed an item on the Community Market."> Market Created Listings </li>
+                  <li data-main-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
+                  <li data-main-tag="Used"> Used </li>
+                  <li data-main-tag="Earned a souvenir drop"> Souvenir drop </li>
+                  <li data-main-tag="Crafted"> Trade ups </li>
+                  <li data-main-tag="Sticker applied"> Sticker applied </li>
+                  <li data-main-tag="Sticker removed"> Sticker removed </li>
+                  <li data-main-tag="You deleted"> Deleted Item </li>
+                  <li data-main-tag="Unsealed"> Unsealed Graffiti </li>
+                  <li data-main-tag="Mission reward"> Mission Reward (Operations) </li>
                 </ul>
               </div>
             </div>
@@ -1228,6 +1229,18 @@
           <div class="stats_windows">
             <div class="number_chart" id="general_window">
               <h1>General Stats</h1>
+              <div class="totStatBox_con_con">
+                <div class="totStatBox_con">
+                  <span class="totStatBox" id="caseTot">Total cases opened: <span id="caseTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="capTot">Total capsules opened: <span id="capTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="packTot">Total packages opened: <span id="packTotNum" class="numBox">0</span></span>
+                </div>
+                <div class="totStatBox_con">
+                  <span class="totStatBox" id="case2Tot">Total cases dropped: <span id="case2TotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="skinTot">Total skins dropped: <span id="skinTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="grafTot">Total graffiti dropped: <span id="grafTotNum" class="numBox">0</span></span>
+                </div>
+              </div>
             </div>
             <div id="container_opened_window">
               <canvas class="number_chart" id="container_time_graph"></canvas>
@@ -1322,9 +1335,4 @@
     </div>
   </div>
   <div class="newmodal_background" style="opacity: 0.8;"></div>
-</div>
-
-<!-- Access to inline scripts -->
-<div class="steam_filter_hide_class">
-  <button id="InventoryHistory_LoadMore_Access" onclick="InventoryHistory_LoadMore()"></button>
 </div>

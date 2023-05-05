@@ -35,7 +35,8 @@ var languageOption = {
     uac: "Unlocked a container",
     container: "Container",
     gaid: "Got an item drop",
-    eanragad: "Earned a new rank and got a drop"
+    eanragad: "Earned a new rank and got a drop",
+    graffiti: "Graffiti"
   }
 }
 
