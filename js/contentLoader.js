@@ -134,11 +134,18 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 function InventoryHistory_GetStatsData(itemName) {
 	var itemListData = [];
 	$J("#inventory_history_table").find(".tradehistoryrow").each(function() {
-		var year = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[1];
-		var mon = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[0-9]/g, '');
+		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
+		var mon = $J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, '');
 		var month = getMonthFromString(mon);
+		var monthStr = getMonthFromString(mon)+"";
+		if (monthStr.length == 1) {
+			monthStr = "0"+monthStr;
+		}
 		var quarter = getQuarter(month);
-		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "");
+		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "").cleanup();
+		if (day.length == 1) {
+			day = "0"+day;
+		}
 
 		$J(this).find(".history_item_name").each(function() {
 			var data = $J(this).data();
@@ -147,7 +154,7 @@ function InventoryHistory_GetStatsData(itemName) {
 					timeFrame: {
 						quarter: quarter,
 						year: year,
-						month: month,
+						month: monthStr,
 						day: day
 					},
 					item: data
