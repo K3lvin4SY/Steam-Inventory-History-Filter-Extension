@@ -35,11 +35,11 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     }
     props["data-item-name-tag"] = tag; // Search for a specific item
     
-    tag = this.getAttribute("data-item-category-tag");
+    tag = this.getAttribute("data-item-quality-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
-    props["data-item-category-tag"] = tag; // Search for all StatTrak, normal, knifes items, etc
+    props["data-item-quality-tag"] = tag; // Search for all StatTrak, normal, knifes items, etc
     
     tag = this.getAttribute("data-item-type-tag");
     if (tag != null) {
@@ -53,11 +53,11 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     }
     props["data-item-collection-tag"] = tag; // Search for item in a specific collection
     
-    tag = this.getAttribute("data-item-quality-tag");
+    tag = this.getAttribute("data-item-rarity-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
-    props["data-item-quality-tag"] = tag; // Search for specific item quality ex: Covert
+    props["data-item-rarity-tag"] = tag; // Search for specific item quality ex: Covert
     
     tag = this.getAttribute("data-item-exterior-tag");
     if (tag != null) {
@@ -85,26 +85,39 @@ function findTag(item, tag, prop) {
       return true;
     }
   } else if (prop == "data-item-name-tag") {
-    if (item.text().cleanup().includes(tag)) {
+    if (item.data("item-name").cleanup().includes(tag)) {
       // passed
       return true;
     }
-  } else if (prop == "data-item-category-tag") {
-    if (item.text().cleanup().includes(tag)) {
+    /*if (item.text().cleanup().includes(tag)) {
+      // passed
+      return true;
+    }*/
+  } else if (prop == "data-item-quality-tag") {
+    if (item.data("item-quality").cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-type-tag") {
-    if (item.text().cleanup().includes(tag)) {
+    if (item.data("item-type").cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-collection-tag") {
-    // later (need more data)
-  } else if (prop == "data-item-quality-tag") {
-    // later (need more data) + need to fix game tooltip??
+    if (item.data("item-collection").cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
+  } else if (prop == "data-item-rarity-tag") {
+    if (item.data("item-rarity").cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
   } else if (prop == "data-item-exterior-tag") {
-    // later (need more data)
+    if (item.data("item-exterior").cleanup().includes(tag)) {
+      // passed
+      return true;
+    }
   }
   return false; // any item with tag does not exist in row
 }
@@ -169,7 +182,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
 
             // end of loop iteration
           }
-        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-category-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-quality-tag", "data-item-exterior-tag"].includes(prop) ) {
+        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-quality-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-rarity-tag", "data-item-exterior-tag"].includes(prop) ) {
           //console.log(event_desc);
           //console.log(prop);
           //console.log(tag);
