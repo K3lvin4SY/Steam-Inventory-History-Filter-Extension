@@ -123,6 +123,8 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 					}
 					//console.log($J(this).find(".history_item_name").eq(0).text());
 					//console.log($J(this).find(".history_item_name").eq(0).data());
+
+
 				}
 			})
 		})
@@ -331,15 +333,6 @@ function InventoryHistory_LoadAll()
 			if (loadPartial == 0) {
 				start_time = Date.now();
 			}
-			if (loadAllAmount == 0) {
-				loadAllAmount++;
-				if ( data.cursor )
-				{
-					cursurHistory = data.cursor;
-				}
-				InventoryHistory_LoadAll();
-				return;
-			}
 
 			too_many_req = false;
 			$J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
@@ -362,9 +355,16 @@ function InventoryHistory_LoadAll()
 			{
 				var elem_prev = $J('#inventory_history_table').children().last();
 
-				$J('#inventory_history_table').append( data.html );
+				if (loadAllAmount == 0) {
+					loadAllAmount++;
+					$J('#inventory_history_table').empty();
+					$J('#inventory_history_table').append( data.html );
+					var new_elems = $J('#inventory_history_table').children();
+				} else {
+					$J('#inventory_history_table').append( data.html );
+					var new_elems = elem_prev.nextAll();
+				}
 
-				var new_elems = elem_prev.nextAll();
 				//new_elems.hide();
 				//new_elems.fadeIn( 200 );
 
