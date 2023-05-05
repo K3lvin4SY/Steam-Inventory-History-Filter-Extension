@@ -4,6 +4,8 @@ var g_rgAppContextData = [];
 var continueLOading = true;
 var loadedAllHistory = false;
 
+var dev = true;
+
 var gameData = {
   containerUnlocks: {
     case: [],

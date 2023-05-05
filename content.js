@@ -85,6 +85,9 @@ function findTag(item, tag, prop) {
       return true;
     }
   } else if (prop == "data-item-name-tag") {
+    console.log(item.eq(0).data());
+    console.log(item.data());
+    console.log(item);
     if (item.data("item-name").cleanup().includes(tag)) {
       // passed
       return true;
