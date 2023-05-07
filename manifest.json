@@ -27,7 +27,9 @@
     {
       "matches": [
         "https://steamcommunity.com/id/*/inventoryhistory/*",
-        "https://steamcommunity.com/id/*/inventoryhistory"
+        "https://steamcommunity.com/id/*/inventoryhistory",
+        "https://steamcommunity.com/profiles/*/inventoryhistory/*",
+        "https://steamcommunity.com/profiles/*/inventoryhistory"
       ],
       "js": [
         "/js/background/prototype.js",
