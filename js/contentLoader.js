@@ -45,7 +45,7 @@ function getQuarter(month) {
   } else if (month >= 10 && month <= 12) {
     return "Q4";
   } else {
-    return "Invalid month number. Month number must be between 1 and 12.";
+    return languageOption.sel.messages.invalidMonth;
   }
 }
 
@@ -122,7 +122,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 						$J(this).find(".history_item_name").eq(0).data("item-quality", quality);
 					}
 					//console.log($J(this).find(".history_item_name").eq(0).text());
-					//console.log($J(this).find(".history_item_name").eq(0).data());
+					console.log($J(this).find(".history_item_name").eq(0).data());
 
 
 				}
@@ -273,7 +273,7 @@ var start_time = 0;
 function InventoryHistory_LoadAll()
 {
 	if (loadedAllHistory) {
-		ShowAlertDialog("History Loading error", "You have already loaded all your history", "CLOSE");
+		ShowAlertDialog(languageOption.sel.messages.historyErrorTitle, languageOption.sel.messages.historyErrorDesc, languageOption.sel.messages.close);
 		return;
 	}
 	// variables
@@ -307,15 +307,15 @@ function InventoryHistory_LoadAll()
 	if (too_many_req && (Date.now() - start_time < 60*1000)) {
 		var time_display = (Math.round((60-((Date.now() - start_time)/1000))*10)/10).toString();
 		if (!time_display.includes(".")) { time_display = time_display+".0" }
-		$J("#steam_Inv_Loader_Message").text("Taking a "+time_display+" sec break due to making too many requests...");
+		$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.timerText.pre+time_display+languageOption.sel.messages.timerText.post);
 		//console.log(((Date.now() - start_time)/1000));
 		if (continueLOading) {
 			setTimeout(InventoryHistory_LoadAll, 100);
 		} else {
 			too_many_req = false;
 			continueLOading = true;
-			$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
-			$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+			$J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.close);
+			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingStopped);
 			$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 			$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
 			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
@@ -342,7 +342,7 @@ function InventoryHistory_LoadAll()
 			}
 
 			too_many_req = false;
-			$J("#steam_Inv_Loader_Message").text("Please wait while all the history is being loaded...");
+			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
 			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
 			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
 			var unix_timestamp;
@@ -391,8 +391,8 @@ function InventoryHistory_LoadAll()
 					InventoryHistory_LoadAll();
 				} else {
 					continueLOading = true;
-					$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
-					$J("#steam_Inv_Loader_Message").text("The history loading have stopped.");
+					$J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.close);
+					$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingStopped);
 					$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 					$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
 					$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
@@ -403,8 +403,8 @@ function InventoryHistory_LoadAll()
 			{
 				// stop loading
 				loadedAllHistory = true;
-				$J("#steam_Inv_Loader_Win_Btn_Txt").text("CLOSE");
-				$J("#steam_Inv_Loader_Message").text("All the history data has been loaded.");
+				$J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.close);
+				$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingDone);
 				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
 				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
@@ -420,7 +420,7 @@ function InventoryHistory_LoadAll()
 
 			if ( data.error )
 			{
-				ShowAlertDialog( 'Error', data.error, 'OK' );
+				ShowAlertDialog( languageOption.sel.messages.error, data.error, languageOption.sel.messages.ok );
 				//alert("Error //fix real Dialog! "+data.error)
 			}
 		}
@@ -432,21 +432,21 @@ function InventoryHistory_LoadAll()
 			too_many_req = true;
 			loadPartial = 0;
 			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-			$J("#steam_Inv_Loader_Message").text("Taking a small break due to making too many requests...");
+			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.timerAltText);
 			InventoryHistory_LoadAll();
 			//alert("Too many requests //fix real Dialog!")
 			//ShowAlertDialog( 'Error', 'You\'ve made too many requests recently. Please wait and try your request again later.', 'OK' );
 		}
 		else if ( jqXHR.status == 503 )
 		{
-			ShowAlertDialog( 'Error', 'Steam service is currenty unavailable.', 'OK' );
+			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.steamServiceUnavailable, languageOption.sel.messages.ok );
 			$J( '#load_more_button' ).fadeIn( 50 );
 			continueLOading = false;
 		}
 		else
 		{
 			continueLOading = false;
-			ShowAlertDialog( 'Error', 'There was a problem loading your inventory history.', 'OK' );
+			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.otherErrorMessage, languageOption.sel.messages.ok );
 			$J( '#load_more_button' ).fadeIn( 50 );
 		}
 	}).always( function() {
