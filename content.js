@@ -23,43 +23,43 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     props["data-search-tag"] = this.getAttribute("data-search-tag"); // Search for specific text
     props["data-overrule-tag"] = this.getAttribute("data-overrule-tag"); // shows everything
     
-    tag = this.getAttribute("data-main-tag");
+    tag = $J(this).data("data-main-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-main-tag"] = tag; // Search for type of event (description of row)
-    
-    tag = this.getAttribute("data-item-name-tag");
+
+    tag = $J(this).data("data-item-name-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-item-name-tag"] = tag; // Search for a specific item
     
-    tag = this.getAttribute("data-item-quality-tag");
+    tag = $J(this).data("data-item-quality-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-item-quality-tag"] = tag; // Search for all StatTrak, normal, knifes items, etc
     
-    tag = this.getAttribute("data-item-type-tag");
+    tag = $J(this).data("data-item-type-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-item-type-tag"] = tag; // Search for specific item type ex: stickers, cases
     
-    tag = this.getAttribute("data-item-collection-tag");
+    tag = $J(this).data("data-item-collection-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-item-collection-tag"] = tag; // Search for item in a specific collection
     
-    tag = this.getAttribute("data-item-rarity-tag");
+    tag = $J(this).data("data-item-rarity-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
     props["data-item-rarity-tag"] = tag; // Search for specific item quality ex: Covert
     
-    tag = this.getAttribute("data-item-exterior-tag");
+    tag = $J(this).data("data-item-exterior-tag");
     if (tag != null) {
       tag = tag.cleanup()
     }
