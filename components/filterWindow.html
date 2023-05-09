@@ -27,7 +27,7 @@
           <path fill="url(#iconGradient)" class="nov" d="M130.672,121.947l-34.571-34.571c7.306-9.197,11.682-20.827,11.682-33.485C107.783,24.128,83.655,0,53.891,0S0,24.128,0,53.891s24.128,53.892,53.891,53.892c12.615,0,24.209-4.346,33.391-11.608l34.581,34.581c1.217,1.216,2.811,1.824,4.404,1.824s3.188-.608,4.404-1.824c2.433-2.433,2.433-6.376,0-8.809Zm-76.781-26.621c-22.847,0-41.435-18.588-41.435-41.435S31.044,12.457,53.891,12.457s41.435,18.588,41.435,41.435-18.588,41.435-41.435,41.435Z"/>
           <path fill="url(#iconGradient)" class="hov" d="M130.117,118.227l-32.646-32.645c6.48-8.895,10.312-19.842,10.312-31.69C107.783,24.128,83.655,0,53.891,0S0,24.128,0,53.891s24.128,53.892,53.891,53.892c11.804,0,22.714-3.806,31.592-10.242l32.661,32.661c1.653,1.652,3.819,2.479,5.986,2.479s4.334-.827,5.987-2.48c3.306-3.306,3.306-8.667,0-11.974Zm-76.226-27.044c-20.562,0-37.291-16.729-37.291-37.291S33.329,16.6,53.891,16.6s37.291,16.729,37.291,37.291-16.729,37.291-37.291,37.291Z"/>
         </svg>
-        <span>
+        <span id="languageText-toolBar-searchEngine">
           Search Engine
         </span>
       </span>
@@ -44,7 +44,7 @@
           <path fill="url(#iconGradient)" class="hov" d="M139.314,78.637c1.311,0,2.373,1.063,2.373,2.373v4.536c0,2.079-.038,4.145-.19,6.212-.634,9.14-6.706,16.366-16.074,17.976-1.166,.203-2.345,.304-3.537,.355h-.051c-24.86,0-49.707,0-74.554-.013,5.058-.089,9.647-1.673,13.463-5.172,2.066-1.902,3.562-4.133,4.564-6.605,.431-1.078,.786-2.206,1.04-3.372,.101-.456,.19-.913,.266-1.382,.052-.318,.091-.638,.126-.959,.046-.458,.097-.916,.115-1.374,.038-.456,.051-.9,.051-1.356,.013-.33,.013-.672,.013-1.002v-3.797c0-3.546,2.874-6.42,6.42-6.42h65.975Z"/>
           <path fill="url(#iconGradient)" class="hov" d="M27.569,19.841v11.625h-9.635c-.101,0-.203,0-.292-.013-3.131-.139-5.654-2.662-5.781-5.806,0-2.231,.013-4.462,.089-6.706,.089-3.055,1.673-5.312,4.488-6.465,1.141-.469,2.282-.71,3.398-.71,1.686,0,3.334,.545,4.855,1.711,2.117,1.61,2.802,3.841,2.878,6.364Z"/>
         </svg>
-        <span>
+        <span id="languageText-toolBar-loadHistory">
           Load History
         </span>
       </span>
@@ -63,7 +63,7 @@
           <path fill="url(#iconGradient)" class="hov" d="M101.106,80.826c0-14.732-.01-29.463,.007-44.195,.004-3.684,.862-7.146,3.067-10.168,2.932-4.017,7.089-5.869,11.888-6.082,4.025-.179,8.079-.327,12.109,.17,7.091,.875,12.425,6.247,13.191,13.34,.129,1.193,.189,2.399,.189,3.599,.01,29.222,.01,58.445,.006,87.667,0,3.586-.778,6.971-2.826,9.968-2.91,4.258-7.171,6.205-12.137,6.431-4.024,.183-8.075,.314-12.109-.172-7.001-.844-12.32-6.13-13.169-13.2-.143-1.191-.207-2.398-.208-3.597-.014-14.587-.009-29.174-.009-43.761Z"/>
           <path fill="url(#iconGradient)" class="hov" d="M40.463,101.25c0,8.04,.017,16.08-.008,24.119-.011,3.533-.829,6.859-2.859,9.81-2.895,4.208-7.115,6.13-12.02,6.373-4.023,.199-8.077,.337-12.108-.166-7.125-.89-12.335-6.026-13.239-13.123-.145-1.142-.214-2.301-.215-3.452-.014-15.935-.021-31.87,0-47.805,.005-3.631,.856-7.052,3.018-10.04,2.949-4.076,7.149-5.944,12.002-6.149,4.025-.17,8.078-.31,12.11,.178,7.011,.849,12.4,6.321,13.13,13.405,.123,1.194,.181,2.399,.183,3.599,.016,7.751,.008,15.502,.008,23.253Z"/>
         </svg>
-        <span>
+        <span id="languageText-toolBar-statistics">
           Statistics
         </span>
       </span>
@@ -84,11 +84,11 @@
           <path fill="url(#iconGradient)" class="hov" d="M115.196,116.355c-6.556,0-13.113,.035-19.669-.02-2.147-.018-4.121-.695-5.459-2.517-1.229-1.673-1.732-3.545-1.206-5.624,.372-1.471,1.04-2.748,2.268-3.683,1.021-.777,2.198-1.158,3.449-1.359,.543-.087,1.086-.091,1.632-.091,12.847,.001,25.694-.008,38.54,.012,1.76,.003,3.401,.491,4.778,1.664,1.214,1.034,1.865,2.4,2.091,3.93,.367,2.48-.409,4.593-2.348,6.217-.999,.837-2.22,1.174-3.484,1.384-.528,.087-1.057,.088-1.588,.087-6.335,0-12.67,0-19.004,0Z"/>
           <path fill="url(#iconGradient)" class="hov" d="M124.09,14.443c3.573,0,7.146-.03,10.719,.013,1.744,.021,3.371,.503,4.731,1.669,1.171,1.003,1.744,2.336,2.076,3.802,.491,2.165-.626,5.213-2.521,6.49-1.273,.858-2.692,1.3-4.199,1.306-7.235,.03-14.47,.049-21.704-.008-2.112-.017-4.06-.702-5.382-2.489-1.244-1.682-1.756-3.565-1.221-5.661,.371-1.454,1.029-2.718,2.239-3.651,1.018-.785,2.192-1.17,3.441-1.375,.526-.086,1.055-.097,1.587-.096,3.411,.004,6.821,.002,10.232,.002Z"/>
         </svg>
-        <span>
+        <span id="languageText-toolBar-openFilter">
           Open Filter
         </span>
       </span>
-      <span id="steam_Inv_His_Options">
+      <span id="steam_Inv_His_Options" class="steam_filter_options_Win_Dismiss">
         <svg class="bigger_icon" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="5cm" height="4.685cm" viewBox="0 0 141.732 132.794">
           <defs>
             <linearGradient id="iconGradient" gradientTransform="rotate(90)">
@@ -103,7 +103,7 @@
           <path fill="url(#iconGradient)" class="hov" d="M132.883,57.553h-15.183c-3.422-7.822-11.226-13.306-20.296-13.306s-16.874,5.484-20.296,13.306H8.861C3.97,57.553,.012,61.511,.012,66.402s3.958,8.849,8.849,8.849H77.113c3.424,7.816,11.225,13.296,20.291,13.296s16.867-5.48,20.291-13.296h15.188c4.879,0,8.849-3.97,8.849-8.849s-3.97-8.849-8.849-8.849Zm-35.479,17.697c-4.889,0-8.853-3.963-8.853-8.853s3.963-8.853,8.853-8.853,8.853,3.964,8.853,8.853-3.963,8.853-8.853,8.853Z"/>
           <path fill="url(#iconGradient)" class="hov" d="M132.883,101.787H65.077c-3.425-7.815-11.225-13.294-20.29-13.294s-16.865,5.479-20.29,13.294H8.861C3.97,101.787,.012,105.757,.012,110.648s3.958,8.849,8.849,8.849h15.634c3.424,7.816,11.225,13.296,20.291,13.296s16.867-5.48,20.291-13.296h67.805c4.879,0,8.849-3.97,8.849-8.849s-3.97-8.861-8.849-8.861Zm-88.096,17.709c-4.889,0-8.853-3.963-8.853-8.853s3.963-8.853,8.853-8.853,8.853,3.964,8.853,8.853-3.963,8.853-8.853,8.853Z"/>
         </svg>
-        <span>
+        <span id="languageText-toolBar-options">
           Options
         </span>
       </span>
@@ -119,16 +119,16 @@
 <div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_simple_searchbar">
   <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div id="steam_filter_simple_searchbar_win">
-      <h3 class="list-Title">Search</h3>
+      <h3 id="modal-title-simpleSearch" class="list-Title">Search Engine</h3>
       <div id="steam_filter_simple_searchbar_win_form"> <!--form-->
         <div class="searchbar_container">
-          <label class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
+          <label id="modal-label-simpleSearch" class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="steam_filter_simple_searchbar_data" name="searchbar_data">
           <!--<label class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">-->
           <div id="include_search_outside_filters_box_container">
             <input type="checkbox" name="" id="include_search_outside_filters_box">
-            <label for="">Include search outside filters</label>
+            <label id="modal-includeCheckbox-simpleSearch" for="">Include search outside filters</label>
           </div>
           <div>
             <button id="steam_filter_simple_searchbar_search_submit_btn" class="searchbar_form_object steam_filter_gui_button">Search</button>
@@ -159,24 +159,24 @@
           <div id="filter_Transfer_List">
             <div class="container">
               <div class="list-1">
-                <h3 class="list-Title">Show</h3>
+                <h3 id="modal-filterOptions-showTitle" class="list-Title">Show</h3>
                 <ul id="filter_list_show" class="list1 filter-List">
-                  <li data-overrule-tag="everything">Show All</li>
+                  <li id="modal-filterOptions-data-showAll" data-overrule-tag="everything">Show All</li>
                 </ul>
               </div>
             </div>
             <div class="container-2">
               <div id="steam_filter_searchbar_win">
-                <h3 class="list-Title">Search</h3>
+                <h3 id="modal-filterOptions-search-title" class="list-Title">Search</h3>
                 <div id="steam_filter_searchbar_win_form" action=""> <!--form-->
                   <div class="searchbar_container">
-                    <label class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
+                    <label id="modal-filterOptions-search-label" class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
                     <input class="searchbar_form_object steam_filter_gui_input" type="text" id="searchbar_data" name="searchbar_data">
-                    <label class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
+                    <label id="modal-filterOptions-search-altLabel" class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
                     <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">
                     <div>
-                      <input class="searchbar_form_object steam_filter_gui_button" type="submit" id="add_search_filter" name="add_search_filter" value="Add">
-                      <input class="searchbar_form_object steam_filter_gui_button" type="submit" id="add_search_filter" name="add_search_filter" value="Search">
+                      <input class="searchbar_form_object steam_filter_gui_button" type="submit" id="modal-filterOptions-add-button" name="add_search_filter" value="Add">
+                      <input class="searchbar_form_object steam_filter_gui_button" type="submit" id="modal-filterOptions-search-button" name="add_search_filter" value="Search">
                     </div>
                   </div>
                 </div> <!--form-->
@@ -198,29 +198,29 @@
             </div>
             <div class="container-3">
               <div class="list-2">
-                <h3 class="list-Title">Filters</h3>
+                <h3 id="modal-filterOptions-filterTitle" class="list-Title">Filters</h3>
                 <ul class="list2 filter-List">
-                  <li data-main-tag="Unlocked a container" data-item-name-tag="Case Key"> Case Opened </li>
-                  <li data-main-tag="Unlocked a container" data-item-name-tag="Souvenir Package"> Souvenir Package Opened </li>
-                  <li data-main-tag="Unlocked a container" data-item-name-tag="Capsule"> Capsule Opened </li>
-                  <li data-main-tag="Earned"> Medals </li>
-                  <li data-main-tag="Moved to Storage Unit"> Storage Unit </li>
-                  <li data-main-tag="Got an item drop"> Case Drops </li>
-                  <li data-main-tag="Earned a new rank and got a drop"> Item Drops </li>
-                  <li data-main-tag="You traded with "> Trades </li>
-                  <li data-main-tag="Unlocked a container"> Container Opened </li>
-                  <li data-main-tag="Purchased from the store"> Store Purchases </li>
-                  <li data-main-tag="You purchased an item on the Community Market."> Market Purchases </li>
-                  <li data-main-tag="You listed an item on the Community Market."> Market Created Listings </li>
-                  <li data-main-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
-                  <li data-main-tag="Used"> Used </li>
-                  <li data-main-tag="Earned a souvenir drop"> Souvenir drop </li>
-                  <li data-main-tag="Crafted"> Trade ups </li>
-                  <li data-main-tag="Sticker applied"> Sticker applied </li>
-                  <li data-main-tag="Sticker removed"> Sticker removed </li>
-                  <li data-main-tag="You deleted"> Deleted Item </li>
-                  <li data-main-tag="Unsealed"> Unsealed Graffiti </li>
-                  <li data-main-tag="Mission reward"> Mission Reward (Operations) </li>
+                  <li id="modal-filterOptions-data-caseOpened" data-main-tag="Unlocked a container" data-item-name-tag="Case Key"> Case Opened </li>
+                  <li id="modal-filterOptions-data-souvenirPackageOpened" data-main-tag="Unlocked a container" data-item-name-tag="Souvenir Package"> Souvenir Package Opened </li>
+                  <li id="modal-filterOptions-data-capsuleOpened" data-main-tag="Unlocked a container" data-item-name-tag="Capsule"> Capsule Opened </li>
+                  <li id="modal-filterOptions-data-medals" data-main-tag="Earned"> Medals </li>
+                  <li id="modal-filterOptions-data-storageUnit" data-main-tag="Moved to Storage Unit"> Storage Unit </li>
+                  <li id="modal-filterOptions-data-caseDrops" data-main-tag="Got an item drop"> Case Drops </li>
+                  <li id="modal-filterOptions-data-itemDrops" data-main-tag="Earned a new rank and got a drop"> Item Drops </li>
+                  <li id="modal-filterOptions-data-trades" data-main-tag="You traded with "> Trades </li>
+                  <li id="modal-filterOptions-data-containerOpened" data-main-tag="Unlocked a container"> Container Opened </li>
+                  <li id="modal-filterOptions-data-storePurchases" data-main-tag="Purchased from the store"> Store Purchases </li>
+                  <li id="modal-filterOptions-data-marketPurchases" data-main-tag="You purchased an item on the Community Market."> Market Purchases </li>
+                  <li id="modal-filterOptions-data-marketListingCreated" data-main-tag="You listed an item on the Community Market."> Market Created Listings </li>
+                  <li id="modal-filterOptions-data-marketListingRemoved" data-main-tag="You canceled a listing on the Community Market. The item was returned to you."> Market Removed Listings </li>
+                  <li id="modal-filterOptions-data-used" data-main-tag="Used"> Used </li>
+                  <li id="modal-filterOptions-data-souvenirDrop" data-main-tag="Earned a souvenir drop"> Souvenir drop </li>
+                  <li id="modal-filterOptions-data-tradeUps" data-main-tag="Crafted"> Trade ups </li>
+                  <li id="modal-filterOptions-data-stickerApplied" data-main-tag="Sticker applied"> Sticker applied </li>
+                  <li id="modal-filterOptions-data-stickerRemoved" data-main-tag="Sticker removed"> Sticker removed </li>
+                  <li id="modal-filterOptions-data-deletedItem" data-main-tag="You deleted"> Deleted Item </li>
+                  <li id="modal-filterOptions-data-unsealedGraffiti" data-main-tag="Unsealed"> Unsealed Graffiti </li>
+                  <li id="modal-filterOptions-data-missionReward" data-main-tag="Mission reward"> Mission Reward (Operations) </li>
                 </ul>
               </div>
             </div>
@@ -1284,6 +1284,32 @@
 <div class="steam_filter_hide_class" id="steam_filter_loading_screen">
   <div class="newmodal steam_inv_filter_modal">
     <div id="steam_filter_loading_icon" class="waiting_dialog_throbber newmodal"></div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<!-- Default options Dialog -->
+<div class="steam_filter_hide_class steam_filter_dialog_group" id="steam_filter_options_Dialog">
+  <div class="newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <div class="newmodal_close steam_filter_options_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div id="steam_filter_options2_Win_Title_Text" class="title_text">Options</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content" style="max-height: 1477px;">
+        <div class="econ_tag_filter_category_label">Language</div>
+        <select id="steam_filter_language_option">
+          <option value="english">English</option>
+          <option value="swedish">Swedish</option>
+        </select>
+        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+          <div id="steam_filter_options_Win_Btn" class="btn_grey_steamui btn_medium" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_options_Win_Btn_Txt">SAVE</span></div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="newmodal_background" style="opacity: 0.8;"></div>
 </div>

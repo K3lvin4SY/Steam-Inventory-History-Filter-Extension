@@ -142,6 +142,19 @@ function createButtonLinks() {
     })
   });
 
+  $J(".steam_filter_options_Win_Dismiss").each(function() {
+    $J(this).click(function() {
+      $J("#steam_filter_options_Dialog").toggleClass("steam_filter_hide_class");
+    })
+  });
+
+  $J("#steam_filter_options_Win_Btn").click(function() {
+    $J("#steam_filter_options_Dialog").addClass("steam_filter_hide_class");
+    const selectedLanguageProperties = languageOption[$J("#steam_filter_language_option").val()];
+    languageOption["sel"] = selectedLanguageProperties;
+    updateHtmlText();
+  });
+
   $J("#steam_filter_searchbar_advanced").click(function() {
     $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
     $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
