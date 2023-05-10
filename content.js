@@ -145,7 +145,7 @@ function filterListTagInItems(items, tag, prop) {
 }
 
 function filterListActionV2(tags, global_search_tag, include_only_filtered_rows) {
-  
+  var rowsVisable = 0;
   invHisTab.children().each(function() {
     var event_container = $J(this).find('.tradehistory_content').eq(0);
     var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
@@ -217,11 +217,13 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
     };
     if (passedAllChecks) {
       $J(this).css("display", "block")
+      rowsVisable++;
     } else {
       $J(this).css("display", "none")
     }
   });
 
+  $J('#inventory_history_count').text(rowsVisable+"");
   //$J("#steam_filter_Options").removeClass("steam_filter_hide_class"); - only if window was open before
   $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
 }
