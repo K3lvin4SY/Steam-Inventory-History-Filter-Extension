@@ -56,6 +56,9 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 			var plusminus = $J(this).find(".tradehistory_items_plusminus").eq(0).text();
 			$J(this).find(".economy_item_hoverable").each(function() {
 				var rgAppDescriptions = rgDescriptions[$J(this).data('appid')];
+				if ($J( this ).data( 'appid' )) {
+					$J(this).find(".history_item_name").eq(0).data("appid", parseInt($J( this ).data( 'appid' )));
+				}
 				if ( rgAppDescriptions && parseInt($J( this ).data( 'appid' )) == 730)
 				{
 					var rgItemDescription = rgDescriptions[$J( this ).data( 'appid' )][$J( this ).data( 'classid' ) + '_' + $J( this ).data( 'instanceid' )];

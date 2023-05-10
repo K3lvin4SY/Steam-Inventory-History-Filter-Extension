@@ -85,6 +85,8 @@ function findTag(item, tag, prop) {
       return true;
     }
   } else if (prop == "data-item-name-tag") {
+    console.log(item);
+    console.log(item.data());
     if (item.data("item-name").cleanup().includes(tag)) {
       // passed
       return true;
@@ -128,6 +130,9 @@ function filterListTagInItems(items, tag, prop) {
     //console.log("-----------------------------------");
     //console.log(items.eq(i));
     //console.log(tag);
+    if (items.eq(i).data("appid") != 730) {
+      return false;
+    }
     const passed = findTag(items.eq(i), tag, prop);
     if (passed) {
       // break out of the outer loop & found an item with the aquired requirments
