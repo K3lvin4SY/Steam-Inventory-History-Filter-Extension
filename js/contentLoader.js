@@ -362,6 +362,7 @@ function InventoryHistory_LoadAll()
 
 			too_many_req = false;
 			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
+			$J('#inventory_history_count_rows').text( parseInt( $J('#inventory_history_count_rows').text() ) + data.num );
 			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
 			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
 			var unix_timestamp;
@@ -384,6 +385,7 @@ function InventoryHistory_LoadAll()
 				if (loadAllAmount == 0) {
 					loadAllAmount++;
 					$J('#inventory_history_table').empty();
+					$J('#inventory_history_count').text("50");
 					$J('#inventory_history_table').append( data.html );
 					var new_elems = $J('#inventory_history_table').children();
 				} else {
