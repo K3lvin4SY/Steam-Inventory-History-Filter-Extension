@@ -135,7 +135,7 @@ function InventoryHistory_GetStatsData(itemName) {
 	var itemListData = [];
 	$J("#inventory_history_table").find(".tradehistoryrow").each(function() {
 		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
-		var mon = $J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, '');
+		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, ''));
 		var month = getMonthFromString(mon);
 		var monthStr = getMonthFromString(mon)+"";
 		if (monthStr.length == 1) {
@@ -166,11 +166,27 @@ function InventoryHistory_GetStatsData(itemName) {
 	return itemListData;
 }
 
+function getEnglishMonth(month) {
+	var foundMonth = false;
+	var monthFound;
+	Object.entries(languageOption.sel.months).forEach(([eng, lang]) => {
+    if (lang.cleanup() == month) {
+			foundMonth = true;
+			monthFound = eng;
+			return;
+		}
+  });
+	if (foundMonth) {
+		return monthFound;
+	}
+	return null;
+}
+
 function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 {
 	$Jnew.each(function() {
 		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
-		var mon = $J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, '');
+		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, ''));
 		var month = getMonthFromString(mon);
 		var monthStr = getMonthFromString(mon)+"";
 		if (monthStr.length == 1) {
@@ -183,7 +199,7 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 		}
 
 		// container unbox
-		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.uac)) {
+		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.containerOpened.main)) {
 			var typeOfCase;
 			var output;
 			$J(this).find('.economy_item_hoverable').each(function() {
@@ -205,17 +221,17 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				container: typeOfCase,
 				item: output
 			};
-			if (typeOfCase.itemName.includes(languageOption.sel.case)) {
+			if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.case.toLowerCase())) {
 				gameData.containerUnlocks.case.push(unbox);
-			} else if (typeOfCase.itemName.includes(languageOption.sel.package)) {
+			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.package.toLowerCase())) {
 				gameData.containerUnlocks.package.push(unbox);
-			} else if (typeOfCase.itemName.includes(languageOption.sel.capsule)) {
+			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.capsule.toLowerCase())) {
 				gameData.containerUnlocks.capsule.push(unbox);
 			}
 		}
 
 		// game drop
-		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.gaid) || $J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.eanragad)) {
+		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.caseDrops.main) || $J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.itemDrops.main)) {
 			var data = $J(this).find('.history_item_name').eq(0).data();
 			var drop = {
 				timeFrame: {
@@ -353,7 +369,7 @@ function InventoryHistory_LoadAll()
 			}
 			var date = new Date(unix_timestamp.time * 1000);
 			var year = date.getFullYear().toString();
-			var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
+			var month = languageOption.sel.largeMonths[date.getMonth()];
 			var day = date.getDate().toString();
 			var formattedDate = day + ' ' + month + ' ' + year;
 			$J('#inventory_history_load_date').text(formattedDate);

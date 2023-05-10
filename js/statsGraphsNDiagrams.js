@@ -775,6 +775,8 @@ function updateCharts() {
 
   var caseRarityItemsAmount = [0, 0, 0, 0, 0];
 
+  console.log(caseOpenings);
+
   for (let index = 0; index < caseOpenings.length; index++) {
     const caseOpen = caseOpenings[index];
     
@@ -788,13 +790,13 @@ function updateCharts() {
     caseNamesAmount[caseRarityItemsAmountIndex] = caseNamesAmount[caseRarityItemsAmountIndex]+1;
 
     // add rarity amount on case open
-    if (caseOpen.item.itemRarity == "Mil-Spec Grade") {
+    if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
       caseRarityItemsAmount[0] = caseRarityItemsAmount[0]+1;
-    } else if (caseOpen.item.itemRarity == "Restricted") {
+    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
       caseRarityItemsAmount[1] = caseRarityItemsAmount[1]+1;
-    } else if (caseOpen.item.itemRarity == "Classified") {
+    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
       caseRarityItemsAmount[2] = caseRarityItemsAmount[2]+1;
-    } else if (caseOpen.item.itemRarity == "Covert" && caseOpen.item.itemQuality != "★") {
+    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert && caseOpen.item.itemQuality != "★") {
       caseRarityItemsAmount[3] = caseRarityItemsAmount[3]+1;
     } else if (caseOpen.item.itemQuality == "★") {
       caseRarityItemsAmount[4] = caseRarityItemsAmount[4]+1;
@@ -806,14 +808,23 @@ function updateCharts() {
   }
 
   // case charts
+  case_types_chart.data.datasets[0].data = [];
+  case_types_chart.data.datasets[0].backgroundColor = "yellow";
+  case_types_chart.data.labels = [];
+  case_types_chart.update();
   case_types_chart.data.datasets[0].data = caseNamesAmount;
   case_types_chart.data.datasets[0].backgroundColor = getColorList(caseNamesAmount.length);
   case_types_chart.data.labels = caseNames;
   case_types_chart.update();
 
+  case_unlucks_chart.data.datasets[0].data = [];
+  case_unlucks_chart.update();
   case_unlucks_chart.data.datasets[0].data = caseRarityItemsAmount;
   case_unlucks_chart.update();
 
+  container_time_graph.data.labels = [];
+  container_time_graph.data.datasets[0].data = [];
+  container_time_graph.update();
   container_time_graph.data.labels = timeLine;
   container_time_graph.data.datasets[0].data = caseOpenValue;
   container_time_graph.update();
@@ -841,13 +852,13 @@ function updateCharts() {
     capsuleNamesAmount[capsuleRarityItemsAmountIndex] = capsuleNamesAmount[capsuleRarityItemsAmountIndex]+1;
 
     // add rarity amount on capsule open
-    if (capsuleOpen.item.itemRarity == "High Grade") {
+    if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.highGrade) {
       capsuleRarityItemsAmount[0] = capsuleRarityItemsAmount[0]+1;
-    } else if (capsuleOpen.item.itemRarity == "Remarkable") {
+    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.remarkable) {
       capsuleRarityItemsAmount[1] = capsuleRarityItemsAmount[1]+1;
-    } else if (capsuleOpen.item.itemRarity == "Exotic") {
+    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.exotic) {
       capsuleRarityItemsAmount[2] = capsuleRarityItemsAmount[2]+1;
-    } else if (capsuleOpen.item.itemRarity == "Extraordinary") {
+    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.extraordinary) {
       capsuleRarityItemsAmount[3] = capsuleRarityItemsAmount[3]+1;
     }
 
@@ -857,14 +868,22 @@ function updateCharts() {
   }
 
   // capsule charts
+  capsules_types_chart.data.datasets[0].data = [];
+  capsules_types_chart.data.datasets[0].backgroundColor = "yellow";
+  capsules_types_chart.data.labels = [];
+  capsules_types_chart.update();
   capsules_types_chart.data.datasets[0].data = capsuleNamesAmount;
   capsules_types_chart.data.datasets[0].backgroundColor = getColorList(capsuleNamesAmount.length);
   capsules_types_chart.data.labels = capsuleNames;
   capsules_types_chart.update();
 
+  capsules_unlucks_chart.data.datasets[0].data = [];
+  capsules_unlucks_chart.update();
   capsules_unlucks_chart.data.datasets[0].data = capsuleRarityItemsAmount;
   capsules_unlucks_chart.update();
 
+  container_time_graph.data.datasets[1].data = [];
+  container_time_graph.update();
   container_time_graph.data.datasets[1].data = capsuleOpenValue;
   container_time_graph.update();
 
@@ -891,17 +910,17 @@ function updateCharts() {
     packageNamesAmount[packageRarityItemsAmountIndex] = packageNamesAmount[packageRarityItemsAmountIndex]+1;
 
     // add rarity amount on package open
-    if (packageOpen.item.itemRarity == "Consumer Grade") {
+    if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade) {
       packageRarityItemsAmount[0] = packageRarityItemsAmount[0]+1;
-    } else if (packageOpen.item.itemRarity == "Industral Grade") {
+    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade) {
       packageRarityItemsAmount[1] = packageRarityItemsAmount[1]+1;
-    } else if (packageOpen.item.itemRarity == "Mil-Spec Grade") {
+    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
       packageRarityItemsAmount[2] = packageRarityItemsAmount[2]+1;
-    } else if (packageOpen.item.itemRarity == "Restricted") {
+    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
       packageRarityItemsAmount[3] = packageRarityItemsAmount[3]+1;
-    } else if (packageOpen.item.itemRarity == "Classified") {
+    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
       packageRarityItemsAmount[4] = packageRarityItemsAmount[4]+1;
-    } else if (packageOpen.item.itemRarity == "Covert") {
+    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert) {
       packageRarityItemsAmount[5] = packageRarityItemsAmount[5]+1;
     }
 
@@ -911,14 +930,22 @@ function updateCharts() {
   }
 
   // package charts
+  packages_types_chart.data.datasets[0].data = [];
+  packages_types_chart.data.datasets[0].backgroundColor = "yellow";
+  packages_types_chart.data.labels = [];
+  packages_types_chart.update();
   packages_types_chart.data.datasets[0].data = packageNamesAmount;
   packages_types_chart.data.datasets[0].backgroundColor = getColorList(packageNamesAmount.length);
   packages_types_chart.data.labels = packageNames;
   packages_types_chart.update();
 
+  packages_unlucks_chart.data.datasets[0].data = [];
+  packages_unlucks_chart.update();
   packages_unlucks_chart.data.datasets[0].data = packageRarityItemsAmount;
   packages_unlucks_chart.update();
 
+  container_time_graph.data.datasets[2].data = [];
+  container_time_graph.update();
   container_time_graph.data.datasets[2].data = packageOpenValue;
   container_time_graph.update();
 
@@ -934,8 +961,8 @@ function updateCharts() {
     const caseDrop = caseDrops[index];
 
     // add case drop names
-    console.log(caseDrop);
-    console.log(caseDrop.item);
+    //console.log(caseDrop);
+    //console.log(caseDrop.item);
     if (!caseDropNames.includes(caseDrop.item.itemName)) {
       caseDropNames.push(caseDrop.item.itemName);
       caseDropNamesAmount.push(0);
@@ -950,11 +977,18 @@ function updateCharts() {
   }
 
   // case drop charts
+  case_drops_chart.data.datasets[0].data = [];
+  case_drops_chart.data.datasets[0].backgroundColor = "yellow";
+  case_drops_chart.data.labels = [];
+  case_drops_chart.update();
   case_drops_chart.data.datasets[0].data = caseDropNamesAmount;
   case_drops_chart.data.datasets[0].backgroundColor = getColorList(caseDropNamesAmount.length);
   case_drops_chart.data.labels = caseDropNames;
   case_drops_chart.update();
 
+  drops_time_graph.data.labels = [];
+  drops_time_graph.data.datasets[0].data = [];
+  drops_time_graph.update();
   drops_time_graph.data.labels = timeLineDrop;
   drops_time_graph.data.datasets[0].data = caseDropValue;
   drops_time_graph.update();
@@ -970,17 +1004,17 @@ function updateCharts() {
     const skinDrop = skinDrops[index];
 
     // add rarity amount on skin drop
-    if (skinDrop.item.itemRarity == "Consumer Grade") {
+    if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade) {
       skinDropRarityItemsAmount[0] = skinDropRarityItemsAmount[0]+1;
-    } else if (skinDrop.item.itemRarity == "Industral Grade") {
+    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade) {
       skinDropRarityItemsAmount[1] = skinDropRarityItemsAmount[1]+1;
-    } else if (skinDrop.item.itemRarity == "Mil-Spec Grade") {
+    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
       skinDropRarityItemsAmount[2] = skinDropRarityItemsAmount[2]+1;
-    } else if (skinDrop.item.itemRarity == "Restricted") {
+    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
       skinDropRarityItemsAmount[3] = skinDropRarityItemsAmount[3]+1;
-    } else if (skinDrop.item.itemRarity == "Classified") {
+    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
       skinDropRarityItemsAmount[4] = skinDropRarityItemsAmount[4]+1;
-    } else if (skinDrop.item.itemRarity == "Covert") {
+    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert) {
       skinDropRarityItemsAmount[5] = skinDropRarityItemsAmount[5]+1;
     }
 
@@ -990,9 +1024,13 @@ function updateCharts() {
   }
 
   // skin drop charts
+  skins_drops_chart.data.datasets[0].data = [];
+  skins_drops_chart.update();
   skins_drops_chart.data.datasets[0].data = skinDropRarityItemsAmount;
   skins_drops_chart.update();
 
+  drops_time_graph.data.datasets[1].data = [];
+  drops_time_graph.update();
   drops_time_graph.data.datasets[1].data = skinDropValue;
   drops_time_graph.update();
 
@@ -1010,6 +1048,8 @@ function updateCharts() {
     graffitiDropValue[timeLineIndex] = graffitiDropValue[timeLineIndex]+1;
   }
 
+  drops_time_graph.data.datasets[2].data = [];
+  drops_time_graph.update();
   drops_time_graph.data.datasets[2].data = graffitiDropValue;
   drops_time_graph.update();
 }

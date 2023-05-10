@@ -20,14 +20,33 @@ var gameData = {
 
 var languageOption = {
   sel: {
-    case: "Case",
-    package: "Package",
-    capsule: "Capsule",
-    uac: "Unlocked a container",
-    container: "Container",
-    gaid: "Got an item drop",
-    eanragad: "Earned a new rank and got a drop",
-    graffiti: "Graffiti",
+    case: "Case", // code
+    skins: "Skins",
+    cases: "Cases",
+    package: "Package", // code
+    packages: "Packages",
+    capsule: "Capsule", // code
+    capsules: "Capsules",
+    container: "Container", // code
+    containers: "Containers",
+    graffiti: "Graffiti", // code
+    months: {
+      jan: "Jan",
+      feb: "Feb",
+      mar: "Mar",
+      apr: "Apr",
+      may: "May",
+      jun: "Jun",
+      jul: "Jul",
+      aug: "Aug",
+      sep: "Sep",
+      oct: "Oct",
+      nov: "Nov",
+      dec: "Dec"
+    },
+    largeMonths: [
+      "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ],
     messages: {
       invalidMonth: "Invalid month number. Month number must be between 1 and 12.",
       historyErrorTitle: "History Loading error",
@@ -54,7 +73,7 @@ var languageOption = {
         loadHistory: "Load History",
         statistics: "Statistics",
         openFilter: "Filter Options",
-        options: "Options"
+        options: "Settings"
       },
       simpleSearch: {
         searchBarLabel: "Search",
@@ -96,7 +115,7 @@ var languageOption = {
             unsealedGraffiti: "Unsealed Graffiti",
             missionReward: "Mission Reward (Operations)"
           },
-          data: {
+          data: { // code
             caseOpened: {
               main: "Unlocked a container",
               itemName: "Case Key"
@@ -163,20 +182,111 @@ var languageOption = {
             missionReward: {
               main: "Mission reward"
             }
+          }
+        }
+      },
+      loadingHistory: {
+        rows: "Rows added:",
+        loops: "Loops done:",
+        loadedDate: "Loaded date:",
+        buttons: {
+          forceStop: "FORCE STOP" 
+        }
+      },
+      options: {
+        language: "Language",
+        languages: {
+          english: "English",
+          swedish: "Swedish"
+        },
+        buttons: {
+          save: "SAVE"
+        }
+      },
+      stats: {
+        warning: "*WARNING - You have not loaded all your history. The following data will be incomplete*",
+        statsCategories: {
+          containersOpened: "Containers Opened",
+          drops: "Drops",
+          specificItem: "Specific Item Stats"
+        },
+        statsHtml: {
+          general: {
+            title: "General Stats",
+            opened: {
+              cases: "Total cases opened:",
+              capsules: "Total capsules opened:",
+              packages: "Total packages opened:"
+            },
+            dropped: {
+              cases: "Total cases dropped:",
+              skins: "Total skins dropped:",
+              graffiti: "Total graffiti dropped:"
+            }
+          },
+          rarities: {
+            skins: { // code
+              consumerGrade: "Consumer Grade",
+              industrialGrade: "Industrial Grade",
+              milspec: "Mil-spec Grade",
+              restricted: "Restricted",
+              classified: "Classified",
+              covert: "Covert",
+              gold: "Gold"
+            },
+            stickers: { // code
+              highGrade: "High Grade",
+              remarkable: "Remarkable",
+              exotic: "Exotic",
+              extraordinary: "Extraordinary"
+            }
+          },
+          chartLabels: {
+            openingsGraph: "Number of Openings over time",
+            caseOpen: "All Case Openings",
+            capsuleOpen: "All Capsule Openings",
+            packageOpen: "All Package Openings",
+            caseUnlocks: "Case Unlocks",
+            capsuleUnlocks: "Capsule Unlucks",
+            packageUnlocks: "Package Unlucks",
+
+            dropsGraph: "Drops over time",
+            caseDrops: "Case Drops",
+            skinDrops: "Skin Drops",
+
           }
         }
       }
     }
   },
   english: {
-    case: "Case",
-    package: "Package",
-    capsule: "Capsule",
-    uac: "Unlocked a container",
-    container: "Container",
-    gaid: "Got an item drop",
-    eanragad: "Earned a new rank and got a drop",
-    graffiti: "Graffiti",
+    case: "Case", // code
+    skins: "Skins",
+    cases: "Cases",
+    package: "Package", // code
+    packages: "Packages",
+    capsule: "Capsule", // code
+    capsules: "Capsules",
+    container: "Container", // code
+    containers: "Containers",
+    graffiti: "Graffiti", // code
+    months: {
+      jan: "Jan",
+      feb: "Feb",
+      mar: "Mar",
+      apr: "Apr",
+      may: "May",
+      jun: "Jun",
+      jul: "Jul",
+      aug: "Aug",
+      sep: "Sep",
+      oct: "Oct",
+      nov: "Nov",
+      dec: "Dec"
+    },
+    largeMonths: [
+      "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ],
     messages: {
       invalidMonth: "Invalid month number. Month number must be between 1 and 12.",
       historyErrorTitle: "History Loading error",
@@ -203,7 +313,7 @@ var languageOption = {
         loadHistory: "Load History",
         statistics: "Statistics",
         openFilter: "Filter Options",
-        options: "Options"
+        options: "Settings"
       },
       simpleSearch: {
         searchBarLabel: "Search",
@@ -245,7 +355,7 @@ var languageOption = {
             unsealedGraffiti: "Unsealed Graffiti",
             missionReward: "Mission Reward (Operations)"
           },
-          data: {
+          data: { // code
             caseOpened: {
               main: "Unlocked a container",
               itemName: "Case Key"
@@ -314,18 +424,108 @@ var languageOption = {
             }
           }
         }
+      },
+      loadingHistory: {
+        rows: "Rows added:",
+        loops: "Loops done:",
+        loadedDate: "Loaded date:",
+        buttons: {
+          forceStop: "FORCE STOP" 
+        }
+      },
+      options: {
+        language: "Language",
+        languages: {
+          english: "English",
+          swedish: "Swedish"
+        },
+        buttons: {
+          save: "SAVE"
+        }
+      },
+      stats: {
+        warning: "*WARNING - You have not loaded all your history. The following data will be incomplete*",
+        statsCategories: {
+          containersOpened: "Containers Opened",
+          drops: "Drops",
+          specificItem: "Specific Item Stats"
+        },
+        statsHtml: {
+          general: {
+            title: "General Stats",
+            opened: {
+              cases: "Total cases opened:",
+              capsules: "Total capsules opened:",
+              packages: "Total packages opened:"
+            },
+            dropped: {
+              cases: "Total cases dropped:",
+              skins: "Total skins dropped:",
+              graffiti: "Total graffiti dropped:"
+            }
+          },
+          rarities: {
+            skins: { // code
+              consumerGrade: "Consumer Grade",
+              industrialGrade: "Industrial Grade",
+              milspec: "Mil-spec Grade",
+              restricted: "Restricted",
+              classified: "Classified",
+              covert: "Covert",
+              gold: "Gold"
+            },
+            stickers: { // code
+              highGrade: "High Grade",
+              remarkable: "Remarkable",
+              exotic: "Exotic",
+              extraordinary: "Extraordinary"
+            }
+          },
+          chartLabels: {
+            openingsGraph: "Number of Openings over time",
+            caseOpen: "All Case Openings",
+            capsuleOpen: "All Capsule Openings",
+            packageOpen: "All Package Openings",
+            caseUnlocks: "Case Unlocks",
+            capsuleUnlocks: "Capsule Unlucks",
+            packageUnlocks: "Package Unlucks",
+
+            dropsGraph: "Drops over time",
+            caseDrops: "Case Drops",
+            skinDrops: "Skin Drops",
+
+          }
+        }
       }
     }
   },
   swedish: {
-    case: "låda",
-    package: "Package",
-    capsule: "Capsule",
-    uac: "Öppnade en låda",
-    container: "Behållare",
-    gaid: "Hittade ett föremål",
-    eanragad: "Uppnådde en ny rang och hittade ett föremål",
-    graffiti: "Graffiti",
+    case: "Låda", // code
+    skins: "Skins",
+    cases: "Lådor",
+    package: "Package", // code
+    packages: "Packages",
+    capsule: "Capsule", // code
+    capsules: "Capsules",
+    container: "Behållare", // code
+    graffiti: "Graffiti", // code
+    months: {
+      jan: "Jan",
+      feb: "Feb",
+      mar: "Mar",
+      apr: "Apr",
+      may: "Maj",
+      jun: "Jun",
+      jul: "Jul",
+      aug: "Aug",
+      sep: "Sep",
+      oct: "Okt",
+      nov: "Nov",
+      dec: "Dec"
+    },
+    largeMonths: [
+      "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"
+    ],
     messages: {
       invalidMonth: "Ogiltigt månadsnummer. Månadsnummer måste vara mellan 1 och 12.",
       historyErrorTitle: "Historik Laddnings fel",
@@ -344,7 +544,7 @@ var languageOption = {
       stop: "STOP",
       steamServiceUnavailable: "Steam-tjänsten är för närvarande inte tillgänglig.",
       otherErrorMessage: "Det gick inte att läsa in din lagerhistorik.",
-      loadingHistory: "Laddnings Historik"
+      loadingHistory: "Laddar Historik"
     },
     html: {
       toolbar: {
@@ -463,6 +663,78 @@ var languageOption = {
             }
           }
         }
+      },
+      loadingHistory: {
+        rows: "Rader tillagda:",
+        loops: "Repetetioner gjorda:",
+        loadedDate: "Laddat datum:",
+        buttons: {
+          forceStop: "AVBRYT" 
+        }
+      },
+      options: {
+        language: "Språk (language)",
+        languages: {
+          english: "Engelska (English)",
+          swedish: "Svenska (Swedish)"
+        },
+        buttons: {
+          save: "SPARA"
+        }
+      },
+      stats: {
+        warning: "*VARNING - Du har inte laddat all din historik. Följande data kommer vara inkomplett*",
+        statsCategories: {
+          containersOpened: "Behållare Öppnad",
+          drops: "Hittade Föremål",
+          specificItem: "Specifikt Föremål Statistik"
+        },
+        statsHtml: {
+          general: {
+            title: "Allmän Statistik",
+            opened: {
+              cases: "Lådor öppnade totalt:",
+              capsules: "Capsules öppnade totalt:",
+              packages: "Packages öppnade totalt:"
+            },
+            dropped: {
+              cases: "Lådor hittade totalt:",
+              skins: "Skins hittade totalt:",
+              graffiti: "Graffitis hittade totalt:"
+            }
+          },
+          rarities: {
+            skins: { // code
+              consumerGrade: "Konsumentklass",
+              industrialGrade: "Industriklass",
+              milspec: "Militärklass",
+              restricted: "Begränsad",
+              classified: "Sekretessbelagd",
+              covert: "Konfidentiell",
+              gold: "Guld"
+            },
+            stickers: { // code
+              highGrade: "Högkvalitet",
+              remarkable: "Enastående",
+              exotic: "Exotisk",
+              extraordinary: "Extraordinär"
+            }
+          },
+          chartLabels: {
+            openingsGraph: "Antal öppningar över tid",
+            caseOpen: "Alla låd-öppningar",
+            capsuleOpen: "Alla capsule-öppningar",
+            packageOpen: "All package-öppningar",
+            caseUnlocks: "Upplåsta lådor",
+            capsuleUnlocks: "Upplåsta capsules",
+            packageUnlocks: "Upplåsta packages",
+
+            dropsGraph: "Hittade föremål över tid",
+            caseDrops: "Hittade lådor",
+            skinDrops: "hittade skins",
+
+          }
+        }
       }
     }
   }
@@ -474,6 +746,8 @@ async function addFilterOptions() {
   const html = await resp.text();
   const contentDiv = document.getElementById("BG_bottom");
   contentDiv.insertAdjacentHTML("beforebegin", html);
+  
+  loadChartsNDiagrams();
 
   const selectedLanguageProperties = languageOption[steamLanguage];
   languageOption["sel"] = selectedLanguageProperties;
@@ -482,7 +756,6 @@ async function addFilterOptions() {
     
   createButtonLinks();
 
-  loadChartsNDiagrams();
 }
 
 const cookies = document.cookie.split("; ")
@@ -513,6 +786,7 @@ function updateHtmlText() {
   $J("#steam_filter_simple_searchbar_advanced").text(languageOption.sel.html.simpleSearch.advanced);
   $J("#steam_filter_simple_searchbar_win_dismiss_btn").text(languageOption.sel.html.simpleSearch.close);
   $J("#steam_filter_simple_searchbar_search_submit_btn").text(languageOption.sel.html.simpleSearch.searchBarLabel);
+  $J("#modal-label-simpleSearch").text(languageOption.sel.html.simpleSearch.searchBarLabel);
 
   // filter options //
   $J("#steam_filter_Options_Win_Title_Text").text(languageOption.sel.html.toolbar.openFilter);
@@ -581,6 +855,75 @@ function updateHtmlText() {
   $J("#modal-filterOptions-data-deletedItem").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.deletedItem.main);
   $J("#modal-filterOptions-data-unsealedGraffiti").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.unsealedGraffiti.main);
   $J("#modal-filterOptions-data-missionReward").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.missionReward.main);
+
+  // Loading History //
+  $J("#steam_Inv_Loader_Win_Title_Text").text(languageOption.sel.messages.loadingHistory);
+  $J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
+  $J("#modal-loadHistory-rows").text(languageOption.sel.html.loadingHistory.rows);
+  $J("#modal-loadHistory-loops").text(languageOption.sel.html.loadingHistory.loops);
+  $J("#modal-loadHistory-date").text(languageOption.sel.html.loadingHistory.loadedDate);
+  $J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.stop);
+  $J("#steam_Inv_Loader_Win_FBtn_Txt").text(languageOption.sel.html.loadingHistory.buttons.forceStop);
+
+  // Options //
+  $J("#steam_filter_options2_Win_Title_Text").text(languageOption.sel.html.toolbar.options);
+  $J("#steam_filter_language_option_title").text(languageOption.sel.html.options.language)
+  Object.entries(languageOption.sel.html.options.languages).forEach(([lang, langStr]) => {
+    $J("#steam_filter_language_option option[value="+lang+"]").text(langStr);
+  });
+  $J("#steam_filter_options_Win_Btn_Txt").text(languageOption.sel.html.options.buttons.save);
+
+  // Stats //
+  $J("#steam_filter_stats_win_title_text").text(languageOption.sel.html.toolbar.statistics);
+  $J("#steam_filter_stats_alert_message").text(languageOption.sel.html.stats.warning);
+
+  $J("#stats-radio-label-containersOpened").text(languageOption.sel.html.stats.statsCategories.containersOpened);
+  $J("#stats-radio-label-drops").text(languageOption.sel.html.stats.statsCategories.drops);
+  $J("#stats-radio-label-itemStats").text(languageOption.sel.html.stats.statsCategories.specificItem);
+
+  $J("#stats-general-title").text(languageOption.sel.html.stats.statsHtml.general.title);
+  // general stats
+  $J("#stats-general-total-cases-opened").text(languageOption.sel.html.stats.statsHtml.general.opened.cases);
+  $J("#stats-general-total-capsules-opened").text(languageOption.sel.html.stats.statsHtml.general.opened.capsules);
+  $J("#stats-general-total-packages-opened").text(languageOption.sel.html.stats.statsHtml.general.opened.packages);
+  $J("#stats-general-total-cases-dropped").text(languageOption.sel.html.stats.statsHtml.general.dropped.cases);
+  $J("#stats-general-total-skins-dropped").text(languageOption.sel.html.stats.statsHtml.general.dropped.skins);
+  $J("#stats-general-total-graffiti-dropped").text(languageOption.sel.html.stats.statsHtml.general.dropped.graffiti);
+  // labels n titels on charts n graphs
+  container_time_graph.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.openingsGraph;
+  container_time_graph.data.datasets[0].label = languageOption.sel.cases;
+  container_time_graph.data.datasets[1].label = languageOption.sel.capsules;
+  container_time_graph.data.datasets[2].label = languageOption.sel.packages;
+  container_time_graph.update();
+
+  case_types_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.caseOpen;
+  capsules_types_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.capsuleOpen;
+  packages_types_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.packageOpen;
+  case_types_chart.update();
+  capsules_types_chart.update();
+  packages_types_chart.update();
+
+  case_unlucks_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.caseUnlocks;
+  case_unlucks_chart.data.labels = [languageOption.sel.html.stats.statsHtml.rarities.skins.milspec, languageOption.sel.html.stats.statsHtml.rarities.skins.restricted, languageOption.sel.html.stats.statsHtml.rarities.skins.classified, languageOption.sel.html.stats.statsHtml.rarities.skins.covert, languageOption.sel.html.stats.statsHtml.rarities.skins.gold]
+  case_unlucks_chart.update();
+  capsules_unlucks_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.capsuleUnlocks;
+  capsules_unlucks_chart.data.labels = [languageOption.sel.html.stats.statsHtml.rarities.stickers.highGrade, languageOption.sel.html.stats.statsHtml.rarities.stickers.remarkable, languageOption.sel.html.stats.statsHtml.rarities.stickers.exotic, languageOption.sel.html.stats.statsHtml.rarities.stickers.extraordinary];
+  capsules_unlucks_chart.update();
+  packages_unlucks_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.packageUnlocks;
+  packages_unlucks_chart.data.labels = [languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.milspec, languageOption.sel.html.stats.statsHtml.rarities.skins.restricted, languageOption.sel.html.stats.statsHtml.rarities.skins.classified, languageOption.sel.html.stats.statsHtml.rarities.skins.covert];
+  packages_unlucks_chart.update();
+
+  drops_time_graph.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.dropsGraph;
+  drops_time_graph.data.datasets[0].label = languageOption.sel.cases;
+  drops_time_graph.data.datasets[1].label = languageOption.sel.skins;
+  drops_time_graph.data.datasets[2].label = languageOption.sel.graffiti;
+  drops_time_graph.update();
+
+  case_drops_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.caseDrops;
+  case_drops_chart.update();
+  skins_drops_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.skinDrops;
+  skins_drops_chart.data.labels = [languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.milspec, languageOption.sel.html.stats.statsHtml.rarities.skins.restricted, languageOption.sel.html.stats.statsHtml.rarities.skins.classified, languageOption.sel.html.stats.statsHtml.rarities.skins.covert];
+  skins_drops_chart.update();
 }
 
 addFilterOptions();

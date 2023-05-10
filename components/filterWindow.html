@@ -1165,7 +1165,7 @@
               <!-- Chart => Display of multiple types over time -->
               <!-- Graph => Display of one type over time -->
 
-              <input type="radio" name="statWinRad" id="cases_opened_radio"><span>Cases Opened</span>
+              <input type="radio" name="statWinRad" id="containers_opened_radio"><span id="stats-radio-label-containersOpened">Containers Opened</span>
               <!--
                 Will include:
                 * amount of each type of cases opened
@@ -1177,31 +1177,31 @@
                 ** Luck on each case
               -->
 
-              <input type="radio" name="statWinRad" id="packages_opened_radio"><span>Packages Opened</span>
-              <!--
+              <!--<input type="radio" name="statWinRad" id="packages_opened_radio"><span>Packages Opened</span>
+
                 Will include:
                 * amount opened of each type
                 * per month/year opened
                 * How many covert, classified, etc
               -->
 
-              <input type="radio" name="statWinRad" id="capsules_opened_radio"><span>Capsules Opened</span>
-              <!--
+              <!--<input type="radio" name="statWinRad" id="capsules_opened_radio"><span>Capsules Opened</span>
+              
                 Will include:
                 * amount of each type opened
                 * per month/year opened
                 * How many of each rarity opened
               -->
 
-              <input type="radio" name="statWinRad" id="case_drops_radio"><span>Case Drops</span>
+              <input type="radio" name="statWinRad" id="drops_radio"><span id="stats-radio-label-drops">Drops</span>
               <!--
                 Will include:
                 * How many of each type of case
                 * per month/year
               -->
 
-              <input type="radio" name="statWinRad" id="skin_drops_radio"><span>Skin Drops</span>
-              <!--
+              <!--<input type="radio" name="statWinRad" id="skin_drops_radio"><span>Skin Drops</span>
+              
                 Will include:
                 * How many skin drops of each rarity
                 * per month/year (chart with each type)
@@ -1209,14 +1209,14 @@
                 * Graph over total amount over time?
               -->
 
-              <input type="radio" name="statWinRad" id="graffiti_drops_radio"><span>Graffiti Drops</span>
-              <!--
+              <!--<input type="radio" name="statWinRad" id="graffiti_drops_radio"><span>Graffiti Drops</span>
+              
                 Will include:
                 * How many in total
                 * Graph over total amount over time
               -->
 
-              <input type="radio" name="statWinRad" id="specific_item_stats_radio"><span>Specific Item Stats</span>
+              <input type="radio" name="statWinRad" id="specific_item_stats_radio"><span id="stats-radio-label-itemStats">Specific Item Stats</span>
               <!--
                 Will include:
                 * Search for an item and following stats will come:
@@ -1228,17 +1228,17 @@
           </div>
           <div class="stats_windows">
             <div class="number_chart" id="general_window">
-              <h1>General Stats</h1>
+              <h1 id="stats-general-title">General Stats</h1>
               <div class="totStatBox_con_con">
                 <div class="totStatBox_con">
-                  <span class="totStatBox" id="caseTot">Total cases opened: <span id="caseTotNum" class="numBox">0</span></span>
-                  <span class="totStatBox" id="capTot">Total capsules opened: <span id="capTotNum" class="numBox">0</span></span>
-                  <span class="totStatBox" id="packTot">Total packages opened: <span id="packTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="caseTot"><span id="stats-general-total-cases-opened">Total cases opened:</span> <span id="caseTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="capTot"><span id="stats-general-total-capsules-opened">Total capsules opened:</span> <span id="capTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="packTot"><span id="stats-general-total-packages-opened">Total packages opened:</span> <span id="packTotNum" class="numBox">0</span></span>
                 </div>
                 <div class="totStatBox_con">
-                  <span class="totStatBox" id="case2Tot">Total cases dropped: <span id="case2TotNum" class="numBox">0</span></span>
-                  <span class="totStatBox" id="skinTot">Total skins dropped: <span id="skinTotNum" class="numBox">0</span></span>
-                  <span class="totStatBox" id="grafTot">Total graffiti dropped: <span id="grafTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="case2Tot"><span id="stats-general-total-cases-dropped">Total cases dropped:</span> <span id="case2TotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="skinTot"><span id="stats-general-total-skins-dropped">Total skins dropped:</span> <span id="skinTotNum" class="numBox">0</span></span>
+                  <span class="totStatBox" id="grafTot"><span id="stats-general-total-graffiti-dropped">Total graffiti dropped:</span> <span id="grafTotNum" class="numBox">0</span></span>
                 </div>
               </div>
             </div>
@@ -1295,12 +1295,12 @@
     <div class="newmodal_header_border">
       <div class="newmodal_header">
         <div class="newmodal_close steam_filter_options_Win_Dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
-        <div id="steam_filter_options2_Win_Title_Text" class="title_text">Options</div>
+        <div id="steam_filter_options2_Win_Title_Text" class="title_text">Settings</div>
       </div>
     </div>
     <div class="newmodal_content_border">
       <div class="newmodal_content" style="max-height: 1477px;">
-        <div class="econ_tag_filter_category_label">Language</div>
+        <div id="steam_filter_language_option_title" class="econ_tag_filter_category_label">Language</div>
         <select id="steam_filter_language_option">
           <option value="english">English</option>
           <option value="swedish">Swedish</option>
@@ -1350,9 +1350,9 @@
       <div class="newmodal_content" style="max-height: 1477px;">
         <div id="steam_Inv_Loader_spin" class="waiting_dialog_throbber"></div>
         <div id="steam_Inv_Loader_Message">Please wait while all the history is being loaded...</div>
-        <div>Rows added: <span id="inventory_history_count">0</span></div>
-        <div>Loops done: <span id="inventory_history_loop_count">0</span></div>
-        <div>Loaded date: <span id="inventory_history_load_date"></span></div>
+        <div><span id="modal-loadHistory-rows">Rows added:</span> <span id="inventory_history_count">0</span></div>
+        <div><span id="modal-loadHistory-loops">Loops done:</span> <span id="inventory_history_loop_count">0</span></div>
+        <div><span id="modal-loadHistory-date">Loaded date:</span> <span id="inventory_history_load_date"></span></div>
         <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
           <div id="steam_Inv_Loader_Win_Btn" class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Stop" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_Inv_Loader_Win_Btn_Txt">STOP</span></div>
           <div id="steam_Inv_Loader_Win_FBtn" class="btn_grey_steamui btn_medium steam_Inv_Loader_Win_Dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_Inv_Loader_Win_FBtn_Txt">FORCE STOP</span></div>
