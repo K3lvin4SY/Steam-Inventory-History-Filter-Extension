@@ -731,7 +731,7 @@ var languageOption = {
 
             dropsGraph: "Hittade föremål över tid",
             caseDrops: "Hittade lådor",
-            skinDrops: "hittade skins",
+            skinDrops: "Hittade skins",
 
           }
         }
