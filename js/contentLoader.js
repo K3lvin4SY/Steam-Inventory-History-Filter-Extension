@@ -224,7 +224,7 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				container: typeOfCase,
 				item: output
 			};
-			if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.case.toLowerCase())) {
+			if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.case.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.case.toLowerCase())) {
 				gameData.containerUnlocks.case.push(unbox);
 			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.package.toLowerCase())) {
 				gameData.containerUnlocks.package.push(unbox);
