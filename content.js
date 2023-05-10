@@ -156,6 +156,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
     var passedAllChecks = false;
     for (let i = 0; i < tags.length; i++) {
       const props = tags[i];
+      var searchPassed = false;
       var tagsPassed = 0
       var tagsToPass = 0
       var global_search_override = false;
@@ -165,6 +166,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
         if (event_container.text().toLowerCase().includes(global_search_tag.toLowerCase())) {
           global_search_override = !include_only_filtered_rows;
           tagsPassed++;
+          searchPassed = true;
         }
       }
       for (const [prop, tag] of Object.entries(props)) {
@@ -206,7 +208,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
       }
       //console.log(tagsPassed);
       //console.log(tagsToPass);
-      if (tagsPassed == tagsToPass || global_search_override || show_all_override) {
+      if (tagsPassed == tagsToPass || global_search_override || (show_all_override && ( (global_search_tag != null) == (searchPassed))) ) {
         //console.log("==");
         // Total pass
         passedAllChecks = true;
