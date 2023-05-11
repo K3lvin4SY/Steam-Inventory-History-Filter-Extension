@@ -125,7 +125,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 						$J(this).find(".history_item_name").eq(0).data("item-quality", quality);
 					}
 					//console.log($J(this).find(".history_item_name").eq(0).text());
-					console.log($J(this).find(".history_item_name").eq(0).data());
+					//console.log($J(this).find(".history_item_name").eq(0).data());
 
 
 				}

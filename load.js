@@ -503,10 +503,10 @@ var languageOption = {
     case: "Låda", // code
     skins: "Skins",
     cases: "Lådor",
-    package: "Package", // code
-    packages: "Packages",
-    capsule: "Capsule", // code
-    capsules: "Capsules",
+    package: "Paket", // code
+    packages: "Paket",
+    capsule: "Kapsel", // code
+    capsules: "Kapslar",
     container: "Behållare", // code
     graffiti: "Graffiti", // code
     months: {
@@ -572,13 +572,13 @@ var languageOption = {
         filtersLabel: "Filtren",
         filters: {
           labels: {
-            caseOpened: "Låda Öppnad",
-            souvenirPackageOpened: "Souvenir Package Öppnad",
-            capsuleOpened: "Capsule Öppnad",
-            medals: "Medals",
+            caseOpened: "Öppnade Lådor",
+            souvenirPackageOpened: "Öppnade Souvenirpaket",
+            capsuleOpened: "Öppnade Kapslar",
+            medals: "Medaljer",
             storageUnit: "Lagringsenhets flyttningar",
             caseDrops: "Hittade Lådor",
-            itemDrops: "Hittade ",
+            itemDrops: "Hittade Föremål",
             trades: "Byten",
             containerOpened: "Behållare Öppnad",
             storePurchases: "Butiks köp",
@@ -586,7 +586,7 @@ var languageOption = {
             marketListingCreated: "Skapade Marknads Artiklar",
             marketListingRemoved: "Avbrytna Marknads Artiklar",
             used: "Använt",
-            souvenirDrop: "Hittade Souvenirs",
+            souvenirDrop: "Hittade Souvenirpaket",
             tradeUps: "Tillvärkningar",
             stickerApplied: "Klistermärke applicerat",
             stickerRemoved: "Klistermärke borttaget",
@@ -597,15 +597,15 @@ var languageOption = {
           data: {
             caseOpened: {
               main: "Öppnade en låda",
-              itemName: "nyckel"
+              itemName: ["nyckel", "Case Key"]
             },
             souvenirPackageOpened: {
               main: "Öppnade en låda",
-              itemName: "Souvenir Package"
+              itemName: ["Souvenirpaket", "Souvenir Package"]
             },
             capsuleOpened: {
               main: "Öppnade en låda",
-              itemName: "Capsule"
+              itemName: ["kapsel", "Capsule"]
             },
             medals: {
               main: "Intjänad"

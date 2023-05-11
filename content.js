@@ -13,63 +13,77 @@ String.prototype.cleanup = function() {
   return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
 }
 
+Array.prototype.cleanup = function() {
+  //console.log(this);
+  var newArray = [];
+  for (let index = 0; index < this.length; index++) {
+    const element = this[index];
+    newArray.push(element.cleanup());
+  }
+  return newArray;
+}
+
 function updateFilterTagCollector(global_search_tag = null, include_only_filtered_rows = true) {
   var tags = [];
   $J("#filter_list_show").children().each(function() {
     var props = {};
     // The following tags are *props* for each row
     // For a row to be shown it has to have all the prop requirements
-    var tag;
     props["data-search-tag"] = this.getAttribute("data-search-tag"); // Search for specific text
     props["data-overrule-tag"] = this.getAttribute("data-overrule-tag"); // shows everything
     
-    tag = $J(this).data("data-main-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag1 = $J(this).data("data-main-tag");
+    if (tag1 != null) {
+      tag1 = tag1.cleanup()
     }
-    props["data-main-tag"] = tag; // Search for type of event (description of row)
+    props["data-main-tag"] = tag1; // Search for type of event (description of row)
 
-    tag = $J(this).data("data-item-name-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag2 = $J(this).data("data-item-name-tag");
+    //console.log(tag2);
+    if (tag2 != null) {
+      tag2 = tag2.cleanup()
     }
-    props["data-item-name-tag"] = tag; // Search for a specific item
-    
-    tag = $J(this).data("data-item-quality-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    //console.log(tag2);
+    props["data-item-name-tag"] = tag2; // Search for a specific item
+    //console.log(props);
+
+    var tag3 = $J(this).data("data-item-quality-tag");
+    if (tag3 != null) {
+      tag3 = tag3.cleanup()
     }
-    props["data-item-quality-tag"] = tag; // Search for all StatTrak, normal, knifes items, etc
+    props["data-item-quality-tag"] = tag3; // Search for all StatTrak, normal, knifes items, etc
     
-    tag = $J(this).data("data-item-type-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag4 = $J(this).data("data-item-type-tag");
+    if (tag4 != null) {
+      tag4 = tag4.cleanup()
     }
-    props["data-item-type-tag"] = tag; // Search for specific item type ex: stickers, cases
+    props["data-item-type-tag"] = tag4; // Search for specific item type ex: stickers, cases
     
-    tag = $J(this).data("data-item-collection-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag5 = $J(this).data("data-item-collection-tag");
+    if (tag5 != null) {
+      tag5 = tag5.cleanup()
     }
-    props["data-item-collection-tag"] = tag; // Search for item in a specific collection
+    props["data-item-collection-tag"] = tag5; // Search for item in a specific collection
     
-    tag = $J(this).data("data-item-rarity-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag6 = $J(this).data("data-item-rarity-tag");
+    if (tag6 != null) {
+      tag6 = tag6.cleanup()
     }
-    props["data-item-rarity-tag"] = tag; // Search for specific item quality ex: Covert
+    props["data-item-rarity-tag"] = tag6; // Search for specific item quality ex: Covert
     
-    tag = $J(this).data("data-item-exterior-tag");
-    if (tag != null) {
-      tag = tag.cleanup()
+    var tag7 = $J(this).data("data-item-exterior-tag");
+    if (tag7 != null) {
+      tag7 = tag7.cleanup()
     }
-    props["data-item-exterior-tag"] = tag; // Search for specific item exterior ex: Minimal-Wear
+    props["data-item-exterior-tag"] = tag7; // Search for specific item exterior ex: Minimal-Wear
     
+    //console.log(props);
     tags.push(props);
   });
   if (global_search_tag != null) { // fix so that you can search with a filter on (search needs to overide (algorithm needs to check if row also fills search data requirements))
     //tags.push(search_tag); // + needs to fix so that search is non case sensetive or add a option to disable/enable it
   }
+  //console.log(tags);
   filterListPrep(tags, global_search_tag, include_only_filtered_rows);
 }
 
@@ -85,11 +99,23 @@ function findTag(item, tag, prop) {
       return true;
     }
   } else if (prop == "data-item-name-tag") {
-    console.log(item);
-    console.log(item.data());
-    if (item.data("item-name").cleanup().includes(tag)) {
-      // passed
-      return true;
+    //console.log(item);
+    //console.log(item.data());
+    if (typeof tag === 'string') {
+      if (item.data("item-name").cleanup().includes(tag)) {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index];
+        if (item.data("item-name").cleanup().includes(innerTag)) {
+          // passed
+          return true;
+        }
+      }
+    } else {
+      console.log("ERROR - sum ting wong");
     }
     /*if (item.text().cleanup().includes(tag)) {
       // passed
@@ -146,6 +172,7 @@ function filterListTagInItems(items, tag, prop) {
 
 function filterListActionV2(tags, global_search_tag, include_only_filtered_rows) {
   var rowsVisable = 0;
+  //console.log(tags);
   invHisTab.children().each(function() {
     var event_container = $J(this).find('.tradehistory_content').eq(0);
     var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
@@ -169,6 +196,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
           searchPassed = true;
         }
       }
+      //console.log(props);
       for (const [prop, tag] of Object.entries(props)) {
         if (tag == null) {
           continue;
@@ -186,6 +214,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
           if (event_desc.text().cleanup().includes(tag)) {
             // passed
             tagsPassed++;
+            console.log("num0");
 
             // end of loop iteration
           }
