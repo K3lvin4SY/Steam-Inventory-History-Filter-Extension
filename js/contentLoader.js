@@ -226,9 +226,9 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 			};
 			if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.case.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.case.toLowerCase())) {
 				gameData.containerUnlocks.case.push(unbox);
-			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.package.toLowerCase())) {
+			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.package.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.package.toLowerCase())) {
 				gameData.containerUnlocks.package.push(unbox);
-			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.capsule.toLowerCase())) {
+			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.capsule.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.capsule.toLowerCase())) {
 				gameData.containerUnlocks.capsule.push(unbox);
 			}
 		}

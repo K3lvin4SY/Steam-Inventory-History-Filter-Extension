@@ -503,8 +503,8 @@ var languageOption = {
     case: "Låda", // code
     skins: "Skins",
     cases: "Lådor",
-    package: "Paket", // code
-    packages: "Paket",
+    package: "Souvenirpaket", // code
+    packages: "Souvenirpaket",
     capsule: "Kapsel", // code
     capsules: "Kapslar",
     container: "Behållare", // code
