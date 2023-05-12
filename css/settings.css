@@ -1,0 +1,28 @@
+#steam_filter_language_option {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.1;
+  background-color: #32363f !important;
+  
+  border-radius: 6px !important;
+
+  padding: 4px;
+
+  font-size:small;
+  border: 0 !important;
+  box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.6) !important;
+  margin-top: 0.5em;
+}
+
+#steam_filter_language_option option {
+  font-size: 1rem;
+  line-height: 1.1;
+  background-color: #32363f !important;
+  
+  border-radius: 6px !important;
+
+  padding: 4px;
+
+  font-size: medium;
+  border: 0 !important;
+}

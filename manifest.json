@@ -53,6 +53,7 @@
         "./css/generalDialog.css",
         "./css/simpleSearchBar.css",
         "./css/statsDialog.css",
+        "./css/settings.css",
         "./css/filterOptionsDialog.css"
       ],
       "run_at": "document_end"
