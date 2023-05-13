@@ -228,7 +228,7 @@ var languageOption = {
             skins: { // code
               consumerGrade: "Consumer Grade",
               industrialGrade: "Industrial Grade",
-              milspec: "Mil-spec Grade",
+              milspec: "Mil-Spec Grade",
               restricted: "Restricted",
               classified: "Classified",
               covert: "Covert",
@@ -468,7 +468,7 @@ var languageOption = {
             skins: { // code
               consumerGrade: "Consumer Grade",
               industrialGrade: "Industrial Grade",
-              milspec: "Mil-spec Grade",
+              milspec: "Mil-Spec Grade",
               restricted: "Restricted",
               classified: "Classified",
               covert: "Covert",

@@ -775,7 +775,7 @@ function updateCharts() {
 
   var caseRarityItemsAmount = [0, 0, 0, 0, 0];
 
-  console.log(caseOpenings);
+  //console.log(caseOpenings);
 
   for (let index = 0; index < caseOpenings.length; index++) {
     const caseOpen = caseOpenings[index];
@@ -956,7 +956,7 @@ function updateCharts() {
   var caseDropNames = [];
   var caseDropNamesAmount = [];
 
-  console.log(caseDrops);
+  //console.log(caseDrops);
   for (let index = 0; index < caseDrops.length; index++) {
     const caseDrop = caseDrops[index];
 
