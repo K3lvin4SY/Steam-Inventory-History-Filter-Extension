@@ -791,6 +791,7 @@ function updateHtmlText() {
   // filter options //
   $J("#steam_filter_Options_Win_Title_Text").text(languageOption.sel.html.toolbar.openFilter);
   $J("#modal-filterOptions-showTitle").text(languageOption.sel.html.filterOptions.showTitle);
+  $J("#steam_filter_Options_Win_Btn_Txt").text(languageOption.sel.messages.close);
   // search panel
   $J("#modal-filterOptions-search-title").text(languageOption.sel.html.toolbar.searchEngine);
   $J("#modal-filterOptions-search-label").text(languageOption.sel.html.simpleSearch.searchBarLabel);
@@ -882,6 +883,7 @@ function updateHtmlText() {
   $J("#stats-radio-label-itemStats").text(languageOption.sel.html.stats.statsCategories.specificItem);
 
   $J("#stats-general-title").text(languageOption.sel.html.stats.statsHtml.general.title);
+  $J("#steam_filter_stats_win_btn_txt").text(languageOption.sel.messages.close);
   // general stats
   $J("#stats-general-total-cases-opened").text(languageOption.sel.html.stats.statsHtml.general.opened.cases);
   $J("#stats-general-total-capsules-opened").text(languageOption.sel.html.stats.statsHtml.general.opened.capsules);
