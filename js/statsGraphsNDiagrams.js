@@ -118,17 +118,20 @@ function loadChartsNDiagrams() {
         label: "Cases",
         data: [],
         borderColor: "orange",
-        fill: false
+        fill: false,
+        tension: 0.25
       }, { 
         label: "Capsules",
         data: [],
         borderColor: "green",
-        fill: false
+        fill: false,
+        tension: 0.25
       }, { 
         label: "Packages",
         data: [],
         borderColor: "#3161f3",
-        fill: false
+        fill: false,
+        tension: 0.25
       }]
     },
     options: {
@@ -435,17 +438,20 @@ function loadChartsNDiagrams() {
         label: "Cases",
         data: [],
         borderColor: "orange",
-        fill: false
+        fill: false,
+        tension: 0.25
       }, { 
         label: "Skins",
         data: [],
         borderColor: "#3161f3",
-        fill: false
+        fill: false,
+        tension: 0.25
       }, { 
         label: "Graffiti",
         data: [],
         borderColor: "#b1c3d9",
-        fill: false
+        fill: false,
+        tension: 0.25
       }]
     },
     options: {
