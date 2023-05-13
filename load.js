@@ -748,6 +748,7 @@ async function addFilterOptions() {
   contentDiv.insertAdjacentHTML("beforebegin", html);
   
   loadChartsNDiagrams();
+  $J( '#load_more_button' ).hide();
 
   const selectedLanguageProperties = languageOption[steamLanguage];
   languageOption["sel"] = selectedLanguageProperties;
