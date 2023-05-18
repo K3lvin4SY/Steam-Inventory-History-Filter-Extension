@@ -292,6 +292,15 @@ function filterListAction(tags) {
   $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
 }
 
+function updateValidLanguage() {
+  if (validLanguage) {
+    // Language is valid
+    
+  } else {
+    // Language is not valid
+
+  }
+}
 
 
 

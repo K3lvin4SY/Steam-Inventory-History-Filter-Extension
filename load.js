@@ -4,6 +4,7 @@ var cursurHistory;
 var g_rgAppContextData = [];
 var continueLOading = true;
 var loadedAllHistory = false;
+var validLanguage = true;
 
 var gameData = {
   containerUnlocks: {
@@ -508,6 +509,7 @@ var languageOption = {
     capsule: "Kapsel", // code
     capsules: "Kapslar",
     container: "Behållare", // code
+    containers: "Behållare",
     graffiti: "Graffiti", // code
     months: {
       jan: "Jan",
@@ -749,10 +751,16 @@ async function addFilterOptions() {
   
   loadChartsNDiagrams();
 
-  const selectedLanguageProperties = languageOption[steamLanguage];
-  languageOption["sel"] = selectedLanguageProperties;
-  updateHtmlText();
-  $J('#steam_filter_language_option').val(steamLanguage);
+  if (Object.keys(languageOption).includes(steamLanguage)) {
+    const selectedLanguageProperties = languageOption[steamLanguage];
+    languageOption["sel"] = selectedLanguageProperties;
+    updateHtmlText();
+    $J('#steam_filter_language_option').val(steamLanguage);
+  } else {
+    console.log("CSGO HUF: "+steamLanguage+" not supported");
+    validLanguage = false;
+    updateValidLanguage();
+  }
     
   createButtonLinks();
 
