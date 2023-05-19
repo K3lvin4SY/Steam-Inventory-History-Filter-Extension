@@ -234,9 +234,11 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 		}
 
 		// container unbox
-		var mainUnboxTitle = languageOption.sel.html.filterOptions.filters.data.containerOpened.main;
+		var mainUnboxTitle;
 		if (!validLanguage) {
 			mainUnboxTitle = languageOption.english.html.filterOptions.filters.data.containerOpened.main;
+		} else {
+			mainUnboxTitle = languageOption[steamLanguage].html.filterOptions.filters.data.containerOpened.main;
 		}
 		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(mainUnboxTitle)) {
 			var typeOfCase;
@@ -270,11 +272,14 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 		}
 
 		// game drop
-		var maindropTitle = languageOption.sel.html.filterOptions.filters.data.caseDrops.main;
-		var maindropitemTitle = languageOption.sel.html.filterOptions.filters.data.itemDrops.main;
+		var maindropTitle;
+		var maindropitemTitle;
 		if (!validLanguage) {
 			maindropTitle = languageOption.english.html.filterOptions.filters.data.caseDrops.main;
 			maindropitemTitle = languageOption.english.html.filterOptions.filters.data.itemDrops.main;
+		} else {
+			maindropTitle = languageOption[steamLanguage].html.filterOptions.filters.data.caseDrops.main;
+			maindropitemTitle = languageOption[steamLanguage].html.filterOptions.filters.data.itemDrops.main;
 		}
 		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(maindropTitle) || $J(this).find(".tradehistory_event_description").eq(0).text().includes(maindropitemTitle)) {
 			var data = $J(this).find('.history_item_name').eq(0).data();

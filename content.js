@@ -292,38 +292,26 @@ function filterListAction(tags) {
   $J("#steam_filter_loading_screen").hide();
 }
 
-/*function ChangeLanguage( strTargetLanguage, bStayOnPage )
+function ChangeLanguage( strTargetLanguage )
 {
-	var Modal = ShowBlockingWaitDialog( 'Change language', '' );
 	$J.post( 'https://steamcommunity.com/actions/SetLanguage/', {language: strTargetLanguage, sessionid: sessionID })
 		.done( function() {
-			if ( bStayOnPage )
-				Modal.Dismiss();
-			else
-			{
-								if( g_steamID )
-					window.location = 'https://store.steampowered.com/account/languagepreferences/';
-				else if ( window.location.href.match( /[?&]l=/ ) )
-					window.location = window.location.href.replace( /([?&])l=[^&]*&?/, '$1' );
-				else
-					window.location.reload();
-			}
+      location.reload();
 		}).fail( function() {
-			Modal.Dismiss();
 			ShowAlertDialog( 'Change language', 'There was a problem communicating with the Steam servers.  Please try again later.' );
 		});
-}*/
+}
 
 function updateValidLanguage() {
   if (validLanguage) {
     // Language is valid
     //$J("#steam_Inv_His_toolbar_filterOptions").show();
-    $J("#languageNotSupportedWindow").hide();
+    //$J("#languageNotSupportedWindow").hide();
   } else {
     // Language is not valid
     //$J("#steam_Inv_His_toolbar_filterOptions").hide();
     $J("#current_Language_that_is_not_supported").text(steamLanguage);
-    $J("#languageNotSupportedWindow").show();
+    //$J("#languageNotSupportedWindow").show();
 
   }
 }
