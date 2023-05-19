@@ -102,14 +102,14 @@ function findTag(item, tag, prop) {
     //console.log(item);
     //console.log(item.data());
     if (typeof tag === 'string') {
-      if (item.data("item-name").cleanup().includes(tag)) {
+      if (item.data("item-internal-name").cleanup().includes(tag)) {
         // passed
         return true;
       }
     } else if (Array.isArray(tag)) {
       for (let index = 0; index < tag.length; index++) {
         const innerTag = tag[index];
-        if (item.data("item-name").cleanup().includes(innerTag)) {
+        if (item.data("item-internal-name").cleanup().includes(innerTag)) {
           // passed
           return true;
         }
@@ -122,27 +122,27 @@ function findTag(item, tag, prop) {
       return true;
     }*/
   } else if (prop == "data-item-quality-tag") {
-    if (item.data("item-quality").cleanup().includes(tag)) {
+    if (item.data("item-quality").internal_name.cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-type-tag") {
-    if (item.data("item-type").cleanup().includes(tag)) {
+    if (item.data("item-type").internal_name.cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-collection-tag") {
-    if (item.data("item-collection").cleanup().includes(tag)) {
+    if (item.data("item-collection").internal_name.cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-rarity-tag") {
-    if (item.data("item-rarity").cleanup().includes(tag)) {
+    if (item.data("item-rarity").internal_name.cleanup().includes(tag)) {
       // passed
       return true;
     }
   } else if (prop == "data-item-exterior-tag") {
-    if (item.data("item-exterior").cleanup().includes(tag)) {
+    if (item.data("item-exterior").internal_name.cleanup().includes(tag)) {
       // passed
       return true;
     }

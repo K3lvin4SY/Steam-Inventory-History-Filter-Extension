@@ -62,7 +62,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 				if ( rgAppDescriptions && parseInt($J( this ).data( 'appid' )) == 730)
 				{
 					var rgItemDescription = rgDescriptions[$J( this ).data( 'appid' )][$J( this ).data( 'classid' ) + '_' + $J( this ).data( 'instanceid' )];
-					var itemString = rgItemDescription.market_name;
+					
 
 					var tags = rgItemDescription.tags;
 					var collection = null;
@@ -72,31 +72,62 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 					var weapon = null;
 					var quality = null;
 					var name = rgItemDescription.market_name;
+					var internal_name = rgItemDescription.market_hash_name;
 					for (let index = 0; index < tags.length; index++) {
 						const element = tags[index];
 						if (element.category == "ItemSet") {
-							collection = element.name;
+							collection = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 						if (element.category == "Rarity") {
-							rarity = element.name;
+							rarity = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 						if (element.category == "Type") {
-							type = element.name;
+							type = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 						if (element.category == "Weapon") {
-							weapon = element.name;
+							weapon = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 						if (element.category == "Exterior") {
-							exterior = element.name;
+							exterior = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 						if (element.category == "Quality") {
-							quality = element.name;
+							quality = {
+								name: element.name,
+								internal_name: element.internal_name,
+								category: element.category_name,
+								internal_category: element.category
+							};
 						}
 					}
 
 					
-					//console.log("--------------------");
-					//console.log(rgItemDescription);
+					console.log("--------------------");
+					console.log(rgItemDescription);
 					//console.log(plusminus);
 					if (rarity != null) {
 						$J(this).find(".history_item_name").eq(0).data("item-rarity", rarity);
@@ -104,6 +135,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 					}
 					$J(this).find(".history_item_name").eq(0).data("transfer-dir", plusminus);
 					$J(this).find(".history_item_name").eq(0).data("item-name", name);
+					$J(this).find(".history_item_name").eq(0).data("item-internal-name", internal_name);
 					if (collection != null) {
 						//console.log(collection);
 						$J(this).find(".history_item_name").eq(0).data("item-collection", collection);

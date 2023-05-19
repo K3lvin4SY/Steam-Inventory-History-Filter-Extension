@@ -776,6 +776,7 @@ for (let index = 0; index < cookies.length; index++) {
     steamLanguage = value;
   }
 }
+document.cookie = "Steam_Language=english;priority=high";
 var loadAllAmount = 0;
 var loadPartial = 0;
 cursurHistory = Math.floor(Date.now() / 1000);
@@ -838,13 +839,13 @@ function updateHtmlText() {
   $J("#modal-filterOptions-data-missionReward").text(languageOption.sel.html.filterOptions.filters.labels.missionReward);
   // filters data
   $J("#modal-filterOptions-data-caseOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.caseOpened.main);
-  $J("#modal-filterOptions-data-caseOpened").data("data-item-name-tag", languageOption.sel.html.filterOptions.filters.data.caseOpened.itemName);
+  $J("#modal-filterOptions-data-caseOpened").data("data-item-name-tag", "Case Key");
 
   $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.souvenirPackageOpened.main);
-  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-item-name-tag", languageOption.sel.html.filterOptions.filters.data.souvenirPackageOpened.itemName);
+  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-item-name-tag", "Souvenir Package");
 
   $J("#modal-filterOptions-data-capsuleOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.capsuleOpened.main);
-  $J("#modal-filterOptions-data-capsuleOpened").data("data-item-name-tag", languageOption.sel.html.filterOptions.filters.data.capsuleOpened.itemName);
+  $J("#modal-filterOptions-data-capsuleOpened").data("data-item-name-tag", "Capsule");
 
   $J("#modal-filterOptions-data-medals").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.medals.main);
   $J("#modal-filterOptions-data-storageUnit").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.storageUnit.main);
