@@ -234,13 +234,17 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 		}
 
 		// container unbox
-		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.containerOpened.main)) {
+		var mainUnboxTitle = languageOption.sel.html.filterOptions.filters.data.containerOpened.main;
+		if (!validLanguage) {
+			mainUnboxTitle = languageOption.english.html.filterOptions.filters.data.containerOpened.main;
+		}
+		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(mainUnboxTitle)) {
 			var typeOfCase;
 			var output;
 			$J(this).find('.economy_item_hoverable').each(function() {
 				var data = $J(this).find(".history_item_name").eq(0).data();
 				//console.log(data);
-				if (data.itemType == languageOption.sel.container) {
+				if (data.itemType.internal_name == internalData.container) {
 					typeOfCase = data;
 				} else if (data.transferDir == "+") {
 					output = data;
@@ -256,17 +260,23 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				container: typeOfCase,
 				item: output
 			};
-			if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.case.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.case.toLowerCase())) {
+			if (typeOfCase.itemInternalName.toLowerCase().includes(languageOption.sel.case.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.case.toLowerCase())) {
 				gameData.containerUnlocks.case.push(unbox);
-			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.package.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.package.toLowerCase())) {
+			} else if (typeOfCase.itemInternalName.toLowerCase().includes(languageOption.sel.package.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.package.toLowerCase())) {
 				gameData.containerUnlocks.package.push(unbox);
-			} else if (typeOfCase.itemName.toLowerCase().includes(languageOption.sel.capsule.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.capsule.toLowerCase())) {
+			} else if (typeOfCase.itemInternalName.toLowerCase().includes(languageOption.sel.capsule.toLowerCase()) || typeOfCase.itemName.toLowerCase().includes(languageOption.english.capsule.toLowerCase())) {
 				gameData.containerUnlocks.capsule.push(unbox);
 			}
 		}
 
 		// game drop
-		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.caseDrops.main) || $J(this).find(".tradehistory_event_description").eq(0).text().includes(languageOption.sel.html.filterOptions.filters.data.itemDrops.main)) {
+		var maindropTitle = languageOption.sel.html.filterOptions.filters.data.caseDrops.main;
+		var maindropitemTitle = languageOption.sel.html.filterOptions.filters.data.itemDrops.main;
+		if (!validLanguage) {
+			maindropTitle = languageOption.english.html.filterOptions.filters.data.caseDrops.main;
+			maindropitemTitle = languageOption.english.html.filterOptions.filters.data.itemDrops.main;
+		}
+		if ($J(this).find(".tradehistory_event_description").eq(0).text().includes(maindropTitle) || $J(this).find(".tradehistory_event_description").eq(0).text().includes(maindropitemTitle)) {
 			var data = $J(this).find('.history_item_name').eq(0).data();
 			var drop = {
 				timeFrame: {
@@ -277,9 +287,9 @@ function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 				},
 				item: data
 			};
-			if (data.itemType == languageOption.sel.graffiti) {
+			if (data.itemType.internal_name == internalData.graffiti) {
 				gameData.gameDrops.graffiti.push(drop);
-			} else if (data.itemType == languageOption.sel.container) {
+			} else if (data.itemType.internal_name == internalData.container) {
 				gameData.gameDrops.case.push(drop);
 			} else { // drop is skin
 				gameData.gameDrops.skin.push(drop);
@@ -375,6 +385,9 @@ function InventoryHistory_LoadAll()
 		return;
 	}
 	
+	if (!validLanguage) {
+		document.cookie = "Steam_Language=english;priority=high;path=/";
+	}
 
 	$J.ajax({
 		type: "GET",

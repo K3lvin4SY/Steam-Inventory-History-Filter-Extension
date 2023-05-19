@@ -19,6 +19,27 @@ var gameData = {
   }
 };
 
+var internalData = {
+  container: "CSGO_Type_WeaponCase",
+  graffiti: "CSGO_Type_Spray",
+  rarities: {
+    skins: { // code
+      consumerGrade: "Rarity_Common_Weapon",
+      industrialGrade: "Rarity_Uncommon_Weapon",
+      milspec: "Rarity_Rare_Weapon",
+      restricted: "Rarity_Mythical_Weapon",
+      classified: "Rarity_Legendary_Weapon",
+      covert: "Rarity_Ancient_Weapon"
+    },
+    stickers: { // code
+      highGrade: "Rarity_Rare",
+      remarkable: "Rarity_Mythical",
+      exotic: "Rarity_Legendary",
+      extraordinary: "Rarity_Ancient"
+    }
+  }
+}
+
 var languageOption = {
   sel: {
     case: "Case", // code
@@ -28,7 +49,6 @@ var languageOption = {
     packages: "Packages",
     capsule: "Capsule", // code
     capsules: "Capsules",
-    container: "Container", // code
     containers: "Containers",
     graffiti: "Graffiti", // code
     months: {
@@ -268,7 +288,6 @@ var languageOption = {
     packages: "Packages",
     capsule: "Capsule", // code
     capsules: "Capsules",
-    container: "Container", // code
     containers: "Containers",
     graffiti: "Graffiti", // code
     months: {
@@ -508,7 +527,6 @@ var languageOption = {
     packages: "Souvenirpaket",
     capsule: "Kapsel", // code
     capsules: "Kapslar",
-    container: "Behållare", // code
     containers: "Behållare",
     graffiti: "Graffiti", // code
     months: {
@@ -755,11 +773,14 @@ async function addFilterOptions() {
     const selectedLanguageProperties = languageOption[steamLanguage];
     languageOption["sel"] = selectedLanguageProperties;
     updateHtmlText();
+    updateData();
     $J('#steam_filter_language_option').val(steamLanguage);
   } else {
     console.log("CSGO HUF: "+steamLanguage+" not supported");
     validLanguage = false;
     updateValidLanguage();
+    updateHtmlText();
+    updateData();
   }
     
   createButtonLinks();
@@ -776,10 +797,42 @@ for (let index = 0; index < cookies.length; index++) {
     steamLanguage = value;
   }
 }
-document.cookie = "Steam_Language=english;priority=high";
+//document.cookie = "Steam_Language=english;expires=Thu, 01 Jan 1970 00:00:00 UTC;priority=high";
 var loadAllAmount = 0;
 var loadPartial = 0;
 cursurHistory = Math.floor(Date.now() / 1000);
+
+function updateData() {
+  // filters data
+  $J("#modal-filterOptions-data-caseOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.caseOpened.main);
+  $J("#modal-filterOptions-data-caseOpened").data("data-item-name-tag", "Case Key");
+
+  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.souvenirPackageOpened.main);
+  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-item-name-tag", "Souvenir Package");
+
+  $J("#modal-filterOptions-data-capsuleOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.capsuleOpened.main);
+  $J("#modal-filterOptions-data-capsuleOpened").data("data-item-name-tag", "Capsule");
+
+  $J("#modal-filterOptions-data-medals").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.medals.main);
+  $J("#modal-filterOptions-data-storageUnit").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.storageUnit.main);
+  $J("#modal-filterOptions-data-caseDrops").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.caseDrops.main);
+  $J("#modal-filterOptions-data-itemDrops").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.itemDrops.main);
+  $J("#modal-filterOptions-data-trades").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.trades.main);
+  $J("#modal-filterOptions-data-containerOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.containerOpened.main);
+  $J("#modal-filterOptions-data-storePurchases").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.storePurchases.main);
+  $J("#modal-filterOptions-data-marketPurchases").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketPurchases.main);
+  $J("#modal-filterOptions-data-marketListingCreated").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketListingCreated.main);
+  $J("#modal-filterOptions-data-marketListingRemoved").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketListingRemoved.main);
+  $J("#modal-filterOptions-data-used").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.used.main);
+  $J("#modal-filterOptions-data-souvenirDrop").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.souvenirDrop.main);
+  $J("#modal-filterOptions-data-tradeUps").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.tradeUps.main);
+  $J("#modal-filterOptions-data-stickerApplied").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.stickerApplied.main);
+  $J("#modal-filterOptions-data-stickerRemoved").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.stickerRemoved.main);
+  $J("#modal-filterOptions-data-deletedItem").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.deletedItem.main);
+  $J("#modal-filterOptions-data-unsealedGraffiti").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.unsealedGraffiti.main);
+  $J("#modal-filterOptions-data-missionReward").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.missionReward.main);
+
+}
 
 function updateHtmlText() {
   // toolbar //
@@ -837,35 +890,7 @@ function updateHtmlText() {
   $J("#modal-filterOptions-data-deletedItem").text(languageOption.sel.html.filterOptions.filters.labels.deletedItem);
   $J("#modal-filterOptions-data-unsealedGraffiti").text(languageOption.sel.html.filterOptions.filters.labels.unsealedGraffiti);
   $J("#modal-filterOptions-data-missionReward").text(languageOption.sel.html.filterOptions.filters.labels.missionReward);
-  // filters data
-  $J("#modal-filterOptions-data-caseOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.caseOpened.main);
-  $J("#modal-filterOptions-data-caseOpened").data("data-item-name-tag", "Case Key");
-
-  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.souvenirPackageOpened.main);
-  $J("#modal-filterOptions-data-souvenirPackageOpened").data("data-item-name-tag", "Souvenir Package");
-
-  $J("#modal-filterOptions-data-capsuleOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.capsuleOpened.main);
-  $J("#modal-filterOptions-data-capsuleOpened").data("data-item-name-tag", "Capsule");
-
-  $J("#modal-filterOptions-data-medals").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.medals.main);
-  $J("#modal-filterOptions-data-storageUnit").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.storageUnit.main);
-  $J("#modal-filterOptions-data-caseDrops").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.caseDrops.main);
-  $J("#modal-filterOptions-data-itemDrops").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.itemDrops.main);
-  $J("#modal-filterOptions-data-trades").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.trades.main);
-  $J("#modal-filterOptions-data-containerOpened").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.containerOpened.main);
-  $J("#modal-filterOptions-data-storePurchases").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.storePurchases.main);
-  $J("#modal-filterOptions-data-marketPurchases").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketPurchases.main);
-  $J("#modal-filterOptions-data-marketListingCreated").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketListingCreated.main);
-  $J("#modal-filterOptions-data-marketListingRemoved").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.marketListingRemoved.main);
-  $J("#modal-filterOptions-data-used").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.used.main);
-  $J("#modal-filterOptions-data-souvenirDrop").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.souvenirDrop.main);
-  $J("#modal-filterOptions-data-tradeUps").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.tradeUps.main);
-  $J("#modal-filterOptions-data-stickerApplied").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.stickerApplied.main);
-  $J("#modal-filterOptions-data-stickerRemoved").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.stickerRemoved.main);
-  $J("#modal-filterOptions-data-deletedItem").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.deletedItem.main);
-  $J("#modal-filterOptions-data-unsealedGraffiti").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.unsealedGraffiti.main);
-  $J("#modal-filterOptions-data-missionReward").data("data-main-tag", languageOption.sel.html.filterOptions.filters.data.missionReward.main);
-
+  
   // Loading History //
   $J("#steam_Inv_Loader_Win_Title_Text").text(languageOption.sel.messages.loadingHistory);
   $J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);

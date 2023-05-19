@@ -317,10 +317,13 @@ function filterListAction(tags) {
 function updateValidLanguage() {
   if (validLanguage) {
     // Language is valid
-    $J("#steam_Inv_His_toolbar_filterOptions").show();
+    //$J("#steam_Inv_His_toolbar_filterOptions").show();
+    $J("#languageNotSupportedWindow").hide();
   } else {
     // Language is not valid
-    $J("#steam_Inv_His_toolbar_filterOptions").hide();
+    //$J("#steam_Inv_His_toolbar_filterOptions").hide();
+    $J("#current_Language_that_is_not_supported").text(steamLanguage);
+    $J("#languageNotSupportedWindow").show();
 
   }
 }

@@ -796,15 +796,15 @@ function updateCharts() {
     caseNamesAmount[caseRarityItemsAmountIndex] = caseNamesAmount[caseRarityItemsAmountIndex]+1;
 
     // add rarity amount on case open
-    if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
+    if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
       caseRarityItemsAmount[0] = caseRarityItemsAmount[0]+1;
-    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
       caseRarityItemsAmount[1] = caseRarityItemsAmount[1]+1;
-    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
       caseRarityItemsAmount[2] = caseRarityItemsAmount[2]+1;
-    } else if (caseOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert && caseOpen.item.itemQuality != "★") {
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.covert && caseOpen.item.itemQuality.name != "★") {
       caseRarityItemsAmount[3] = caseRarityItemsAmount[3]+1;
-    } else if (caseOpen.item.itemQuality == "★") {
+    } else if (caseOpen.item.itemQuality.name == "★") {
       caseRarityItemsAmount[4] = caseRarityItemsAmount[4]+1;
     }
 
@@ -858,13 +858,13 @@ function updateCharts() {
     capsuleNamesAmount[capsuleRarityItemsAmountIndex] = capsuleNamesAmount[capsuleRarityItemsAmountIndex]+1;
 
     // add rarity amount on capsule open
-    if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.highGrade) {
+    if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.highGrade) {
       capsuleRarityItemsAmount[0] = capsuleRarityItemsAmount[0]+1;
-    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.remarkable) {
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.remarkable) {
       capsuleRarityItemsAmount[1] = capsuleRarityItemsAmount[1]+1;
-    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.exotic) {
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.exotic) {
       capsuleRarityItemsAmount[2] = capsuleRarityItemsAmount[2]+1;
-    } else if (capsuleOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.stickers.extraordinary) {
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.extraordinary) {
       capsuleRarityItemsAmount[3] = capsuleRarityItemsAmount[3]+1;
     }
 
@@ -916,17 +916,17 @@ function updateCharts() {
     packageNamesAmount[packageRarityItemsAmountIndex] = packageNamesAmount[packageRarityItemsAmountIndex]+1;
 
     // add rarity amount on package open
-    if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade) {
+    if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.consumerGrade) {
       packageRarityItemsAmount[0] = packageRarityItemsAmount[0]+1;
-    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade) {
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.industrialGrade) {
       packageRarityItemsAmount[1] = packageRarityItemsAmount[1]+1;
-    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
       packageRarityItemsAmount[2] = packageRarityItemsAmount[2]+1;
-    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
       packageRarityItemsAmount[3] = packageRarityItemsAmount[3]+1;
-    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
       packageRarityItemsAmount[4] = packageRarityItemsAmount[4]+1;
-    } else if (packageOpen.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert) {
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.covert) {
       packageRarityItemsAmount[5] = packageRarityItemsAmount[5]+1;
     }
 
@@ -1010,17 +1010,17 @@ function updateCharts() {
     const skinDrop = skinDrops[index];
 
     // add rarity amount on skin drop
-    if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade) {
+    if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.consumerGrade) {
       skinDropRarityItemsAmount[0] = skinDropRarityItemsAmount[0]+1;
-    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade) {
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.industrialGrade) {
       skinDropRarityItemsAmount[1] = skinDropRarityItemsAmount[1]+1;
-    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.milspec) {
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
       skinDropRarityItemsAmount[2] = skinDropRarityItemsAmount[2]+1;
-    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.restricted) {
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
       skinDropRarityItemsAmount[3] = skinDropRarityItemsAmount[3]+1;
-    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.classified) {
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
       skinDropRarityItemsAmount[4] = skinDropRarityItemsAmount[4]+1;
-    } else if (skinDrop.item.itemRarity == languageOption.sel.html.stats.statsHtml.rarities.skins.covert) {
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.covert) {
       skinDropRarityItemsAmount[5] = skinDropRarityItemsAmount[5]+1;
     }
 
