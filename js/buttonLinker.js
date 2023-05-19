@@ -68,9 +68,9 @@ function createButtonLinks() {
 
   window.addEventListener('scroll', function() {
     if (window.pageYOffset >= 300) {
-      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").removeClass("steam_filter_hide_class");
+      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").show();
     } else {
-      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").addClass("steam_filter_hide_class");
+      $J("#steam_Inv_His_Filter_Window #modal_bottom_bar").hide();
     }
   });
   
@@ -79,14 +79,14 @@ function createButtonLinks() {
     if ($J("#steam_Inv_Loader_Win_Btn").hasClass("steam_Inv_Loader_Win_Dismiss")) {
 
       console.log("Dismissing Loadin screen...");
-      $J("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
+      $J("#Loading_For_Rows_Dialog").hide();
       $J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.stop);
       $J("#steam_Inv_Loader_Win_Title_Text").text(languageOption.sel.messages.loadingHistory);
       $J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Stop");
       $J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Dismiss");
-      $J("#steam_Inv_Loader_spin").removeClass("steam_filter_hide_class");
+      $J("#steam_Inv_Loader_spin").show();
       $J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
-			$J("#steam_Inv_Loader_Win_FBtn").removeClass("steam_filter_hide_class");
+			$J("#steam_Inv_Loader_Win_FBtn").show();
 
     } else if ($J("#steam_Inv_Loader_Win_Btn").hasClass("steam_Inv_Loader_Win_Stop")) {
 
@@ -102,65 +102,65 @@ function createButtonLinks() {
     continueLOading = false;
 
     console.log("Dismissing Loadin screen...");
-    $J("#Loading_For_Rows_Dialog").addClass("steam_filter_hide_class");
+    $J("#Loading_For_Rows_Dialog").hide();
     $J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.stop);
     $J("#steam_Inv_Loader_Win_Title_Text").text(languageOption.sel.messages.loadingHistory);
     $J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Stop");
     $J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Dismiss");
-    $J("#steam_Inv_Loader_spin").removeClass("steam_filter_hide_class");
+    $J("#steam_Inv_Loader_spin").show();
     $J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
   });
 
   $J(".steam_filter_alert_Win_Dismiss").each(function() {
     $J(this).click(function() {
-      $J("#steam_filter_alert_Dialog").addClass("steam_filter_hide_class");
+      $J("#steam_filter_alert_Dialog").hide();
     })
   })
 
   $J(".steam_filter_Options_Win_Dismiss").each(function() {
     $J(this).click(function() {
-      $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+      $J("#steam_filter_Options").toggle();
     })
   })
 
   $J(".steam_filter_stats_win_dismiss").each(function() {
     $J(this).click(function() {
       if (loadedAllHistory) {
-        $J("#steam_filter_stats_alert_message").addClass("steam_filter_hide_class");
+        $J("#steam_filter_stats_alert_message").hide();
       } else {
-        $J("#steam_filter_stats_alert_message").removeClass("steam_filter_hide_class");
+        $J("#steam_filter_stats_alert_message").show();
       }
-      if ($J("#steam_filter_stats").hasClass("steam_filter_hide_class")) {
+      if ($J("#steam_filter_stats").is(":hidden")) {
         updateCharts();
       }
-      $J("#steam_filter_stats").toggleClass("steam_filter_hide_class");
+      $J("#steam_filter_stats").toggle();
     })
   })
 
   $J(".steam_filter_advanced_win_dismiss").each(function() {
     $J(this).click(function() {
       console.log("test");
-      $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
-      $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+      $J("#steam_filter_advanced").toggle();
+      $J("#steam_filter_Options").toggle();
     })
   });
 
   $J(".steam_filter_options_Win_Dismiss").each(function() {
     $J(this).click(function() {
-      $J("#steam_filter_options_Dialog").toggleClass("steam_filter_hide_class");
+      $J("#steam_filter_options_Dialog").toggle();
     })
   });
 
   $J("#steam_filter_options_Win_Btn").click(function() {
-    $J("#steam_filter_options_Dialog").addClass("steam_filter_hide_class");
+    $J("#steam_filter_options_Dialog").hide();
     const selectedLanguageProperties = languageOption[$J("#steam_filter_language_option").val()];
     languageOption["sel"] = selectedLanguageProperties;
     updateHtmlText();
   });
 
   $J("#steam_filter_searchbar_advanced").click(function() {
-    $J("#steam_filter_advanced").toggleClass("steam_filter_hide_class");
-    $J("#steam_filter_Options").toggleClass("steam_filter_hide_class");
+    $J("#steam_filter_advanced").toggle();
+    $J("#steam_filter_Options").toggle();
   });
 
   $J(".steam_filter_advanced_win_btn_reset").each(function() {
@@ -175,17 +175,17 @@ function createButtonLinks() {
   });
 
   $J("#steam_Inv_His_Search").click(() => {
-    $J("#steam_filter_simple_searchbar").removeClass("steam_filter_hide_class");
+    $J("#steam_filter_simple_searchbar").show();
   })
   $J("#steam_filter_simple_searchbar_win_dismiss_btn").click(() => {
-    $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
+    $J("#steam_filter_simple_searchbar").hide();
   })
 
   // send simple search
   $J("#steam_filter_simple_searchbar_search_submit_btn").click(function() {
     var tagToSearch = $J("#steam_filter_simple_searchbar_data").val();
     var include_only_filtered_rows = !$J("#include_search_outside_filters_box").is(":checked");
-    $J("#steam_filter_simple_searchbar").addClass("steam_filter_hide_class");
+    $J("#steam_filter_simple_searchbar").hide();
     updateFilterTagCollector(tagToSearch, include_only_filtered_rows);
     
   })

@@ -253,8 +253,8 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
   });
 
   $J('#inventory_history_count').text(rowsVisable+"");
-  //$J("#steam_filter_Options").removeClass("steam_filter_hide_class"); - only if window was open before
-  $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
+  //$J("#steam_filter_Options").show(); - only if window was open before
+  $J("#steam_filter_loading_screen").hide();
 }
 
 
@@ -270,8 +270,8 @@ function updateFilter() {
 function filterListPrep(tags, global_search_tag, include_only_filtered_rows) {
   //console.log(tags);
   if (invHisTab.children.length > 2500) {
-    $J("#steam_filter_loading_screen").removeClass("steam_filter_hide_class");
-    $J("#steam_filter_Options").addClass("steam_filter_hide_class");
+    $J("#steam_filter_loading_screen").show();
+    $J("#steam_filter_Options").hide();
   }
   //setTimeout(filterListAction, 0, tags);
   setTimeout(filterListActionV2, 0, tags, global_search_tag, include_only_filtered_rows);
@@ -288,16 +288,39 @@ function filterListAction(tags) {
       child.style.display = "none";
     }
   });
-  $J("#steam_filter_Options").removeClass("steam_filter_hide_class");
-  $J("#steam_filter_loading_screen").addClass("steam_filter_hide_class");
+  $J("#steam_filter_Options").show();
+  $J("#steam_filter_loading_screen").hide();
 }
+
+/*function ChangeLanguage( strTargetLanguage, bStayOnPage )
+{
+	var Modal = ShowBlockingWaitDialog( 'Change language', '' );
+	$J.post( 'https://steamcommunity.com/actions/SetLanguage/', {language: strTargetLanguage, sessionid: sessionID })
+		.done( function() {
+			if ( bStayOnPage )
+				Modal.Dismiss();
+			else
+			{
+								if( g_steamID )
+					window.location = 'https://store.steampowered.com/account/languagepreferences/';
+				else if ( window.location.href.match( /[?&]l=/ ) )
+					window.location = window.location.href.replace( /([?&])l=[^&]*&?/, '$1' );
+				else
+					window.location.reload();
+			}
+		}).fail( function() {
+			Modal.Dismiss();
+			ShowAlertDialog( 'Change language', 'There was a problem communicating with the Steam servers.  Please try again later.' );
+		});
+}*/
 
 function updateValidLanguage() {
   if (validLanguage) {
     // Language is valid
-    
+    $J("#steam_Inv_His_toolbar_filterOptions").show();
   } else {
     // Language is not valid
+    $J("#steam_Inv_His_toolbar_filterOptions").hide();
 
   }
 }

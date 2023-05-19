@@ -775,7 +775,7 @@ for (let index = 0; index < cookies.length; index++) {
   } else if (key == "Steam_Language") {
     steamLanguage = value;
   }
-}   
+}
 var loadAllAmount = 0;
 var loadPartial = 0;
 cursurHistory = Math.floor(Date.now() / 1000);

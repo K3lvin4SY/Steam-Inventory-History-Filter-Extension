@@ -137,15 +137,15 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 function InventoryHistory_GetStatsData(itemName) {
 	var itemListData = [];
 	$J("#inventory_history_table").find(".tradehistoryrow").each(function() {
-		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
-		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, ''));
+		var year = $J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[2].cleanup().substring(0, 4);
+		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[1].cleanup().replace(/[0-9]/g, ''));
 		var month = getMonthFromString(mon);
 		var monthStr = getMonthFromString(mon)+"";
 		if (monthStr.length == 1) {
 			monthStr = "0"+monthStr;
 		}
 		var quarter = getQuarter(month);
-		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "").cleanup();
+		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[0].replace(/[a-zA-Z]/g, "").cleanup();
 		if (day.length == 1) {
 			day = "0"+day;
 		}
@@ -188,15 +188,15 @@ function getEnglishMonth(month) {
 function InventoryHistory_AddStatsData( $Jnew, rgDescriptions )
 {
 	$Jnew.each(function() {
-		var year = $J(this).find(".tradehistory_date").eq(0).text().split(",")[1].cleanup().substring(0, 4);
-		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().split(",")[0].cleanup().replace(/[0-9]/g, ''));
+		var year = $J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[2].cleanup().substring(0, 4);
+		var mon = getEnglishMonth($J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[1].cleanup().replace(/[0-9]/g, ''));
 		var month = getMonthFromString(mon);
 		var monthStr = getMonthFromString(mon)+"";
 		if (monthStr.length == 1) {
 			monthStr = "0"+monthStr;
 		}
 		var quarter = getQuarter(month);
-		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(" ", "").split(",")[0].replace(/[a-zA-Z]/g, "").cleanup();
+		var day = $J(this).find(".tradehistory_date").eq(0).text().replace(".", "").replace(",", "").split(" ")[0].replace(/[a-zA-Z]/g, "").cleanup();
 		if (day.length == 1) {
 			day = "0"+day;
 		}
@@ -306,7 +306,7 @@ function InventoryHistory_LoadAll()
 
 	// perperations
 	$J('#load_more_button').hide();
-	$J("#Loading_For_Rows_Dialog").removeClass("steam_filter_hide_class");
+	$J("#Loading_For_Rows_Dialog").show();
 	
 	
 	// Start
@@ -337,8 +337,8 @@ function InventoryHistory_LoadAll()
 			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingStopped);
 			$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 			$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
-			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-			$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
+			$J("#steam_Inv_Loader_spin").hide();
+			$J("#steam_Inv_Loader_Win_FBtn").hide();
 		}
 		return;
 	}
@@ -416,8 +416,8 @@ function InventoryHistory_LoadAll()
 					$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingStopped);
 					$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 					$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
-					$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-					$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
+					$J("#steam_Inv_Loader_spin").hide();
+					$J("#steam_Inv_Loader_Win_FBtn").hide();
 				}
 			}
 			else
@@ -428,8 +428,8 @@ function InventoryHistory_LoadAll()
 				$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingDone);
 				$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
 				$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
-				$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
-				$J("#steam_Inv_Loader_Win_FBtn").addClass("steam_filter_hide_class");
+				$J("#steam_Inv_Loader_spin").hide();
+				$J("#steam_Inv_Loader_Win_FBtn").hide();
 
 				$J( '#load_more_button' ).hide();
 			}
@@ -452,7 +452,7 @@ function InventoryHistory_LoadAll()
 		{
 			too_many_req = true;
 			loadPartial = 0;
-			$J("#steam_Inv_Loader_spin").addClass("steam_filter_hide_class");
+			$J("#steam_Inv_Loader_spin").hide();
 			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.timerAltText);
 			InventoryHistory_LoadAll();
 			//alert("Too many requests //fix real Dialog!")
