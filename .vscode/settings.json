@@ -2,7 +2,7 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": "\\\\SteamInventoryHistoryRemoveStorageUnitsExtension\\\\.*",
+        "match": ".*",
         "cmd": "start chrome /new-window http://reload.extensions"
       }
     ]
