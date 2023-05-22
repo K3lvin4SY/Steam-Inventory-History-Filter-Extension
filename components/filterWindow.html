@@ -1,11 +1,3 @@
-<div hidden id="languageNotSupportedWindow">
-  <h3><span id="current_Language_that_is_not_supported"></span> is not fully supported</h3>
-  <p>The following features will be unavailable:</p>
-  <ul>
-    <li>Correct history language</li>
-    <li></li>
-  </ul>
-</div>
 <div id="steam_Inv_His_Filter_Window">
   <div id="steam_Inv_His_Toolbar">
     <div class="modal_top_bar"></div>
@@ -245,7 +237,7 @@
 </div>
 
 <!-- Advanced -->
-<div class="steam_filter_dialog_group" id="steam_filter_advanced">
+<div hidden class="steam_filter_dialog_group" id="steam_filter_advanced">
   <div class="steam_inv_filter_modal_advanced newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
@@ -266,13 +258,13 @@
             <div class="aFilter_container">
               <h4 id="aFilter_html_title-collection">Collection</h4>
               <select id="aFilter-collection">
-                <option value="any">Any</option>
+                <option class="aFilter_html_title-any" value="any">Any</option>
               </select>
             </div>
             <div class="aFilter_container">
               <h4 id="aFilter_html_title-weapon">Weapon</h4> <!--item-weapon-->
               <select id="aFilter-weapon">
-                <option value="any">Any</option>
+                <option class="aFilter_html_title-any" value="any">Any</option>
               </select>
             </div>
             <div class="aFilter_container">

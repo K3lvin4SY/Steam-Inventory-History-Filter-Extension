@@ -297,7 +297,8 @@ var languageOption = {
         quality: "Category",
         rarity: "Quality",
         current: "Current",
-        reset: "RESET"
+        reset: "RESET",
+        any: "Any"
       }
     }
   },
@@ -547,7 +548,8 @@ var languageOption = {
         quality: "Category",
         rarity: "Quality",
         current: "Current",
-        reset: "RESET"
+        reset: "RESET",
+        any: "Any"
       }
     }
   },
@@ -797,7 +799,8 @@ var languageOption = {
         quality: "Kategori",
         rarity: "Kvalitet",
         current: "Nuvarande",
-        reset: "ÅTERSTÄLL"
+        reset: "ÅTERSTÄLL",
+        any: "Någon"
       }
     }
   }
@@ -1017,6 +1020,9 @@ function updateHtmlText() {
   $J("#aFilter_html_title-quality").text(languageOption.sel.html.advancedFilter.quality);
   $J("#aFilter_html_title-rarity").text(languageOption.sel.html.advancedFilter.rarity);
   $J("#aFilter_html_title-current").text(languageOption.sel.html.advancedFilter.current);
+  $J(".aFilter_html_title-any").each(function() {
+    $J(this).text(languageOption.sel.html.advancedFilter.any);
+  })
   updateCurrentSearchList();
 
 }

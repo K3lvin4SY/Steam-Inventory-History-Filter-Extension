@@ -131,9 +131,9 @@ function findTag(item, tag, prop) {
       }
     }
   } else if (prop == "data-item-type-tag") {
-    console.log(tag);
+    
     if (tag.length == 0) {
-      console.log("true");
+      
       return true;
     }
     if (typeof tag === 'string') { //
@@ -274,17 +274,17 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
         tagsToPass++;
         if (event_container.text().toLowerCase().includes(global_search_tag.search.toLowerCase())) {
           if (filterListTagInItems(items, global_search_tag.collection, "data-item-collection-tag")) {
-            console.log("pass1");
+            
             if (filterListTagInItems(items, global_search_tag.weapon, "data-item-weapon-tag")) {
-              console.log("pass2");
+              
               if (filterListTagInItems(items, global_search_tag.type, "data-item-type-tag")) {
-                console.log("pass3");
+                
                 if (filterListTagInItems(items, global_search_tag.exterior, "data-item-exterior-tag")) {
-                  console.log("pass4");
+                  
                   if (filterListTagInItems(items, global_search_tag.quality, "data-item-quality-tag")) {
-                    console.log("pass5");
+                    
                     if (filterListTagInItems(items, global_search_tag.rarity, "data-item-rarity-tag")) {
-                      console.log("pass6");
+                      
                       global_search_override = !include_only_filtered_rows;
                       tagsPassed++;
                       searchPassed = true;
