@@ -133,7 +133,6 @@ function findTag(item, tag, prop) {
   } else if (prop == "data-item-type-tag") {
     
     if (tag.length == 0) {
-      
       return true;
     }
     if (typeof tag === 'string') { //
@@ -155,8 +154,10 @@ function findTag(item, tag, prop) {
       return true;
     }
     if (typeof tag === 'string') { //
-      if (!Object.keys(item.data()).includes("itemCollection")) {
+      if (!Object.keys(item.data()).includes("itemCollection") && tag != "any") {
         return false;
+      } else if (!Object.keys(item.data()).includes("itemCollection") && tag == "any") {
+        return true;
       }
       if (item.data("item-collection").internal_name == tag || tag == "any") {
         // passed
@@ -212,8 +213,10 @@ function findTag(item, tag, prop) {
       return true;
     }
     if (typeof tag === 'string') { //
-      if (!Object.keys(item.data()).includes("itemWeapon")) {
+      if (!Object.keys(item.data()).includes("itemWeapon") && tag != "any") {
         return false;
+      } else if (!Object.keys(item.data()).includes("itemWeapon") && tag == "any") {
+        return true;
       }
       if (item.data("item-weapon").internal_name == tag || tag == "any") {
         // passed
