@@ -178,12 +178,14 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 							const color = data.color;
 							if (checkIfItemAlreadyExists("#aFilter-rarity .input-option", value)) {
 								$J("#aFilter-rarity").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span style="color: #'+color+';">'+title+'</span></div>');
+								$J("#aFilter-rarity").last().find('.input-option[type="checkbox"]').eq(0).click(function() {updateCurrentSearchList();})
 							}
 						} else if (category == "itemType") {
 							const title = data.name;
 							const value = data.internal_name;
 							if (checkIfItemAlreadyExists("#aFilter-type .input-option", value)) {
 								$J("#aFilter-type").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span>'+title+'</span></div>');
+								$J("#aFilter-type").last().find('.input-option[type="checkbox"]').eq(0).click(function() {updateCurrentSearchList();})
 							}
 						} else if (category == "itemWeapon") {
 							const title = data.name;

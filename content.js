@@ -319,8 +319,8 @@ function updateValidLanguage() {
 function updateCurrentSearchList() {
   const data = $J("#advanced_filter_window .aFilter_current .aFilter_data").eq(0);
   const searchData = $J("#aFilter-search").val();
-  const collectionData = $J("#aFilter-collection").text();
-  const weaponData = $J("#aFilter-weapon").text();
+  const collectionData = $J("#aFilter-collection option:checked").text();
+  const weaponData = $J("#aFilter-weapon option:checked").text();
   var typeDataExists = false;
   var typeData = "<p><h5>Type:</h5>";
   $J("#aFilter-type .checkbox-container .input-option").each(function() {
