@@ -48,34 +48,22 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     //console.log(props);
 
     var tag3 = $J(this).data("data-item-quality-tag");
-    if (tag3 != null) {
-      tag3 = tag3.cleanup()
-    }
     props["data-item-quality-tag"] = tag3; // Search for all StatTrak, normal, knifes items, etc
     
     var tag4 = $J(this).data("data-item-type-tag");
-    if (tag4 != null) {
-      tag4 = tag4.cleanup()
-    }
     props["data-item-type-tag"] = tag4; // Search for specific item type ex: stickers, cases
     
     var tag5 = $J(this).data("data-item-collection-tag");
-    if (tag5 != null) {
-      tag5 = tag5.cleanup()
-    }
     props["data-item-collection-tag"] = tag5; // Search for item in a specific collection
     
     var tag6 = $J(this).data("data-item-rarity-tag");
-    if (tag6 != null) {
-      tag6 = tag6.cleanup()
-    }
     props["data-item-rarity-tag"] = tag6; // Search for specific item quality ex: Covert
     
     var tag7 = $J(this).data("data-item-exterior-tag");
-    if (tag7 != null) {
-      tag7 = tag7.cleanup()
-    }
     props["data-item-exterior-tag"] = tag7; // Search for specific item exterior ex: Minimal-Wear
+
+    var tag8 = $J(this).data("data-item-exterior-tag");
+    props["data-item-exterior-tag"] = tag8; // Search for specific item waepon type ex: Ak47
     
     //console.log(props);
     tags.push(props);
@@ -101,6 +89,9 @@ function findTag(item, tag, prop) {
   } else if (prop == "data-item-name-tag") {
     //console.log(item);
     //console.log(item.data());
+    if (tag.length == 0) {
+      return true;
+    }
     if (typeof tag === 'string') {
       if (item.data("item-internal-name").cleanup().includes(tag)) {
         // passed
@@ -122,29 +113,120 @@ function findTag(item, tag, prop) {
       return true;
     }*/
   } else if (prop == "data-item-quality-tag") {
-    if (item.data("item-quality").internal_name.cleanup().includes(tag)) {
-      // passed
+    if (tag.length == 0) {
       return true;
+    }
+    if (typeof tag === 'string') { //
+      if (item.data("item-quality").internal_name == tag) {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-quality").internal_name == innerTag) {
+          // passed
+          return true;
+        }
+      }
     }
   } else if (prop == "data-item-type-tag") {
-    if (item.data("item-type").internal_name.cleanup().includes(tag)) {
-      // passed
+    console.log(tag);
+    if (tag.length == 0) {
+      console.log("true");
       return true;
+    }
+    if (typeof tag === 'string') { //
+      if (item.data("item-type").internal_name == tag) {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-type").internal_name == innerTag) {
+          // passed
+          return true;
+        }
+      }
     }
   } else if (prop == "data-item-collection-tag") {
-    if (item.data("item-collection").internal_name.cleanup().includes(tag)) {
-      // passed
+    if (tag.length == 0) {
       return true;
+    }
+    if (typeof tag === 'string') { //
+      if (!Object.keys(item.data()).includes("itemCollection")) {
+        return false;
+      }
+      if (item.data("item-collection").internal_name == tag || tag == "any") {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-collection").internal_name == innerTag || tag == "any") {
+          // passed
+          return true;
+        }
+      }
     }
   } else if (prop == "data-item-rarity-tag") {
-    if (item.data("item-rarity").internal_name.cleanup().includes(tag)) {
-      // passed
+    if (tag.length == 0) {
       return true;
     }
+    if (typeof tag === 'string') { //
+      if (item.data("item-rarity").internal_name == tag) {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-rarity").internal_name == innerTag) {
+          // passed
+          return true;
+        }
+      }
+    }
   } else if (prop == "data-item-exterior-tag") {
-    if (item.data("item-exterior").internal_name.cleanup().includes(tag)) {
-      // passed
+    if (tag.length == 0) {
       return true;
+    }
+    if (typeof tag === 'string') { //
+      if (item.data("item-exterior").internal_name == tag) {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-exterior").internal_name == innerTag) {
+          // passed
+          return true;
+        }
+      }
+    }
+  } else if (prop == "data-item-weapon-tag") {
+    if (tag.length == 0) {
+      return true;
+    }
+    if (typeof tag === 'string') { //
+      if (!Object.keys(item.data()).includes("itemCollection")) {
+        return false;
+      }
+      if (item.data("item-weapon").internal_name == tag || tag == "any") {
+        // passed
+        return true;
+      }
+    } else if (Array.isArray(tag)) {
+      for (let index = 0; index < tag.length; index++) {
+        const innerTag = tag[index]; //
+        if (item.data("item-weapon").internal_name == innerTag || tag == "any") {
+          // passed
+          return true;
+        }
+      }
     }
   }
   return false; // any item with tag does not exist in row
@@ -190,10 +272,28 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
       var show_all_override = false;
       if (global_search_tag != null) { // if there is a global search tag
         tagsToPass++;
-        if (event_container.text().toLowerCase().includes(global_search_tag.toLowerCase())) {
-          global_search_override = !include_only_filtered_rows;
-          tagsPassed++;
-          searchPassed = true;
+        if (event_container.text().toLowerCase().includes(global_search_tag.search.toLowerCase())) {
+          if (filterListTagInItems(items, global_search_tag.collection, "data-item-collection-tag")) {
+            console.log("pass1");
+            if (filterListTagInItems(items, global_search_tag.weapon, "data-item-weapon-tag")) {
+              console.log("pass2");
+              if (filterListTagInItems(items, global_search_tag.type, "data-item-type-tag")) {
+                console.log("pass3");
+                if (filterListTagInItems(items, global_search_tag.exterior, "data-item-exterior-tag")) {
+                  console.log("pass4");
+                  if (filterListTagInItems(items, global_search_tag.quality, "data-item-quality-tag")) {
+                    console.log("pass5");
+                    if (filterListTagInItems(items, global_search_tag.rarity, "data-item-rarity-tag")) {
+                      console.log("pass6");
+                      global_search_override = !include_only_filtered_rows;
+                      tagsPassed++;
+                      searchPassed = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       //console.log(props);
@@ -321,38 +421,58 @@ function updateCurrentSearchList() {
   const searchData = $J("#aFilter-search").val();
   const collectionData = $J("#aFilter-collection option:checked").text();
   const weaponData = $J("#aFilter-weapon option:checked").text();
+  
+  aFilterSearchData.search = searchData;
+  aFilterSearchData.collection = $J("#aFilter-collection option:checked").val();
+  aFilterSearchData.weapon = $J("#aFilter-weapon option:checked").val();
+
+  // type
   var typeDataExists = false;
   var typeData = "<p><h5>Type:</h5>";
+  aFilterSearchData.type = [];
   $J("#aFilter-type .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       typeData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.type.push($J(this).val());
       typeDataExists = true;
     }
   })
   typeData += "</p>";
+
+  // exterior
   var exteriorDataExists = false;
   var exteriorData = "<p><h5>Extorior:</h5>";
+  aFilterSearchData.exterior = [];
   $J("#aFilter-exterior .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       exteriorData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.exterior.push($J(this).val());
       exteriorDataExists = true;
     }
   })
   exteriorData += "</p>";
+
+  // quality
   var qualityDataExists = false;
   var qualityData = "<p><h5>Category:</h5>";
+  aFilterSearchData.quality = [];
   $J("#aFilter-quality .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       qualityData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.quality.push($J(this).val());
       qualityDataExists = true;
     }
   })
   qualityData += "</p>";
+
+  // rarity
   var rarityDataExists = false;
   var rarityData = "<p><h5>Quality:</h5>";
+  aFilterSearchData.rarity = [];
   $J("#aFilter-rarity .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       rarityData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.rarity.push($J(this).val());
       rarityDataExists = true;
     }
   })

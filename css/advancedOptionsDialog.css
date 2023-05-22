@@ -87,6 +87,7 @@
   max-height: 300px;
   overflow-y: auto;
 }
+
 #advanced_filter_window .input-options {
   display: none;
   transform: translateY(4.8em);

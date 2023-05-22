@@ -6,6 +6,16 @@ var continueLOading = true;
 var loadedAllHistory = false;
 var validLanguage = true;
 
+var aFilterSearchData = {
+  search: "",
+  collection: "any",
+  weapon: "any",
+  type: [],
+  exterior: [],
+  quality: [],
+  rarity: []
+};
+
 var gameData = {
   containerUnlocks: {
     case: [],
@@ -784,6 +794,7 @@ async function addFilterOptions() {
   }
     
   createButtonLinks();
+  $J( '#load_more_button' ).hide();
 
 }
 

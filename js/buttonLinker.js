@@ -137,11 +137,16 @@ function createButtonLinks() {
     })
   })
 
-  $J(".steam_filter_advanced_win_dismiss").each(function() {
+  // close aFilter Search
+  $J("#steam_filter_advanced_win_dismiss").each(function() {
     $J(this).click(function() {
-      console.log("test");
+      $J("#steam_filter_advanced").hide();
+    })
+  });
+  $J("#steam_filter_advanced_win_btn").each(function() {
+    $J(this).click(function() {
       $J("#steam_filter_advanced").toggle();
-      $J("#steam_filter_Options").toggle();
+      $J("#steam_filter_simple_searchbar").toggle();
     })
   });
 
@@ -158,9 +163,14 @@ function createButtonLinks() {
     updateHtmlText();
   });
 
-  $J("#steam_filter_searchbar_advanced").click(function() {
+  // aFilter open
+  /*$J("#steam_filter_searchbar_advanced").click(function() {
     $J("#steam_filter_advanced").toggle();
     $J("#steam_filter_Options").toggle();
+  });*/
+  $J("#steam_filter_simple_searchbar_advanced").click(function() {
+    $J("#steam_filter_advanced").toggle();
+    $J("#steam_filter_simple_searchbar").toggle();
   });
 
   $J("#steam_Inv_His_Search").click(() => {
@@ -172,7 +182,15 @@ function createButtonLinks() {
 
   // send simple search
   $J("#steam_filter_simple_searchbar_search_submit_btn").click(function() {
-    var tagToSearch = $J("#steam_filter_simple_searchbar_data").val();
+    var tagToSearch = {
+      search: $J("#steam_filter_simple_searchbar_data").val(),
+      collection: "any",
+      weapon: "any",
+      type: [],
+      exterior: [],
+      quality: [],
+      rarity: []
+    };
     var include_only_filtered_rows = !$J("#include_search_outside_filters_box").is(":checked");
     $J("#steam_filter_simple_searchbar").hide();
     updateFilterTagCollector(tagToSearch, include_only_filtered_rows);
@@ -202,6 +220,22 @@ function createButtonLinks() {
       })
     })
   })
+  $J('#advanced_filter_window .aFilter_container select').each(function() {
+    $J(this).click(function() {
+      $J('#advanced_filter_window .input-select[type="checkbox"]').each(function() {
+        if ($J(this).is(':checked')) {
+          $J(this).prop("checked", false);
+        }
+      })
+    })
+  })
+  $J("#aFilter-search").on('click', function() {
+    $J('#advanced_filter_window .input-select[type="checkbox"]').each(function() {
+      if ($J(this).is(':checked')) {
+        $J(this).prop("checked", false);
+      }
+    })
+  })
 
   // aFilter reset btn
   $J(".steam_filter_advanced_win_btn_reset").each(function() {
@@ -229,5 +263,13 @@ function createButtonLinks() {
   })
   $J("#aFilter-search").on('input', function() {
     updateCurrentSearchList();
+  })
+
+  // aFilter Search
+  $J("#aFilter_search").click(function() {
+    console.log(aFilterSearchData);
+    var include_only_filtered_rows = true;
+    updateFilterTagCollector(aFilterSearchData, include_only_filtered_rows);
+    $J("#steam_filter_advanced").hide();
   })
 }
