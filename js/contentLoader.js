@@ -528,7 +528,6 @@ function InventoryHistory_LoadAll()
 		else
 		{
 			cursurHistory = prevCursor;
-			$J( '#load_more_button' ).fadeIn( 50 );
 
 			if ( data.error )
 			{
@@ -552,14 +551,12 @@ function InventoryHistory_LoadAll()
 		else if ( jqXHR.status == 503 )
 		{
 			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.steamServiceUnavailable, languageOption.sel.messages.ok );
-			$J( '#load_more_button' ).fadeIn( 50 );
 			continueLOading = false;
 		}
 		else
 		{
 			continueLOading = false;
 			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.otherErrorMessage, languageOption.sel.messages.ok );
-			$J( '#load_more_button' ).fadeIn( 50 );
 		}
 	}).always( function() {
 		$J('#inventory_history_loading').hide();

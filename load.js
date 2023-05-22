@@ -94,6 +94,7 @@ var languageOption = {
       ok: "OK",
       error: "Error",
       stop: "STOP",
+      back: "BACK",
       steamServiceUnavailable: "Steam service is currenty unavailable.",
       otherErrorMessage: "There was a problem loading your inventory history.",
       loadingHistory: "Loading History"
@@ -287,6 +288,16 @@ var languageOption = {
 
           }
         }
+      },
+      advancedFilter: {
+        collection: "Collection",
+        weapon: "Weapon",
+        type: "Type",
+        exterior: "Exterior",
+        quality: "Category",
+        rarity: "Quality",
+        current: "Current",
+        reset: "RESET"
       }
     }
   },
@@ -333,6 +344,7 @@ var languageOption = {
       ok: "OK",
       error: "Error",
       stop: "STOP",
+      back: "BACK",
       steamServiceUnavailable: "Steam service is currenty unavailable.",
       otherErrorMessage: "There was a problem loading your inventory history.",
       loadingHistory: "Loading History"
@@ -526,6 +538,16 @@ var languageOption = {
 
           }
         }
+      },
+      advancedFilter: {
+        collection: "Collection",
+        weapon: "Weapon",
+        type: "Type",
+        exterior: "Exterior",
+        quality: "Category",
+        rarity: "Quality",
+        current: "Current",
+        reset: "RESET"
       }
     }
   },
@@ -572,6 +594,7 @@ var languageOption = {
       ok: "OK",
       error: "Fel",
       stop: "STOP",
+      back: "TILLBAKA",
       steamServiceUnavailable: "Steam-tjänsten är för närvarande inte tillgänglig.",
       otherErrorMessage: "Det gick inte att läsa in din lagerhistorik.",
       loadingHistory: "Laddar Historik"
@@ -765,6 +788,16 @@ var languageOption = {
 
           }
         }
+      },
+      advancedFilter: {
+        collection: "Samling",
+        weapon: "Vapen",
+        type: "Typ",
+        exterior: "Exteriör",
+        quality: "Kategori",
+        rarity: "Kvalitet",
+        current: "Nuvarande",
+        reset: "ÅTERSTÄLL"
       }
     }
   }
@@ -971,6 +1004,21 @@ function updateHtmlText() {
   skins_drops_chart.options.plugins.title.text = languageOption.sel.html.stats.statsHtml.chartLabels.skinDrops;
   skins_drops_chart.data.labels = [languageOption.sel.html.stats.statsHtml.rarities.skins.consumerGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.industrialGrade, languageOption.sel.html.stats.statsHtml.rarities.skins.milspec, languageOption.sel.html.stats.statsHtml.rarities.skins.restricted, languageOption.sel.html.stats.statsHtml.rarities.skins.classified, languageOption.sel.html.stats.statsHtml.rarities.skins.covert];
   skins_drops_chart.update();
+
+  // advanced filter search //
+  $J("#steam_filter_advanced_win_title_text").text(languageOption.sel.html.simpleSearch.advanced+" "+languageOption.sel.html.simpleSearch.searchBarLabel);
+  $J("#steam_filter_advanced_win_btn_reset_txt").text(languageOption.sel.html.advancedFilter.reset);
+  $J("#steam_filter_advanced_win_btn_txt").text(languageOption.sel.messages.back);
+  $J("#aFilter_html_title-search").text(languageOption.sel.html.simpleSearch.searchBarLabel);
+  $J("#aFilter_html_title-collection").text(languageOption.sel.html.advancedFilter.collection);
+  $J("#aFilter_html_title-weapon").text(languageOption.sel.html.advancedFilter.weapon);
+  $J("#aFilter_html_title-type").text(languageOption.sel.html.advancedFilter.type);
+  $J("#aFilter_html_title-exterior").text(languageOption.sel.html.advancedFilter.exterior);
+  $J("#aFilter_html_title-quality").text(languageOption.sel.html.advancedFilter.quality);
+  $J("#aFilter_html_title-rarity").text(languageOption.sel.html.advancedFilter.rarity);
+  $J("#aFilter_html_title-current").text(languageOption.sel.html.advancedFilter.current);
+  updateCurrentSearchList();
+
 }
 
 addFilterOptions();

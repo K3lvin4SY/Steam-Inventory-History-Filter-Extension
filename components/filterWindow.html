@@ -251,7 +251,7 @@
     <div class="newmodal_header_border">
       <div class="newmodal_header">
         <div id="steam_filter_advanced_win_dismiss" class="newmodal_close steam_filter_advanced_win_dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
-        <div id="steam_filter_advanced_win_title_text" class="title_text">Advanced Filter</div>
+        <div id="steam_filter_advanced_win_title_text" class="title_text">Advanced Search</div>
       </div>
     </div>
     <div class="newmodal_content_border">
@@ -260,29 +260,29 @@
         <div id="advanced_filter_window">
           <div class="aFilter_boxes_container"><div class="aFilter_boxes">
             <div class="aFilter_container">
-              <h4>Search</h4>
+              <h4 id="aFilter_html_title-search">Search</h4>
               <input class="steam_filter_gui_input" type="search" id="aFilter-search">
             </div>
             <div class="aFilter_container">
-              <h4>Collection</h4>
+              <h4 id="aFilter_html_title-collection">Collection</h4>
               <select id="aFilter-collection">
                 <option value="any">Any</option>
               </select>
             </div>
             <div class="aFilter_container">
-              <h4>Weapon</h4> <!--item-weapon-->
+              <h4 id="aFilter_html_title-weapon">Weapon</h4> <!--item-weapon-->
               <select id="aFilter-weapon">
                 <option value="any">Any</option>
               </select>
             </div>
             <div class="aFilter_container">
-              <h4>Type</h4> <!--item-type-->
+              <h4 id="aFilter_html_title-type">Type</h4> <!--item-type-->
               <input class="input-select" type="checkbox">
               <div id="aFilter-type" class="input-options">
               </div>
             </div>
             <div class="aFilter_container">
-              <h4>Exterior</h4>
+              <h4 id="aFilter_html_title-exterior">Exterior</h4>
               <input class="input-select" type="checkbox">
               <div id="aFilter-exterior" class="input-options">
                 <div class="checkbox-container"><input class="input-option" value="WearCategory0" type="checkbox"><span>Factory New</span></div>
@@ -294,7 +294,7 @@
               </div>
             </div>
             <div class="aFilter_container">
-              <h4>Category</h4> <!--item-quality-->
+              <h4 id="aFilter_html_title-quality">Category</h4> <!--item-quality-->
               <input class="input-select" type="checkbox">
               <div id="aFilter-quality" class="input-options">
                 <div class="checkbox-container"><input class="input-option" value="normal" type="checkbox"><span style="color: rgb(178, 178, 178);">Normal</span></div>
@@ -305,7 +305,7 @@
               </div>
             </div>
             <div class="aFilter_container">
-              <h4>Quality</h4> <!--item-rarity-->
+              <h4 id="aFilter_html_title-rarity">Quality</h4> <!--item-rarity-->
               <input class="input-select" type="checkbox">
               <div id="aFilter-rarity" class="input-options">
               </div>
@@ -314,7 +314,7 @@
           <div class="aFilter_collections_container">
             <div class="aFilter_collections">
               <div class="aFilter_current aFilter_collection">
-                <h4>Current</h4>
+                <h4 id="aFilter_html_title-current">Current</h4>
                 <div class="aFilter_data">
                   <p>
                     <h5>Collection:</h5>
@@ -333,7 +333,7 @@
 
         <div class="newmodal_buttons">
           <div class="btn_grey_steamui btn_medium steam_filter_advanced_win_btn_reset" style="float: left;"><span id="steam_filter_advanced_win_btn_reset_txt">RESET</span></div>
-          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss"><span id="steam_filter_advanced_win_btn_txt">CLOSE</span></div>
+          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss"><span id="steam_filter_advanced_win_btn_txt">BACK</span></div>
         </div>
       </div>
     </div>

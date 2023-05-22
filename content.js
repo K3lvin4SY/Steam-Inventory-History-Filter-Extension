@@ -212,7 +212,7 @@ function findTag(item, tag, prop) {
       return true;
     }
     if (typeof tag === 'string') { //
-      if (!Object.keys(item.data()).includes("itemCollection")) {
+      if (!Object.keys(item.data()).includes("itemWeapon")) {
         return false;
       }
       if (item.data("item-weapon").internal_name == tag || tag == "any") {
@@ -428,7 +428,7 @@ function updateCurrentSearchList() {
 
   // type
   var typeDataExists = false;
-  var typeData = "<p><h5>Type:</h5>";
+  var typeData = "<p><h5>"+languageOption.sel.html.advancedFilter.type+":</h5>";
   aFilterSearchData.type = [];
   $J("#aFilter-type .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
@@ -441,7 +441,7 @@ function updateCurrentSearchList() {
 
   // exterior
   var exteriorDataExists = false;
-  var exteriorData = "<p><h5>Extorior:</h5>";
+  var exteriorData = "<p><h5>"+languageOption.sel.html.advancedFilter.exterior+":</h5>";
   aFilterSearchData.exterior = [];
   $J("#aFilter-exterior .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
@@ -454,7 +454,7 @@ function updateCurrentSearchList() {
 
   // quality
   var qualityDataExists = false;
-  var qualityData = "<p><h5>Category:</h5>";
+  var qualityData = "<p><h5>"+languageOption.sel.html.advancedFilter.quality+":</h5>";
   aFilterSearchData.quality = [];
   $J("#aFilter-quality .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
@@ -467,7 +467,7 @@ function updateCurrentSearchList() {
 
   // rarity
   var rarityDataExists = false;
-  var rarityData = "<p><h5>Quality:</h5>";
+  var rarityData = "<p><h5>"+languageOption.sel.html.advancedFilter.rarity+":</h5>";
   aFilterSearchData.rarity = [];
   $J("#aFilter-rarity .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
@@ -480,10 +480,10 @@ function updateCurrentSearchList() {
 
   data.html('');
   if (searchData != '') {
-    data.append('<p><h5>Search:</h5><li>'+searchData+'</li></p>');
+    data.append('<p><h5>'+languageOption.sel.html.simpleSearch.searchBarLabel+':</h5><li>'+searchData+'</li></p>');
   }
-  data.append('<p><h5>Collection:</h5><li>'+collectionData+'</li></p>');
-  data.append('<p><h5>Weapon:</h5><li>'+weaponData+'</li></p>');
+  data.append('<p><h5>'+languageOption.sel.html.advancedFilter.collection+':</h5><li>'+collectionData+'</li></p>');
+  data.append('<p><h5>'+languageOption.sel.html.advancedFilter.weapon+':</h5><li>'+weaponData+'</li></p>');
   if (typeDataExists) {
     data.append(typeData);
   }
