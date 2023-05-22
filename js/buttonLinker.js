@@ -268,7 +268,7 @@ function createButtonLinks() {
   // aFilter Search
   $J("#aFilter_search").click(function() {
     console.log(aFilterSearchData);
-    var include_only_filtered_rows = true;
+    var include_only_filtered_rows = !$J("#aFilter_include_search_outside_filters_box").is(":checked");
     updateFilterTagCollector(aFilterSearchData, include_only_filtered_rows);
     $J("#steam_filter_advanced").hide();
   })
