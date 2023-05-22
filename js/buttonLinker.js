@@ -163,17 +163,6 @@ function createButtonLinks() {
     $J("#steam_filter_Options").toggle();
   });
 
-  $J(".steam_filter_advanced_win_btn_reset").each(function() {
-    $J(this).click(function() {
-      $J("#market_advancedsearch_filters").find("input:checkbox:checked").each(function() {
-        $J(this).prop("checked", false);
-      });
-      $J("#market_advancedsearch_filters").find("select").each(function() {
-        $J(this).val($J(this).find("option:first").val());
-      });
-    });
-  });
-
   $J("#steam_Inv_His_Search").click(() => {
     $J("#steam_filter_simple_searchbar").show();
   })
@@ -200,5 +189,45 @@ function createButtonLinks() {
       }
       
     })
+  })
+
+  // aFilter only one checked
+  $J('#advanced_filter_window .input-select[type="checkbox"]').each(function() {
+    $J(this).click(function() {
+      const clickedBtn = this;
+      $J('#advanced_filter_window .input-select[type="checkbox"]').each(function() {
+        if ($J(this).is(':checked') && this != clickedBtn) {
+          $J(this).prop("checked", false);
+        }
+      })
+    })
+  })
+
+  // aFilter reset btn
+  $J(".steam_filter_advanced_win_btn_reset").each(function() {
+    $J(this).click(function() {
+      $J("#advanced_filter_window").find("input:checkbox:checked").each(function() {
+        $J(this).prop("checked", false);
+      });
+      $J("#advanced_filter_window").find("select").each(function() {
+        $J(this).val($J(this).find("option:first").val());
+      });
+      updateCurrentSearchList();
+    });
+  });
+
+  // aFilter on change
+  $J('#advanced_filter_window .input-option[type="checkbox"]').each(function() {
+    $J(this).click(function() {
+      updateCurrentSearchList();
+    })
+  })
+  $J('#advanced_filter_window .aFilter_container select').each(function() {
+    $J(this).change(function() {
+      updateCurrentSearchList();
+    })
+  })
+  $J("#aFilter-search").on('input', function() {
+    updateCurrentSearchList();
   })
 }

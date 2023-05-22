@@ -316,6 +316,68 @@ function updateValidLanguage() {
   }
 }
 
+function updateCurrentSearchList() {
+  const data = $J("#advanced_filter_window .aFilter_current .aFilter_data").eq(0);
+  const searchData = $J("#aFilter-search").val();
+  const collectionData = $J("#aFilter-collection").text();
+  const weaponData = $J("#aFilter-weapon").text();
+  var typeDataExists = false;
+  var typeData = "<p><h5>Type:</h5>";
+  $J("#aFilter-type .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      typeData += "<li>"+$J(this).next().text()+"</li>";
+      typeDataExists = true;
+    }
+  })
+  typeData += "</p>";
+  var exteriorDataExists = false;
+  var exteriorData = "<p><h5>Extorior:</h5>";
+  $J("#aFilter-exterior .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      exteriorData += "<li>"+$J(this).next().text()+"</li>";
+      exteriorDataExists = true;
+    }
+  })
+  exteriorData += "</p>";
+  var qualityDataExists = false;
+  var qualityData = "<p><h5>Category:</h5>";
+  $J("#aFilter-quality .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      qualityData += "<li>"+$J(this).next().text()+"</li>";
+      qualityDataExists = true;
+    }
+  })
+  qualityData += "</p>";
+  var rarityDataExists = false;
+  var rarityData = "<p><h5>Quality:</h5>";
+  $J("#aFilter-rarity .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      rarityData += "<li>"+$J(this).next().text()+"</li>";
+      rarityDataExists = true;
+    }
+  })
+  rarityData += "</p>";
+
+  data.html('');
+  if (searchData != '') {
+    data.append('<p><h5>Search:</h5><li>'+searchData+'</li></p>');
+  }
+  data.append('<p><h5>Collection:</h5><li>'+collectionData+'</li></p>');
+  data.append('<p><h5>Weapon:</h5><li>'+weaponData+'</li></p>');
+  if (typeDataExists) {
+    data.append(typeData);
+  }
+  if (exteriorDataExists) {
+    data.append(exteriorData);
+  }
+  if (qualityDataExists) {
+    data.append(qualityData);
+  }
+  if (rarityDataExists) {
+    data.append(rarityData);
+  }
+}
+
 
 
 

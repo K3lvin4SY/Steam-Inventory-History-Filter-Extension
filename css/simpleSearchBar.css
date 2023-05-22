@@ -49,7 +49,9 @@
 
   font-size: medium;
   border: 0 !important;
-  box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.1); 
+  box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.1);
+  background-color: #22232a;
+  color: inherit;
 }
 
 #steam_filter_simple_searchbar_advanced_container {

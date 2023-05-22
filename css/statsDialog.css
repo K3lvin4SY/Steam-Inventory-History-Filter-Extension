@@ -50,7 +50,7 @@
 #steam_filter_stats .stats_content_container .stats_list div input {
   display: none;
 }
-input:checked + span {
+#steam_filter_stats input:checked + span {
   background: linear-gradient(to right, #00c0f0, #3161f3);
   color: white !important;
   order: -1;

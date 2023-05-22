@@ -131,7 +131,7 @@
       <div id="steam_filter_simple_searchbar_win_form"> <!--form-->
         <div class="searchbar_container">
           <label id="modal-label-simpleSearch" class="searchbar_form_object steam_filter_gui_label" for="searchbar">Search</label>
-          <input class="searchbar_form_object steam_filter_gui_input" type="text" id="steam_filter_simple_searchbar_data" name="searchbar_data">
+          <input class="searchbar_form_object steam_filter_gui_input" type="search" id="steam_filter_simple_searchbar_data" name="searchbar_data">
           <!--<label class="searchbar_form_object steam_filter_gui_label" for="label">Alt. Label</label>
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">-->
           <div id="include_search_outside_filters_box_container">
@@ -245,7 +245,7 @@
 </div>
 
 <!-- Advanced -->
-<div hidden class="steam_filter_dialog_group" id="steam_filter_advanced">
+<div class="steam_filter_dialog_group" id="steam_filter_advanced">
   <div class="steam_inv_filter_modal_advanced newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
     <div class="newmodal_header_border">
@@ -257,895 +257,83 @@
     <div class="newmodal_content_border">
       <div class="newmodal_content" style="max-height: 75vh;">
 
-        <div>
-          <form id="market_advanced_search" action="">
-						<div id="market_advancedsearch_left">
-              <input class="filter_search_box market_search_sidebar_search_box" type="text" id="advancedSearchBox" value="" placeholder="Search" name="q" autocomplete="off" tabindex="1">
-              <input class="filter_search_box market_search_sidebar_search_box" type="text" id="advancedSearchBoxAltName" value="" placeholder="Alt. Name" name="alt_name" autocomplete="off" tabindex="2">
-              <input type="button" class="market_search_submit_button steam_filter_gui_button" id="advancedSearchSubmit" value="Search" tabindex="3">
-              <input type="button" class="market_search_submit_button steam_filter_gui_button" id="advancedSearchSubmit" value="Add Filter" tabindex="4">
-              <input type="button" class="market_search_submit_button steam_filter_gui_button steam_filter_advanced_win_btn_reset" id="advancedSearchReset" value="Reset" tabindex="5">
-			      </div>
-			      <div style="overflow: hidden">
-              <div id="market_advancedsearch_filters" class="market_advancedsearch_filters" style="text-align: inherit;">
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Collection</div>
-                  <select name="category_730_ItemSet[]" class="">
-                    <option value="any">Any</option>
-                    <option value="tag_set_op10_characters">Broken Fang Agents</option>
-                    <option value="tag_set_op11_characters">Operation Riptide Agents</option>
-                    <option value="tag_set_op9_characters">Shattered Web Agents</option>
-                    <option value="tag_set_inferno_2">The 2018 Inferno Collection</option>
-                    <option value="tag_set_nuke_2">The 2018 Nuke Collection</option>
-                    <option value="tag_set_dust_2_2021">The 2021 Dust 2 Collection</option>
-                    <option value="tag_set_mirage_2021">The 2021 Mirage Collection</option>
-                    <option value="tag_set_train_2021">The 2021 Train Collection</option>
-                    <option value="tag_set_vertigo_2021">The 2021 Vertigo Collection</option>
-                    <option value="tag_set_bravo_ii">The Alpha Collection</option>
-                    <option value="tag_set_op10_ancient">The Ancient Collection</option>
-                    <option value="tag_set_weapons_ii">The Arms Deal 2 Collection</option>
-                    <option value="tag_set_weapons_iii">The Arms Deal 3 Collection</option>
-                    <option value="tag_set_weapons_i">The Arms Deal Collection</option>
-                    <option value="tag_set_assault">The Assault Collection</option>
-                    <option value="tag_set_aztec">The Aztec Collection</option>
-                    <option value="tag_set_baggage">The Baggage Collection</option>
-                    <option value="tag_set_bank">The Bank Collection</option>
-                    <option value="tag_set_blacksite">The Blacksite Collection</option>
-                    <option value="tag_set_bravo_i">The Bravo Collection</option>
-                    <option value="tag_set_community_4">The Breakout Collection</option>
-                    <option value="tag_set_cache">The Cache Collection</option>
-                    <option value="tag_set_canals">The Canals Collection</option>
-                    <option value="tag_set_chopshop">The Chop Shop Collection</option>
-                    <option value="tag_set_community_7">The Chroma 2 Collection</option>
-                    <option value="tag_set_community_12">The Chroma 3 Collection</option>
-                    <option value="tag_set_community_6">The Chroma Collection</option>
-                    <option value="tag_set_community_19">The Clutch Collection</option>
-                    <option value="tag_set_cobblestone">The Cobblestone Collection</option>
-                    <option value="tag_set_op10_ct">The Control Collection</option>
-                    <option value="tag_set_community_24">The CS20 Collection</option>
-                    <option value="tag_set_community_21">The Danger Zone Collection</option>
-                    <option value="tag_set_community_30">The Dreams &amp; Nightmares Collection</option>
-                    <option value="tag_set_dust_2">The Dust 2 Collection</option>
-                    <option value="tag_set_dust">The Dust Collection</option>
-                    <option value="tag_set_esports">The eSports 2013 Collection</option>
-                    <option value="tag_set_esports_ii">The eSports 2013 Winter Collection</option>
-                    <option value="tag_set_esports_iii">The eSports 2014 Summer Collection</option>
-                    <option value="tag_set_community_8">The Falchion Collection</option>
-                    <option value="tag_set_community_26">The Fracture Collection</option>
-                    <option value="tag_set_gamma_2">The Gamma 2 Collection</option>
-                    <option value="tag_set_community_13">The Gamma Collection</option>
-                    <option value="tag_set_community_15">The Glove Collection</option>
-                    <option value="tag_set_gods_and_monsters">The Gods and Monsters Collection</option>
-                    <option value="tag_set_op10_t">The Havoc Collection</option>
-                    <option value="tag_set_community_20">The Horizon Collection</option>
-                    <option value="tag_set_community_3">The Huntsman Collection</option>
-                    <option value="tag_set_inferno">The Inferno Collection</option>
-                    <option value="tag_set_italy">The Italy Collection</option>
-                    <option value="tag_set_lake">The Lake Collection</option>
-                    <option value="tag_set_militia">The Militia Collection</option>
-                    <option value="tag_set_mirage">The Mirage Collection</option>
-                    <option value="tag_set_norse">The Norse Collection</option>
-                    <option value="tag_set_nuke">The Nuke Collection</option>
-                    <option value="tag_set_office">The Office Collection</option>
-                    <option value="tag_set_community_27">The Operation Broken Fang Collection</option>
-                    <option value="tag_set_community_17">The Operation Hydra Collection</option>
-                    <option value="tag_set_community_29">The Operation Riptide Collection</option>
-                    <option value="tag_set_overpass">The Overpass Collection</option>
-                    <option value="tag_set_community_2">The Phoenix Collection</option>
-                    <option value="tag_set_community_25">The Prisma 2 Collection</option>
-                    <option value="tag_set_community_22">The Prisma Collection</option>
-                    <option value="tag_set_community_31">The Recoil Collection</option>
-                    <option value="tag_set_community_32">The Revolution Collection</option>
-                    <option value="tag_set_community_10">The Revolver Case Collection</option>
-                    <option value="tag_set_kimono">The Rising Sun Collection</option>
-                    <option value="tag_set_safehouse">The Safehouse Collection</option>
-                    <option value="tag_set_community_9">The Shadow Collection</option>
-                    <option value="tag_set_community_23">The Shattered Web Collection</option>
-                    <option value="tag_set_community_28">The Snakebite Collection</option>
-                    <option value="tag_set_community_18">The Spectrum 2 Collection</option>
-                    <option value="tag_set_community_16">The Spectrum Collection</option>
-                    <option value="tag_set_stmarc">The St. Marc Collection</option>
-                    <option value="tag_set_train">The Train Collection</option>
-                    <option value="tag_set_community_5">The Vanguard Collection</option>
-                    <option value="tag_set_vertigo">The Vertigo Collection</option>
-                    <option value="tag_set_community_11">The Wildfire Collection</option>
-                    <option value="tag_set_community_1">The Winter Offensive Collection</option>
-                    <option value="tag_set_xraymachine">The X-Ray Collection</option>
-                  </select>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Professional Player</div>
-                  <select name="category_730_ProPlayer[]" class="">
-                    <option value="any">Any</option>
-                    <option value="tag_abe">abE (Abraham Fazli)</option>
-                    <option value="tag_ablej">ableJ (Rinaldo  Moda Junior)</option>
-                    <option value="tag_acor">acoR (Frederik Gyldstrand)</option>
-                    <option value="tag_adrenkz">AdreN (Dauren Kystaubayev)</option>
-                    <option value="tag_adren">adreN (Eric Hoag)</option>
-                    <option value="tag_advent">advent (Zhuo Liang)</option>
-                    <option value="tag_aerial">Aerial (Jani Jussila)</option>
-                    <option value="tag_aizy">aizy (Philip Aistrup Larsen)</option>
-                    <option value="tag_aleksib">Aleksib (Aleksi Virolainen)</option>
-                    <option value="tag_alex">ALEX (Alex Mcmeekin)</option>
-                    <option value="tag_alistair">aliStair (Alistair Johnston)</option>
-                    <option value="tag_allu">allu (Aleksi Jalli)</option>
-                    <option value="tag_almazer">almazer (Almaz Asadullin)</option>
-                    <option value="tag_amanek">AmaNEk (Francois Delaunay)</option>
-                    <option value="tag_android">ANDROID (Bradley Fodor)</option>
-                    <option value="tag_angel">ANGE1 (Kyrylo Karasov)</option>
-                    <option value="tag_annihilation">ANNIHILATION (Tuvshintugs Nyamdorj)</option>
-                    <option value="tag_apex">apEX (Dan Madesclaire)</option>
-                    <option value="tag_art">arT (Andrei Piovezan)</option>
-                    <option value="tag_arya">arya (Arya Hekmat)</option>
-                    <option value="tag_attacker">Attacker (Sheng Yuanzhang)</option>
-                    <option value="tag_auman">aumaN (Zhihong Liu)</option>
-                    <option value="tag_autimatic">autimatic (Timothy Ta)</option>
-                    <option value="tag_ax1le">Ax1Le (Sergei Rykhtorov)</option>
-                    <option value="tag_azr">AZR (Aaron Ward)</option>
-                    <option value="tag_b1ad3">B1ad3 (Andrey Gorodenskiy)</option>
-                    <option value="tag_b1t">b1t (Valerii Vakhovskyi)</option>
-                    <option value="tag_balblna">balblna (Grigorii Oleinik)</option>
-                    <option value="tag_bit">BIT (Bruno Lima)</option>
-                    <option value="tag_blamef">blameF (Benjamin Vang Bremer)</option>
-                    <option value="tag_blitz">bLitz (Garidmagnai Byambasuren)</option>
-                    <option value="tag_bntet">BnTeT (Hansel Ferdinand)</option>
-                    <option value="tag_bodyy">bodyy (Alexandre Pianaro)</option>
-                    <option value="tag_boltz">boltz (Ricardo Prass)</option>
-                    <option value="tag_bondik">bondik (Vladyslav Nechyporchuk)</option>
-                    <option value="tag_boombl4">Boombl4 (Kirill Mikhailov)</option>
-                    <option value="tag_brehze">Brehze (Vincent Cayonte)</option>
-                    <option value="tag_broky">broky (Helvijs Saukants)</option>
-                    <option value="tag_brollan">Brollan (Ludvig Brolin)</option>
-                    <option value="tag_buda">BUDA (Nicolás Kramer)</option>
-                    <option value="tag_buster">buster (Timur Tulepov)</option>
-                    <option value="tag_byali">byali (Pawel Bielinsky)</option>
-                    <option value="tag_cadian">cadiaN (Casper Møller)</option>
-                    <option value="tag_cajunb">cajunb (René Borg)</option>
-                    <option value="tag_calyx">Calyx (Bugra Arkın)</option>
-                    <option value="tag_captainmo">captainMo (Ke Liu)</option>
-                    <option value="tag_cerq">CeRq (Tsvetelin Dimitrov)</option>
-                    <option value="tag_chelo">chelo (Marcelo Cespedes)</option>
-                    <option value="tag_chopper">chopper (Leonid Vishnyakov)</option>
-                    <option value="tag_chrisj">chrisJ (Chris de Jong)</option>
-                    <option value="tag_coldyy1">COLDYY1 (Pavlo Veklenko)</option>
-                    <option value="tag_coldzera">coldzera (Marcelo David)</option>
-                    <option value="tag_crush">crush (Ihor Shevchenko)</option>
-                    <option value="tag_daps">daps (Damian Steele)</option>
-                    <option value="tag_dav1d">dav1d (David Maldonado)</option>
-                    <option value="tag_davcost">DavCost (Vadim Vasilyev)</option>
-                    <option value="tag_davey">DAVEY (David Stafford)</option>
-                    <option value="tag_dd">DD (Hui Wu)</option>
-                    <option value="tag_deadfox">DeadFox (Bence Borocz)</option>
-                    <option value="tag_degster">degster (Abdulkhalik Gasanov)</option>
-                    <option value="tag_denis">denis (Denis Howell)</option>
-                    <option value="tag_dennis">dennis (Dennis Edman)</option>
-                    <option value="tag_dephh">dephh (Rory Jackson)</option>
-                    <option value="tag_destiny">DeStiNy (Lucas Bullo De Lima)</option>
-                    <option value="tag_device">device (Nicolai Reedtz)</option>
-                    <option value="tag_devil">DEVIL (Timothée Démolon)</option>
-                    <option value="tag_devoduvek">devoduvek (David Dobrosavljevic)</option>
-                    <option value="tag_dexter">dexter (Christopher Nong)</option>
-                    <option value="tag_dgt">dgt (Franco Cabrera)</option>
-                    <option value="tag_dickstacy">DickStacy (Oliver Tierney)</option>
-                    <option value="tag_dima">Dima (Dmitriy Bandurka)</option>
-                    <option value="tag_dimasick">dimasick (Dmitriy Matviyenko)</option>
-                    <option value="tag_discodoplan">disco doplan (Joakim Gidetun)</option>
-                    <option value="tag_dosia">Dosia (Mikhail Stoliarov)</option>
-                    <option value="tag_draken">draken (William Sundin)</option>
-                    <option value="tag_drop">drop (André Wagner de Abreu)</option>
-                    <option value="tag_dumau">dumau (Eduardo Wolkmer)</option>
-                    <option value="tag_dupreeh">dupreeh (Peter Rasmussen)</option>
-                    <option value="tag_dycha">Dycha (Paweł Dycha)</option>
-                    <option value="tag_edward">Edward (Ioann Sukhariev)</option>
-                    <option value="tag_electronic">electronic (Denis Sharipov)</option>
-                    <option value="tag_elige">EliGE (Jonathan Jablonowski)</option>
-                    <option value="tag_emagine">emagine (Chris Rowlands)</option>
-                    <option value="tag_erkast">erkaSt (Erdenetsogt Gantulga)</option>
-                    <option value="tag_es3tag">es3tag (Patrick Hansen)</option>
-                    <option value="tag_espiranto">EspiranTo (Rokas Milasauskas)</option>
-                    <option value="tag_ethan">Ethan (Ethan Arnold)</option>
-                    <option value="tag_ex6tenz">Ex6TenZ (Kévin Droolans)</option>
-                    <option value="tag_exit">exit (Raphael Lacerda)</option>
-                    <option value="tag_forest">f0rest (Patrik Lindberg)</option>
-                    <option value="tag_f1ku">F1KU (Maciej Miklas)</option>
-                    <option value="tag_facecrack">facecrack (Dmitriy Alekseev)</option>
-                    <option value="tag_fallen">FalleN (Gabriel Toledo)</option>
-                    <option value="tag_fame">fame (Petr Bolyshev)</option>
-                    <option value="tag_fang">FaNg (Justin Coakley)</option>
-                    <option value="tag_farlig">Farlig (Asger Chen Jensen)</option>
-                    <option value="tag_fashr">FASHR (Dion Derksen)</option>
-                    <option value="tag_faven">faveN (Josef Baumann)</option>
-                    <option value="tag_felps">felps (Joao Vasconcellos Cabral)</option>
-                    <option value="tag_fer">fer (Fernando Alvarenga)</option>
-                    <option value="tag_fitch">fitch (Bektiyar Bakhytov)</option>
-                    <option value="tag_fl1t">FL1T (Evgenii Lebedev)</option>
-                    <option value="tag_flamez">FlameZ (Shahar Hai Shoshan)</option>
-                    <option value="tag_flamie">flamie (Egor Vasilyev)</option>
-                    <option value="tag_floppy">floppy (Ricky Kemery)</option>
-                    <option value="tag_flusha">flusha (Robin Rönnquist)</option>
-                    <option value="tag_fns">FNS (Pujan Mehta)</option>
-                    <option value="tag_fnx">fnx (Lincoln Lau)</option>
-                    <option value="tag_forester">Forester (Igor Bezotechesky)</option>
-                    <option value="tag_fox">fox (Ricardo Pacheco)</option>
-                    <option value="tag_freakazoid">freakazoid (Ryan Abadir)</option>
-                    <option value="tag_freeman">Freeman (Winghei Cheung)</option>
-                    <option value="tag_friberg">friberg (Adam Friberg)</option>
-                    <option value="tag_frozen">frozen (David Cernansky)</option>
-                    <option value="tag_fugly">FugLy (Jacob Medina)</option>
-                    <option value="tag_furlan">Furlan (Damian Kislowski)</option>
-                    <option value="tag_gade">gade (Nicklas Gade)</option>
-                    <option value="tag_getright">GeT_RiGhT (Christopher Alesund)</option>
-                    <option value="tag_gla1ve">gla1ve (Lukas Rossander)</option>
-                    <option value="tag_gobb">gob b (Fatih Dayik)</option>
-                    <option value="tag_golden">Golden (Maikil Selim)</option>
-                    <option value="tag_gratisfaction">Gratisfaction (Sean Kaiwai)</option>
-                    <option value="tag_grim">Grim (Michael Wince)</option>
-                    <option value="tag_gruby">GruBy (Dominik Swiderski)</option>
-                    <option value="tag_guardian">GuardiaN (Ladislav Kovács)</option>
-                    <option value="tag_gxx">gxx- (Genc Kolgeci)</option>
-                    <option value="tag_hades">hades (Aleksander Miskiewicz)</option>
-                    <option value="tag_hampus">hampus (Hampus Poser)</option>
-                    <option value="tag_happy">Happy (Vincent Cervoni)</option>
-                    <option value="tag_hatz">hatz (Jordan Bajic)</option>
-                    <option value="tag_havoc">Havoc (Luke Paton)</option>
-                    <option value="tag_hazed">hazed (James Cobb)</option>
-                    <option value="tag_hen1">HEN1 (Henrique Teles Ferreira da Fonseca)</option>
-                    <option value="tag_hext">HexT (Jadan Postma)</option>
-                    <option value="tag_hiko">Hiko (Spencer Martin)</option>
-                    <option value="tag_hobbit">Hobbit (Abay Khassenov)</option>
-                    <option value="tag_hooch">hooch (Dmitry Bogdanov)</option>
-                    <option value="tag_hooxi">HooXi (Rasmus Nielsen)</option>
-                    <option value="tag_hs">HS (Kevin Tarn)</option>
-                    <option value="tag_hunter">huNter- (Nemanja Kovac)</option>
-                    <option value="tag_hutji">hutji (Pavel Lashkov)</option>
-                    <option value="tag_hyper">Hyper (Bartosz Wolny)</option>
-                    <option value="tag_im">iM (Mihai Ivan)</option>
-                    <option value="tag_imorr">imoRR (Ömer Karatas)</option>
-                    <option value="tag_innocent">innocent (Paweł Mocek)</option>
-                    <option value="tag_ins">INS (Joshua Potter)</option>
-                    <option value="tag_interz">interz (Iakushin Timofei)</option>
-                    <option value="tag_isak">isak (Isak Fahlén)</option>
-                    <option value="tag_issaa">ISSAA (Issa Murad)</option>
-                    <option value="tag_jabbi">jabbi (Jakob Nygaard)</option>
-                    <option value="tag_jackz">JaCkz (Audric Jug)</option>
-                    <option value="tag_jame">Jame (Ali Dzhami)</option>
-                    <option value="tag_james">James (James Quinn)</option>
-                    <option value="tag_jasonr">jasonR (Jason Ruchelski)</option>
-                    <option value="tag_jdc">JDC (Jon Apostolos De Castro)</option>
-                    <option value="tag_jdm64">jdm64 (Joshua Marzano)</option>
-                    <option value="tag_jerry">Jerry (Andrey  Mekrhyakov)</option>
-                    <option value="tag_jkaem">jkaem (Joakim Myrbostad)</option>
-                    <option value="tag_jks">jks (Justin Savage)</option>
-                    <option value="tag_jmqa">jmqa (Savelii Bragin)</option>
-                    <option value="tag_jota">JOTA (Jhonatan Gaudencio)</option>
-                    <option value="tag_jr">jR (Dmytro Chervak)</option>
-                    <option value="tag_jt">JT (Ioannis Theodosiou)</option>
-                    <option value="tag_juanflatroo">juanflatroo (Flatron Halimi)</option>
-                    <option value="tag_jugi">JUGi (Jakob Hansen)</option>
-                    <option value="tag_junior">junior (Paytyn Johnson)</option>
-                    <option value="tag_jw">JW (Jesper Wecksell)</option>
-                    <option value="tag_k0nfig">k0nfig (Kristian Wienecke)</option>
-                    <option value="tag_k1to">k1to (Nils Gruhne)</option>
-                    <option value="tag_kabal">kabal (Batbayar Bat-Enkh)</option>
-                    <option value="tag_karrigan">karrigan (Finn Andersen)</option>
-                    <option value="tag_karsa">Karsa (Su Qifang)</option>
-                    <option value="tag_kaze">Kaze (Khong Weng Keong)</option>
-                    <option value="tag_keev">keev (Kevin Bartholomäus)</option>
-                    <option value="tag_kennys">kennyS (Kenny Schrub)</option>
-                    <option value="tag_kensi">KENSi (Aleksandr Gurkin)</option>
-                    <option value="tag_keoz">Keoz (Nicolas Dgus)</option>
-                    <option value="tag_keshandr">keshandr (Sergey Nikishin)</option>
-                    <option value="tag_kinqie">kinqie (Semyon Lisitsyn)</option>
-                    <option value="tag_kioshima">kioShiMa (Fabien Fiey)</option>
-                    <option value="tag_kjaerbye">Kjaerbye (Markus Kjærbye)</option>
-                    <option value="tag_kngv">kNgV- (Vito Giuseppe Agostinelli)</option>
-                    <option value="tag_koosta">koosta (Kenneth Suen)</option>
-                    <option value="tag_krad">Krad (Vladislav Kravchenko)</option>
-                    <option value="tag_krimbo">Krimbo (Karim Moussa)</option>
-                    <option value="tag_krimz">KRIMZ (Lars Freddy Johansson)</option>
-                    <option value="tag_krizzen">KrizzeN (Aidyn Turlybekov)</option>
-                    <option value="tag_krystal">kRYSTAL (Kevin Amend)</option>
-                    <option value="tag_kscerato">KSCERATO (Kaike Cerato)</option>
-                    <option value="tag_kvik">Kvik (Aurimas Kvakšys)</option>
-                    <option value="tag_kyojin">Kyojin (Nguyen Van Jayson)</option>
-                    <option value="tag_latto">latto (Bruno Rebelatto)</option>
-                    <option value="tag_launx">lauNX (Laurentiu Iulian Tarlea)</option>
-                    <option value="tag_legija">LEGIJA (Nikola Ninic)</option>
-                    <option value="tag_lekro">Lekr0 (Jonas Olofsson)</option>
-                    <option value="tag_letn1">LETN1 (Nestor Tanic)</option>
-                    <option value="tag_liazz">Liazz (John Tregillgas)</option>
-                    <option value="tag_lnz">LNZ (Linus Holtäng)</option>
-                    <option value="tag_loveyy">LoveYY (Bai Kunhua)</option>
-                    <option value="tag_lowel">loWel (Christian Garcia Antoran)</option>
-                    <option value="tag_lucas1">LUCAS1 (Lucas Teles Ferreira da Fonseca)</option>
-                    <option value="tag_lucky">Lucky (Lucas Chastang)</option>
-                    <option value="tag_luken">luken (Luca Nadotti)</option>
-                    <option value="tag_m0nesy">m0NESY (Ilia Osipov)</option>
-                    <option value="tag_maden">maden (Pavle Bošković)</option>
-                    <option value="tag_magisk">Magisk (Emil Hoffmann Reif)</option>
-                    <option value="tag_magixx">magixx (Borislav Vorobev)</option>
-                    <option value="tag_maikelele">Maikelele (Mikail Bill)</option>
-                    <option value="tag_maj3r">MAJ3R (Engin Kupeli)</option>
-                    <option value="tag_malta">malta (Liam Schembri)</option>
-                    <option value="tag_maniac">Maniac (Mathieu Quiquerez)</option>
-                    <option value="tag_markeloff">markeloff (Yegor Markelov)</option>
-                    <option value="tag_max">max (Maximiliano González)</option>
-                    <option value="tag_mezii">mezii (William Cameron Merriman)</option>
-                    <option value="tag_michu">MICHU (Michal Muller)</option>
-                    <option value="tag_mir">mir (Nikolai Bitiukov)</option>
-                    <option value="tag_misutaaa">misutaaa (Kévin Rabier)</option>
-                    <option value="tag_mixwell">mixwell (Oscar Cañellas)</option>
-                    <option value="tag_mou">mou (Rustem Telepov)</option>
-                    <option value="tag_msl">MSL (Mathias Sommer Lauridsen)</option>
-                    <option value="tag_n0rb3r7">n0rb3r7 (David Danielyan)</option>
-                    <option value="tag_nothing">n0thing (Jordan Gilbert)</option>
-                    <option value="tag_naf">NAF (Keith Markovic)</option>
-                    <option value="tag_nafany">nafany (Vladislav Gorshkov)</option>
-                    <option value="tag_nbk">NBK- (Nathan Schmitt)</option>
-                    <option value="tag_nealan">neaLaN (Sanzhar Iskhakov)</option>
-                    <option value="tag_neo">NEO (Filip Kubski)</option>
-                    <option value="tag_neofrag">NEOFRAG (Adam Zouhar)</option>
-                    <option value="tag_nex">nex (Johannes Maget)</option>
-                    <option value="tag_nexa">nexa (Nemanja Isakovic)</option>
-                    <option value="tag_ngin">ngiN (Engin Kor)</option>
-                    <option value="tag_nicoodoz">nicoodoz (Nico Tamjidi)</option>
-                    <option value="tag_nifty">Nifty (Noah Francis)</option>
-                    <option value="tag_niko">NiKo (Nikola Kovač)</option>
-                    <option value="tag_nikodk">niko (Nikolaj Kristensen)</option>
-                    <option value="tag_nin9">nin9 (Yesuntumur Gantulga)</option>
-                    <option value="tag_nitro">nitr0 (Nicholas Cannella)</option>
-                    <option value="tag_norwi">Norwi (Evgenii Ermolin)</option>
-                    <option value="tag_nqz">NQZ (Lucas Soares Assumpção E Silva)</option>
-                    <option value="tag_obo">oBo (Owen Schlatter)</option>
-                    <option value="tag_olofmeister">olofmeister (Olof Kajbjer)</option>
-                    <option value="tag_osee">oSee (Josh Ohm)</option>
-                    <option value="tag_oskar">oskar (Tomas Stastny)</option>
-                    <option value="tag_ottond">ottoNd (Otto Sihvo)</option>
-                    <option value="tag_pasha">pashaBiceps (Jarosław Jarząbkowski)</option>
-                    <option value="tag_patsi">Patsi (Robert Isianov)</option>
-                    <option value="tag_paz">paz (Ahmet Karahoca)</option>
-                    <option value="tag_peet">peet (Piotr Ćwikliński)</option>
-                    <option value="tag_perfecto">Perfecto (Ilya Zalutskiy)</option>
-                    <option value="tag_pimp">Pimp (Jacob Winneche)</option>
-                    <option value="tag_pita">pita (Faruk Pita)</option>
-                    <option value="tag_plopski">Plopski (Nicolas Gonzalez Zamora)</option>
-                    <option value="tag_professorchaos">Professor_Chaos (Andrew Heintz)</option>
-                    <option value="tag_pronax">pronax (Markus Wallsten)</option>
-                    <option value="tag_pyth">pyth (Jacob Mourujärvi)</option>
-                    <option value="tag_qikert">qikert (Alexey Golubev)</option>
-                    <option value="tag_rain">rain (Håvard Nygaard)</option>
-                    <option value="tag_rallen">rallen (Karol Rodowicz)</option>
-                    <option value="tag_ramz1kboss">Ramz1kBO$$ (Ramazan Bashizov)</option>
-                    <option value="tag_refrezh">refrezh (Ismail Ali)</option>
-                    <option value="tag_reltuc">reltuC (Steven Cutler)</option>
-                    <option value="tag_rez">REZ (Fredrik Sterner)</option>
-                    <option value="tag_rickeh">Rickeh (Ricardo Mulholland)</option>
-                    <option value="tag_rigon">rigoN (Rigon Gashi)</option>
-                    <option value="tag_roej">roeJ (Fredrik Jørgensen)</option>
-                    <option value="tag_ropz">ropz (Robin Kool)</option>
-                    <option value="tag_rox">rox (Martin Molina)</option>
-                    <option value="tag_rpk">RpK (Cédric Guipouy)</option>
-                    <option value="tag_rubino">RUBINO (Ruben Villarroel)</option>
-                    <option value="tag_rush">RUSH (William Wierzba)</option>
-                    <option value="tag_s0tf1k">S0tF1k (Dmitrii Forostianko)</option>
-                    <option value="tag_s1mple">s1mple (Oleksandr Kostyliev)</option>
-                    <option value="tag_s1ren">S1ren (Pavel Ogloblin)</option>
-                    <option value="tag_saffee">saffee (Rafael Costa)</option>
-                    <option value="tag_sanji">SANJI (Sanjar Kuliev)</option>
-                    <option value="tag_scream">ScreaM (Adil Benrlitom)</option>
-                    <option value="tag_sdy">sdy (Viktor Orudzhev)</option>
-                    <option value="tag_sgares">seang@res (Sean Gares)</option>
-                    <option value="tag_seized">seized (Denis Kostin)</option>
-                    <option value="tag_sener1">SENER1 (Sener Mahmuti)</option>
-                    <option value="tag_sergej">sergej (Jere Salo)</option>
-                    <option value="tag_sh1ro">sh1ro (Dmitrii Sokolov)</option>
-                    <option value="tag_shahzam">ShahZaM (Shahzeeb Khan)</option>
-                    <option value="tag_shalfey">shalfey (Aleksandr Marenov)</option>
-                    <option value="tag_shara">Shara (Oleksandr Hordieiev)</option>
-                    <option value="tag_shox">shox (Richard Papillon)</option>
-                    <option value="tag_shroud">shroud (Michael Grzesiek)</option>
-                    <option value="tag_sick">SicK (Hunter Mims)</option>
-                    <option value="tag_sico">Sico (Simon Williams)</option>
-                    <option value="tag_sinnopsyy">sinnopsyy (Dionis Budeci)</option>
-                    <option value="tag_siuhy">siuhy (Kamil Szkaradek)</option>
-                    <option value="tag_sixer">SIXER (Christophe Xia)</option>
-                    <option value="tag_sjuush">sjuush (Rasmus Beck)</option>
-                    <option value="tag_sk0r">sk0R (Tengis Batjargal)</option>
-                    <option value="tag_skadoodle">Skadoodle (Tyler Latham)</option>
-                    <option value="tag_slaxz">slaxz- (Fritz Dietrich)</option>
-                    <option value="tag_smithzz">SmithZz (Edouard Dubourdeaux)</option>
-                    <option value="tag_smooya">smooya (Owen Butterfield)</option>
-                    <option value="tag_snappi">Snappi (Marco Pfeiffer)</option>
-                    <option value="tag_snatchie">snatchie (Michał Rudzki)</option>
-                    <option value="tag_snax">Snax (Janusz Pogorzelski)</option>
-                    <option value="tag_snyper">SnypeR (Iain Turner)</option>
-                    <option value="tag_somebody">somebody (Haowen Xu)</option>
-                    <option value="tag_spaze">spaze (Ivan Obrezhan)</option>
-                    <option value="tag_speed4k">speed4k (Anton Titov)</option>
-                    <option value="tag_spiidi">Spiidi (Timo Richter)</option>
-                    <option value="tag_spinx">Spinx (Lotan Giladi)</option>
-                    <option value="tag_spunj">SPUNJ (Chad Burchill)</option>
-                    <option value="tag_staehr">Staehr (Victor Hansen)</option>
-                    <option value="tag_stanislaw">stanislaw (Peter Jarguz)</option>
-                    <option value="tag_stavn">stavn (Martin Lund)</option>
-                    <option value="tag_steel">steel (Lucas Lopes)</option>
-                    <option value="tag_sterling">sterling (Euan Moore)</option>
-                    <option value="tag_stewie2k">Stewie2K (Jacky Yip)</option>
-                    <option value="tag_styko">STYKO (Martin Styk)</option>
-                    <option value="tag_summer">Summer (Cai Yulun)</option>
-                    <option value="tag_sunny">suNny (Miikka Kemppi)</option>
-                    <option value="tag_sunpayus">SunPayus (Alvaro Garcia)</option>
-                    <option value="tag_svyat">svyat (Sviatoslav Dovbakh)</option>
-                    <option value="tag_syrson">syrsoN (Florian Rische)</option>
-                    <option value="tag_t0rick">t0rick (Maksim Zaikin)</option>
-                    <option value="tag_tabsen">tabseN (Johannes Wodarz)</option>
-                    <option value="tag_taco">TACO (Tacio Filho)</option>
-                    <option value="tag_tarik">tarik (Tarik Celik)</option>
-                    <option value="tag_taz">TaZ (Wiktor Wojtas)</option>
-                    <option value="tag_techno4k">Techno4K (Munkhbold Sodbayar)</option>
-                    <option value="tag_tenzki">tenzki (Jesper Mikalski)</option>
-                    <option value="tag_teses">TeSeS (René Stensig Madsen)</option>
-                    <option value="tag_threat">THREAT (Björn Pers)</option>
-                    <option value="tag_tizian">tiziaN (Tizian Feldbusch)</option>
-                    <option value="tag_tonyblack">tonyblack (Anton Kolesnikov)</option>
-                    <option value="tag_torzsi">torzsi (Ádám Torzsás)</option>
-                    <option value="tag_try">TRY (Santino Rigal)</option>
-                    <option value="tag_tuurtle">Tuurtle (Matheus Anhaia)</option>
-                    <option value="tag_twist">Twist (Simon Eliasson)</option>
-                    <option value="tag_twistzz">Twistzz (Russel Van Dulken)</option>
-                    <option value="tag_ustilo">USTILO (Karlo Pivac)</option>
-                    <option value="tag_v4lde">v4lde (Valdemar Bjørn Vangså)</option>
-                    <option value="tag_vexite">vexite (Declan Portelli)</option>
-                    <option value="tag_vice">vice (Daniel Kim)</option>
-                    <option value="tag_vini">VINI (Vinicius Figueiredo)</option>
-                    <option value="tag_w0nderful">w0nderful (Ihor Zhdanov)</option>
-                    <option value="tag_waterfallz">waterfaLLZ (Nikita Matveev)</option>
-                    <option value="tag_waylander">wayLander (Jan Peter Rahkonen)</option>
-                    <option value="tag_wood7">WOOD7 (Adriano Cerato)</option>
-                    <option value="tag_worldedit">WorldEdit (Georgy Yaskin)</option>
-                    <option value="tag_woxic">woxic (Özgür Eker)</option>
-                    <option value="tag_xand">xand (Alexandre Zizi)</option>
-                    <option value="tag_xantares">XANTARES (Can Dortkardes)</option>
-                    <option value="tag_xccurate">xccurate (Kevin  Susanto)</option>
-                    <option value="tag_xertion">xertioN (Dorian Berman)</option>
-                    <option value="tag_xfl0ud">xfl0ud (Yasin Koc)</option>
-                    <option value="tag_xizt">Xizt (Richard Landström)</option>
-                    <option value="tag_xms">xms (Alexandre Forté)</option>
-                    <option value="tag_xsepower">xsepower (Bogdan Chernikov)</option>
-                    <option value="tag_xseven">xseveN (Sami Laasanen)</option>
-                    <option value="tag_xyp9x">Xyp9x (Andreas Højsleth)</option>
-                    <option value="tag_yam">yam (Yaman Ergenekon)</option>
-                    <option value="tag_yay">yay (Jaccob Whiteaker)</option>
-                    <option value="tag_yekindar">YEKINDAR (Mareks Galinskis)</option>
-                    <option value="tag_yel">yel (Gustavo Knittel Moreira)</option>
-                    <option value="tag_yuurih">yuurih (Yuri Boian)</option>
-                    <option value="tag_zehn">zehN (Jesse Linjala)</option>
-                    <option value="tag_zero">Zero (Patrik Zudel)</option>
-                    <option value="tag_zeus">Zeus (Danylo Teslenko)</option>
-                    <option value="tag_zhoking">zhokiNg (Weijie Zhong)</option>
-                    <option value="tag_znajder">znajder (Andreas Lindberg)</option>
-                    <option value="tag_zorte">zorte (Aleksandr Zagodyrenko)</option>
-                    <option value="tag_zyphon">Zyphon (Rasmus Nordfoss)</option>
-                    <option value="tag_zywoo">ZywOo (Mathieu Herbaut)</option>
-                  </select>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Sticker Collection</div>
-                  <select name="category_730_StickerCapsule[]" class="">
-                    <option value="any">Any</option>
-                    <option value="tag_crate_sticker_pack_csgo10_capsule_lootlist">10 Year Birthday Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_rmr2020_challengers_collection">2020 RMR Challengers</option>
-                    <option value="tag_crate_sticker_pack_rmr2020_contenders_collection">2020 RMR Contenders</option>
-                    <option value="tag_crate_sticker_pack_rmr2020_legends_collection">2020 RMR Legends</option>
-                    <option value="tag_crate_sticker_pack_community2021_capsule_lootlist">2021 Community Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_antwerp2022_challengers_collection">Antwerp 2022 Challengers Stickers</option>
-                    <option value="tag_crate_sticker_pack_antwerp2022_contenders_collection">Antwerp 2022 Contenders Stickers</option>
-                    <option value="tag_crate_sticker_pack_antwerp2022_legends_collection">Antwerp 2022 Legends Stickers</option>
-                    <option value="tag_crate_signature_pack_antwerp2022_group_players_collection">Antwerp 2022 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_atlanta2017_challengers_collection">Atlanta 2017 Challengers</option>
-                    <option value="tag_crate_sticker_pack_atlanta2017_legends_collection">Atlanta 2017 Legends</option>
-                    <option value="tag_crate_signature_pack_atlanta2017_group_players_collection">Atlanta 2017 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_bf2042_capsule_lootlist">Battlefield 2042 Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_berlin2019_legends_collection">Berlin 2019 Legends</option>
-                    <option value="tag_crate_sticker_pack_berlin2019_contenders_collection">Berlin 2019 Minor Challengers</option>
-                    <option value="tag_crate_signature_pack_berlin2019_group_players_collection">Berlin 2019 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_berlin2019_challengers_collection">Berlin 2019 Returning Challengers</option>
-                    <option value="tag_crate_sticker_pack_bestiary_capsule_lootlist">Bestiary Capsule</option>
-                    <option value="tag_crate_sticker_pack_boston2018_legends_collection">Boston 2018 Legends</option>
-                    <option value="tag_crate_sticker_pack_boston2018_contenders_collection">Boston 2018 Minor Challengers</option>
-                    <option value="tag_crate_signature_pack_boston2018_group_players_collection">Boston 2018 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_boston2018_challengers_collection">Boston 2018 Returning Challengers</option>
-                    <option value="tag_crate_sticker_pack_broken_fang_lootlist">Broken Fang Sticker Collection</option>
-                    <option value="tag_crate_sticker_pack_chicken_capsule_lootlist">Chicken Capsule</option>
-                    <option value="tag_crate_sticker_pack_cologne2016_challengers_collection">Cologne 2016 Challengers</option>
-                    <option value="tag_crate_sticker_pack_cologne2016_legends_collection">Cologne 2016 Legends</option>
-                    <option value="tag_crate_signature_pack_cologne2016_group_players_collection">Cologne 2016 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_comm2018_01_capsule_lootlist">Community Capsule 2018</option>
-                    <option value="tag_crate_sticker_pack_community01">Community Sticker Capsule 1</option>
-                    <option value="tag_crate_sticker_pack_cs20_capsule_lootlist">CS20 Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_dhw2014_02">DreamHack 2014 Challengers</option>
-                    <option value="tag_crate_sticker_pack_dhw2014_01_collection">DreamHack 2014 Legends</option>
-                    <option value="tag_crate_sticker_pack_cluj2015_challengers_collection">DreamHack Cluj-Napoca 2015 Challengers</option>
-                    <option value="tag_crate_sticker_pack_cluj2015_legends_collection">DreamHack Cluj-Napoca 2015 Legends</option>
-                    <option value="tag_crate_signature_pack_cluj2015_group_players_collection">DreamHack Cluj-Napoca 2015 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_kat2014_01">EMS Katowice 2014 Challengers</option>
-                    <option value="tag_crate_sticker_pack_kat2014_02">EMS Katowice 2014 Legends</option>
-                    <option value="tag_crate_sticker_pack_enfu_capsule_lootlist">Enfu Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_cologne2014_02">ESL One Cologne 2014 Challengers</option>
-                    <option value="tag_crate_sticker_pack_cologne2014_01">ESL One Cologne 2014 Legends</option>
-                    <option value="tag_crate_sticker_pack_eslcologne2015_challengers_collection">ESL One Cologne 2015 Challengers</option>
-                    <option value="tag_crate_sticker_pack_eslcologne2015_legends_collection">ESL One Cologne 2015 Legends</option>
-                    <option value="tag_crate_signature_pack_eslcologne2015_group_players_collection">ESL One Cologne 2015 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_eslkatowice2015_02_collection">ESL One Katowice 2015 Challengers</option>
-                    <option value="tag_crate_sticker_pack_eslkatowice2015_01_collection">ESL One Katowice 2015 Legends</option>
-                    <option value="tag_crate_sticker_pack_community2022_capsule_lootlist">Espionage Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_feral_predators_capsule_lootlist">Feral Predators Capsule</option>
-                    <option value="tag_crate_sticker_pack_hlalyx_capsule_lootlist">Half-Life: Alyx Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_halo_capsule_lootlist">Halo Capsule</option>
-                    <option value="tag_crate_sticker_pack_katowice2019_legends_collection">Katowice 2019 Legends</option>
-                    <option value="tag_crate_sticker_pack_katowice2019_contenders_collection">Katowice 2019 Minor Challengers</option>
-                    <option value="tag_crate_signature_pack_katowice2019_group_players_collection">Katowice 2019 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_katowice2019_challengers_collection">Katowice 2019 Returning Challengers</option>
-                    <option value="tag_crate_sticker_pack_krakow2017_challengers_collection">Krakow 2017 Challengers</option>
-                    <option value="tag_crate_sticker_pack_krakow2017_legends_collection">Krakow 2017 Legends</option>
-                    <option value="tag_crate_signature_pack_krakow2017_group_players_collection">Krakow 2017 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_london2018_legends_collection">London 2018 Legends</option>
-                    <option value="tag_crate_sticker_pack_london2018_contenders_collection">London 2018 Minor Challengers</option>
-                    <option value="tag_crate_signature_pack_london2018_group_players_collection">London 2018 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_london2018_challengers_collection">London 2018 Returning Challengers</option>
-                    <option value="tag_crate_sticker_pack_columbus2016_challengers_collection">MLG Columbus 2016 Challengers</option>
-                    <option value="tag_crate_sticker_pack_columbus2016_legends_collection">MLG Columbus 2016 Legends</option>
-                    <option value="tag_crate_signature_pack_columbus2016_group_players_collection">MLG Columbus 2016 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_op_riptide_capsule_lootlist">Operation Riptide Sticker Collection</option>
-                    <option value="tag_crate_sticker_pack_illuminate_capsule_01_lootlist">Perfect World Sticker Capsule 1</option>
-                    <option value="tag_crate_sticker_pack_illuminate_capsule_02_lootlist">Perfect World Sticker Capsule 2</option>
-                    <option value="tag_crate_sticker_pack_pinups_capsule_lootlist">Pinups Capsule</option>
-                    <option value="tag_crate_sticker_pack_poorly_drawn_lootlist">Poorly Drawn Capsule</option>
-                    <option value="tag_crate_sticker_pack_recoil_lootlist">Recoil Sticker Collection</option>
-                    <option value="tag_crate_sticker_pack_rio2022_challengers_collection">Rio 2022 Challengers Stickers</option>
-                    <option value="tag_crate_sticker_pack_rio2022_contenders_collection">Rio 2022 Contenders Stickers</option>
-                    <option value="tag_crate_sticker_pack_rio2022_legends_collection">Rio 2022 Legends Stickers</option>
-                    <option value="tag_crate_signature_pack_rio2022_group_players_collection">Rio 2022 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_riptide_surfshop_lootlist">Riptide Surf Shop Sticker Collection</option>
-                    <option value="tag_crate_sticker_pack_shattered_web_lootlist">Shattered Web Sticker Collection</option>
-                    <option value="tag_crate_sticker_pack_skillgroup_capsule_lootlist">Skill Groups Capsule</option>
-                    <option value="tag_crate_sticker_pack_slid3_capsule_lootlist">Slid3 Capsule</option>
-                    <option value="tag_crate_sticker_pack01">Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack02">Sticker Capsule 2</option>
-                    <option value="tag_crate_sticker_pack_stockh2021_challengers_collection">Stockholm 2021 Challengers Stickers</option>
-                    <option value="tag_crate_sticker_pack_stockh2021_contenders_collection">Stockholm 2021 Contenders Stickers</option>
-                    <option value="tag_crate_sticker_pack_stockh2021_legends_collection">Stockholm 2021 Legends Stickers</option>
-                    <option value="tag_crate_signature_pack_stockh2021_group_players_collection">Stockholm 2021 Player Autographs</option>
-                    <option value="tag_crate_sticker_pack_sugarface_capsule_lootlist">Sugarface Capsule</option>
-                    <option value="tag_crate_sticker_pack_team_roles_capsule_lootlist">Team Roles Capsule</option>
-                    <option value="tag_crate_sticker_pack_spring2022_capsule_lootlist">The Boardroom Sticker Capsule</option>
-                    <option value="tag_crate_sticker_pack_warhammer_lootlist">Warhammer 40,000 Sticker Capsule</option>
-                  </select>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Team</div>
-                  <select name="category_730_TournamentTeam[]" class="">
-                    <option value="any">Any</option>
-                    <option value="tag_Team16">[R]eason Gaming</option>
-                    <option value="tag_Team116">00 Nation</option>
-                    <option value="tag_Team78">100 Thieves</option>
-                    <option value="tag_Team28">3DMAX</option>
-                    <option value="tag_Team112">9z Team</option>
-                    <option value="tag_Team64">All-Star Team America</option>
-                    <option value="tag_Team65">All-Star Team Europe</option>
-                    <option value="tag_Team2">Astana Dragons</option>
-                    <option value="tag_Team60">Astralis</option>
-                    <option value="tag_Team75">Avangar</option>
-                    <option value="tag_Team114">Bad News Eagles</option>
-                    <option value="tag_Team69">BIG</option>
-                    <option value="tag_Team100">Boom Esports</option>
-                    <option value="tag_Team40">Bravado Gaming</option>
-                    <option value="tag_Team7">Clan-Mystik</option>
-                    <option value="tag_Team33">Cloud9</option>
-                    <option value="tag_Team52">Cloud9 G2A</option>
-                    <option value="tag_Team3">compLexity Gaming</option>
-                    <option value="tag_Team111">Complexity Gaming</option>
-                    <option value="tag_Team101">Copenhagen Flames</option>
-                    <option value="tag_Team10">Copenhagen Wolves</option>
-                    <option value="tag_Team49">Counter Logic Gaming</option>
-                    <option value="tag_Team91">CR4ZY</option>
-                    <option value="tag_Team34">dAT team</option>
-                    <option value="tag_Team93">DreamEaters</option>
-                    <option value="tag_Team84">ENCE</option>
-                    <option value="tag_Team105">Entropiq</option>
-                    <option value="tag_Team35">Epsilon eSports</option>
-                    <option value="tag_Team42">ESC Gaming</option>
-                    <option value="tag_Team97">ESPADA</option>
-                    <option value="tag_Team110">Eternal Fire</option>
-                    <option value="tag_Team98">Evil Geniuses</option>
-                    <option value="tag_Team61">FaZe Clan</option>
-                    <option value="tag_Team79">Flash Gaming</option>
-                    <option value="tag_Team43">Flipsid3 Tactics</option>
-                    <option value="tag_Team6">Fnatic</option>
-                    <option value="tag_Team90">forZe eSports</option>
-                    <option value="tag_Team85">FURIA</option>
-                    <option value="tag_Team59">G2 Esports</option>
-                    <option value="tag_Team63">Gambit Esports</option>
-                    <option value="tag_Team115">GamerLegion</option>
-                    <option value="tag_Team99">Gen.G Esports</option>
-                    <option value="tag_Team67">GODSENT</option>
-                    <option value="tag_Team86">Grayhound Gaming</option>
-                    <option value="tag_Team25">HellRaisers</option>
-                    <option value="tag_Team95">Heroic</option>
-                    <option value="tag_Team5">iBUYPOWER</option>
-                    <option value="tag_Team108">IHC Esports</option>
-                    <option value="tag_Team71">Immortals</option>
-                    <option value="tag_Team113">Imperial Esports</option>
-                    <option value="tag_Team94">INTZ E-SPORTS CLUB</option>
-                    <option value="tag_Team50">Keyd Stars</option>
-                    <option value="tag_Team9">LGB eSports</option>
-                    <option value="tag_Team36">London Conspiracy</option>
-                    <option value="tag_Team57">Luminosity Gaming</option>
-                    <option value="tag_Team80">MIBR</option>
-                    <option value="tag_Team77">Misfits Gaming</option>
-                    <option value="tag_Team29">mousesports</option>
-                    <option value="tag_Team106">MOUZ</option>
-                    <option value="tag_Team103">Movistar Riders</option>
-                    <option value="tag_Team37">MTS GameGod Wolf</option>
-                    <option value="tag_Team38">myXMG</option>
-                    <option value="tag_Team13">n!faculty</option>
-                    <option value="tag_Team12">Natus Vincere</option>
-                    <option value="tag_Team107">Nemiga</option>
-                    <option value="tag_Team1">Ninjas in Pyjamas</option>
-                    <option value="tag_Team20">NiP Team A</option>
-                    <option value="tag_Team21">NiP Team B</option>
-                    <option value="tag_Team68">North</option>
-                    <option value="tag_Team87">NRG</option>
-                    <option value="tag_Team96">OG</option>
-                    <option value="tag_Team66">OpTic Gaming</option>
-                    <option value="tag_Team109">Outsiders</option>
-                    <option value="tag_Team102">paiN Gaming</option>
-                    <option value="tag_Team39">PENTA Sports</option>
-                    <option value="tag_Team41">Planetkey Dynamics</option>
-                    <option value="tag_Team76">Quantum Bellator Fire</option>
-                    <option value="tag_Team30">Reason Gaming</option>
-                    <option value="tag_Team53">Renegades</option>
-                    <option value="tag_Team82">Rogue</option>
-                    <option value="tag_Team104">Sharks Esports</option>
-                    <option value="tag_Team14">SK Gaming</option>
-                    <option value="tag_Team73">Space Soldiers</option>
-                    <option value="tag_Team62">Splyce</option>
-                    <option value="tag_Team72">Sprout Esports</option>
-                    <option value="tag_Team92">Syman Gaming</option>
-                    <option value="tag_Team24">Team Dignitas</option>
-                    <option value="tag_Team23">Team Duncan</option>
-                    <option value="tag_Team56">Team eBettle</option>
-                    <option value="tag_Team46">Team EnVyUs</option>
-                    <option value="tag_Team54">Team Immunity</option>
-                    <option value="tag_Team55">Team Kinguin</option>
-                    <option value="tag_Team26">Team LDLC.com</option>
-                    <option value="tag_Team48">Team Liquid</option>
-                    <option value="tag_Team58">Team SoloMid</option>
-                    <option value="tag_Team81">Team Spirit</option>
-                    <option value="tag_Team22">Team Tomi</option>
-                    <option value="tag_Team27">Titan</option>
-                    <option value="tag_Team51">TSM Kinguin</option>
-                    <option value="tag_Team74">Tyloo</option>
-                    <option value="tag_Team11">Universal Soldiers</option>
-                    <option value="tag_Team70">Vega Squadron</option>
-                    <option value="tag_Team4">VeryGames</option>
-                    <option value="tag_Team47">Vexed Gaming</option>
-                    <option value="tag_Team88">ViCi Gaming</option>
-                    <option value="tag_Team31">Virtus.Pro</option>
-                    <option value="tag_Team89">Vitality</option>
-                    <option value="tag_Team32">Vox Eminor</option>
-                    <option value="tag_Team8">We got game</option>
-                    <option value="tag_Team83">Winstrike Team</option>
-                    <option value="tag_Team15">Xapso</option>
-                  </select>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Weapon</div>
-                  <select name="category_730_Weapon[]" class="">
-                    <option value="any">Any</option>
-                    <option value="tag_weapon_ak47">AK-47</option>
-                    <option value="tag_weapon_aug">AUG</option>
-                    <option value="tag_weapon_awp">AWP</option>
-                    <option value="tag_weapon_bayonet">Bayonet</option>
-                    <option value="tag_weapon_knife_survival_bowie">Bowie Knife</option>
-                    <option value="tag_weapon_knife_butterfly">Butterfly Knife</option>
-                    <option value="tag_weapon_knife_css">Classic Knife</option>
-                    <option value="tag_weapon_cz75a">CZ75-Auto</option>
-                    <option value="tag_weapon_deagle">Desert Eagle</option>
-                    <option value="tag_weapon_elite">Dual Berettas</option>
-                    <option value="tag_weapon_knife_falchion">Falchion Knife</option>
-                    <option value="tag_weapon_famas">FAMAS</option>
-                    <option value="tag_weapon_fiveseven">Five-SeveN</option>
-                    <option value="tag_weapon_knife_flip">Flip Knife</option>
-                    <option value="tag_weapon_g3sg1">G3SG1</option>
-                    <option value="tag_weapon_galilar">Galil AR</option>
-                    <option value="tag_weapon_glock">Glock-18</option>
-                    <option value="tag_weapon_knife_gut">Gut Knife</option>
-                    <option value="tag_weapon_knife_tactical">Huntsman Knife</option>
-                    <option value="tag_weapon_knife_karambit">Karambit</option>
-                    <option value="tag_weapon_m249">M249</option>
-                    <option value="tag_weapon_m4a1_silencer">M4A1-S</option>
-                    <option value="tag_weapon_m4a1">M4A4</option>
-                    <option value="tag_weapon_knife_m9_bayonet">M9 Bayonet</option>
-                    <option value="tag_weapon_mac10">MAC-10</option>
-                    <option value="tag_weapon_mag7">MAG-7</option>
-                    <option value="tag_weapon_mp5sd">MP5-SD</option>
-                    <option value="tag_weapon_mp7">MP7</option>
-                    <option value="tag_weapon_mp9">MP9</option>
-                    <option value="tag_weapon_knife_gypsy_jackknife">Navaja Knife</option>
-                    <option value="tag_weapon_negev">Negev</option>
-                    <option value="tag_weapon_knife_outdoor">Nomad Knife</option>
-                    <option value="tag_weapon_nova">Nova</option>
-                    <option value="tag_weapon_hkp2000">P2000</option>
-                    <option value="tag_weapon_p250">P250</option>
-                    <option value="tag_weapon_p90">P90</option>
-                    <option value="tag_weapon_knife_cord">Paracord Knife</option>
-                    <option value="tag_weapon_bizon">PP-Bizon</option>
-                    <option value="tag_weapon_revolver">R8 Revolver</option>
-                    <option value="tag_weapon_sawedoff">Sawed-Off</option>
-                    <option value="tag_weapon_scar20">SCAR-20</option>
-                    <option value="tag_weapon_sg556">SG 553</option>
-                    <option value="tag_weapon_knife_push">Shadow Daggers</option>
-                    <option value="tag_weapon_knife_skeleton">Skeleton Knife</option>
-                    <option value="tag_weapon_ssg08">SSG 08</option>
-                    <option value="tag_weapon_knife_stiletto">Stiletto Knife</option>
-                    <option value="tag_weapon_knife_canis">Survival Knife</option>
-                    <option value="tag_weapon_knife_widowmaker">Talon Knife</option>
-                    <option value="tag_weapon_tec9">Tec-9</option>
-                    <option value="tag_weapon_ump45">UMP-45</option>
-                    <option value="tag_weapon_knife_ursus">Ursus Knife</option>
-                    <option value="tag_weapon_usp_silencer">USP-S</option>
-                    <option value="tag_weapon_xm1014">XM1014</option>
-                  </select>
-                </div>
-                <br>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Exterior</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategory2" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategory2"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategory2"><span>Field-Tested</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategory1" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategory1"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategory1"><span>Minimal Wear</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategory4" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategory4"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategory4"><span>Battle-Scarred</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategory3" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategory3"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategory3"><span>Well-Worn</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategory0" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategory0"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategory0"><span>Factory New</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Exterior_WearCategoryNA" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Exterior[]" value="tag_WearCategoryNA"><label class="econ_tag_filter_label" for="tag_730_Exterior_WearCategoryNA"><span>Not Painted</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Patch Collection</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack01" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack01"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack01"><span>CS:GO Patch Pack</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack_stockh2021_challengers_collection" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack_stockh2021_challengers_collection"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack_stockh2021_challengers_collection"><span>Stockholm 2021 Challengers Patches</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack_stockh2021_contenders_collection" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack_stockh2021_contenders_collection"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack_stockh2021_contenders_collection"><span>Stockholm 2021 Contenders Patches</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack_stockh2021_legends_collection" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack_stockh2021_legends_collection"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack_stockh2021_legends_collection"><span>Stockholm 2021 Legends Patches</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack02" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack02"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack02"><span>Metal Skill Group Patch Collection</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack03" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack03"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack03"><span>Operation Riptide Patch Collection</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCapsule_crate_patch_pack_hlalyx" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCapsule[]" value="tag_crate_patch_pack_hlalyx"><label class="econ_tag_filter_label" for="tag_730_PatchCapsule_crate_patch_pack_hlalyx"><span>Half-Life: Alyx Patch Pack</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Patch Type</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCategory_TeamLogo" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCategory[]" value="tag_TeamLogo"><label class="econ_tag_filter_label" for="tag_730_PatchCategory_TeamLogo"><span>Team Logo</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_PatchCategory_Tournament" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_PatchCategory[]" value="tag_Tournament"><label class="econ_tag_filter_label" for="tag_730_PatchCategory_Tournament"><span>Tournament</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Category</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Quality_normal" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Quality[]" value="tag_normal"><label class="econ_tag_filter_label" for="tag_730_Quality_normal"><span style="color: rgb(178, 178, 178);">Normal</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Quality_tournament" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Quality[]" value="tag_tournament"><label class="econ_tag_filter_label" for="tag_730_Quality_tournament"><span style="color: rgb(255, 215, 0);">Souvenir</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Quality_strange" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Quality[]" value="tag_strange"><label class="econ_tag_filter_label" for="tag_730_Quality_strange"><span style="color: rgb(207, 106, 50);">StatTrak™</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Quality_unusual" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Quality[]" value="tag_unusual"><label class="econ_tag_filter_label" for="tag_730_Quality_unusual"><span style="color: rgb(134, 80, 172);">★</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Quality_unusual_strange" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Quality[]" value="tag_unusual_strange"><label class="econ_tag_filter_label" for="tag_730_Quality_unusual_strange"><span style="color: rgb(134, 80, 172);">★ StatTrak™</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Quality</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Common_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Common_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Common_Weapon"><span style="color: rgb(176, 195, 217);">Consumer Grade</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Rare_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Rare_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Rare_Weapon"><span style="color: rgb(75, 105, 255);">Mil-Spec Grade</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Mythical_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Mythical_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Mythical_Weapon"><span style="color: rgb(136, 71, 255);">Restricted</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Uncommon_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Uncommon_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Uncommon_Weapon"><span style="color: rgb(94, 152, 217);">Industrial Grade</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Legendary_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Legendary_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Legendary_Weapon"><span style="color: rgb(211, 44, 230);">Classified</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Ancient_Weapon" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Ancient_Weapon"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Ancient_Weapon"><span style="color: rgb(235, 75, 75);">Covert</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Common" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Common"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Common"><span style="color: rgb(176, 195, 217);">Base Grade</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Rare_Character" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Rare_Character"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Rare_Character"><span style="color: rgb(75, 105, 255);">Distinguished</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Legendary_Character" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Legendary_Character"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Legendary_Character"><span style="color: rgb(211, 44, 230);">Superior</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Mythical_Character" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Mythical_Character"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Mythical_Character"><span style="color: rgb(136, 71, 255);">Exceptional</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Ancient" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Ancient"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Ancient"><span style="color: rgb(235, 75, 75);">Extraordinary</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Ancient_Character" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Ancient_Character"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Ancient_Character"><span style="color: rgb(235, 75, 75);">Master</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Rare" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Rare"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Rare"><span style="color: rgb(75, 105, 255);">High Grade</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Mythical" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Mythical"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Mythical"><span style="color: rgb(136, 71, 255);">Remarkable</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Legendary" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Legendary"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Legendary"><span style="color: rgb(211, 44, 230);">Exotic</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Rarity_Rarity_Contraband" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Rarity[]" value="tag_Rarity_Contraband"><label class="econ_tag_filter_label" for="tag_730_Rarity_Rarity_Contraband"><span style="color: rgb(228, 174, 57);">Contraband</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Graffiti Collection</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_csgo_spray_std2_drops_1" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_csgo_spray_std2_drops_1"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_csgo_spray_std2_drops_1"><span>CS:GO Graffiti #2 Collection</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_csgo_spray_std2_drops_2" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_csgo_spray_std2_drops_2"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_csgo_spray_std2_drops_2"><span>Trolling Graffiti Collection</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_csgo_spray_std3_drops" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_csgo_spray_std3_drops"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_csgo_spray_std3_drops"><span>CS:GO Graffiti #3 Collection</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_crate_sprays_community_1_lootlist" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_crate_sprays_community_1_lootlist"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_crate_sprays_community_1_lootlist"><span>Community Graffiti Box 1</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_crate_sprays_illuminate1_lootlist" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_crate_sprays_illuminate1_lootlist"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_crate_sprays_illuminate1_lootlist"><span>Perfect World Graffiti Box</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCapsule_crate_sprays_vcap1_lootlist" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCapsule[]" value="tag_crate_sprays_vcap1_lootlist"><label class="econ_tag_filter_label" for="tag_730_SprayCapsule_crate_sprays_vcap1_lootlist"><span>CS:GO Graffiti Box</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Graffiti Type</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCategory_TeamLogo" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCategory[]" value="tag_TeamLogo"><label class="econ_tag_filter_label" for="tag_730_SprayCategory_TeamLogo"><span>Team Logo</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayCategory_Tournament" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayCategory[]" value="tag_Tournament"><label class="econ_tag_filter_label" for="tag_730_SprayCategory_Tournament"><span>Tournament</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Graffiti Color</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint0" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint0"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint0"><span>Multicolor</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint6" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint6"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint6"><span>Tracer Yellow</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint18" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint18"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint18"><span>War Pig Pink</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint2" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint2"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint2"><span>Blood Red</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint3" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint3"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint3"><span>Tiger Orange</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint4" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint4"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint4"><span>Dust Brown</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint5" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint5"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint5"><span>Desert Amber</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint1" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint1"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint1"><span>Brick Red</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint16" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint16"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint16"><span>Bazooka Pink</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint17" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint17"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint17"><span>Princess Pink</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint10" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint10"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint10"><span>Cash Green</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint15" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint15"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint15"><span>Monster Purple</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint7" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint7"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint7"><span>Battle Green</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint8" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint8"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint8"><span>Jungle Green</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint9" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint9"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint9"><span>Frog Green</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint19" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint19"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint19"><span>Shark White</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint11" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint11"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint11"><span>Wire Blue</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint12" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint12"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint12"><span>Monarch Blue</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint13" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint13"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint13"><span>SWAT Blue</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_SprayColorCategory_Tint14" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_SprayColorCategory[]" value="tag_Tint14"><label class="econ_tag_filter_label" for="tag_730_SprayColorCategory_Tint14"><span>Violent Violet</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Sticker Type</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_StickerCategory_PlayerSignature" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_StickerCategory[]" value="tag_PlayerSignature"><label class="econ_tag_filter_label" for="tag_730_StickerCategory_PlayerSignature"><span>Player Autograph</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_StickerCategory_TeamLogo" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_StickerCategory[]" value="tag_TeamLogo"><label class="econ_tag_filter_label" for="tag_730_StickerCategory_TeamLogo"><span>Team Logo</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_StickerCategory_Tournament" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_StickerCategory[]" value="tag_Tournament"><label class="econ_tag_filter_label" for="tag_730_StickerCategory_Tournament"><span>Tournament</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Tournament</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament18" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament18"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament18"><span>2021 PGL Stockholm</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament19" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament19"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament19"><span>2022 PGL Antwerp</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament20" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament20"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament20"><span>IEM Rio 2022</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament17" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament17"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament17"><span>2020 RMR</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament16" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament16"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament16"><span>2019 StarLadder Berlin</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament13" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament13"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament13"><span>2018 ELEAGUE Boston</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament15" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament15"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament15"><span>2019 IEM Katowice</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament14" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament14"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament14"><span>2018 FACEIT London</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament12" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament12"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament12"><span>2017 PGL Krakow</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament11" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament11"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament11"><span>2017 ELEAGUE Atlanta</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament7" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament7"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament7"><span>2015 ESL One Cologne</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament10" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament10"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament10"><span>2016 ESL One Cologne</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament8" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament8"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament8"><span>2015 DreamHack Cluj-Napoca</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament9" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament9"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament9"><span>2016 MLG Columbus</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament6" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament6"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament6"><span>2015 ESL One Katowice</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament4" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament4"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament4"><span>2014 ESL One Cologne</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament3" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament3"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament3"><span>2014 EMS One Katowice</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament5" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament5"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament5"><span>2014 DreamHack Winter</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Tournament_Tournament1" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Tournament[]" value="tag_Tournament1"><label class="econ_tag_filter_label" for="tag_730_Tournament_Tournament1"><span>2013 DreamHack Winter</span></label></div>
-                </div>
-                <div class="econ_tag_filter_category">
-                  <div class="econ_tag_filter_category_label">Type</div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Pistol" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Pistol"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Pistol"><span>Pistol</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_SMG" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_SMG"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_SMG"><span>SMG</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Rifle" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Rifle"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Rifle"><span>Rifle</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_SniperRifle" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_SniperRifle"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_SniperRifle"><span>Sniper Rifle</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Shotgun" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Shotgun"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Shotgun"><span>Shotgun</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Machinegun" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Machinegun"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Machinegun"><span>Machinegun</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_Type_CustomPlayer" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_Type_CustomPlayer"><label class="econ_tag_filter_label" for="tag_730_Type_Type_CustomPlayer"><span>Agent</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_WeaponCase" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_WeaponCase"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_WeaponCase"><span>Container</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Knife" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Knife"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Knife"><span>Knife</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Tool_Sticker" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Tool_Sticker"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Tool_Sticker"><span>Sticker</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_Type_Hands" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_Type_Hands"><label class="econ_tag_filter_label" for="tag_730_Type_Type_Hands"><span>Gloves</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Spray" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Spray"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Spray"><span>Graffiti</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_MusicKit" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_MusicKit"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_MusicKit"><span>Music Kit</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Tool_Patch" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Tool_Patch"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Tool_Patch"><span>Patch</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Collectible" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Collectible"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Collectible"><span>Collectible</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Tool_WeaponCase_KeyTag" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Tool_WeaponCase_KeyTag"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Tool_WeaponCase_KeyTag"><span>Key</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Ticket" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Ticket"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Ticket"><span>Pass</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Tool_GiftTag" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Tool_GiftTag"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Tool_GiftTag"><span>Gift</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Tool_Name_TagTag" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Tool_Name_TagTag"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Tool_Name_TagTag"><span>Tag</span></label></div>
-                  <div class="econ_tag_filter_container"><input id="tag_730_Type_CSGO_Type_Tool" class="econ_tag_filter_checkbox" type="checkbox" name="category_730_Type[]" value="tag_CSGO_Type_Tool"><label class="econ_tag_filter_label" for="tag_730_Type_CSGO_Type_Tool"><span>Tool</span></label></div>
+        <div id="advanced_filter_window">
+          <div class="aFilter_boxes_container"><div class="aFilter_boxes">
+            <div class="aFilter_container">
+              <h4>Search</h4>
+              <input class="steam_filter_gui_input" type="search" id="aFilter-search">
+            </div>
+            <div class="aFilter_container">
+              <h4>Collection</h4>
+              <select id="aFilter-collection">
+                <option value="any">Any</option>
+              </select>
+            </div>
+            <div class="aFilter_container">
+              <h4>Weapon</h4> <!--item-weapon-->
+              <select id="aFilter-weapon">
+                <option value="any">Any</option>
+              </select>
+            </div>
+            <div class="aFilter_container">
+              <h4>Type</h4> <!--item-type-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter-type" class="input-options">
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4>Exterior</h4>
+              <input class="input-select" type="checkbox">
+              <div id="aFilter-exterior" class="input-options">
+                <div class="checkbox-container"><input class="input-option" value="WearCategory0" type="checkbox"><span>Factory New</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory1" type="checkbox"><span>Minimal Wear</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory2" type="checkbox"><span>Field-Tested</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory3" type="checkbox"><span>Well-Worn</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory4" type="checkbox"><span>Battle-Scarred</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategoryNA" type="checkbox"><span>Not Painted</span></div>
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4>Category</h4> <!--item-quality-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter-quality" class="input-options">
+                <div class="checkbox-container"><input class="input-option" value="normal" type="checkbox"><span style="color: rgb(178, 178, 178);">Normal</span></div>
+                <div class="checkbox-container"><input class="input-option" value="tournament" type="checkbox"><span style="color: rgb(255, 215, 0);">Souvenir</span></div>
+                <div class="checkbox-container"><input class="input-option" value="strange" type="checkbox"><span style="color: rgb(207, 106, 50);">StatTrak™</span></div>
+                <div class="checkbox-container"><input class="input-option" value="unusual" type="checkbox"><span style="color: rgb(134, 80, 172);">★</span></div>
+                <div class="checkbox-container"><input class="input-option" value="unusual_strange" type="checkbox"><span style="color: rgb(134, 80, 172);">★ StatTrak™</span></div>
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4>Quality</h4> <!--item-rarity-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter-rarity" class="input-options">
+              </div>
+            </div>
+          </div></div>
+          <div class="aFilter_collections_container">
+            <div class="aFilter_collections">
+              <div class="aFilter_current aFilter_collection">
+                <h4>Current</h4>
+                <div class="aFilter_data">
+                  <p>
+                    <h5>Collection:</h5>
+                    <li>Any</li>
+                  </p>
+                  <p>
+                    <h5>Weapon:</h5>
+                    <li>Any</li>
+                  </p>
                 </div>
               </div>
             </div>
-          </form>
+            <div id="aFilter_search" class="aFilter_collection">Search</div>
+          </div>
         </div>
 
-        <div class="newmodal_buttons" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
-          <div class="btn_grey_steamui btn_medium steam_filter_advanced_win_btn_reset" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}" style="float: left;"><span id="steam_filter_advanced_win_btn_reset_txt">RESET</span></div>
-          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss" data-panel="{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"><span id="steam_filter_advanced_win_btn_txt">CLOSE</span></div>
+        <div class="newmodal_buttons">
+          <div class="btn_grey_steamui btn_medium steam_filter_advanced_win_btn_reset" style="float: left;"><span id="steam_filter_advanced_win_btn_reset_txt">RESET</span></div>
+          <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss"><span id="steam_filter_advanced_win_btn_txt">CLOSE</span></div>
         </div>
       </div>
     </div>

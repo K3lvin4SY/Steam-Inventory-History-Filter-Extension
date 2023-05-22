@@ -88,7 +88,8 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 								name: element.name,
 								internal_name: element.internal_name,
 								category: element.category_name,
-								internal_category: element.category
+								internal_category: element.category,
+								color: element.color
 							};
 						}
 						if (element.category == "Type") {
@@ -127,7 +128,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 
 					
 					console.log("--------------------");
-					console.log(rgItemDescription);
+					//console.log(rgItemDescription);
 					//console.log(plusminus);
 					if (rarity != null) {
 						$J(this).find(".history_item_name").eq(0).data("item-rarity", rarity);
@@ -159,7 +160,45 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 					//console.log($J(this).find(".history_item_name").eq(0).text());
 					//console.log($J(this).find(".history_item_name").eq(0).data());
 
-
+					// Adding html to aFilter
+					function checkIfItemAlreadyExists(collection, value) {
+						var returnValue = true;
+						$J(collection).each(function() {
+							if ($J(this).val() == value) {
+								returnValue = false;
+								return returnValue;
+							}
+						})
+						return returnValue;
+					}
+					for (const [category, data] of Object.entries($J(this).find(".history_item_name").eq(0).data())) {
+						if (category == "itemRarity") {
+							const title = data.name;
+							const value = data.internal_name;
+							const color = data.color;
+							if (checkIfItemAlreadyExists("#aFilter-rarity .input-option", value)) {
+								$J("#aFilter-rarity").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span style="color: #'+color+';">'+title+'</span></div>');
+							}
+						} else if (category == "itemType") {
+							const title = data.name;
+							const value = data.internal_name;
+							if (checkIfItemAlreadyExists("#aFilter-type .input-option", value)) {
+								$J("#aFilter-type").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span>'+title+'</span></div>');
+							}
+						} else if (category == "itemWeapon") {
+							const title = data.name;
+							const value = data.internal_name;
+							if (checkIfItemAlreadyExists("#aFilter-weapon option", value)) {
+								$J("#aFilter-weapon").append('<option value="'+value+'">'+title+'</option>');
+							}
+						} else if (category == "itemCollection") {
+							const title = data.name;
+							const value = data.internal_name;
+							if (checkIfItemAlreadyExists("#aFilter-collection option", value)) {
+								$J("#aFilter-collection").append('<option value="'+value+'">'+title+'</option>');
+							}
+						}
+					}
 				}
 			})
 		})

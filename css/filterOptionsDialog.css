@@ -154,7 +154,7 @@ button {
 .selected:hover {
   background: linear-gradient(to right, #4bdbff, #537eff) !important;
 }
-li {
+#steam_filter_Options li {
   cursor: pointer;
 }
 
