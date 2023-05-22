@@ -461,7 +461,7 @@ function updateCurrentSearchList() {
   aFilterSearchData.quality = [];
   $J("#aFilter-quality .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
-      qualityData += "<li>"+$J(this).next().text()+"</li>";
+      qualityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
       aFilterSearchData.quality.push($J(this).val());
       qualityDataExists = true;
     }
@@ -474,7 +474,7 @@ function updateCurrentSearchList() {
   aFilterSearchData.rarity = [];
   $J("#aFilter-rarity .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
-      rarityData += "<li>"+$J(this).next().text()+"</li>";
+      rarityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
       aFilterSearchData.rarity.push($J(this).val());
       rarityDataExists = true;
     }
