@@ -124,13 +124,13 @@
   margin: 6px;
   
   min-width: 150px;
-  max-width: 250px;
+  max-width: 300px;
   font-size: 1.3em;
   height: min-content;
 }
 #advanced_filter_window .aFilter_collection .aFilter_data {
   overflow-y: auto;
-  max-height: 60vh;
+  max-height: 50vh;
 }
 #advanced_filter_window .aFilter_collection .aFilter_data li {
   list-style: none;
