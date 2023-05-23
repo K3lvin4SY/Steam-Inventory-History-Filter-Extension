@@ -215,9 +215,11 @@
   border-radius: 0.15em;
   transform: translateY(-0.075em);
   
-  display: grid;
   place-content: center;
   cursor: pointer;
+}
+#advanced_filter_window .aFilter_container .input-option[type="checkbox"] {
+  display: grid;
 }
 
 #advanced_filter_window .aFilter_container .input-option[type="checkbox"]::before,
