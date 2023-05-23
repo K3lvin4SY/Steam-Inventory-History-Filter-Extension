@@ -140,7 +140,7 @@
   margin-right: 5px;
   font-weight: bold;
 }
-#aFilter_handler_search,
+.hFilter_button,
 #aFilter_search {
   text-align: center;
   background: linear-gradient(to right, #00ccff, #3366ff);
@@ -150,7 +150,7 @@
   padding-bottom: 0.6em !important;
   cursor: pointer;
 }
-#aFilter_handler_search:hover,
+.hFilter_button:hover,
 #aFilter_search:hover {
   background: linear-gradient(to right, #2cd5ff, #4a77ff);
   font-weight: bolder;

@@ -315,6 +315,11 @@ function createButtonLinks() {
 
   // Filter handler staorage toggle selected
   $J('#filter_handler_storage').click(function(event) {
+    $J('#filter_handler_storage').children().each(function() {
+      if (this != event.target) {
+        $J(this).removeClass('selected');
+      }
+    })
     if (event.target.tagName === 'LI') {
       event.target.classList.toggle('selected');
     }
