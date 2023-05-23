@@ -15,7 +15,12 @@ async function filterHandlerRemove() {
 }
 
 async function updateFilterHandlerStorage() {
-
+  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  const keys = Object.keys(userFilterData);
+  $J("#filter_handler_storage").html("")
+  for (const key of keys) {
+    $J("#filter_handler_storage").append('<li>'+key+'</li>');
+  }
 }
 async function updateFilterOptionsStorage() {
 
