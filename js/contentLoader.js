@@ -563,3 +563,131 @@ function InventoryHistory_LoadAll()
 	});
 	
 }
+
+function InventoryHistory_Load50More()
+{
+	// variables
+	var apps = [];
+	var profileURL = window.location.href.split("/inventoryhistory/")[0];
+	if (window.location.href.includes("?")) {
+		window.location.href.split("?")[1].split("&").forEach(app => {
+			apps.push(parseInt(app.split("=")[1]));
+		});
+	}
+
+	// perperations
+	$J('#load_more_button').hide();
+	
+	// Start
+	var request_data = {
+		ajax: 1,
+		cursor: cursurHistory,
+		sessionid: sessionID
+	};
+
+	if ( apps && apps.length > 0 )
+	{
+		request_data.app = apps;
+	}
+
+	var prevCursor = cursurHistory;
+	
+	if (!validLanguage) {
+		document.cookie = "Steam_Language=english;priority=high;path=/";
+	}
+
+	$J.ajax({
+		type: "GET",
+		url: profileURL + "/inventoryhistory/",
+		data: request_data
+	}).done( function( data ) {
+		if ( data.success )
+		{
+			for ( var appid in data.apps )
+			{
+				g_rgAppContextData[appid] = data.apps[appid];
+			}
+
+			if (loadPartial == 0) {
+				start_time = Date.now();
+			}
+
+			too_many_req = false;
+			$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
+			$J('#inventory_history_count_rows').text( parseInt( $J('#inventory_history_count_rows').text() ) + data.num );
+			$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
+			$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
+			var unix_timestamp;
+			if (data.cursor) {
+				unix_timestamp = data.cursor;
+			} else {
+				unix_timestamp = prevCursor;
+			}
+			var date = new Date(unix_timestamp.time * 1000);
+			var year = date.getFullYear().toString();
+			var month = languageOption.sel.largeMonths[date.getMonth()];
+			var day = date.getDate().toString();
+			var formattedDate = day + ' ' + month + ' ' + year;
+			$J('#inventory_history_load_date').text(formattedDate);
+
+			if ( data.html )
+			{
+				var elem_prev = $J('#inventory_history_table').children().last();
+
+				if (loadAllAmount == 0) {
+					loadAllAmount++;
+					$J('#inventory_history_table').empty();
+					$J('#inventory_history_count').text("50");
+					$J('#inventory_history_table').append( data.html );
+					var new_elems = $J('#inventory_history_table').children();
+				} else {
+					$J('#inventory_history_table').append( data.html );
+					var new_elems = elem_prev.nextAll();
+				}
+
+				//new_elems.hide();
+				//new_elems.fadeIn( 200 );
+
+				InventoryHistory_BindTooltips( new_elems, data.descriptions );
+				InventoryHistory_AddData( new_elems, data.descriptions );
+				InventoryHistory_AddStatsData( new_elems, data.descriptions );
+			}
+
+			if ( data.cursor )
+			{
+				cursurHistory = data.cursor;
+				// Run again
+				loadAllAmount++;
+				loadPartial++;
+			}
+		}
+		else
+		{
+			cursurHistory = prevCursor;
+
+			if ( data.error )
+			{
+				ShowAlertDialog( languageOption.sel.messages.error, data.error, languageOption.sel.messages.ok );
+				//alert("Error //fix real Dialog! "+data.error)
+			}
+		}
+	}).fail( function( jqXHR ) {
+		cursurHistory = prevCursor;
+
+		if ( jqXHR.status == 429 )
+		{
+			ShowAlertDialog( languageOption.sel.messages.error, 'You\'ve made too many requests recently. Please wait and try your request again later.', languageOption.sel.messages.ok );
+		}
+		else if ( jqXHR.status == 503 )
+		{
+			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.steamServiceUnavailable, languageOption.sel.messages.ok );
+		}
+		else
+		{
+			ShowAlertDialog( languageOption.sel.messages.error, languageOption.sel.messages.otherErrorMessage, languageOption.sel.messages.ok );
+		}
+	}).always( function() {
+		$J('#inventory_history_loading').hide();
+	});
+	
+}

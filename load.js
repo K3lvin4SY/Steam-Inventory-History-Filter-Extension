@@ -831,6 +831,7 @@ async function addFilterOptions() {
     
   createButtonLinks();
   $J( '#load_more_button' ).hide();
+  InventoryHistory_Load50More();
 
 }
 
