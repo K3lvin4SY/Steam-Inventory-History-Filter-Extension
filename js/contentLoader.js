@@ -127,7 +127,7 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 					}
 
 					
-					console.log("--------------------");
+					//console.log("--------------------");
 					//console.log(rgItemDescription);
 					//console.log(plusminus);
 					if (rarity != null) {
@@ -566,14 +566,22 @@ function InventoryHistory_LoadAll()
 
 function InventoryHistory_Load50More()
 {
+
 	// variables
 	var apps = [];
+	console.log(cursurHistory);
 	var profileURL = window.location.href.split("/inventoryhistory/")[0];
 	if (window.location.href.includes("?")) {
 		window.location.href.split("?")[1].split("&").forEach(app => {
-			apps.push(parseInt(app.split("=")[1]));
+			if (app.split("=")[0] == "app%5B%5D") {
+				apps.push(parseInt(app.split("=")[1]));
+			} else if (app.split("=")[0] == "start_time") {
+				cursurHistory = parseInt(app.split("=")[1]);
+			}
 		});
 	}
+	console.log(apps);
+	console.log(cursurHistory);
 
 	// perperations
 	$J('#load_more_button').hide();
@@ -581,7 +589,9 @@ function InventoryHistory_Load50More()
 	// Start
 	var request_data = {
 		ajax: 1,
-		cursor: cursurHistory,
+		cursor: {
+			time: cursurHistory
+		},
 		sessionid: sessionID
 	};
 
