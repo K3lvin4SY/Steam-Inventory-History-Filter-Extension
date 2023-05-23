@@ -1,18 +1,21 @@
 async function filterHandlerEdit() {
-
+  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  console.log(userFilterData);
 }
 async function filterHandlerAdd() {
-  console.log("add");
-  await chrome.storage.session.set({ name: "David", color: "green" });
+  if ($J("#aFilter_handler-label").val() != "") {
+    console.log("add");
+    const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+    userFilterData[$J("#aFilter_handler-label").val()] = aFilterSearchData2;
+    await chrome.storage.sync.set({ userFilterData: userFilterData });
+  }
 }
 async function filterHandlerRemove() {
 
 }
 
 async function updateFilterHandlerStorage() {
-  const { name, color } = await chrome.storage.session.get(["name", "color"]);
-  console.log(name);
-  console.log(color);
+
 }
 async function updateFilterOptionsStorage() {
 

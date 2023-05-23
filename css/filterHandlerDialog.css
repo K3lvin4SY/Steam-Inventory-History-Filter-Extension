@@ -18,6 +18,12 @@
   margin-right: 1em;
 }
 
+.hFilter_button_unavailable {
+  background: linear-gradient(to right, #3d424d, #2a2d35);
+}
+.hFilter_button_unavailable:hover {
+  background: linear-gradient(to right, #494f5c, #32353e);
+}
 
 
 

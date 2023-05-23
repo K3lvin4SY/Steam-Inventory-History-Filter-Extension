@@ -506,18 +506,18 @@ function updateCurrentSearchList2() {
   const collectionData = $J("#aFilter_handler-collection option:checked").text();
   const weaponData = $J("#aFilter_handler-weapon option:checked").text();
   
-  aFilterSearchData.search = searchData;
-  aFilterSearchData.collection = $J("#aFilter_handler-collection option:checked").val();
-  aFilterSearchData.weapon = $J("#aFilter_handler-weapon option:checked").val();
+  aFilterSearchData2.search = searchData;
+  aFilterSearchData2.collection = $J("#aFilter_handler-collection option:checked").val();
+  aFilterSearchData2.weapon = $J("#aFilter_handler-weapon option:checked").val();
 
   // type
   var typeDataExists = false;
   var typeData = "<p><h5>"+languageOption.sel.html.advancedFilter.type+":</h5>";
-  aFilterSearchData.type = [];
+  aFilterSearchData2.type = [];
   $J("#aFilter_handler-type .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       typeData += "<li>"+$J(this).next().text()+"</li>";
-      aFilterSearchData.type.push($J(this).val());
+      aFilterSearchData2.type.push($J(this).val());
       typeDataExists = true;
     }
   })
@@ -526,11 +526,11 @@ function updateCurrentSearchList2() {
   // exterior
   var exteriorDataExists = false;
   var exteriorData = "<p><h5>"+languageOption.sel.html.advancedFilter.exterior+":</h5>";
-  aFilterSearchData.exterior = [];
+  aFilterSearchData2.exterior = [];
   $J("#aFilter_handler-exterior .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       exteriorData += "<li>"+$J(this).next().text()+"</li>";
-      aFilterSearchData.exterior.push($J(this).val());
+      aFilterSearchData2.exterior.push($J(this).val());
       exteriorDataExists = true;
     }
   })
@@ -539,11 +539,11 @@ function updateCurrentSearchList2() {
   // quality
   var qualityDataExists = false;
   var qualityData = "<p><h5>"+languageOption.sel.html.advancedFilter.quality+":</h5>";
-  aFilterSearchData.quality = [];
+  aFilterSearchData2.quality = [];
   $J("#aFilter_handler-quality .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       qualityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
-      aFilterSearchData.quality.push($J(this).val());
+      aFilterSearchData2.quality.push($J(this).val());
       qualityDataExists = true;
     }
   })
@@ -552,11 +552,11 @@ function updateCurrentSearchList2() {
   // rarity
   var rarityDataExists = false;
   var rarityData = "<p><h5>"+languageOption.sel.html.advancedFilter.rarity+":</h5>";
-  aFilterSearchData.rarity = [];
+  aFilterSearchData2.rarity = [];
   $J("#aFilter_handler-rarity .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       rarityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
-      aFilterSearchData.rarity.push($J(this).val());
+      aFilterSearchData2.rarity.push($J(this).val());
       rarityDataExists = true;
     }
   })

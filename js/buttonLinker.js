@@ -299,6 +299,9 @@ function createButtonLinks() {
       $J("#handler_filter_window").find("select").each(function() {
         $J(this).val($J(this).find("option:first").val());
       });
+      $J("#aFilter_handler-search").val("");
+      $J("#aFilter_handler-label").val("");
+      $J("#aFilter_handler_add").addClass("hFilter_button_unavailable");
       updateCurrentSearchList2();
     });
   });
@@ -316,6 +319,13 @@ function createButtonLinks() {
   })
   $J("#aFilter_handler-search").on('input', function() {
     updateCurrentSearchList2();
+  })
+  $J("#aFilter_handler-label").on('input', function() {
+    if ($J("#aFilter_handler-label").val() == "") {
+      $J("#aFilter_handler_add").addClass("hFilter_button_unavailable");
+    } else {
+      $J("#aFilter_handler_add").removeClass("hFilter_button_unavailable");
+    }
   })
 
   // Filter handler staorage toggle selected

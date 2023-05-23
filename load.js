@@ -15,6 +15,15 @@ var aFilterSearchData = {
   quality: [],
   rarity: []
 };
+var aFilterSearchData2 = {
+  search: "",
+  collection: "any",
+  weapon: "any",
+  type: [],
+  exterior: [],
+  quality: [],
+  rarity: []
+};
 
 var gameData = {
   containerUnlocks: {
@@ -808,6 +817,7 @@ var languageOption = {
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {
+  await chrome.storage.sync.set({ userFilterData: {} });
   const resp = await fetch(chrome.runtime.getURL('./components/filterWindow.html'));
   const html = await resp.text();
   const contentDiv = document.getElementById("BG_bottom");
