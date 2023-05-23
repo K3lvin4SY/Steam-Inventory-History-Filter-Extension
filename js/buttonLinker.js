@@ -119,6 +119,9 @@ function createButtonLinks() {
 
   $J(".steam_filter_Options_Win_Dismiss").each(function() {
     $J(this).click(function() {
+      if ($J("#steam_filter_Options").is(":hidden")) {
+        updateFilterOptionsStorage();
+      }
       $J("#steam_filter_Options").toggle();
     })
   })
@@ -157,6 +160,7 @@ function createButtonLinks() {
   });
   $J("#steam_filter_handler_win_btn").each(function() {
     $J(this).click(function() {
+      updateFilterOptionsStorage();
       $J("#steam_filter_handler").toggle();
       $J("#steam_filter_Options").toggle();
     })
@@ -177,6 +181,7 @@ function createButtonLinks() {
 
   // aFilter open
   $J("#steam_filter_searchbar_advanced").click(function() {
+    updateFilterHandlerStorage();
     $J("#steam_filter_handler").toggle();
     $J("#steam_filter_Options").toggle();
   });
@@ -324,4 +329,14 @@ function createButtonLinks() {
       event.target.classList.toggle('selected');
     }
   });
+
+  $J("#aFilter_handler_edit").click(function() {
+    filterHandlerEdit();
+  })
+  $J("#aFilter_handler_add").click(function() {
+    filterHandlerAdd();
+  })
+  $J("#aFilter_handler_remove").click(function() {
+    filterHandlerRemove();
+  })
 }
