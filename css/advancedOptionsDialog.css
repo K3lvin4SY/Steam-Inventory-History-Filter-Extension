@@ -42,8 +42,10 @@
 
 .ah_filter_window .input-select[type="checkbox"] {
   margin-bottom: 1.6em;
+  visibility: hidden;
 }
 .ah_filter_window .input-select[type="checkbox"]::before {
+  visibility: visible;
   content: "Open";
   width: calc(100%-0.4em);
   height: 1.15em;
