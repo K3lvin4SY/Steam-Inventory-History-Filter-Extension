@@ -338,8 +338,22 @@ function createButtonLinks() {
     if (event.target.tagName === 'LI') {
       event.target.classList.toggle('selected');
     }
+    var noneSelected = true;
+    $J('#filter_handler_storage').children().each(function() {
+      if ($J(this).hasClass('selected')) {
+        noneSelected = false;
+      }
+    })
+    if (noneSelected) {
+      $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
+      $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
+    } else {
+      $J("#aFilter_handler_edit").removeClass("hFilter_button_unavailable");
+      $J("#aFilter_handler_remove").removeClass("hFilter_button_unavailable");
+    }
   });
 
+  // Filter handler button calls
   $J("#aFilter_handler_edit").click(function() {
     filterHandlerEdit();
   })
