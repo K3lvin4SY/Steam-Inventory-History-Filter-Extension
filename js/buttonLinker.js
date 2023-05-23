@@ -149,6 +149,18 @@ function createButtonLinks() {
       $J("#steam_filter_simple_searchbar").toggle();
     })
   });
+  // close and open filter handler
+  $J("#steam_filter_handler_win_dismiss").each(function() {
+    $J(this).click(function() {
+      $J("#steam_filter_handler").hide();
+    })
+  });
+  $J("#steam_filter_handler_win_btn").each(function() {
+    $J(this).click(function() {
+      $J("#steam_filter_handler").toggle();
+      $J("#steam_filter_Options").toggle();
+    })
+  });
 
   $J(".steam_filter_options_Win_Dismiss").each(function() {
     $J(this).click(function() {
@@ -164,10 +176,10 @@ function createButtonLinks() {
   });
 
   // aFilter open
-  /*$J("#steam_filter_searchbar_advanced").click(function() {
-    $J("#steam_filter_advanced").toggle();
+  $J("#steam_filter_searchbar_advanced").click(function() {
+    $J("#steam_filter_handler").toggle();
     $J("#steam_filter_Options").toggle();
-  });*/
+  });
   $J("#steam_filter_simple_searchbar_advanced").click(function() {
     $J("#steam_filter_advanced").toggle();
     $J("#steam_filter_simple_searchbar").toggle();
@@ -272,4 +284,39 @@ function createButtonLinks() {
     updateFilterTagCollector(aFilterSearchData, include_only_filtered_rows);
     $J("#steam_filter_advanced").hide();
   })
+
+  // Filter handler reset btn
+  $J(".steam_filter_handler_win_btn_reset").each(function() {
+    $J(this).click(function() {
+      $J("#handler_filter_window").find("input:checkbox:checked").each(function() {
+        $J(this).prop("checked", false);
+      });
+      $J("#handler_filter_window").find("select").each(function() {
+        $J(this).val($J(this).find("option:first").val());
+      });
+      updateCurrentSearchList2();
+    });
+  });
+
+  // Filter handler on change
+  $J('#handler_filter_window .input-option[type="checkbox"]').each(function() {
+    $J(this).click(function() {
+      updateCurrentSearchList2();
+    })
+  })
+  $J('#handler_filter_window .aFilter_container select').each(function() {
+    $J(this).change(function() {
+      updateCurrentSearchList2();
+    })
+  })
+  $J("#aFilter_handler-search").on('input', function() {
+    updateCurrentSearchList2();
+  })
+
+  // Filter handler staorage toggle selected
+  $J('#filter_handler_storage').click(function(event) {
+    if (event.target.tagName === 'LI') {
+      event.target.classList.toggle('selected');
+    }
+  });
 }

@@ -128,7 +128,7 @@
           <input class="searchbar_form_object steam_filter_gui_input" type="text" id="label_data" name="label_data">-->
           <div id="include_search_outside_filters_box_container">
             <input type="checkbox" name="" id="include_search_outside_filters_box">
-            <label id="modal-includeCheckbox-simpleSearch" for="">Include search outside filters</label>
+            <label class="modal-includeCheckbox-simpleSearch" for="">Include search outside filters</label>
           </div>
           <div>
             <button id="steam_filter_simple_searchbar_search_submit_btn" class="searchbar_form_object steam_filter_gui_button">Search</button>
@@ -236,7 +236,7 @@
   <div class="newmodal_background" style="opacity: 0.8;"></div>
 </div>
 
-<!-- Advanced -->
+<!-- Advanced Search-->
 <div hidden class="steam_filter_dialog_group" id="steam_filter_advanced">
   <div class="steam_inv_filter_modal_advanced newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
     <div class="modal_top_bar"></div>
@@ -249,7 +249,7 @@
     <div class="newmodal_content_border">
       <div class="newmodal_content" style="max-height: 75vh;">
 
-        <div id="advanced_filter_window">
+        <div class="ah_filter_window" id="advanced_filter_window">
           <div class="aFilter_boxes_container"><div class="aFilter_boxes">
             <div class="aFilter_container">
               <h4 id="aFilter_html_title-search">Search</h4>
@@ -321,7 +321,7 @@
             </div>
             <div id="aFilter_include_search_outside_filters_box_container" class="aFilter_collection">
               <input type="checkbox" name="" id="aFilter_include_search_outside_filters_box">
-              <label id="modal-includeCheckbox-simpleSearch" for="">Include search outside filters</label>
+              <label class="modal-includeCheckbox-simpleSearch" for="">Include search outside filters</label>
             </div>
             <div id="aFilter_search" class="aFilter_collection">Search</div>
           </div>
@@ -330,6 +330,116 @@
         <div class="newmodal_buttons">
           <div class="btn_grey_steamui btn_medium steam_filter_advanced_win_btn_reset" style="float: left;"><span id="steam_filter_advanced_win_btn_reset_txt">RESET</span></div>
           <div id="steam_filter_advanced_win_btn" class="btn_grey_steamui btn_medium steam_filter_advanced_win_dismiss"><span id="steam_filter_advanced_win_btn_txt">BACK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newmodal_background" style="opacity: 0.8;"></div>
+</div>
+
+<!-- Filter handler-->
+<div class="steam_filter_dialog_group" id="steam_filter_handler">
+  <div class="steam_inv_filter_modal_handler newmodal steam_inv_filter_modal" data-panel="{&quot;onCancelButton&quot;:&quot;CModal.DismissActiveModal()&quot;}">
+    <div class="modal_top_bar"></div>
+    <div class="newmodal_header_border">
+      <div class="newmodal_header">
+        <div id="steam_filter_handler_win_dismiss" class="newmodal_close steam_filter_handler_win_dismiss" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}"></div>
+        <div id="steam_filter_handler_win_title_text" class="title_text">Filter Handler</div>
+      </div>
+    </div>
+    <div class="newmodal_content_border">
+      <div class="newmodal_content" style="max-height: 75vh;">
+
+        <div class="ah_filter_window" id="handler_filter_window">
+          <div class="aFilter_boxes_container"><div class="aFilter_boxes">
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-search">Search</h4>
+              <input class="steam_filter_gui_input" type="search" id="aFilter_handler-search">
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-collection">Collection</h4>
+              <select id="aFilter_handler-collection">
+                <option class="aFilter_html_title-any" value="any">Any</option>
+              </select>
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-weapon">Weapon</h4> <!--item-weapon-->
+              <select id="aFilter_handler-weapon">
+                <option class="aFilter_html_title-any" value="any">Any</option>
+              </select>
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-type">Type</h4> <!--item-type-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter_handler-type" class="input-options">
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-exterior">Exterior</h4>
+              <input class="input-select" type="checkbox">
+              <div id="aFilter_handler-exterior" class="input-options">
+                <div class="checkbox-container"><input class="input-option" value="WearCategory0" type="checkbox"><span>Factory New</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory1" type="checkbox"><span>Minimal Wear</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory2" type="checkbox"><span>Field-Tested</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory3" type="checkbox"><span>Well-Worn</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategory4" type="checkbox"><span>Battle-Scarred</span></div>
+                <div class="checkbox-container"><input class="input-option" value="WearCategoryNA" type="checkbox"><span>Not Painted</span></div>
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-quality">Category</h4> <!--item-quality-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter_handler-quality" class="input-options">
+                <div class="checkbox-container"><input class="input-option" value="normal" type="checkbox"><span style="color: rgb(178, 178, 178);">Normal</span></div>
+                <div class="checkbox-container"><input class="input-option" value="tournament" type="checkbox"><span style="color: rgb(255, 215, 0);">Souvenir</span></div>
+                <div class="checkbox-container"><input class="input-option" value="strange" type="checkbox"><span style="color: rgb(207, 106, 50);">StatTrak™</span></div>
+                <div class="checkbox-container"><input class="input-option" value="unusual" type="checkbox"><span style="color: rgb(134, 80, 172);">★</span></div>
+                <div class="checkbox-container"><input class="input-option" value="unusual_strange" type="checkbox"><span style="color: rgb(134, 80, 172);">★ StatTrak™</span></div>
+              </div>
+            </div>
+            <div class="aFilter_container">
+              <h4 id="aFilter_handler_html_title-rarity">Quality</h4> <!--item-rarity-->
+              <input class="input-select" type="checkbox">
+              <div id="aFilter_handler-rarity" class="input-options">
+              </div>
+            </div>
+          </div></div>
+          <div class="aFilter_collections_container">
+            <div class="aFilter_collections">
+              <div>
+                <div class="aFilter_current aFilter_collection">
+                  <h4 id="aFilter_handler_html_title-current">Current</h4>
+                  <div class="aFilter_data">
+                    <p>
+                      <h5>Collection:</h5>
+                      <li>Any</li>
+                    </p>
+                    <p>
+                      <h5>Weapon:</h5>
+                      <li>Any</li>
+                    </p>
+                  </div>
+                </div>
+                <div id="aFilter_handler_search" class="aFilter_collection">Add</div>
+              </div>
+              <div>
+                <div class="aFilter_storage aFilter_collection">
+                  <h4 id="aFilter_handler_html_title-storage">Filter Storage</h4>
+                  <div class="aFilter_data">
+                      <ul id="filter_handler_storage" class="filter-List">
+                        <li data-overrule-tag="everything">Show All</li>
+                        <li data-overrule-tag="everything">Show All2</li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="newmodal_buttons">
+          <div class="btn_grey_steamui btn_medium steam_filter_handler_win_btn_reset" style="float: left;"><span id="steam_filter_handler_win_btn_reset_txt">RESET</span></div>
+          <div id="steam_filter_handler_win_btn" class="btn_grey_steamui btn_medium steam_filter_handler_win_dismiss"><span id="steam_filter_handler_win_btn_txt">BACK</span></div>
         </div>
       </div>
     </div>

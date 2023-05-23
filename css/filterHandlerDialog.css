@@ -1,0 +1,19 @@
+#steam_filter_handler .aFilter_storage li {
+  text-align: center;
+  background-color: rgb(62, 66, 75);
+  cursor: pointer;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+#steam_filter_handler .aFilter_storage li:last-child {
+  margin-bottom: 1em;
+}
+
+#handler_filter_window .aFilter_storage {
+  padding: 0;
+  padding-top: 1em;
+}
+#handler_filter_window .aFilter_storage h4 {
+  margin-left: 1em;
+  margin-right: 1em;
+}

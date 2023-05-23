@@ -500,6 +500,87 @@ function updateCurrentSearchList() {
     data.append(rarityData);
   }
 }
+function updateCurrentSearchList2() {
+  const data = $J("#handler_filter_window .aFilter_current .aFilter_data").eq(0);
+  const searchData = $J("#aFilter_handler-search").val();
+  const collectionData = $J("#aFilter_handler-collection option:checked").text();
+  const weaponData = $J("#aFilter_handler-weapon option:checked").text();
+  
+  aFilterSearchData.search = searchData;
+  aFilterSearchData.collection = $J("#aFilter_handler-collection option:checked").val();
+  aFilterSearchData.weapon = $J("#aFilter_handler-weapon option:checked").val();
+
+  // type
+  var typeDataExists = false;
+  var typeData = "<p><h5>"+languageOption.sel.html.advancedFilter.type+":</h5>";
+  aFilterSearchData.type = [];
+  $J("#aFilter_handler-type .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      typeData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.type.push($J(this).val());
+      typeDataExists = true;
+    }
+  })
+  typeData += "</p>";
+
+  // exterior
+  var exteriorDataExists = false;
+  var exteriorData = "<p><h5>"+languageOption.sel.html.advancedFilter.exterior+":</h5>";
+  aFilterSearchData.exterior = [];
+  $J("#aFilter_handler-exterior .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      exteriorData += "<li>"+$J(this).next().text()+"</li>";
+      aFilterSearchData.exterior.push($J(this).val());
+      exteriorDataExists = true;
+    }
+  })
+  exteriorData += "</p>";
+
+  // quality
+  var qualityDataExists = false;
+  var qualityData = "<p><h5>"+languageOption.sel.html.advancedFilter.quality+":</h5>";
+  aFilterSearchData.quality = [];
+  $J("#aFilter_handler-quality .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      qualityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
+      aFilterSearchData.quality.push($J(this).val());
+      qualityDataExists = true;
+    }
+  })
+  qualityData += "</p>";
+
+  // rarity
+  var rarityDataExists = false;
+  var rarityData = "<p><h5>"+languageOption.sel.html.advancedFilter.rarity+":</h5>";
+  aFilterSearchData.rarity = [];
+  $J("#aFilter_handler-rarity .checkbox-container .input-option").each(function() {
+    if ($J(this).is(':checked')) {
+      rarityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
+      aFilterSearchData.rarity.push($J(this).val());
+      rarityDataExists = true;
+    }
+  })
+  rarityData += "</p>";
+
+  data.html('');
+  if (searchData != '') {
+    data.append('<p><h5>'+languageOption.sel.html.simpleSearch.searchBarLabel+':</h5><li>'+searchData+'</li></p>');
+  }
+  data.append('<p><h5>'+languageOption.sel.html.advancedFilter.collection+':</h5><li>'+collectionData+'</li></p>');
+  data.append('<p><h5>'+languageOption.sel.html.advancedFilter.weapon+':</h5><li>'+weaponData+'</li></p>');
+  if (typeDataExists) {
+    data.append(typeData);
+  }
+  if (exteriorDataExists) {
+    data.append(exteriorData);
+  }
+  if (qualityDataExists) {
+    data.append(qualityData);
+  }
+  if (rarityDataExists) {
+    data.append(rarityData);
+  }
+}
 
 
 

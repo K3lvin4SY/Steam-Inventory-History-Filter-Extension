@@ -4,16 +4,16 @@
 }
 
 /* boxes */
-#advanced_filter_window .aFilter_boxes {
+.ah_filter_window .aFilter_boxes {
   display: flex;
   flex-wrap: wrap;
   max-width: fit-content;
 }
-#advanced_filter_window .aFilter_boxes_container {
+.ah_filter_window .aFilter_boxes_container {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-#advanced_filter_window .aFilter_container {
+.ah_filter_window .aFilter_container {
   font-size: 1rem;
   font-weight: bold;
   line-height: 1.1;
@@ -32,18 +32,18 @@
 }
 
 
-#advanced_filter_window .checkbox-container {
+.ah_filter_window .checkbox-container {
   display: flex;
   flex-direction: row;
 }
-#advanced_filter_window .checkbox-container span {
+.ah_filter_window .checkbox-container span {
   margin-left: 0.5em;
 }
 
-#advanced_filter_window .input-select[type="checkbox"] {
+.ah_filter_window .input-select[type="checkbox"] {
   margin-bottom: 1.6em;
 }
-#advanced_filter_window .input-select[type="checkbox"]::before {
+.ah_filter_window .input-select[type="checkbox"]::before {
   content: "Open";
   width: calc(100%-0.4em);
   height: 1.15em;
@@ -69,11 +69,11 @@
   border: 0;
   box-shadow: 2px 2px 7px #00000045;
 }
-#advanced_filter_window .input-select[type="checkbox"]:checked::before {
+.ah_filter_window .input-select[type="checkbox"]:checked::before {
   content: "Close";
   background-color: #303540;
 }
-#advanced_filter_window .input-select[type="checkbox"]:checked + .input-options {
+.ah_filter_window .input-select[type="checkbox"]:checked + .input-options {
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -88,11 +88,11 @@
   overflow-y: auto;
 }
 
-#advanced_filter_window .input-options {
+.ah_filter_window .input-options {
   display: none;
   transform: translateY(4.8em);
 }
-#advanced_filter_window #aFilter-search {
+.ah_filter_window #aFilter-search {
   background-color: #2c313b;
   box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.3);
   margin-top: 0px;
@@ -101,22 +101,22 @@
 
 
 /* collections */
-#advanced_filter_window {
+.ah_filter_window {
   display: grid;
   grid-template-columns: auto min-content;
   grid-template-rows: 100%;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
-#advanced_filter_window .aFilter_collections_container {
+.ah_filter_window .aFilter_collections_container {
   grid-area: 1 / 2 / 2 / 3;
 }
-#advanced_filter_window .aFilter_collections {
+.ah_filter_window .aFilter_collections {
   width: 100%;
   display: flex;
   flex-direction: row;
 }
-#advanced_filter_window .aFilter_collection {
+.ah_filter_window .aFilter_collection {
   background-color: #32363f;
   padding: 1em;
   border-radius: 8px;
@@ -128,18 +128,19 @@
   font-size: 1.3em;
   height: min-content;
 }
-#advanced_filter_window .aFilter_collection .aFilter_data {
+.ah_filter_window .aFilter_collection .aFilter_data {
   overflow-y: auto;
   max-height: 50vh;
 }
-#advanced_filter_window .aFilter_collection .aFilter_data li {
+.ah_filter_window .aFilter_collection .aFilter_data li {
   list-style: none;
 }
-#advanced_filter_window .aFilter_collection .aFilter_data li::before {
+#steam_filter_advanced .aFilter_collection .aFilter_data li::before {
   content: "\2022";
   margin-right: 5px;
   font-weight: bold;
 }
+#aFilter_handler_search,
 #aFilter_search {
   text-align: center;
   background: linear-gradient(to right, #00ccff, #3366ff);
@@ -149,11 +150,13 @@
   padding-bottom: 0.6em !important;
   cursor: pointer;
 }
+#aFilter_handler_search:hover,
 #aFilter_search:hover {
   background: linear-gradient(to right, #2cd5ff, #4a77ff);
   font-weight: bolder;
 }
 
+#aFilter_handler_include_search_outside_filters_box_container,
 #aFilter_include_search_outside_filters_box_container {
   font-size: 0.8rem;
   line-height: 1.1;
@@ -164,11 +167,13 @@
   margin-bottom: 0.5em;
 }
 
+#aFilter_handler_include_search_outside_filters_box_container label,
 #aFilter_include_search_outside_filters_box_container label {
   font-size: 1.1rem;
   line-height: 1.1;
 }
 /* checkbox */
+#aFilter_handler_include_search_outside_filters_box,
 #aFilter_include_search_outside_filters_box {
   appearance: none;
   background-color: #464d58;
@@ -186,6 +191,7 @@
   cursor: pointer;
 }
 
+#aFilter_handler_include_search_outside_filters_box::before,
 #aFilter_include_search_outside_filters_box::before {
   content: "";
   width: 1.15em;
@@ -195,6 +201,7 @@
   transition: 80ms transform ease-in-out;
   box-shadow: inset 1.2em 1.2em #00c0f0;
 }
+#aFilter_handler_include_search_outside_filters_box:checked::before,
 #aFilter_include_search_outside_filters_box:checked::before {
   transform: scale(1);
 }
@@ -202,7 +209,7 @@
 
 
 /* old (still in use) */
-#advanced_filter_window .aFilter_container .input-option[type="checkbox"],
+.ah_filter_window .aFilter_container .input-option[type="checkbox"],
 .econ_tag_filter_checkbox {
   appearance: none;
   background-color: #464d58;
@@ -218,11 +225,11 @@
   place-content: center;
   cursor: pointer;
 }
-#advanced_filter_window .aFilter_container .input-option[type="checkbox"] {
+.ah_filter_window .aFilter_container .input-option[type="checkbox"] {
   display: grid;
 }
 
-#advanced_filter_window .aFilter_container .input-option[type="checkbox"]::before,
+.ah_filter_window .aFilter_container .input-option[type="checkbox"]::before,
 .econ_tag_filter_checkbox::before {
   content: "";
   width: 1.15em;
@@ -232,18 +239,18 @@
   transition: 80ms transform ease-in-out;
   box-shadow: inset 1.2em 1.2em #00c0f0;
 }
-#advanced_filter_window .aFilter_container .input-option[type="checkbox"]:checked::before,
+.ah_filter_window .aFilter_container .input-option[type="checkbox"]:checked::before,
 .econ_tag_filter_checkbox:checked::before {
   transform: scale(1);
 }
 
-#advanced_filter_window h4 {
+.ah_filter_window h4 {
   font-size: 1.1rem !important;
   font-weight: bold;
   line-height: 1.1;
 }
 
-#advanced_filter_window .aFilter_container select {
+.ah_filter_window .aFilter_container select {
   font-size: 1rem;
   font-weight: bold;
   line-height: 1.1;
@@ -258,7 +265,7 @@
   box-shadow: inset 0 0 10px rgba(8, 8, 8, 0.3); 
 }
 
-#advanced_filter_window .aFilter_container select option {
+.ah_filter_window .aFilter_container select option {
   font-size: 1rem;
   line-height: 1.1;
   background-color: #2c313b;

@@ -892,7 +892,9 @@ function updateHtmlText() {
 
   // simple search //
   $J("#modal-title-simpleSearch").text(languageOption.sel.html.toolbar.searchEngine);
-  $J("#modal-includeCheckbox-simpleSearch").text(languageOption.sel.html.simpleSearch.includeSearchOutsideFilters);
+  $J(".modal-includeCheckbox-simpleSearch").each(function() {
+    $J(this).text(languageOption.sel.html.simpleSearch.includeSearchOutsideFilters);
+  });
   $J("#steam_filter_simple_searchbar_advanced").text(languageOption.sel.html.simpleSearch.advanced);
   $J("#steam_filter_simple_searchbar_win_dismiss_btn").text(languageOption.sel.html.simpleSearch.close);
   $J("#steam_filter_simple_searchbar_search_submit_btn").text(languageOption.sel.html.simpleSearch.searchBarLabel);
@@ -1025,6 +1027,7 @@ function updateHtmlText() {
     $J(this).text(languageOption.sel.html.advancedFilter.any);
   })
   updateCurrentSearchList();
+  updateCurrentSearchList2();
 
 }
 

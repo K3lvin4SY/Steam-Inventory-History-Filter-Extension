@@ -179,6 +179,9 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 							if (checkIfItemAlreadyExists("#aFilter-rarity .input-option", value)) {
 								$J("#aFilter-rarity").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span style="color: #'+color+';">'+title+'</span></div>');
 								$J("#aFilter-rarity").find('.input-option[type="checkbox"]').last().click(function() {updateCurrentSearchList();});
+
+								$J("#aFilter_handler-rarity").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span style="color: #'+color+';">'+title+'</span></div>');
+								$J("#aFilter_handler-rarity").find('.input-option[type="checkbox"]').last().click(function() {updateCurrentSearchList2();});
 							}
 						} else if (category == "itemType") {
 							const title = data.name;
@@ -186,18 +189,25 @@ function InventoryHistory_AddData( $Jnew, rgDescriptions )
 							if (checkIfItemAlreadyExists("#aFilter-type .input-option", value)) {
 								$J("#aFilter-type").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span>'+title+'</span></div>');
 								$J("#aFilter-type").find('.input-option[type="checkbox"]').last().click(function() {updateCurrentSearchList();})
+
+								$J("#aFilter_handler-type").append('<div class="checkbox-container"><input class="input-option" value="'+value+'" type="checkbox"><span>'+title+'</span></div>');
+								$J("#aFilter_handler-type").find('.input-option[type="checkbox"]').last().click(function() {updateCurrentSearchList2();})
 							}
 						} else if (category == "itemWeapon") {
 							const title = data.name;
 							const value = data.internal_name;
 							if (checkIfItemAlreadyExists("#aFilter-weapon option", value)) {
 								$J("#aFilter-weapon").append('<option value="'+value+'">'+title+'</option>');
+
+								$J("#aFilter_handler-weapon").append('<option value="'+value+'">'+title+'</option>');
 							}
 						} else if (category == "itemCollection") {
 							const title = data.name;
 							const value = data.internal_name;
 							if (checkIfItemAlreadyExists("#aFilter-collection option", value)) {
 								$J("#aFilter-collection").append('<option value="'+value+'">'+title+'</option>');
+
+								$J("#aFilter_handler-collection").append('<option value="'+value+'">'+title+'</option>');
 							}
 						}
 					}
