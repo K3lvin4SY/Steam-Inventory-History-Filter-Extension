@@ -5,9 +5,10 @@ async function filterHandlerEdit() {
       if ($J(this).hasClass('selected')) {
 
         const key = $J(this).text();
-        const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+        const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
         const dataToLoad = userFilterData[key];
-        changeFilterHanderValues(key, dataToLoad);
+        const htmlToLoad = userFilterDataHtml[key];
+        changeFilterHanderValues(key, dataToLoad, htmlToLoad);
 
         $J(this).removeClass('selected');
       }
@@ -21,9 +22,10 @@ async function filterHandlerEdit() {
 async function filterHandlerAdd() {
   if ($J("#aFilter_handler-label").val() != "") {
     console.log("add");
-    const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+    const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
     userFilterData[$J("#aFilter_handler-label").val()] = aFilterSearchData2;
-    await chrome.storage.sync.set({ userFilterData: userFilterData });
+    userFilterDataHtml[$J("#aFilter_handler-label").val()] = aFilterSearchData2Html;
+    await chrome.storage.sync.set({ userFilterData: userFilterData, userFilterDataHtml: userFilterDataHtml });
     updateFilterHandlerStorage();
   }
 }
@@ -32,9 +34,10 @@ function filterHandlerRemove() {
     $J('#filter_handler_storage').children().each(async function() {
       if ($J(this).hasClass('selected')) {
         const key = $J(this).text();
-        const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+        const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
         delete userFilterData[key];
-        await chrome.storage.sync.set({ userFilterData: userFilterData });
+        delete userFilterDataHtml[key];
+        await chrome.storage.sync.set({ userFilterData: userFilterData, userFilterDataHtml: userFilterDataHtml });
         updateFilterHandlerStorage();
         $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
         $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
@@ -57,7 +60,7 @@ async function updateFilterOptionsStorage() {
 
 }
 
-function changeFilterHanderValues(label, data) {
+function changeFilterHanderValues(label, data, html) {
   // text inputs
   $J("#aFilter_handler-label").val(label);
   $J("#aFilter_handler-search").val(data.search);
@@ -78,7 +81,48 @@ function changeFilterHanderValues(label, data) {
     }
   });
 
+  function getMissingCheckboxes(title, data) {
+    var dataList = [];
+    for (const value of data) {
+      dataList.push(value);
+    }
+    console.log(dataList);
+    $J("#aFilter_handler-"+title).find(".input-option").each(function() {
+      if (dataList.includes($J(this).val())) {
+        console.log($J(this).val());
+        console.log(dataList);
+        delete dataList[dataList.indexOf($J(this).val())]
+      }
+    });
+    return dataList;
+  }
   // liquid values
+  for (const key of getMissingCheckboxes("type", data.type)) {
+    $J("#aFilter_handler-type").append(html.type[key]);
+    console.log("added: "+key);
+  }
+  $J("#aFilter_handler-type").find(".input-option").each(function() {
+    if (data.type.includes($J(this).val())) {
+      $J(this).prop( "checked", true )
+    } else {
+      $J(this).prop( "checked", false )
+    }
+  });
+
+  for (const key of getMissingCheckboxes("rarity", data.rarity)) {
+    console.log(html.rarity[key]);
+    $J("#aFilter_handler-rarity").append(html.rarity[key]);
+    console.log("added: "+key);
+  }
+  
+  console.log(data.rarity);
+  $J("#aFilter_handler-rarity").find(".input-option").each(function() {
+    if (data.rarity.includes($J(this).val())) {
+      $J(this).prop( "checked", true )
+    } else {
+      $J(this).prop( "checked", false )
+    }
+  });
 
   // update current list
   updateCurrentSearchList2();

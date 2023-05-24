@@ -24,6 +24,12 @@ var aFilterSearchData2 = {
   quality: [],
   rarity: []
 };
+var aFilterSearchData2Html = {
+  collection: "",
+  weapon: "",
+  type: {},
+  rarity: {}
+};
 
 var gameData = {
   containerUnlocks: {
@@ -817,9 +823,12 @@ var languageOption = {
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {
-  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
   if (!(typeof userFilterData === 'object')) {
     await chrome.storage.sync.set({ userFilterData: {} });
+  }
+  if (!(typeof userFilterDataHtml === 'object')) {
+    await chrome.storage.sync.set({ userFilterDataHtml: {} });
   }
   const resp = await fetch(chrome.runtime.getURL('./components/filterWindow.html'));
   const html = await resp.text();

@@ -504,7 +504,9 @@ function updateCurrentSearchList2() {
   const data = $J("#handler_filter_window .aFilter_current .aFilter_data").eq(0);
   const searchData = $J("#aFilter_handler-search").val();
   const collectionData = $J("#aFilter_handler-collection option:checked").text();
+  aFilterSearchData2Html.collection = $J("#aFilter_handler-collection option:checked").html();
   const weaponData = $J("#aFilter_handler-weapon option:checked").text();
+  aFilterSearchData2Html.weapon = $J("#aFilter_handler-weapon option:checked").html();
   
   aFilterSearchData2.search = searchData;
   aFilterSearchData2.collection = $J("#aFilter_handler-collection option:checked").val();
@@ -514,10 +516,12 @@ function updateCurrentSearchList2() {
   var typeDataExists = false;
   var typeData = "<p><h5>"+languageOption.sel.html.advancedFilter.type+":</h5>";
   aFilterSearchData2.type = [];
+  aFilterSearchData2Html.type = {};
   $J("#aFilter_handler-type .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       typeData += "<li>"+$J(this).next().text()+"</li>";
       aFilterSearchData2.type.push($J(this).val());
+      aFilterSearchData2Html.type[$J(this).val()] = '<div class="checkbox-container">'+$J(this).parents().eq(0).html()+"</div>";
       typeDataExists = true;
     }
   })
@@ -553,10 +557,12 @@ function updateCurrentSearchList2() {
   var rarityDataExists = false;
   var rarityData = "<p><h5>"+languageOption.sel.html.advancedFilter.rarity+":</h5>";
   aFilterSearchData2.rarity = [];
+  aFilterSearchData2Html.rarity = {};
   $J("#aFilter_handler-rarity .checkbox-container .input-option").each(function() {
     if ($J(this).is(':checked')) {
       rarityData += '<li style="color: '+$J(this).next().css("color")+'">'+$J(this).next().text()+"</li>";
       aFilterSearchData2.rarity.push($J(this).val());
+      aFilterSearchData2Html.rarity[$J(this).val()] = '<div class="checkbox-container">'+$J(this).parents().eq(0).html()+"</div>";
       rarityDataExists = true;
     }
   })
