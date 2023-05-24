@@ -62,8 +62,8 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     var tag7 = $J(this).data("data-item-exterior-tag");
     props["data-item-exterior-tag"] = tag7; // Search for specific item exterior ex: Minimal-Wear
 
-    var tag8 = $J(this).data("data-item-exterior-tag");
-    props["data-item-exterior-tag"] = tag8; // Search for specific item waepon type ex: Ak47
+    var tag8 = $J(this).data("data-item-weapon-tag");
+    props["data-item-weapon-tag"] = tag8; // Search for specific item waepon type ex: Ak47
     
     //console.log(props);
     tags.push(props);
@@ -321,7 +321,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
 
             // end of loop iteration
           }
-        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-quality-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-rarity-tag", "data-item-exterior-tag"].includes(prop) ) {
+        } else if ( ["data-search-tag", "data-item-name-tag", "data-item-quality-tag", "data-item-type-tag", "data-item-collection-tag", "data-item-rarity-tag", "data-item-exterior-tag", "data-item-weapon-tag"].includes(prop) ) {
           //console.log(event_desc);
           //console.log(prop);
           //console.log(tag);

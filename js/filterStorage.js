@@ -56,8 +56,23 @@ async function updateFilterHandlerStorage() {
   $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
   $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
 }
+function convertNewKeyToOldKey(newKey) {
+  if (newKey == "search") {
+    return "data-search-tag";
+  } else {
+    return "data-item-"+newKey+"-tag";
+  }
+}
 async function updateFilterOptionsStorage() {
-
+  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  const kvp = Object.entries(userFilterData);
+  $J("#user_made_filters_storage_conatiner").html("")
+  for (const [key, data] of kvp) {
+    $J("#user_made_filters_storage_conatiner").append('<li class="user_made_filter">'+key+'</li>');
+    for (const [dataKey, dataValue] of Object.entries(data)) {
+      $J("#user_made_filters_storage_conatiner li").last().data(convertNewKeyToOldKey(dataKey), dataValue);
+    }
+  }
 }
 
 function changeFilterHanderValues(label, data, html) {

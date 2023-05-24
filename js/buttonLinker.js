@@ -1,14 +1,12 @@
 function createButtonLinks() {
  $J("#reset_filter_list").click(() => {
+    $J('#hide_all_filter_list').trigger('click');
     const list1 = document.querySelectorAll('.list1');
-    const list2Elements = document.querySelectorAll('.list2 > *');
+    const showAll = document.querySelectorAll('#modal-filterOptions-data-showAll');
 
-    for (let i = 0; i < list2Elements.length; i++) {
-      if (list2Elements[i].classList.contains('selected')) {
-        list2Elements[i].classList.remove('selected');
-      }
+    for (let i = 0; i < showAll.length; i++) {
       for (let j = 0; j < list1.length; j++) {
-        list1[j].appendChild(list2Elements[i]);
+        list1[j].appendChild(showAll[i]);
       }
     }
   });
@@ -17,20 +15,27 @@ function createButtonLinks() {
   $J("#hide_all_filter_list").click(() => {
     const list1Elements = document.querySelectorAll('.list1 > *');
     const list2 = document.querySelectorAll('.list2');
+    const list3 = document.querySelectorAll('.list3');
 
     for (let i = 0; i < list1Elements.length; i++) {
       if (list1Elements[i].classList.contains('selected')) {
         list1Elements[i].classList.remove('selected');
       }
-      for (let j = 0; j < list2.length; j++) {
-        list2[j].appendChild(list1Elements[i]);
+      if (list1Elements[i].classList.contains("user_made_filter")) {
+        for (let j = 0; j < list3.length; j++) {
+          list3[j].appendChild(list1Elements[i]);
+        }
+      } else {
+        for (let j = 0; j < list2.length; j++) {
+          list2[j].appendChild(list1Elements[i]);
+        }
       }
     }
   });
 
   $J("#move_left").click(() => {
     const list1 = document.querySelectorAll('.list1');
-    const selected = document.querySelectorAll('.list2 .selected');
+    const selected = document.querySelectorAll('.list2 .selected, .list3 .selected');
 
     for (let i = 0; i < selected.length; i++) {
       selected[i].classList.remove('selected');
@@ -43,11 +48,18 @@ function createButtonLinks() {
   $J("#move_right").click(() => {
     const list1Selected = document.querySelectorAll('.list1 .selected');
     const list2 = document.querySelectorAll('.list2');
+    const list3 = document.querySelectorAll('.list3');
 
     for (let i = 0; i < list1Selected.length; i++) {
       list1Selected[i].classList.remove('selected');
-      for (let j = 0; j < list2.length; j++) {
-        list2[j].prepend(list1Selected[i]);
+      if (list1Selected[i].classList.contains("user_made_filter")) {
+        for (let j = 0; j < list3.length; j++) {
+          list3[j].appendChild(list1Selected[i]);
+        }
+      } else {
+        for (let j = 0; j < list2.length; j++) {
+          list2[j].appendChild(list1Selected[i]);
+        }
       }
     }
   });

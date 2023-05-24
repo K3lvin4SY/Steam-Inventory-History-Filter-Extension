@@ -258,3 +258,10 @@ button {
   margin-top: 15px;
 }
 
+/* User filters */
+#user_filter_storage {
+  margin-left: 40px;
+}
+#steam_filter_options_big {
+  max-width: 1000px !important;
+}
