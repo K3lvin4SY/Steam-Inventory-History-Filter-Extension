@@ -504,9 +504,9 @@ function updateCurrentSearchList2() {
   const data = $J("#handler_filter_window .aFilter_current .aFilter_data").eq(0);
   const searchData = $J("#aFilter_handler-search").val();
   const collectionData = $J("#aFilter_handler-collection option:checked").text();
-  aFilterSearchData2Html.collection = $J("#aFilter_handler-collection option:checked").html();
+  aFilterSearchData2Html.collection = $J("#aFilter_handler-collection option:checked").prop('outerHTML');
   const weaponData = $J("#aFilter_handler-weapon option:checked").text();
-  aFilterSearchData2Html.weapon = $J("#aFilter_handler-weapon option:checked").html();
+  aFilterSearchData2Html.weapon = $J("#aFilter_handler-weapon option:checked").prop('outerHTML');
   
   aFilterSearchData2.search = searchData;
   aFilterSearchData2.collection = $J("#aFilter_handler-collection option:checked").val();

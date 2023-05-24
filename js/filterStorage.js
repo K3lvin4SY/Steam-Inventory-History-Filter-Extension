@@ -86,11 +86,8 @@ function changeFilterHanderValues(label, data, html) {
     for (const value of data) {
       dataList.push(value);
     }
-    console.log(dataList);
     $J("#aFilter_handler-"+title).find(".input-option").each(function() {
       if (dataList.includes($J(this).val())) {
-        console.log($J(this).val());
-        console.log(dataList);
         delete dataList[dataList.indexOf($J(this).val())]
       }
     });
@@ -99,7 +96,6 @@ function changeFilterHanderValues(label, data, html) {
   // liquid values
   for (const key of getMissingCheckboxes("type", data.type)) {
     $J("#aFilter_handler-type").append(html.type[key]);
-    console.log("added: "+key);
   }
   $J("#aFilter_handler-type").find(".input-option").each(function() {
     if (data.type.includes($J(this).val())) {
@@ -110,12 +106,8 @@ function changeFilterHanderValues(label, data, html) {
   });
 
   for (const key of getMissingCheckboxes("rarity", data.rarity)) {
-    console.log(html.rarity[key]);
     $J("#aFilter_handler-rarity").append(html.rarity[key]);
-    console.log("added: "+key);
   }
-  
-  console.log(data.rarity);
   $J("#aFilter_handler-rarity").find(".input-option").each(function() {
     if (data.rarity.includes($J(this).val())) {
       $J(this).prop( "checked", true )
@@ -123,6 +115,26 @@ function changeFilterHanderValues(label, data, html) {
       $J(this).prop( "checked", false )
     }
   });
+
+  function isSelectOptionMissing(title, data) {
+    var returnValue = true;
+    $J("#aFilter_handler-"+title+" option").each(function() {
+      if (data == $J(this).val()) {
+        returnValue = false;
+      }
+    })
+    return returnValue;
+  }
+
+  if (isSelectOptionMissing("collection", data.collection)) {
+    $J("#aFilter_handler-collection").append(html.collection);
+  }
+  $J("#aFilter_handler-collection").val(data.collection);
+
+  if (isSelectOptionMissing("weapon", data.weapon)) {
+    $J("#aFilter_handler-weapon").append(html.weapon);
+  }
+  $J("#aFilter_handler-weapon").val(data.weapon);
 
   // update current list
   updateCurrentSearchList2();
