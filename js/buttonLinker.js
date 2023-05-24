@@ -378,4 +378,39 @@ function createButtonLinks() {
   $J("#aFilter_handler_remove").click(function() {
     filterHandlerRemove();
   })
+
+  // filter handler only one checked
+  $J('#handler_filter_window .input-select[type="checkbox"]').each(function() {
+    $J(this).click(function() {
+      const clickedBtn = this;
+      $J('#handler_filter_window .input-select[type="checkbox"]').each(function() {
+        if ($J(this).is(':checked') && this != clickedBtn) {
+          $J(this).prop("checked", false);
+        }
+      })
+    })
+  })
+  $J('#handler_filter_window .aFilter_container select').each(function() {
+    $J(this).click(function() {
+      $J('#handler_filter_window .input-select[type="checkbox"]').each(function() {
+        if ($J(this).is(':checked')) {
+          $J(this).prop("checked", false);
+        }
+      })
+    })
+  })
+  $J("#aFilter_handler-search").on('click', function() {
+    $J('#handler_filter_window .input-select[type="checkbox"]').each(function() {
+      if ($J(this).is(':checked')) {
+        $J(this).prop("checked", false);
+      }
+    })
+  })
+  $J("#aFilter_handler-label").on('click', function() {
+    $J('#handler_filter_window .input-select[type="checkbox"]').each(function() {
+      if ($J(this).is(':checked')) {
+        $J(this).prop("checked", false);
+      }
+    })
+  })
 }
