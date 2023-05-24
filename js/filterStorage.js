@@ -1,4 +1,4 @@
-async function filterHandlerEdit() {
+function filterHandlerEdit() {
   if (!$J("#aFilter_handler_edit").hasClass("hFilter_button_unavailable")) {
 
     $J('#filter_handler_storage').children().each(async function() {
@@ -16,8 +16,6 @@ async function filterHandlerEdit() {
     $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
     $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
   }
-  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
-  console.log(userFilterData);
 }
 async function filterHandlerAdd() {
   if ($J("#aFilter_handler-label").val() != "") {
@@ -29,20 +27,20 @@ async function filterHandlerAdd() {
     updateFilterHandlerStorage();
   }
 }
-function filterHandlerRemove() {
+async function filterHandlerRemove() {
   if (!$J("#aFilter_handler_remove").hasClass("hFilter_button_unavailable")) {
-    $J('#filter_handler_storage').children().each(async function() {
+    const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
+    $J('#filter_handler_storage').children().each(function() {
       if ($J(this).hasClass('selected')) {
         const key = $J(this).text();
-        const { userFilterData, userFilterDataHtml } = await chrome.storage.sync.get(["userFilterData", "userFilterDataHtml"]);
         delete userFilterData[key];
         delete userFilterDataHtml[key];
-        await chrome.storage.sync.set({ userFilterData: userFilterData, userFilterDataHtml: userFilterDataHtml });
-        updateFilterHandlerStorage();
-        $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
-        $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
       }
     })
+    await chrome.storage.sync.set({ userFilterData: userFilterData, userFilterDataHtml: userFilterDataHtml });
+    updateFilterHandlerStorage();
+    $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
+    $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
   }
 }
 

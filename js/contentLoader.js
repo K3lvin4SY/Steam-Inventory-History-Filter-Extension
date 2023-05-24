@@ -579,7 +579,6 @@ function InventoryHistory_Load50More()
 
 	// variables
 	var apps = [];
-	console.log(cursurHistory);
 	var profileURL = window.location.href.split("/inventoryhistory/")[0];
 	if (window.location.href.includes("?")) {
 		window.location.href.split("?")[1].split("&").forEach(app => {
@@ -590,8 +589,6 @@ function InventoryHistory_Load50More()
 			}
 		});
 	}
-	console.log(apps);
-	console.log(cursurHistory);
 
 	// perperations
 	$J('#load_more_button').hide();

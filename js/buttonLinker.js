@@ -344,23 +344,26 @@ function createButtonLinks() {
   $J('#filter_handler_storage').click(function(event) {
     $J('#filter_handler_storage').children().each(function() {
       if (this != event.target) {
-        $J(this).removeClass('selected');
+        //$J(this).removeClass('selected');
       }
     })
     if (event.target.tagName === 'LI') {
       event.target.classList.toggle('selected');
     }
-    var noneSelected = true;
+    var amountSelected = 0;
     $J('#filter_handler_storage').children().each(function() {
       if ($J(this).hasClass('selected')) {
-        noneSelected = false;
+        amountSelected += 1;
       }
     })
-    if (noneSelected) {
+    if (amountSelected == 0) {
       $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
       $J("#aFilter_handler_remove").addClass("hFilter_button_unavailable");
-    } else {
+    } else if (amountSelected == 1) {
       $J("#aFilter_handler_edit").removeClass("hFilter_button_unavailable");
+      $J("#aFilter_handler_remove").removeClass("hFilter_button_unavailable");
+    } else {
+      $J("#aFilter_handler_edit").addClass("hFilter_button_unavailable");
       $J("#aFilter_handler_remove").removeClass("hFilter_button_unavailable");
     }
   });
