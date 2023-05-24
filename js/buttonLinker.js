@@ -413,4 +413,30 @@ function createButtonLinks() {
       }
     })
   })
+
+  // small search engine in filter options V2 // --------------
+
+  // buttons color handler
+  $J("#small_search_engine_search_data, #small_search_engine_label_data").each(function() {
+    $J(this).on('input', function() {
+      if ($J("#small_search_engine_label_data").val() != "" && $J("#small_search_engine_search_data").val() != "") {
+        $J("#modal-filterOptions-add-button").addClass("small_search_engine_button_unavailable");
+        $J("#modal-filterOptions-search-button").addClass("small_search_engine_button_unavailable");
+      } else if ($J("#small_search_engine_search_data").val() != "") {
+        $J("#modal-filterOptions-add-button").removeClass("small_search_engine_button_unavailable");
+        $J("#modal-filterOptions-search-button").addClass("small_search_engine_button_unavailable");
+      } else {
+        $J("#modal-filterOptions-add-button").removeClass("small_search_engine_button_unavailable");
+        $J("#modal-filterOptions-search-button").removeClass("small_search_engine_button_unavailable");
+      }
+    })
+  })
+
+  //button on click handler
+  $J("#modal-filterOptions-add-button").click(function() {
+    smallSearchEngineAdd($J("#small_search_engine_label_data").val(), $J("#small_search_engine_search_data").val());
+  })
+  $J("#modal-filterOptions-search-button").click(function() {
+    smallSearchEngineSearch($J("#small_search_engine_search_data").val());
+  })
 }

@@ -265,3 +265,12 @@ button {
 #steam_filter_options_big {
   max-width: 1000px !important;
 }
+
+/* small search engine */
+.small_search_engine_button_unavailable {
+  background: linear-gradient(to right, #00c0f0, #3161f3);
+  color: #ffffff !important;
+}
+.small_search_engine_button_unavailable:hover {
+  background: linear-gradient(to right, #4bdbff, #537eff) !important;
+}

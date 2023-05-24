@@ -152,3 +152,32 @@ function changeFilterHanderValues(label, data, html) {
   // update current list
   updateCurrentSearchList2();
 }
+
+async function smallSearchEngineAdd(labelData, searchData) {
+  var tagToSearch = {
+    search: searchData,
+    collection: "any",
+    weapon: "any",
+    type: [],
+    exterior: [],
+    quality: [],
+    rarity: []
+  };
+  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  userFilterData[labelData] = tagToSearch;
+  await chrome.storage.sync.set({ userFilterData: userFilterData });
+  updateFilterOptionsStorage();
+}
+function smallSearchEngineSearch(searchData) {
+  var tagToSearch = {
+    search: searchData,
+    collection: "any",
+    weapon: "any",
+    type: [],
+    exterior: [],
+    quality: [],
+    rarity: []
+  };
+  $J("#steam_filter_Options").hide();
+  updateFilterTagCollector(tagToSearch);
+}
