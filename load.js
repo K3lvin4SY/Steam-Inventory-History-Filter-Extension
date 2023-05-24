@@ -130,7 +130,7 @@ var languageOption = {
       },
       filterOptions: {
         showTitle: "Show",
-        altLabel: "Alt. Label",
+        altLabel: "Label",
         buttons: {
           add: "Add",
           showAll: "Show All",
@@ -138,6 +138,7 @@ var languageOption = {
           hideAll: "Hide All"
         },
         filtersLabel: "Filters",
+        userFiltersLabel: "User Filters",
         filters: {
           labels: {
             caseOpened: "Case Opened",
@@ -314,6 +315,14 @@ var languageOption = {
         current: "Current",
         reset: "RESET",
         any: "Any"
+      },
+      filterHandler: {
+        title: "Filter Handler",
+        filterStorage: "Filter Storage",
+        buttons: {
+          edit: "Edit",
+          remove: "Remove"
+        }
       }
     }
   },
@@ -381,7 +390,7 @@ var languageOption = {
       },
       filterOptions: {
         showTitle: "Show",
-        altLabel: "Alt. Label",
+        altLabel: "Label",
         buttons: {
           add: "Add",
           showAll: "Show All",
@@ -389,6 +398,7 @@ var languageOption = {
           hideAll: "Hide All"
         },
         filtersLabel: "Filters",
+        userFiltersLabel: "User Filters",
         filters: {
           labels: {
             caseOpened: "Case Opened",
@@ -565,6 +575,14 @@ var languageOption = {
         current: "Current",
         reset: "RESET",
         any: "Any"
+      },
+      filterHandler: {
+        title: "Filter Handler",
+        filterStorage: "Filter Storage",
+        buttons: {
+          edit: "Edit",
+          remove: "Remove"
+        }
       }
     }
   },
@@ -640,6 +658,7 @@ var languageOption = {
           hideAll: "Göm Alla"
         },
         filtersLabel: "Filtren",
+        userFiltersLabel: "Användare Filtren",
         filters: {
           labels: {
             caseOpened: "Öppnade Lådor",
@@ -816,6 +835,14 @@ var languageOption = {
         current: "Nuvarande",
         reset: "ÅTERSTÄLL",
         any: "Någon"
+      },
+      filterHandler: {
+        title: "Filter Hanteraren",
+        filterStorage: "Filter Lagring",
+        buttons: {
+          edit: "Ändra",
+          remove: "Ta bort"
+        }
       }
     }
   }
@@ -1048,6 +1075,25 @@ function updateHtmlText() {
   $J(".aFilter_html_title-any").each(function() {
     $J(this).text(languageOption.sel.html.advancedFilter.any);
   })
+
+  $J("#steam_filter_handler_win_title_text").text(languageOption.sel.html.filterHandler.title);
+  $J("#steam_filter_handler_win_btn_reset_txt").text(languageOption.sel.html.advancedFilter.reset);
+  $J("#steam_filter_handler_win_btn_txt").text(languageOption.sel.messages.back);
+  $J("#aFilter_handler_html_title-label").text(languageOption.sel.html.filterOptions.altLabel);
+  $J("#aFilter_handler_html_title-search").text(languageOption.sel.html.simpleSearch.searchBarLabel);
+  $J("#aFilter_handler_html_title-collection").text(languageOption.sel.html.advancedFilter.collection);
+  $J("#aFilter_handler_html_title-weapon").text(languageOption.sel.html.advancedFilter.weapon);
+  $J("#aFilter_handler_html_title-type").text(languageOption.sel.html.advancedFilter.type);
+  $J("#aFilter_handler_html_title-exterior").text(languageOption.sel.html.advancedFilter.exterior);
+  $J("#aFilter_handler_html_title-quality").text(languageOption.sel.html.advancedFilter.quality);
+  $J("#aFilter_handler_html_title-rarity").text(languageOption.sel.html.advancedFilter.rarity);
+  $J("#aFilter_handler_html_title-current").text(languageOption.sel.html.advancedFilter.current);
+  $J("#aFilter_handler_html_title-storage").text(languageOption.sel.html.filterHandler.filterStorage);
+
+  $J("#aFilter_handler_edit").text(languageOption.sel.html.filterHandler.buttons.edit);
+  $J("#aFilter_handler_remove").text(languageOption.sel.html.filterHandler.buttons.remove);
+  $J("#aFilter_handler_add").text(languageOption.sel.html.filterOptions.buttons.add);
+
   updateCurrentSearchList();
   updateCurrentSearchList2();
 
