@@ -817,7 +817,10 @@ var languageOption = {
 
 // Applies Html and hooks onto script
 async function addFilterOptions() {
-  await chrome.storage.sync.set({ userFilterData: {} });
+  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+  if (!(typeof userFilterData === 'object')) {
+    await chrome.storage.sync.set({ userFilterData: {} });
+  }
   const resp = await fetch(chrome.runtime.getURL('./components/filterWindow.html'));
   const html = await resp.text();
   const contentDiv = document.getElementById("BG_bottom");
