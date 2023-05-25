@@ -362,7 +362,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
   $J("#steam_filter_loading_screen").hide();
 }
 
-
+//
 
 function updateFilter() {
   var tags = [];
