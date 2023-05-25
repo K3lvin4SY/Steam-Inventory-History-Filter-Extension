@@ -211,8 +211,7 @@
 
 
 /* old (still in use) */
-.ah_filter_window .aFilter_container .input-option[type="checkbox"],
-.econ_tag_filter_checkbox {
+.ah_filter_window .aFilter_container .input-option[type="checkbox"] {
   appearance: none;
   background-color: #464d58;
   margin: 0;
@@ -231,8 +230,7 @@
   display: grid;
 }
 
-.ah_filter_window .aFilter_container .input-option[type="checkbox"]::before,
-.econ_tag_filter_checkbox::before {
+.ah_filter_window .aFilter_container .input-option[type="checkbox"]::before {
   content: "";
   width: 1.15em;
   height: 1.15em;
@@ -241,8 +239,7 @@
   transition: 80ms transform ease-in-out;
   box-shadow: inset 1.2em 1.2em #00c0f0;
 }
-.ah_filter_window .aFilter_container .input-option[type="checkbox"]:checked::before,
-.econ_tag_filter_checkbox:checked::before {
+.ah_filter_window .aFilter_container .input-option[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 

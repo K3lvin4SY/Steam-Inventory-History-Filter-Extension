@@ -29,7 +29,7 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     var props = {};
     // The following tags are *props* for each row
     // For a row to be shown it has to have all the prop requirements
-    props["data-search-tag"] = this.getAttribute("data-search-tag"); // Search for specific text
+    props["data-search-tag"] = $J(this).data("data-search-tag"); // Search for specific text
     props["data-overrule-tag"] = this.getAttribute("data-overrule-tag"); // shows everything
     
     var tag1 = $J(this).data("data-main-tag");
@@ -65,6 +65,7 @@ function updateFilterTagCollector(global_search_tag = null, include_only_filtere
     var tag8 = $J(this).data("data-item-weapon-tag");
     props["data-item-weapon-tag"] = tag8; // Search for specific item waepon type ex: Ak47
     
+    //console.log($J(this).data());
     //console.log(props);
     tags.push(props);
   });
@@ -106,7 +107,7 @@ function findTag(item, tag, prop) {
         }
       }
     } else {
-      console.log("ERROR - sum ting wong");
+      //console.log("ERROR - sum ting wong");
     }
     /*if (item.text().cleanup().includes(tag)) {
       // passed
@@ -259,6 +260,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
   var rowsVisable = 0;
   //console.log(tags);
   invHisTab.children().each(function() {
+    //console.log("---------");
     var event_container = $J(this).find('.tradehistory_content').eq(0);
     var event_desc = $J(this).find('.tradehistory_event_description').eq(0);
     var items = $J(this).find('.history_item_name');
@@ -317,7 +319,7 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
           if (event_desc.text().cleanup().includes(tag)) {
             // passed
             tagsPassed++;
-            console.log("num0");
+            //console.log("num0");
 
             // end of loop iteration
           }
@@ -338,8 +340,8 @@ function filterListActionV2(tags, global_search_tag, include_only_filtered_rows)
         }
 
       }
-      //console.log(tagsPassed);
-      //console.log(tagsToPass);
+      //console.log("tagsPassed: "+tagsPassed);
+      //console.log("tagsToPass: "+tagsToPass);
       if (tagsPassed == tagsToPass || global_search_override || (show_all_override && ( (global_search_tag != null) == (searchPassed))) ) {
         //console.log("==");
         // Total pass
