@@ -35,6 +35,13 @@ async function filterHandlerRemove() {
         const key = $J(this).text();
         delete userFilterData[key];
         delete userFilterDataHtml[key];
+        $J("#filter_list_show li").each(function() {
+          if ($J(this).hasClass("user_made_filter")) {
+            if ($J(this).text() == key) {
+              $J(this).remove();
+            }
+          }
+        })
       }
     })
     await chrome.storage.sync.set({ userFilterData: userFilterData, userFilterDataHtml: userFilterDataHtml });
@@ -61,14 +68,25 @@ function convertNewKeyToOldKey(newKey) {
     return "data-item-"+newKey+"-tag";
   }
 }
+function convertLiElementsToText(liElements) {
+  var list = [];
+  liElements.each(function() {
+    if ($J(this).hasClass("user_made_filter")) {
+      list.push($J(this).text());
+    }
+  })
+  return list;
+}
 async function updateFilterOptionsStorage() {
   const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
   const kvp = Object.entries(userFilterData);
-  $J("#user_made_filters_storage_conatiner").html("")
+  $J("#user_made_filters_storage_conatiner").html("");
   for (const [key, data] of kvp) {
-    $J("#user_made_filters_storage_conatiner").append('<li class="user_made_filter">'+key+'</li>');
-    for (const [dataKey, dataValue] of Object.entries(data)) {
-      $J("#user_made_filters_storage_conatiner li").last().data(convertNewKeyToOldKey(dataKey), dataValue);
+    if (!convertLiElementsToText($J("#filter_list_show li")).includes(key)) {
+      $J("#user_made_filters_storage_conatiner").append('<li class="user_made_filter">'+key+'</li>');
+      for (const [dataKey, dataValue] of Object.entries(data)) {
+        $J("#user_made_filters_storage_conatiner li").last().data(convertNewKeyToOldKey(dataKey), dataValue);
+      }
     }
   }
 }
@@ -154,30 +172,34 @@ function changeFilterHanderValues(label, data, html) {
 }
 
 async function smallSearchEngineAdd(labelData, searchData) {
-  var tagToSearch = {
-    search: searchData,
-    collection: "any",
-    weapon: "any",
-    type: [],
-    exterior: [],
-    quality: [],
-    rarity: []
-  };
-  const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
-  userFilterData[labelData] = tagToSearch;
-  await chrome.storage.sync.set({ userFilterData: userFilterData });
-  updateFilterOptionsStorage();
+  if ($J("#modal-filterOptions-add-button").hasClass("small_search_engine_button_unavailable")) {
+    var tagToSearch = {
+      search: searchData,
+      collection: "any",
+      weapon: "any",
+      type: [],
+      exterior: [],
+      quality: [],
+      rarity: []
+    };
+    const { userFilterData } = await chrome.storage.sync.get(["userFilterData"]);
+    userFilterData[labelData] = tagToSearch;
+    await chrome.storage.sync.set({ userFilterData: userFilterData });
+    updateFilterOptionsStorage();
+  }
 }
 function smallSearchEngineSearch(searchData) {
-  var tagToSearch = {
-    search: searchData,
-    collection: "any",
-    weapon: "any",
-    type: [],
-    exterior: [],
-    quality: [],
-    rarity: []
-  };
-  $J("#steam_filter_Options").hide();
-  updateFilterTagCollector(tagToSearch);
+  if ($J("#modal-filterOptions-search-button").hasClass("small_search_engine_button_unavailable")) {
+    var tagToSearch = {
+      search: searchData,
+      collection: "any",
+      weapon: "any",
+      type: [],
+      exterior: [],
+      quality: [],
+      rarity: []
+    };
+    updateFilterTagCollector(tagToSearch);
+    $J("#steam_filter_Options").hide();
+  }
 }
