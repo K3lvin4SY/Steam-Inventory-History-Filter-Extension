@@ -461,7 +461,7 @@ function createButtonLinks() {
           "Item Type": item.itemType.name,
           "Item Name": item.itemName,
           "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
-          "Date": "Y:"+timeFrame.year+", M:"+timeFrame.month+", D:"+timeFrame.day
+          "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
         };
         flattenedData.push(flattenDataEntry);
       }
@@ -482,7 +482,7 @@ function createButtonLinks() {
           "Item Type": item.itemType.name,
           "Item Name": item.itemName,
           "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
-          "Date": "Y:"+timeFrame.year+", M:"+timeFrame.month+", D:"+timeFrame.day
+          "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
         };
         flattenedData.push(flattenDataEntry);
       }
