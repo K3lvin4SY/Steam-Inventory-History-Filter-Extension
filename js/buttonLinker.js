@@ -1,3 +1,4 @@
+
 function createButtonLinks() {
  $J("#reset_filter_list").click(() => {
     $J('#hide_all_filter_list').trigger('click');
@@ -438,5 +439,73 @@ function createButtonLinks() {
   })
   $J("#modal-filterOptions-search-button").click(function() {
     smallSearchEngineSearch($J("#small_search_engine_search_data").val());
+  })
+
+
+  function injectXLSXLibrary(callback) {
+    var xlsxScript = document.createElement('script');
+    xlsxScript.src = chrome.runtime.getURL('js/background/xlsx.full.min.js');
+    xlsxScript.onload = callback;
+    document.head.appendChild(xlsxScript);
+  }
+
+  function flattenDropData(data) {
+    var flattenedData = [];
+    for (var dropType in data) {
+      const entriesLength = data[dropType].length;
+      for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
+        const item = data[dropType][dataEntry]["item"];
+        const timeFrame = data[dropType][dataEntry]["timeFrame"];
+        const flattenDataEntry = {
+          "Drop Type": dropType,
+          "Item Type": item.itemType.name,
+          "Item Name": item.itemName,
+          "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
+          "Date": "Y:"+timeFrame.year+", M:"+timeFrame.month+", D:"+timeFrame.day
+        };
+        flattenedData.push(flattenDataEntry);
+      }
+    }
+    return flattenedData;
+  }
+  function flattenUnlockData(data) {
+    var flattenedData = [];
+    for (var conatinerType in data) {
+      const entriesLength = data[conatinerType].length;
+      for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
+        const container = data[conatinerType][dataEntry]["container"];
+        const item = data[conatinerType][dataEntry]["item"];
+        const timeFrame = data[conatinerType][dataEntry]["timeFrame"];
+        const flattenDataEntry = {
+          "Container Type": conatinerType,
+          "Container Name": container.itemName,
+          "Item Type": item.itemType.name,
+          "Item Name": item.itemName,
+          "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
+          "Date": "Y:"+timeFrame.year+", M:"+timeFrame.month+", D:"+timeFrame.day
+        };
+        flattenedData.push(flattenDataEntry);
+      }
+    }
+    return flattenedData;
+  }
+  
+  
+  // export data
+  $J("#steam_filter_stats_win_export").click(function() {
+    injectXLSXLibrary(function() {
+      var wb = XLSX.utils.book_new();
+    
+      // Convert containerUnlocks data to worksheet
+      var containerUnlocksWS = XLSX.utils.json_to_sheet(flattenUnlockData(gameData.containerUnlocks));
+      XLSX.utils.book_append_sheet(wb, containerUnlocksWS, "Container Unlocks");
+    
+      // Convert gameDrops data to worksheet
+      var gameDropsWS = XLSX.utils.json_to_sheet(flattenDropData(gameData.gameDrops));
+      XLSX.utils.book_append_sheet(wb, gameDropsWS, "Game Drops");
+    
+      // Save workbook as Excel file
+      XLSX.writeFile(wb, "gameData.xlsx");
+    })
   })
 }

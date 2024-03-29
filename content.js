@@ -654,3 +654,37 @@ function clearFilter() {
       child.style.display = "block";
   });
 }
+
+// ***** FOR EXPORT OF DATA *******
+// Function to convert the gameData object to CSV format
+function convertToCSV(obj) {
+  var csv = "";
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      csv += key + "\n";
+      for (var innerKey in obj[key]) {
+        if (obj[key].hasOwnProperty(innerKey)) {
+          csv += innerKey + "," + obj[key][innerKey].join(",") + "\n";
+        }
+      }
+      csv += "\n";
+    }
+  }
+  return csv;
+}
+
+// Function to download CSV file
+function downloadCSV(csv) {
+  var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  var link = document.createElement("a");
+  if (link.download !== undefined) { // feature detection
+    var url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", "gameData.csv");
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+// ***** FOR EXPORT OF DATA ******* END
