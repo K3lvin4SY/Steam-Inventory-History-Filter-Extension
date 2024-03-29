@@ -459,7 +459,10 @@ function createButtonLinks() {
         const flattenDataEntry = {
           "Drop Type": dropType,
           "Item Type": item.itemType.name,
+          "Item Category": item.itemQuality.name,
           "Item Name": item.itemName,
+          "Item Weapon": item.itemWeapon.name,
+          "Item Exterior": item.itemExterior.name,
           "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
           "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
         };
@@ -480,7 +483,10 @@ function createButtonLinks() {
           "Container Type": conatinerType,
           "Container Name": container.itemName,
           "Item Type": item.itemType.name,
+          "Item Category": item.itemQuality.name,
           "Item Name": item.itemName,
+          "Item Weapon": item.itemWeapon.name,
+          "Item Exterior": item.itemExterior.name,
           "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
           "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
         };
@@ -505,7 +511,7 @@ function createButtonLinks() {
       XLSX.utils.book_append_sheet(wb, gameDropsWS, "Game Drops");
     
       // Save workbook as Excel file
-      XLSX.writeFile(wb, "gameData.xlsx");
+      XLSX.writeFile(wb, "CS_Inventory_Stats_Data.xlsx");
     })
   })
 }
