@@ -440,61 +440,6 @@ function createButtonLinks() {
   $J("#modal-filterOptions-search-button").click(function() {
     smallSearchEngineSearch($J("#small_search_engine_search_data").val());
   })
-
-
-  function injectXLSXLibrary(callback) {
-    var xlsxScript = document.createElement('script');
-    xlsxScript.src = chrome.runtime.getURL('js/background/xlsx.full.min.js');
-    xlsxScript.onload = callback;
-    document.head.appendChild(xlsxScript);
-  }
-
-  function flattenDropData(data) {
-    var flattenedData = [];
-    for (var dropType in data) {
-      const entriesLength = data[dropType].length;
-      for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
-        const item = data[dropType][dataEntry]["item"];
-        const timeFrame = data[dropType][dataEntry]["timeFrame"];
-        const flattenDataEntry = {
-          "Drop Type": dropType,
-          "Item Type": item.itemType.name,
-          "Item Category": item.itemQuality.name,
-          "Item Name": item.itemName,
-          "Item Weapon": item.itemWeapon.name,
-          "Item Exterior": item.itemExterior.name,
-          "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
-          "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
-        };
-        flattenedData.push(flattenDataEntry);
-      }
-    }
-    return flattenedData;
-  }
-  function flattenUnlockData(data) {
-    var flattenedData = [];
-    for (var conatinerType in data) {
-      const entriesLength = data[conatinerType].length;
-      for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
-        const container = data[conatinerType][dataEntry]["container"];
-        const item = data[conatinerType][dataEntry]["item"];
-        const timeFrame = data[conatinerType][dataEntry]["timeFrame"];
-        const flattenDataEntry = {
-          "Container Type": conatinerType,
-          "Container Name": container.itemName,
-          "Item Type": item.itemType.name,
-          "Item Category": item.itemQuality.name,
-          "Item Name": item.itemName,
-          "Item Weapon": item.itemWeapon.name,
-          "Item Exterior": item.itemExterior.name,
-          "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
-          "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
-        };
-        flattenedData.push(flattenDataEntry);
-      }
-    }
-    return flattenedData;
-  }
   
   
   // export data

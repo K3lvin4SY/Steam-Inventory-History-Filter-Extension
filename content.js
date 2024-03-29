@@ -656,35 +656,57 @@ function clearFilter() {
 }
 
 // ***** FOR EXPORT OF DATA *******
-// Function to convert the gameData object to CSV format
-function convertToCSV(obj) {
-  var csv = "";
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      csv += key + "\n";
-      for (var innerKey in obj[key]) {
-        if (obj[key].hasOwnProperty(innerKey)) {
-          csv += innerKey + "," + obj[key][innerKey].join(",") + "\n";
-        }
-      }
-      csv += "\n";
-    }
-  }
-  return csv;
+function injectXLSXLibrary(callback) {
+  var xlsxScript = document.createElement('script');
+  xlsxScript.src = chrome.runtime.getURL('js/background/xlsx.full.min.js');
+  xlsxScript.onload = callback;
+  document.head.appendChild(xlsxScript);
 }
 
-// Function to download CSV file
-function downloadCSV(csv) {
-  var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  var link = document.createElement("a");
-  if (link.download !== undefined) { // feature detection
-    var url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", "gameData.csv");
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+function flattenDropData(data) {
+  var flattenedData = [];
+  for (var dropType in data) {
+    const entriesLength = data[dropType].length;
+    for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
+      const item = data[dropType][dataEntry]["item"];
+      const timeFrame = data[dropType][dataEntry]["timeFrame"];
+      const flattenDataEntry = {
+        "Drop Type": dropType,
+        "Item Type": item.itemType.name,
+        "Item Category": item.itemQuality.name,
+        "Item Name": item.itemName,
+        "Item Weapon": item.itemWeapon.name,
+        "Item Exterior": item.itemExterior.name,
+        "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
+        "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
+      };
+      flattenedData.push(flattenDataEntry);
+    }
   }
+  return flattenedData;
+}
+function flattenUnlockData(data) {
+  var flattenedData = [];
+  for (var conatinerType in data) {
+    const entriesLength = data[conatinerType].length;
+    for (var dataEntry = 0; dataEntry < entriesLength; dataEntry++) {
+      const container = data[conatinerType][dataEntry]["container"];
+      const item = data[conatinerType][dataEntry]["item"];
+      const timeFrame = data[conatinerType][dataEntry]["timeFrame"];
+      const flattenDataEntry = {
+        "Container Type": conatinerType,
+        "Container Name": container.itemName,
+        "Item Type": item.itemType.name,
+        "Item Category": item.itemQuality.name,
+        "Item Name": item.itemName,
+        "Item Weapon": item.itemWeapon.name,
+        "Item Exterior": item.itemExterior.name,
+        "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
+        "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
+      };
+      flattenedData.push(flattenDataEntry);
+    }
+  }
+  return flattenedData;
 }
 // ***** FOR EXPORT OF DATA ******* END
