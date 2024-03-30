@@ -619,6 +619,410 @@ function loadChartsNDiagrams() {
   });
 }
 
+function getStatsData() {
+  // PRep for drops
+  // container get data
+  var statsData = {
+    unlocks: {
+      lineChartData: {
+        base: [],
+        cases: [],
+        capsules: [],
+        packages: []
+      },
+      barChartData: {
+        caseTypeUnlocks: {},
+        caseItemUnlocks: {},
+        capsuleTypeUnlocks: {},
+        capsuleItemUnlocks: {},
+        packageTypeUnlocks: {},
+        packageItemUnlocks: {},
+      }
+    },
+    drops: {
+      lineChartData: {
+        base: [],
+        cases: [],
+        skins: [],
+        graffiti: []
+      },
+      barChartData: {
+        caseDrops: {},
+        skinDrops: {},
+        graffitiDrops: {},
+      }
+    }
+  };
+  
+  var caseDropsData = gameData.gameDrops.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var skinDropsData = gameData.gameDrops.skin.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var graffitiDropsData = gameData.gameDrops.graffiti.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+
+  // graph prep
+  let caseDropStartDate, skinDropStartDate, graffitiDropStartDate;
+  try {
+    caseDropStartDate = parseInt(caseDropsData[0].timeFrame.year + caseDropsData[0].timeFrame.month + caseDropsData[0].timeFrame.day);
+  } catch (error) {
+    caseDropStartDate = null;
+  }
+
+  try {
+    skinDropStartDate = parseInt(skinDropsData[0].timeFrame.year + skinDropsData[0].timeFrame.month + skinDropsData[0].timeFrame.day);
+  } catch (error) {
+    skinDropStartDate = null;
+  }
+
+  try {
+    graffitiDropStartDate = parseInt(graffitiDropsData[0].timeFrame.year + graffitiDropsData[0].timeFrame.month + graffitiDropsData[0].timeFrame.day);
+  } catch (error) {
+    graffitiDropStartDate = null;
+  }
+  let startDropDateArray = [caseDropStartDate, skinDropStartDate, graffitiDropStartDate].filter(Boolean);
+  let startDropDate = startDropDateArray.length > 0 ? ""+Math.min(...startDropDateArray) : null;
+
+  let startDropMonth = null;
+  let startDropYear = null;
+  if (startDropDate !== null) {
+    startDropMonth = startDropDate.substring(4, 6);
+    startDropYear = startDropDate.substring(0, 4);
+  }  
+
+  let caseDropEndDate, skinDropEndDate, graffitiDropEndDate;
+  try {
+    caseDropEndDate = parseInt(caseDropsData[caseDropsData.length - 1].timeFrame.year + caseDropsData[caseDropsData.length - 1].timeFrame.month + caseDropsData[caseDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    caseDropEndDate = null;
+  }
+
+  try {
+    skinDropEndDate = parseInt(skinDropsData[skinDropsData.length - 1].timeFrame.year + skinDropsData[skinDropsData.length - 1].timeFrame.month + skinDropsData[skinDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    skinDropEndDate = null;
+  }
+
+  try {
+    graffitiDropEndDate = parseInt(graffitiDropsData[graffitiDropsData.length - 1].timeFrame.year + graffitiDropsData[graffitiDropsData.length - 1].timeFrame.month + graffitiDropsData[graffitiDropsData.length - 1].timeFrame.day);
+  } catch (error) {
+    graffitiDropEndDate = null;
+  }
+
+  let endDropDateArray = [caseDropEndDate, skinDropEndDate, graffitiDropEndDate].filter(Boolean);
+  let endDropDate = endDropDateArray.length > 0 ? ""+Math.max(...endDropDateArray) : null;
+
+  let endDropMonth = null;
+  let endDropYear = null;
+  
+  if (endDropDate !== null) {
+    endDropMonth = endDropDate.substring(4, 6);
+    endDropYear = endDropDate.substring(0, 4);
+  }  
+
+  var timeLineDrop = getMonthList(startDropMonth, startDropYear, endDropMonth, endDropYear);
+  
+  var caseDropValue = getZerosList(timeLineDrop.length);
+  var skinDropValue = getZerosList(timeLineDrop.length);
+  var graffitiDropValue = getZerosList(timeLineDrop.length);
+
+
+
+  // PRep for Openings
+  // container get data
+  var caseOpenings = gameData.containerUnlocks.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var capsuleOpenings = gameData.containerUnlocks.capsule.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  var packageOpenings = gameData.containerUnlocks.package.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+
+  // graph prep
+  let caseStartDate, capsuleStartDate, packageStartDate;
+  try {
+    caseStartDate = parseInt(caseOpenings[0].timeFrame.year + caseOpenings[0].timeFrame.month + caseOpenings[0].timeFrame.day);
+  } catch (error) {
+    caseStartDate = null;
+  }
+
+  try {
+    capsuleStartDate = parseInt(capsuleOpenings[0].timeFrame.year + capsuleOpenings[0].timeFrame.month + capsuleOpenings[0].timeFrame.day);
+  } catch (error) {
+    capsuleStartDate = null;
+  }
+
+  try {
+    packageStartDate = parseInt(packageOpenings[0].timeFrame.year + packageOpenings[0].timeFrame.month + packageOpenings[0].timeFrame.day);
+  } catch (error) {
+    packageStartDate = null;
+  }
+  let startDateArray = [caseStartDate, capsuleStartDate, packageStartDate].filter(Boolean);
+  let startDate = startDateArray.length > 0 ? ""+Math.min(...startDateArray) : null;
+
+  let startMonth = null;
+  let startYear = null;
+  if (startDate !== null) {
+    startMonth = startDate.substring(4, 6);
+    startYear = startDate.substring(0, 4);
+  }  
+
+  let caseEndDate, capsuleEndDate, packageEndDate;
+  try {
+    caseEndDate = parseInt(caseOpenings[caseOpenings.length - 1].timeFrame.year + caseOpenings[caseOpenings.length - 1].timeFrame.month + caseOpenings[caseOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    caseEndDate = null;
+  }
+
+  try {
+    capsuleEndDate = parseInt(capsuleOpenings[capsuleOpenings.length - 1].timeFrame.year + capsuleOpenings[capsuleOpenings.length - 1].timeFrame.month + capsuleOpenings[capsuleOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    capsuleEndDate = null;
+  }
+
+  try {
+    packageEndDate = parseInt(packageOpenings[packageOpenings.length - 1].timeFrame.year + packageOpenings[packageOpenings.length - 1].timeFrame.month + packageOpenings[packageOpenings.length - 1].timeFrame.day);
+  } catch (error) {
+    packageEndDate = null;
+  }
+
+  let endDateArray = [caseEndDate, capsuleEndDate, packageEndDate].filter(Boolean);
+  let endDate = endDateArray.length > 0 ? ""+Math.max(...endDateArray) : null;
+
+  let endMonth = null;
+  let endYear = null;
+  
+  if (endDate !== null) {
+    endMonth = endDate.substring(4, 6);
+    endYear = endDate.substring(0, 4);
+  }  
+
+  var timeLine = getMonthList(startMonth, startYear, endMonth, endYear);
+  
+  var caseOpenValue = getZerosList(timeLine.length);
+  var capsuleOpenValue = getZerosList(timeLine.length);
+  var packageOpenValue = getZerosList(timeLine.length);
+
+  // case data collect
+  var caseNames = [];
+  var caseNamesAmount = [];
+
+  var caseRarityItemsAmount = [0, 0, 0, 0, 0];
+
+  //console.log(caseOpenings);
+
+  for (let index = 0; index < caseOpenings.length; index++) {
+    const caseOpen = caseOpenings[index];
+    
+    // add case names
+    if (!caseNames.includes(caseOpen.container.itemName)) {
+      caseNames.push(caseOpen.container.itemName);
+      caseNamesAmount.push(0);
+    }
+    // add case amount to case names
+    const caseRarityItemsAmountIndex = caseNames.indexOf(caseOpen.container.itemName);
+    caseNamesAmount[caseRarityItemsAmountIndex] = caseNamesAmount[caseRarityItemsAmountIndex]+1;
+
+    // add rarity amount on case open
+    if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
+      caseRarityItemsAmount[0] = caseRarityItemsAmount[0]+1;
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
+      caseRarityItemsAmount[1] = caseRarityItemsAmount[1]+1;
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
+      caseRarityItemsAmount[2] = caseRarityItemsAmount[2]+1;
+    } else if (caseOpen.item.itemRarity.internal_name == internalData.rarities.skins.covert && caseOpen.item.itemQuality.name != "★") {
+      caseRarityItemsAmount[3] = caseRarityItemsAmount[3]+1;
+    } else if (caseOpen.item.itemQuality.name == "★") {
+      caseRarityItemsAmount[4] = caseRarityItemsAmount[4]+1;
+    }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, caseOpen.timeFrame.year, caseOpen.timeFrame.month);
+    caseOpenValue[timeLineIndex] = caseOpenValue[timeLineIndex]+1;
+  }
+
+  // case charts
+  statsData.unlocks.barChartData.caseTypeUnlocks = Object.fromEntries(caseNames.map((key, index) => [key, caseNamesAmount[index]]));
+
+  statsData.unlocks.barChartData.caseItemUnlocks = Object.fromEntries(["Mil-spec", "Restricted", "Classified", "Covert", "Gold"].map((key, index) => [key, caseRarityItemsAmount[index]]));
+  
+  statsData.unlocks.lineChartData.base = timeLine;
+  statsData.unlocks.lineChartData.cases = caseOpenValue;
+
+  // ------------------------------------------------------------------------------------------
+
+  // capsule data collect
+  
+  var capsuleNames = [];
+  var capsuleNamesAmount = [];
+
+  var capsuleRarityItemsAmount = [0, 0, 0, 0];
+
+  for (let index = 0; index < capsuleOpenings.length; index++) {
+    const capsuleOpen = capsuleOpenings[index];
+    
+    // add capsule names
+    const shortItemName = capsuleOpen.container.itemName.replace("Challengers", "Chal").replace("Legends", "Leg").replace("Contenders", "Con").replace("Autograph ", "A-").replace("Sticker ", "S-");
+    if (!capsuleNames.includes(shortItemName)) {
+      capsuleNames.push(shortItemName);
+      capsuleNamesAmount.push(0);
+    }
+    // add capsule amount to capsule names
+    const capsuleRarityItemsAmountIndex = capsuleNames.indexOf(shortItemName);
+    capsuleNamesAmount[capsuleRarityItemsAmountIndex] = capsuleNamesAmount[capsuleRarityItemsAmountIndex]+1;
+
+    // add rarity amount on capsule open
+    if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.highGrade) {
+      capsuleRarityItemsAmount[0] = capsuleRarityItemsAmount[0]+1;
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.remarkable) {
+      capsuleRarityItemsAmount[1] = capsuleRarityItemsAmount[1]+1;
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.exotic) {
+      capsuleRarityItemsAmount[2] = capsuleRarityItemsAmount[2]+1;
+    } else if (capsuleOpen.item.itemRarity.internal_name == internalData.rarities.stickers.extraordinary) {
+      capsuleRarityItemsAmount[3] = capsuleRarityItemsAmount[3]+1;
+    }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, capsuleOpen.timeFrame.year, capsuleOpen.timeFrame.month);
+    capsuleOpenValue[timeLineIndex] = capsuleOpenValue[timeLineIndex]+1;
+  }
+
+  // capsule charts
+  statsData.unlocks.barChartData.capsuleTypeUnlocks = Object.fromEntries(capsuleNames.map((key, index) => [key, capsuleNamesAmount[index]]));
+
+  statsData.unlocks.barChartData.capsuleItemUnlocks = Object.fromEntries(["High Grade", "Remarkable", "Exotic", "Extraordinary"].map((key, index) => [key, capsuleRarityItemsAmount[index]]));
+  
+  statsData.unlocks.lineChartData.capsules = capsuleOpenValue;
+
+  // ------------------------------------------------------------------------------------------
+
+  // package data collect
+  
+  var packageNames = [];
+  var packageNamesAmount = [];
+
+  var packageRarityItemsAmount = [0, 0, 0, 0, 0, 0];
+
+  for (let index = 0; index < packageOpenings.length; index++) {
+    const packageOpen = packageOpenings[index];
+    
+    // add package names
+    const shortPackageName = packageOpen.container.itemName.replace("Souvenir ", "S-");
+    if (!packageNames.includes(shortPackageName)) {
+      packageNames.push(shortPackageName);
+      packageNamesAmount.push(0);
+    }
+    // add package amount to package names
+    const packageRarityItemsAmountIndex = packageNames.indexOf(shortPackageName);
+    packageNamesAmount[packageRarityItemsAmountIndex] = packageNamesAmount[packageRarityItemsAmountIndex]+1;
+
+    // add rarity amount on package open
+    if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.consumerGrade) {
+      packageRarityItemsAmount[0] = packageRarityItemsAmount[0]+1;
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.industrialGrade) {
+      packageRarityItemsAmount[1] = packageRarityItemsAmount[1]+1;
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
+      packageRarityItemsAmount[2] = packageRarityItemsAmount[2]+1;
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
+      packageRarityItemsAmount[3] = packageRarityItemsAmount[3]+1;
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
+      packageRarityItemsAmount[4] = packageRarityItemsAmount[4]+1;
+    } else if (packageOpen.item.itemRarity.internal_name == internalData.rarities.skins.covert) {
+      packageRarityItemsAmount[5] = packageRarityItemsAmount[5]+1;
+    }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLine, packageOpen.timeFrame.year, packageOpen.timeFrame.month);
+    packageOpenValue[timeLineIndex] = packageOpenValue[timeLineIndex]+1;
+  }
+
+  // package charts
+  statsData.unlocks.barChartData.packageTypeUnlocks = Object.fromEntries(packageNames.map((key, index) => [key, packageNamesAmount[index]]));
+
+  statsData.unlocks.barChartData.packageItemUnlocks = Object.fromEntries(["Consumer Grade", "Industrial Grade", "Mil-spec", "Restricted", "Classified", "Covert"].map((key, index) => [key, packageRarityItemsAmount[index]]));
+  
+  statsData.unlocks.lineChartData.packages = packageOpenValue;
+
+  // ------------------------------------------------------------------------------------------
+  
+  // case drops
+  var caseDrops = gameData.gameDrops.case;
+  var caseDropNames = [];
+  var caseDropNamesAmount = [];
+
+  //console.log(caseDrops);
+  for (let index = 0; index < caseDrops.length; index++) {
+    const caseDrop = caseDrops[index];
+
+    // add case drop names
+    //console.log(caseDrop);
+    //console.log(caseDrop.item);
+    if (!caseDropNames.includes(caseDrop.item.itemName)) {
+      caseDropNames.push(caseDrop.item.itemName);
+      caseDropNamesAmount.push(0);
+    }
+    // add case drop amount to case drop names
+    const caseDropRarityItemsAmountIndex = caseDropNames.indexOf(caseDrop.item.itemName);
+    caseDropNamesAmount[caseDropRarityItemsAmountIndex] = caseDropNamesAmount[caseDropRarityItemsAmountIndex]+1;
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLineDrop, caseDrop.timeFrame.year, caseDrop.timeFrame.month);
+    caseDropValue[timeLineIndex] = caseDropValue[timeLineIndex]+1;
+  }
+
+  // case drop charts
+  statsData.drops.barChartData.caseDrops = Object.fromEntries(caseDropNames.map((key, index) => [key, caseDropNamesAmount[index]]));
+
+  statsData.drops.lineChartData.base = timeLineDrop;
+  statsData.drops.lineChartData.cases = caseDropValue;
+
+  // ------------------------------------------------------------------------------------------
+  
+  // skin drops
+  var skinDrops = gameData.gameDrops.skin;
+
+  var skinDropRarityItemsAmount = [0, 0, 0, 0, 0, 0];
+
+  for (let index = 0; index < skinDrops.length; index++) {
+    const skinDrop = skinDrops[index];
+
+    // add rarity amount on skin drop
+    if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.consumerGrade) {
+      skinDropRarityItemsAmount[0] = skinDropRarityItemsAmount[0]+1;
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.industrialGrade) {
+      skinDropRarityItemsAmount[1] = skinDropRarityItemsAmount[1]+1;
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.milspec) {
+      skinDropRarityItemsAmount[2] = skinDropRarityItemsAmount[2]+1;
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.restricted) {
+      skinDropRarityItemsAmount[3] = skinDropRarityItemsAmount[3]+1;
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.classified) {
+      skinDropRarityItemsAmount[4] = skinDropRarityItemsAmount[4]+1;
+    } else if (skinDrop.item.itemRarity.internal_name == internalData.rarities.skins.covert) {
+      skinDropRarityItemsAmount[5] = skinDropRarityItemsAmount[5]+1;
+    }
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLineDrop, skinDrop.timeFrame.year, skinDrop.timeFrame.month);
+    skinDropValue[timeLineIndex] = skinDropValue[timeLineIndex]+1;
+  }
+
+  // skin drop charts
+  statsData.drops.barChartData.skinDrops = Object.fromEntries(["Consumer Grade", "Industrial Grade", "Mil-spec", "Restricted", "Classified", "Covert"].map((key, index) => [key, skinDropRarityItemsAmount[index]]));
+
+  statsData.drops.lineChartData.skins = skinDropValue;
+
+
+  // ------------------------------------------------------------------------------------------
+  
+
+  var graffitiDrops = gameData.gameDrops.graffiti;
+
+  for (let index = 0; index < graffitiDrops.length; index++) {
+    const graffitiDrop = graffitiDrops[index];
+
+    // graph stuff
+    const timeLineIndex = getIndexFromDate(timeLineDrop, graffitiDrop.timeFrame.year, graffitiDrop.timeFrame.month);
+    graffitiDropValue[timeLineIndex] = graffitiDropValue[timeLineIndex]+1;
+  }
+
+  statsData.drops.lineChartData.graffiti = graffitiDropValue;
+
+  return statsData;
+}
+
 function updateCharts() {
   // PRep for drops
   // container get data

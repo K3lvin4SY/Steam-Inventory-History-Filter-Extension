@@ -446,7 +446,21 @@ function createButtonLinks() {
   $J("#steam_filter_stats_win_export").click(function() {
     injectXLSXLibrary(function() {
       var wb = XLSX.utils.book_new();
+
+      const statsData = getStatsData();
     
+      var unlocksLineChartDataWS = XLSX.utils.json_to_sheet(flattenLineChartStatsData(statsData.unlocks.lineChartData));
+      XLSX.utils.book_append_sheet(wb, unlocksLineChartDataWS, "Unlocks LineChart Stats Data");
+
+      var unlocksBarChartsDataWS = XLSX.utils.json_to_sheet(flattenBarChartsStatsData(statsData.unlocks.barChartData));
+      XLSX.utils.book_append_sheet(wb, unlocksBarChartsDataWS, "Unlocks BarCharts Stats Data");
+
+      var dropsLineChartDataWS = XLSX.utils.json_to_sheet(flattenLineChartStatsData(statsData.drops.lineChartData));
+      XLSX.utils.book_append_sheet(wb, dropsLineChartDataWS, "Drops LineChart Stats Data");
+
+      var dropsBarChartsDataWS = XLSX.utils.json_to_sheet(flattenBarChartsStatsData(statsData.drops.barChartData));
+      XLSX.utils.book_append_sheet(wb, dropsBarChartsDataWS, "Drops BarCharts Stats Data");
+
       // Convert containerUnlocks data to worksheet
       var containerUnlocksWS = XLSX.utils.json_to_sheet(flattenUnlockData(gameData.containerUnlocks));
       XLSX.utils.book_append_sheet(wb, containerUnlocksWS, "Container Unlocks");

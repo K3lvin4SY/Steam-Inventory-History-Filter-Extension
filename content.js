@@ -675,8 +675,8 @@ function flattenDropData(data) {
         "Item Type": item.itemType.name,
         "Item Category": item.itemQuality.name,
         "Item Name": item.itemName,
-        "Item Weapon": item.itemWeapon.name,
-        "Item Exterior": item.itemExterior.name,
+        "Item Weapon": item.itemWeapon === undefined ? "Not a weapon." : item.itemWeapon.name,
+        "Item Exterior": item.itemExterior === undefined ? "No Exterior." : item.itemExterior.name,
         "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
         "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
       };
@@ -699,11 +699,47 @@ function flattenUnlockData(data) {
         "Item Type": item.itemType.name,
         "Item Category": item.itemQuality.name,
         "Item Name": item.itemName,
-        "Item Weapon": item.itemWeapon.name,
-        "Item Exterior": item.itemExterior.name,
+        "Item Weapon": item.itemWeapon === undefined ? "Not a weapon." : item.itemWeapon.name,
+        "Item Exterior": item.itemExterior === undefined ? "No Exterior." : item.itemExterior.name,
         "Item Quality": { t: 's', v: item.itemRarity.name, s: { fill: { patternType: "solid", fgColor: { rgb: "ff"+item.itemRarity.color } } } },
         "Date": "Y:"+timeFrame.year+", Q:"+timeFrame.quarter+", M:"+timeFrame.month+", D:"+timeFrame.day
       };
+      flattenedData.push(flattenDataEntry);
+    }
+  }
+  return flattenedData;
+}
+function flattenBarChartsStatsData(oldData) {
+  const flattenedData = [];
+
+  const keys = Object.keys(oldData);
+  const maxLength = Math.max(...keys.map(key => Object.keys(oldData[key]).length));
+
+  for (let i = 0; i < maxLength; i++) {
+    const newDataEntry = {};
+    keys.forEach(key => {
+      const unlockKeys = Object.keys(oldData[key]);
+      if (unlockKeys[i] !== undefined) {
+        newDataEntry[`${key.charAt(0).toUpperCase() + key.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2')}s`] = unlockKeys[i];
+        newDataEntry[`${key.charAt(0).toUpperCase() + key.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2')}s Values`] = oldData[key][unlockKeys[i]];
+      }
+    });
+    flattenedData.push(newDataEntry);
+  }
+
+  return flattenedData;
+}
+function flattenLineChartStatsData(data) {
+  var flattenedData = [];
+  for (var type in data) {
+    if (type !== "base") {
+      const flattenDataEntry = {};
+      flattenDataEntry["type"] = type;
+      for (var i = 0; i < data.base.length; i++) {
+        const key = data.base[i];
+        const value = data[type][i];
+        flattenDataEntry[key] = value;
+      }
       flattenedData.push(flattenDataEntry);
     }
   }
