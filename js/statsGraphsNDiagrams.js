@@ -624,6 +624,11 @@ function getStatsData() {
   // container get data
   var statsData = {
     unlocks: {
+      general: {
+        cases: 0,
+        capsules: 0,
+        packages: 0
+      },
       lineChartData: {
         base: [],
         cases: [],
@@ -640,6 +645,11 @@ function getStatsData() {
       }
     },
     drops: {
+      general: {
+        cases: 0,
+        skins: 0,
+        graffiti: 0
+      },
       lineChartData: {
         base: [],
         cases: [],
@@ -657,6 +667,11 @@ function getStatsData() {
   var caseDropsData = gameData.gameDrops.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var skinDropsData = gameData.gameDrops.skin.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var graffitiDropsData = gameData.gameDrops.graffiti.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+
+   // general stats update
+   statsData.drops.general.cases = caseDropsData.length;
+   statsData.drops.general.skins = skinDropsData.length;
+   statsData.drops.general.graffiti = graffitiDropsData.length;
 
   // graph prep
   let caseDropStartDate, skinDropStartDate, graffitiDropStartDate;
@@ -730,6 +745,11 @@ function getStatsData() {
   var caseOpenings = gameData.containerUnlocks.case.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var capsuleOpenings = gameData.containerUnlocks.capsule.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
   var packageOpenings = gameData.containerUnlocks.package.sort((a, b) => parseInt(a.timeFrame.year+a.timeFrame.month+a.timeFrame.day) - parseInt(b.timeFrame.year+b.timeFrame.month+b.timeFrame.day));
+  
+   // general stats update
+   statsData.unlocks.general.cases = caseOpenings.length;
+   statsData.unlocks.general.capsules = capsuleOpenings.length;
+   statsData.unlocks.general.packages = packageOpenings.length;
 
   // graph prep
   let caseStartDate, capsuleStartDate, packageStartDate;
