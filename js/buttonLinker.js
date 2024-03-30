@@ -496,4 +496,49 @@ function createButtonLinks() {
     
     URL.revokeObjectURL(url);
   })
+  // import history data
+  $J("#steam_filter_options_Win_Import_History_Btn").click(function() {
+    $J("#steam_filter_options_Win_Import_History_File").click();
+  })
+
+  $J("#steam_filter_options_Win_Import_History_File").change(function(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var content = event.target.result;
+      try {
+        var jsonData = JSON.parse(content);
+        
+        g_rgAppContextData = [];
+        gottenHistoryDataSegments = [];
+        continueLOading = true;
+        loadedAllHistory = false;
+        validLanguage = true;
+
+        gameData = {
+          containerUnlocks: {
+            case: [],
+            capsule: [],
+            package: []
+          },
+          gameDrops: {
+            case: [],
+            skin: [],
+            graffiti: []
+          }
+        };
+
+        too_many_req = false;
+        start_time = 0;
+
+        InventoryHistory_LoadFromJson(jsonData);
+
+      } catch (error) {
+        console.error("Error parsing JSON file: ", error);
+      }
+    };
+
+    reader.readAsText(file);
+  });
 }

@@ -575,6 +575,113 @@ function InventoryHistory_LoadAll()
 	
 }
 
+function InventoryHistory_LoadFromJson_Segment(data, prevCur) {
+	// variables
+	var apps = [];
+	if (window.location.href.includes("?")) {
+		window.location.href.split("?")[1].split("&").forEach(app => {
+			apps.push(parseInt(app.split("=")[1]));
+		});
+	}
+
+	
+	if (!validLanguage) {
+		document.cookie = "Steam_Language=english;priority=high;path=/";
+	}
+
+	// ajax act
+	gottenHistoryDataSegments.push(data);
+	for ( var appid in data.apps )
+	{
+		g_rgAppContextData[appid] = data.apps[appid];
+	}
+
+	if (loadPartial == 0) {
+		start_time = Date.now();
+	}
+
+	$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.loadingInProgressText);
+	$J('#inventory_history_count_rows').text( parseInt( $J('#inventory_history_count_rows').text() ) + data.num );
+	$J('#inventory_history_count').text( parseInt( $J('#inventory_history_count').text() ) + data.num );
+	$J('#inventory_history_loop_count').text( parseInt( $J('#inventory_history_loop_count').text() ) + 1 );
+	var unix_timestamp;
+	if (data.cursor) {
+		unix_timestamp = data.cursor;
+		prevCur = unix_timestamp;
+	} else {
+		unix_timestamp = prevCur;
+	}
+	var date = new Date(unix_timestamp.time * 1000);
+	var year = date.getFullYear().toString();
+	var month = languageOption.sel.largeMonths[date.getMonth()];
+	var day = date.getDate().toString();
+	var formattedDate = day + ' ' + month + ' ' + year;
+	$J('#inventory_history_load_date').text(formattedDate);
+
+	if ( data.html )
+	{
+		var elem_prev = $J('#inventory_history_table').children().last();
+
+		if (loadAllAmount == 0) {
+			loadAllAmount++;
+			$J('#inventory_history_table').empty();
+			$J('#inventory_history_count').text("50");
+			$J('#inventory_history_table').append( data.html );
+			var new_elems = $J('#inventory_history_table').children();
+		} else {
+			$J('#inventory_history_table').append( data.html );
+			var new_elems = elem_prev.nextAll();
+		}
+
+		//new_elems.hide();
+		//new_elems.fadeIn( 200 );
+
+		InventoryHistory_BindTooltips( new_elems, data.descriptions );
+		InventoryHistory_AddData( new_elems, data.descriptions );
+		InventoryHistory_AddStatsData( new_elems, data.descriptions );
+	}
+
+	if ( data.cursor )
+	{
+		cursurHistory = data.cursor;
+		// Run again
+		loadAllAmount++;
+		loadPartial++;
+	} else {console.log("---END---")}
+
+	// ajax finish
+	$J('#inventory_history_loading').hide();
+	return prevCur;
+}
+
+function InventoryHistory_LoadFromJson(jsonData)
+{
+	// perperations
+	$J('#load_more_button').hide();
+	$J("#Loading_For_Rows_Dialog").show();
+	$J("#steam_filter_options_Dialog").hide();
+
+	$J('#inventory_history_count_rows').text( 0 );
+	$J('#inventory_history_count').text( 0 );
+	$J('#inventory_history_loop_count').text( 0 );
+
+	var prevCur = Math.floor(Date.now() / 1000);
+	jsonData.forEach(data => {
+		prevCur = InventoryHistory_LoadFromJson_Segment(data, prevCur);
+	});
+	// stop loading
+	loadedAllHistory = true;
+	$J("#steam_Inv_Loader_Win_Btn_Txt").text(languageOption.sel.messages.close);
+	$J("#steam_Inv_Loader_Message").text(languageOption.sel.messages.historyLoadingDone);
+	$J("#steam_Inv_Loader_Win_Btn").removeClass("steam_Inv_Loader_Win_Stop");
+	$J("#steam_Inv_Loader_Win_Btn").addClass("steam_Inv_Loader_Win_Dismiss");
+	$J("#steam_Inv_Loader_spin").hide();
+	$J("#steam_Inv_Loader_Win_FBtn").hide();
+
+	$J( '#load_more_button' ).hide();
+	
+}
+
 function InventoryHistory_Load50More()
 {
 
