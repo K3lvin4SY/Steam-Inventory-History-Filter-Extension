@@ -452,6 +452,7 @@ function InventoryHistory_LoadAll()
 	}).done( function( data ) {
 		if ( data.success )
 		{
+			gottenHistoryDataSegments.push(data);
 			for ( var appid in data.apps )
 			{
 				g_rgAppContextData[appid] = data.apps[appid];
@@ -620,6 +621,7 @@ function InventoryHistory_Load50More()
 	}).done( function( data ) {
 		if ( data.success )
 		{
+			gottenHistoryDataSegments.push(data);
 			for ( var appid in data.apps )
 			{
 				g_rgAppContextData[appid] = data.apps[appid];

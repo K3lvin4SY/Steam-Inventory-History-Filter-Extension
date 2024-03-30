@@ -2,6 +2,7 @@ var sessionID;
 var steamLanguage;
 var cursurHistory;
 var g_rgAppContextData = [];
+var gottenHistoryDataSegments = [];
 var continueLOading = true;
 var loadedAllHistory = false;
 var validLanguage = true;

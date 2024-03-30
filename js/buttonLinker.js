@@ -442,7 +442,7 @@ function createButtonLinks() {
   })
   
   
-  // export data
+  // export stats data
   $J("#steam_filter_stats_win_export").click(function() {
     injectXLSXLibrary(function() {
       var wb = XLSX.utils.book_new();
@@ -475,5 +475,25 @@ function createButtonLinks() {
       // Save workbook as Excel file
       XLSX.writeFile(wb, "CS_Inventory_Stats_Data.xlsx");
     })
+  })
+
+  // export history data
+  $J("#steam_filter_options_Win_Export_History_Btn").click(function() {
+    
+    var jsonData = gottenHistoryDataSegments;
+    
+    var jsonString = JSON.stringify(jsonData, null, 2);
+    
+    var blob = new Blob([jsonString], {type: "application/json"});
+    
+    var url = URL.createObjectURL(blob);
+    
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'STEAM_Inventory_History_Data.json';
+    
+    a.click();
+    
+    URL.revokeObjectURL(url);
   })
 }
