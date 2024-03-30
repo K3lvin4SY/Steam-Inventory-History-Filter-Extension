@@ -449,6 +449,9 @@ function createButtonLinks() {
 
       const statsData = getStatsData();
     
+      var generalDataWS = XLSX.utils.json_to_sheet(flattenGeneralStatsData(statsData.unlocks.general, statsData.drops.general));
+      XLSX.utils.book_append_sheet(wb, generalDataWS, "General Stats Data");
+
       var unlocksLineChartDataWS = XLSX.utils.json_to_sheet(flattenLineChartStatsData(statsData.unlocks.lineChartData));
       XLSX.utils.book_append_sheet(wb, unlocksLineChartDataWS, "Unlocks LineChart Stats Data");
 

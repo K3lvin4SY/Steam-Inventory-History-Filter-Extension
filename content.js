@@ -745,4 +745,22 @@ function flattenLineChartStatsData(data) {
   }
   return flattenedData;
 }
+function flattenGeneralStatsData(unlocksData, dropsData) {
+  const flattenedData = [];
+  const unlockKeys = Object.keys(unlocksData);
+  const dropKeys = Object.keys(dropsData);
+
+  for (let i = 0; i < Math.max(unlockKeys.length, dropKeys.length); i++) {
+    const unlockKey = unlockKeys[i] || '';
+    const dropKey = dropKeys[i] || '';
+    flattenedData.push({
+      "Type Unlocked": unlockKey,
+      "Amount Unlocked": unlocksData[unlockKey] || 0,
+      "Type Dropped": dropKey,
+      "Amount Dropped": dropsData[dropKey] || 0
+    });
+  }
+
+  return flattenedData;
+}
 // ***** FOR EXPORT OF DATA ******* END
