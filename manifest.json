@@ -1,6 +1,6 @@
 {
   "name": "CS:GO History Utility Filter",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "CS:GO History Utility Filter: Automate history, filter, search, view stats - for an enhanced inventory browsing experience.",
   "manifest_version": 3,
   "author": "Kelvin Brahe",
@@ -27,7 +27,6 @@
   "content_scripts": [
     {
       "matches": [
-        "https://steamcommunity.com/id/K3B04/",
         "https://steamcommunity.com/id/*/inventoryhistory/*",
         "https://steamcommunity.com/id/*/inventoryhistory",
         "https://steamcommunity.com/profiles/*/inventoryhistory/*",

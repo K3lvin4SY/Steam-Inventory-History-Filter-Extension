@@ -885,14 +885,6 @@ async function addFilterOptions() {
 
 }
 
-function addPrifleHtml() {
-  const numDays = Math.floor((new Date() - new Date('2024-04-03')) / (1000 * 3600 * 24));
-  const contentDiv = document.getElementsByClassName('responsive_status_info')[0];
-  if (contentDiv !== undefined) {
-    contentDiv.innerHTML += '<div class="profile_ban_status"><div class="profile_ban">1 VAC ban on record<span class="profile_ban_info">| <a class="whiteLink" href="https://support.steampowered.com/kb_article.php?ref=7849-Radz-6869&amp;l=english" target="_blank" rel="">Info</a></span></div>'+numDays+' day(s) since last ban</div>';
-  }
-}
-
 const cookies = document.cookie.split("; ")
 for (let index = 0; index < cookies.length; index++) {
   const key = cookies[index].split("=")[0];
@@ -1108,6 +1100,5 @@ function updateHtmlText() {
 
 }
 
-addPrifleHtml();
 addFilterOptions();
 
